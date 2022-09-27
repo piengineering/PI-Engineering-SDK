@@ -1,0 +1,49 @@
+/* MWII SPLAT Development Kit Help File */
+/* Copyright 2007 | P.I. Engineering, Inc. | Select Rights Reserved */
+
+
+/* GENERAL -------------- */
+
+body, p	  			{ font-family:Verdana; font-size: 12px}
+body 				{ background-image: url(grid.jpg)}
+
+
+blockquote		  { border-left: 2px solid #242424; padding-left: 10px }
+
+h1, h2, h3, h4	  { font-family:Verdana }
+h1				  { font-size: 18px; font-weight: bold }
+h3				  { font-size: 12px; font-weight: bold }
+h6		  		  { font-size: 10px; margin: 0; padding: 0 }
+
+td, tr            { padding:0; margin:10px; padding-top:5px; padding-left:3px; padding-right:3px; padding-bottom:2px }
+ul                { padding:0; margin:15px }
+
+
+/* LINKS ---------------- */
+
+a 				  { color: #636395; text-decoration: none; border-bottom: 1px #636395 dotted; border-top: 1px #e3e5d0 solid;
+				    border-left: 1px #e3e5d0 solid; border-right: 1px #e3e5d0 solid; font-weight: bold; padding: 0 1px 1px }
+
+a:hover 		  { color: #fff; text-decoration: none; border: 1px #636395 solid; background-color: #636395 }
+
+a img			  { border-width: 0; border-style: none; text-decoration: none; background: none }
+a:hover img		  { border-width: 0; border-style: none; text-decoration: none; background: none }
+img a:hover		  { border-width: 0; border-style: none; text-decoration: none; background: none }
+
+
+/* CONTENT -------------- */
+
+#page 			  { width: 550px; margin: 0 auto; position: relative }
+#banner 		  { width: 550px; height: 68px; position: absolute; top: 0; display: inline }
+
+#main			  { width: 472px; position: absolute; top: 95px; right: 36px; left: 36px }
+#main p 		  { text-indent: 25px; text-align: justify; line-height: 145%; margin: 0; padding: 5px 0 }
+
+4#footer			  { clear: both; height: 22px }
+#copyright 		  { font: 12px georgia, serif; margin: 0; padding: 12px 0px; border-top: 1px solid #242424; font-weight: bold }
+
+
+.style3 {font-size: 10; font-weight: bold; }
+.style6 {font-size: 12px}
+.style8 {font-size: 10}
+
