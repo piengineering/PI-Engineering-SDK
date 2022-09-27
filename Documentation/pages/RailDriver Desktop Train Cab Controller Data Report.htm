@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>RailDriver Desktop Train Cab Controller Data Report</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<link href="help.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style3 {font-size: 10; font-weight: bold; }
+.style6 {font-size: 12px}
+.style8 {font-size: 10}
+-->
+</style>
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_desktop" id="idh_desktop"></a>RailDriver Desktop Train Cab 
+      Controller Data Report | <a href="../index.htm">Main Page</a></h2>
+        <h3>General Information</h3>
+        <table>
+          <tr>
+            <th><div align="left">VID
+              
+            </div>
+            <td><div align="left">05f3h</div></td>
+          </tr>
+          <tr>
+            <th><div align="left">PID
+              
+            </div>
+            <td><div align="left">0D2h or 210</div></td>
+          </tr>
+          <tr>
+            <th><div align="left">Consumer Usage Page
+              
+            </div>
+            <td><div align="left">1</div></td>
+          </tr>
+          <tr>
+            <th><div align="left">Usage Page
+              
+            </div>
+            <td><div align="left">000Ch or 12</div></td>
+          </tr>
+        </table>
+        <h3>RailDriver Desktop Train Cab Controller Input Report</h3>
+    <img src="images/RailDriver.png" alt="RailDriver" width="626" height="366" /> 
+    <p><em>Figure 1</em>: RailDriver Desktop Train Cab Controller key reference.</p>
+        <p>Endpoint: 1, consumer usage page</p>
+        <p>Report Length: 15 bytes.</p>
+        
+    <table width="70%" cellpadding="2" cellspacing="2" border="4">
+      <tr bgcolor="#CCCCCC" class="style6">
+            <td><div align="center"><span class="style3"> Byte 1*</span></div></td>
+            <td><div align="center"><span class="style3">Byte 2</span></div></td>
+            <td><div align="center"><span class="style3">Byte 3</span></div></td>
+            <td><div align="center"><span class="style3">Byte 4</span></div></td>
+            <td><div align="center"><span class="style3">Byte 5</span></div></td>
+            <td><div align="center"><span class="style3">Byte 6</span></div></td>
+            <td><div align="center"><span class="style3">Byte 7</span></div></td>
+            <td><div align="center"><span class="style3">Byte 8</span></div></td>
+            <td><div align="center"><span class="style3">Byte 9</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 10</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 11</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 12</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 13</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 14</span></div></td>
+            <td><div align="center"><span class="style3"> Byte 15</span></div></td>
+          </tr>
+          <tr bgcolor="#FFFF00" class="style6">
+            <td>Constant</td>
+            <td>Reverser (0-255)</td>
+            <td>Throttle (0-255)</td>
+            <td>Auto Brake (0-255)</td>
+            <td>Ind. Brake (0-255)</td>
+            <td>Bail Off (0-255)</td>
+            <td>3 Pos. Rotary 1  (0-255)</td>
+            <td>3 Pos. Rotary 2  (0-255)</td>
+            <td>Blue Buttons (0-7)</td>
+            <td>Blue Buttons (8-15)</td>
+            <td>Blue Buttons (16-23)</td>
+            <td>Blue Buttons, Zoom,  Pan (24-31)</td>
+            <td>Pan, Cab Buttons  (32-39)</td>
+            <td>Cab Buttons, Whistle  (40-43)</td>
+            <td>Product ID</td>
+          </tr>
+          <tr bgcolor="#CCCCCC" class="style6">
+            <td>0</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td>&lt;data&gt;</td>
+            <td><strong>D1</strong></td>
+            <td><strong>D2</strong></td>
+            <td><strong>D3</strong></td>
+            <td><strong>D4</strong></td>
+            <td><strong>D5</strong></td>
+            <td><strong>D6</strong></td>
+            <td>210</td>
+          </tr>
+        </table>
+      <a name="tablo" id="tablo"></a>
+      
+    <p> <strong>D1</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 0, bit 2=button 1, bit 3=button 2, etc.<br />
+      <strong>D2</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 8, bit 2=button 9, bit 3=button 10, etc.<br />
+      <strong>D3</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 16, bit 2=button 17, bit 3=button 18, etc.<br />
+      <strong>D4</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 24, bit 2=button 25, bit 3=button 26, etc.<br />
+      <strong>D5</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 32, bit 2=button 33, bit 3=button 34, etc.<br />
+      <strong>D6</strong>: For all bits 0 for button up, 1 for button down.&nbsp; 
+      Bit 1=button 40, bit 2=button 41, bit 3=button 42, etc.<br />
+      </p>
+      <h3>RailDriver Desktop Train Cab Controller Output Report</h3>
+    <p>The following types of output reports are available; Write  to Display and Speaker On/Off.</p>
+      <p>Endpoint: 2, vendor defined usage page</p>
+      <p>Report Length:  9 bytes.</p>
+      <h3>1. Write to Display</h3>
+      
+    <table class="style6" width="60%" cellpadding="2" cellspacing="2" border="4">
+      <tr bgcolor="#CCCCCC">
+          <td><div align="center"><span class="style3"> Byte 1*</span></div></td>
+          <td><div align="center"><span class="style3">Byte 2</span></div></td>
+          <td><div align="center"><span class="style3">Byte 3</span></div></td>
+          <td><div align="center"><span class="style3">Byte 4</span></div></td>
+          <td><div align="center"><span class="style3">Byte 5</span></div></td>
+          <td><div align="center"><span class="style3">Byte 6</span></div></td>
+          <td><div align="center"><span class="style3">Byte 7</span></div></td>
+          <td><div align="center"><span class="style3">Byte 8</span></div></td>
+          <td><div align="center"><span class="style3">Byte 9</span></div></td>
+        </tr>
+        <tr bgcolor="#FFFF00">
+          
+        <td>Constant</td>
+          <td>3 Digit Command</td>
+          <td>Right Digit</td>
+          <td>Middle Digit</td>
+          <td>Left Digit</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Constant</td>
+        </tr>
+        <tr bgcolor="#CCCCCC">
+          <td>0</td>
+          <td>134</td>
+          
+        <td><strong>LED3</strong></td>
+        <td><strong>LED2</strong></td>
+          <td><strong>LED1</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+      <p>
+        <strong>LED1</strong>: For all bits, 0 to turn off segment, 1 to turn on  segment.&nbsp; Each bit corresponds to a  segment as shown in figure for the right digit.<br />
+        <strong>LED2</strong>: For all bits, 0 to turn off segment, 1 to turn on  segment.&nbsp; Each bit corresponds to a  segment as shown in figure for the middle digit.<br />
+        <strong>LED3</strong>: For all bits, 0 to turn off segment, 1 to turn on  segment.&nbsp; Each bit corresponds to a  segment as shown in figure for the left digit.
+      </p>
+      
+    <p><img src="images/Segment.jpg" alt="digit" width="170" height="192" /></p>
+      <h3>2. Speaker On/Off</h3>
+      
+    <table class="style6" width="60%" cellpadding="2" cellspacing="2" border="4">
+      <tr bgcolor="#CCCCCC">
+          <td><span class="style3"> Byte 1*</span></td>
+          <td><span class="style3">Byte 2</span></td>
+          <td><span class="style3">Byte 3</span></td>
+          <td><span class="style3">Byte 4</span></td>
+          <td><span class="style3">Byte 5</span></td>
+          <td><span class="style3">Byte 6</span></td>
+          <td><span class="style3">Byte 7</span></td>
+          <td><span class="style3">Byte 8</span></td>
+          <td><span class="style3">Byte 9</span></td>
+        </tr>
+        <tr bgcolor="#FFFF00">
+          
+        <td>Constant</td>
+          <td>Speaker Command</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Constant</td>
+          <td>Speaker Control</td>
+          <td>Constant</td>
+        </tr>
+        <tr bgcolor="#CCCCCC">
+          <td>0</td>
+          <td>133</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td><strong>Spk</strong></td>
+          <td>0</td>
+        </tr>
+      </table>
+      
+    <p><strong>Spk</strong>: 0 to turn speaker off, 1 to turn speaker on.</p>
+    <p>&nbsp;</p>
+    <p><b>*This first byte may be omitted on some non-PC operating systems. On 
+      these systems the read and write lengths will be 1 byte smaller.</b></p>
+<!-- InstanceEndEditable -->
+        <a class="backtotop" href="#top">Back to top</a>
+      </div><!-- end of "main" -->
+      <div id="footer">
+        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

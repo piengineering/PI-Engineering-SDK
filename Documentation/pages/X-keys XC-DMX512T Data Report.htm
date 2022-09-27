@@ -1,0 +1,2240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>X-keys XC-DMX512T Data Report</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+
+
+<link href="help.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style3 {font-size: 10; font-weight: bold; }
+.style6 {font-size: 12px}
+.style8 {font-size: 10}
+-->
+</style>
+
+
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XC-DMX512T Data Report<b> 
+      | <a href="../index.htm">Main Page</a></b></h2>
+    <h3>General Information</h3>
+    <p>The X-keys XC-DMX512T-RJ45 is a device that can transmit user provided 
+      data into the DMX512 communication protocol or read DMX data from DMX controllers 
+      depending on the configuration. By default the XC-DMX512T is configured 
+      for transmission. An RJ-45 connector is provided for outputting and standard 
+      daisy chaining of the DMX signal. Using the P.I. Engineering SDK samples 
+      users can create a software solution to driving their DMX peripherals. <span class="style6"> 
+      In addition the XC-DMX512T-R45 has 8 digital inputs (4 ports with a left 
+      and right on each) to allow for switches to be connected, 4 digital input 
+      pins located on header J7, and 4 digital output pins located on header J8.</span></p>
+    <table width="276" border="1" cellspacing="1" cellpadding="1">
+      <tr class="style6"> 
+        <th width="170"> 
+          <div align="left">VID</div>
+        </th>
+        <td width="93" bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">05f3h</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">XC-DMX512T-RJ45</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">04C9h or 1225</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">Consumer Usage Page</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">1</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">Usage Page</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">000Ch or 12</span></div>
+        </td>
+      </tr>
+    </table>
+    <p>PID #1 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
+      Hid Usage 1), Keyboard (Hid Usage Page 1, Hid Usage 6).<br>
+    </p>
+    <p>The XC-DMX512T is an Android enabled device. This means the device can 
+      be enumerated, read, and written to on Android OS that support host USB, 
+      generally 3.1 or higher. </p>
+    <p>IAB-DMX512T is supported by P.I. Engineering <a href="http://www.piengineering.com/PISupport/SoftwareMacroWorks.php" target="_blank">Macroworks 
+      3.1</a>, <a href="http://xkeys.com/PISupport/SoftwareMacroWorksHW.php">X-keys 
+      Basic Setup</a> for PC users, our <a href="http://www.piengineering.com/PISupport/DeveloperWindowsSDK.php" target="_blank">P.I. 
+      Engineering SDK </a> for C# .NET, VB .NET, C++, our <a href="http://www.piengineering.com/PISupport/DeveloperAndroidSamples.php" target="_blank"> 
+      Eclipse SDK</a>, our <a href="http://www.piengineering.com/PISupport/DeveloperLinuxSDK.php" target="_blank">Linux 
+      SDK</a>, and our <a href="http://xkeys.com/PISupport/DeveloperMacSDK.php">Mac 
+      OS X SDK</a>.</p>
+    <h3>X-keys XC-DMX512T Input Report</h3>
+    <p><img src="images/XC-DMX512T-RJ45new.png" width="600" height="515"></p>
+    <p>Report Length: 37 bytes</p>
+    <p><b>1a. General Incoming Data for XC-DMX512T-RJ45 Switch Data</b></p>
+    <p>This data is returned when new data is detected such as button presses 
+      or unit id change. This report can be manually stimulated by sending an 
+      output report: Generate Data which is very useful for obtaining the initial 
+      state of the device immediately after enumeration.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-32 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 33-36</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 37 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Jacks 1-4</td>
+        <td id="bt4">Digital Inputs</td>
+        <td>NumLck, CapsLck, ScrLck</td>
+        <td id="bt5">Reserved</td>
+        <td>Time Stamp</td>
+        <td id="bt5">Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DT</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D1</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>D2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>DS</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Time</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+
+    <p><b>DT</b>: Data Type value of 0 or 2 indicates the following data is a 
+      General Incoming Data report, 2 if generated by the output report: Generate 
+      Data. Data Type value of 214 (0xd6) indicates a Descriptor Data Report, 
+      see below. Data Type value of 224 (0xE0) indicates a Custom Data Report, 
+      see below.<br>
+      <strong>D1</strong>: If using a splitter to read both L and R then for all 
+      bits 0 for switch open, 1 for switch closed. If plugging in a mono switch 
+      to the jack then the corresponding R will always be closed for that jack. 
+      Bit 1=1R, bit 2=1L, bit 3=2R, bit 4=2L, bit 5=3R, bit 6=3L, bit 7=4R, bit 
+      8=4L. <br>
+      <strong>D2</strong>: Bit 1=Digital Input 1, bit 2=Digital Input 2, bit 3=Digital 
+      Input 3, bit 4=Digital Input 4, bits 5-8=NA<br>
+      <b>DS</b>: Bit 1=NumLock, bit 2=CapsLock, bit 3=ScrLock.<br>
+      <b>Time:</b> If enabled using Enable Time Stamp output report gives a time 
+      in ms starting from when the device was plugged into a port in 4 bytes where 
+      byte 33 is the MSB and byte 36 is the LSB. <br />
+    </p>
+    <p><b>2. Descriptor Data</b></p>
+    <p>This data is returned after an output report: Request for Descriptor is 
+      sent. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 11</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 12</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 13</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 14</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 15</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 16</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 17</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 18-37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Mode</td>
+        <td id="bt5">Key mapstart</td>
+        <td>Layer2 Offset</td>
+        <td  id="bt7">Constant</td>
+        <td>Constant</td>
+        <td>Max Columns</td>
+        <td>Max Rows</td>
+        <td>LED State</td>
+        <td>Version</td>
+        <td>PID Low</td>
+        <td>PID Hi</td>
+        <td>Key mapstart hi</td>
+        <td>Max Address lo</td>
+        <td>Max Address hi</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">214</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">128</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">128</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">255</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">255</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">2</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">8</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LEDs</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>PIDL</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>PIDH</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>LEDs: </b>Device has 2 LEDs, this byte tells the current state of the 
+      outputs. Bit 7 set means Green LED is on, bit 8 set means Red LED is on.<br>
+      <b>PIDL:</b> LSB of the Product Identification number or PID.<br>
+      <b>PIDH:</b> MSB of the Product Identification number or PID.<br>
+    </p>
+    <p><b>3. Custom Data</b></p>
+    <p>This data is returned after an output report: Generate Custom Data is sent. 
+    </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes Count+5 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Count of custom bytes to follow</td>
+        <td id="bt5">Custom byte 1</td>
+        <td>Custom byte 2</td>
+        <td  id="bt7">Custom byte 3...</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">224</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B3</b>...</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>Count</b>: Number of custom bytes to follow.<br>
+      <b>B1: </b>1st custom byte.<br>
+      <b>B2:</b> 2nd custom byte.<br>
+      <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b>.</p>
+    <p><b>4. Check Dongle Key </b></p>
+    <p>This is received immediately following a Check Dongle Key output report 
+      is sent. The four values R0-R3 are required to continue the check. See <a href="dongle.htm">Dongle 
+      Implementation</a> for further details. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 8 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">1st byte returned from hash</td>
+        <td id="bt5">2nd byte returned from hash</td>
+        <td>3rd byte returned from hash</td>
+        <td  id="bt7">4th byte returned from hash</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">193</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>R0</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>R0:</b> Value need for comparison to check for correct dongle key. <br>
+      <b>R1:</b> Value need for comparison to check for correct dongle key. <br>
+      <b>R2:</b> Value need for comparison to check for correct dongle key. <br>
+      <b>R3:</b> Value need for comparison to check for correct dongle key.</p>
+    <p><b>5. DMX Write Length</b></p>
+    <p>This data is returned after an output report: Get DMX Write Length is sent. 
+    </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 6 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">DMX Length LSB</td>
+        <td id="bt4">DMX Length MSB</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">163</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>LenLo</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>LenHi</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>LenLo:</b> Least significant byte of the DMX Length=256*LenHi+LenLo.<br>
+      <b>LenHi: </b>Most significant byte of the DMX Length=256*LenHi+LenLo.</p>
+    <p><b>6. DMX Read Length</b></p>
+    <p>This data is returned after an output report: Get DMX Read Length is sent. 
+    </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 6 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">DMX Length LSB</td>
+        <td id="bt4">DMX Length MSB</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">146</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>LenLo</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>LenHi</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>LenLo:</b> Least significant byte of the DMX Length=256*LenHi+LenLo.<br>
+      <b>LenHi: </b>Most significant byte of the DMX Length=256*LenHi+LenLo.</p>
+    <p><b>7. Read DMX Data Manually</b></p>
+    <p>This data is returned after an output report: Read DMX Data Manually is 
+      sent. After sending the output report with the desired start address, 20 
+      bytes with the current values are returned. In this documentation &quot;address&quot; 
+      has the same meaning as &quot;slot&quot;.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-27</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 28-32</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 33-36</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Start Address LSB</td>
+        <td id="bt4">Start Address MSB</td>
+        <td id="bt4">Number of Addresses</td>
+        <td id="bt4">Value for Start Address to Start Address + Count -1</td>
+        <td id="bt4">Reserved</td>
+        <td>Time Stamp</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">165</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>AddLo</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>AddHi</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>CurVals</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Time</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>Count:</b> The number of values (bytes) to follow. This will be 20 
+      unless the Start Address is greater than 491, then Count will be 512-Start 
+      Address. <b><br>
+      AddLo:</b> Least significant byte of the Start Address=256*AddHi+AddLo. 
+      This is the same address entered in the Read DMX Data Manually command.<br>
+      <b>AddHi: </b>Most significant byte of the Start Address=256*AddHi+AddLo.<br>
+      <b>CurVals:</b> Starting at Byte 7, the value of the Start Address, value 
+      of Start Address+1, etc. A total of 20 addresses are read per input report. 
+      For example, if Start Address = 300 and Count = 20, values for addresses 
+      300 to 319 are contained in Bytes 7-27.<br>
+      <b>Time:</b> If enabled using Enable Time Stamp output report gives a time 
+      in ms starting from when the device was plugged into a port in 4 bytes where 
+      byte 33 is the MSB and byte 36 is the LSB. </p>
+    <p><b>8. Read DMX Data by Notification</b></p>
+    <p>This data is returned when new DMX data is detected within the user defined 
+      range of addresses. User must enable DMX notification and desired address 
+      ranges by sending the output report: Enable Read DMX Data by Notification. 
+      If more than one address changes then multiple reports will be sent. The 
+      Time Stamp will be the same if the values changed at the same time. In this 
+      documentation &quot;address&quot; has the same meaning as &quot;slot&quot;.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 8-32</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 33-36</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4"> Address LSB</td>
+        <td id="bt4"> Address MSB</td>
+        <td id="bt4">Number of Addresses</td>
+        <td id="bt4">Value for Address</td>
+        <td id="bt4">Reserved</td>
+        <td>Time Stamp</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">147</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>AddLo</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>AddHi</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>CurVal</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Time</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>Count:</b> The number of values (bytes) to follow. In this case Count 
+      will always be 1. Only 1 address and corresponding value is reported per 
+      input report<b>.<br>
+      AddLo:</b> Least significant byte of the Address with the changed data, 
+      Address=256*AddHi+AddLo.<br>
+      <b>AddHi: </b>Most significant byte of the Address with the changed data, 
+      Address=256*AddHi+AddLo.<br>
+      <b>CurVal:</b> The changed data for the Address.<br>
+      <b>Time:</b> If enabled using Enable Time Stamp output report gives a time 
+      in ms starting from when the device was plugged into a port in 4 bytes where 
+      byte 33 is the MSB and byte 36 is the LSB. </p>
+    <p><b>*This first byte may be omitted on some non-PC operating systems. On 
+      these systems the read and write lengths will be 1 byte smaller.</b><br />
+    </p>
+    <h3>X-keys XC-DMX512T Output Report</h3>
+    <p>The following types of output reports are shown in the summary below. Please 
+      be aware that several of these commands result in writing to the device's 
+      eeprom which has a limit to the number of writes allowed before it is &quot;burnt 
+      out&quot;. The manufacturer's specification is 50,000 eeprom writes. Because 
+      of this we recommend the commands designated with <span class="style6"><sup>e</sup></span> 
+      be executed <span class="style6"></span> rarely and not within timing loops. 
+      Note, the first byte listed in this documentation is 0 and represents the 
+      report ID. This is not present on some non-PC operating systems. So when 
+      sending an output report on Android for example, eliminate this byte. </p>
+    <table width="617" border="1" cellspacing="1" cellpadding="1">
+      <tr bgcolor="#CCCCCC"> 
+        <th width="56" scope="col"> 
+          <div align="center"><span class="style6">Report</span></div>
+        </th>
+        <th width="252" scope="col"> 
+          <div align="center"><span class="style6">Format</span></div>
+        </th>
+        <th width="291" scope="col"> 
+          <div align="center"><span class="style6">Description</span></div>
+        </th>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center" class="style6"> 
+            <div align="center">1</div>
+          </div>
+        </td>
+        <td><span class="style6">0, 179, Index, State, 0...</span></td>
+        <td><span class="style6">Set LEDs and Digital Outputs</span></td>
+      </tr>
+      <tr> 
+        <td height="24"> 
+          <div align="center" class="style6"> 
+            <div align="center">2</div>
+          </div>
+        </td>
+        <td height="24"><span class="style6">0, 189, UnitID, 0...</span></td>
+        <td height="24"><span class="style6">Set Unit ID<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">3</span></div>
+        </td>
+        <td><span class="style6">0, 214, 0...</span></td>
+        <td><span class="style6">Request Descriptor</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">4</span></div>
+        </td>
+        <td><span class="style6">0, 177, 0...</span></td>
+        <td><span class="style6">Generate Data</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">5</span></div>
+        </td>
+        <td><span class="style6">0, 224, Count, B1, B2, B3..., 0...</span></td>
+        <td><span class="style6">Generate Custom Data</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">6</span></div>
+        </td>
+        <td><span class="style6">0, 195, Version LSB, Version MSB, 0...</span></td>
+        <td><span class="style6">Set Version Number<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">7</span></div>
+        </td>
+        <td><span class="style6">0, 238, 0...</span></td>
+        <td><span class="style6">Reboot Device</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">8</span></div>
+        </td>
+        <td><span class="style6">0, 201, Modifier, 0, HC1, HC2, HC3, HC4, HC5, 
+          HC6, 0...</span></td>
+        <td><span class="style6">Keyboard Reflector</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">9</span></div>
+        </td>
+        <td><span class="style6">0, 192, K0, K1, K2, K3, 0...</span></td>
+        <td><span class="style6">Set Dongle Key<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">10</span></div>
+        </td>
+        <td><span class="style6">0, 193, N0, N1, N2, N3, 0...</span></td>
+        <td><span class="style6">Check Dongle Key</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">11</span></div>
+        </td>
+        <td><span class="style6">0, 161, Add LSB, Add MSB, Span, D1, D2,...</span></td>
+        <td><span class="style6">Load DMX Write Buffer</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">12</span></div>
+        </td>
+        <td><span class="style6">0, 162, Length LSB, Length MSB, 0...</span></td>
+        <td><span class="style6">Set DMX Write Length</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">13</span></div>
+        </td>
+        <td><span class="style6">0, 163, 0...</span></td>
+        <td><span class="style6">Get DMX Write Length</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">14</span></div>
+        </td>
+        <td><span class="style6">0, 164, 0...</span></td>
+        <td><span class="style6">Clear DMX Write Buffer</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">15</span></div>
+        </td>
+        <td><span class="style6">0, 169, Mode, 0...</span></td>
+        <td><span class="style6">Configure Mode (transmit or receive)</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">16</span></div>
+        </td>
+        <td><span class="style6">0, 172, Mode, 0...</span></td>
+        <td><span class="style6">Save Mode<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">17</span></div>
+        </td>
+        <td><span class="style6">0, 171, 0...</span></td>
+        <td><span class="style6">Set and Clear for DMX for Read</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">18</span></div>
+        </td>
+        <td><span class="style6">0, 165, StartAddLo, StartAddrHi, 0...</span></td>
+        <td><span class="style6">Read DMX Data Manually</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">19</span></div>
+        </td>
+        <td><span class="style6">0, 147, Enable, StartAddLo, StartAddrHi, EndAddLo, 
+          EndAddHi, 0...</span></td>
+        <td><span class="style6">Enable Read DMX Data by Notification</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">20</span></div>
+        </td>
+        <td><span class="style6">0, 146, 0...</span></td>
+        <td><span class="style6">Get DMX Read Length</span></td>
+      </tr>
+    </table>
+    <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
+      perform this command excessively, do not exceed 50,000 writes to EEPROM.<br>
+    </p>
+
+    <p>Endpoint: Vendor Defined Usage Page.</p>
+
+    <p>Report Length: 36 bytes.</p>
+    <p><strong>1. Set LED</strong></p>
+    <p>Send this output report to control the green or red indicator LED or the 
+      four digital outputs. </p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>LED Index</td>
+        <td>LED State</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">179</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Index</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>State</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Index:</b> 1 = Digital Output 1, 2 = Digital Output 2, 3 = Digital Output 
+      3, 4 = Digital Output 4, 6 = Green LED, 7 = Red LED.<br>
+      <b>State: </b>0 = off, 1 = on, 2= flash.</p>
+    <p><strong>2. Set Unit ID</strong></p>
+    <p>Send this output report to set the Unit ID of the device. This is useful 
+      if connecting more than one of the same device to the a computer.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Unit ID (0-255)</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">189</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>3. Request Descriptor</strong></p>
+    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">214</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>4. Generate Data</strong></p>
+    <p>After sending this output report a General Incoming Data input report will 
+      be generated with bit 2 of PS set. This is useful in determining the initial 
+      state of the device before any data has changed.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">177</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>5. Generate Custom Data</strong></p>
+    <p>After sending this output report a Custom Data input report will be generated 
+      with Byte 3 set to 224 and the count and custom 
+      bytes following.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6...</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes (Count+4) to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Count of custom bytes to follow</td>
+        <td id="bt5" bgcolor="#FFFF0">Custom byte 1</td>
+        <td bgcolor="#FFFF0">Custom byte 2</td>
+        <td  id="bt7" bgcolor="#FFFF0">Custom byte 3...</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">224</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B3</b>...</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Count:</b> Number of custom bytes to follow.<br>
+      <b>B1: </b>1st custom byte.<br>
+      <b>B2:</b> 2nd custom byte.<br>
+      <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b>.</p>
+    <p><strong>6. Set Version Number</strong></p>
+    <p>Send this output report to set the Version of the device. This is not the 
+      firmware version given in the descriptor but a 2 byte number (0-65535) available 
+      on enumeration. Version = (256*Version MSB) + Version LSB. The value is 
+      &quot;remembered&quot; so if it is changed, using this report, the device 
+      must be rebooted. The device can be rebooted by replugging it or by sending 
+      the output report : Reboot Device. </p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Version LSB (0-255)</td>
+        <td>Version MSB (0-255)</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">195</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>7. Reboot Device</strong></p>
+    <p>Send this output report to reboot the device without having to unplug it. 
+      After sending this report the device must be re-enumerated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">238</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>8. Keyboard Reflector</strong></p>
+    <p>Sends native keyboard messages.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 11-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td> Command</td>
+        <td>Modifier</td>
+        <td>Constant</td>
+        <td>Hid Code 1</td>
+        <td>Hid Code 2</td>
+        <td>Hid Code 3</td>
+        <td>Hid Code 4</td>
+        <td>Hid Code 5</td>
+        <td>Hid Code 6</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">201</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Modifier</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC4</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC5</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC6</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Modifier:</b> Bit 1=Left Ctrl, bit 2=Left Shift, bit 3=Left Alt, bit 
+      4=Left Gui, bit 5=Right Ctrl, bit 6=Right Shift, bit 7=Right Alt, bit 8=Right 
+      Gui.<br>
+      <b>HC1</b>=Hid Code for 1st key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC2</b>=Hid Code for 2nd key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC3</b>=Hid Code for 3rd key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC4</b>=Hid Code for 4th key down, or 0 to release previous key press 
+      in this byte position. <br>
+      <b>HC5</b>=Hid Code for 5th key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC6</b>=Hid Code for 6th key down, or 0 to release previous key press 
+      in this byte position. </p>
+    <p><strong>9. Set Dongle Key</strong></p>
+    <p>Sets the user entered key. Remember these numbers as they are required 
+      to check for the key. This is intented to be done once by the developer 
+      prior to sale. See <a href="dongle.html">Dongle Implemenation</a> for more 
+      details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>1st byte of key</td>
+        <td>2nd byte of key</td>
+        <td>3rd byte of key</td>
+        <td>4th byte of key</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">192</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K0</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>K0:</b> 1st byte of user determined dongle key, any number 1-254.<br>
+      <b>K1: </b>2nd byte of user determined dongle key, any number 1-254.<br>
+      <b>K2:</b> 3rd byte of user determined dongle key, any number 1-254.<br>
+      <b>K3:</b> 4th byte of user determined dongle key, any number 1-254.</p>
+    <p><strong>10. Check Dongle Key</strong></p>
+    <p>Checks the key that was entered in Set Dongle Key. This is intented to 
+      be done by the developer within their own software to determine if the connected 
+      X-keys device is the one they sold to the customer. 4 random bytes along 
+      with the actual key are entered into the DongleCheck2() hash function of 
+      the Piehid32.dll/PieHid32Net.dll which returns 4 bytes. Then after sending 
+      this output report a Check Dongle Key input report will be received containing 
+      the same 4 bytes returned from the hash if the key matches. See <a href="dongle.html">Dongle 
+      Implemenation</a> for more details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">192</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N0</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>K0:</b> 1st byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K1: </b>2nd byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K2:</b> 3rd byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K3:</b> 4th byte of a random number that was used in the hash, any number 
+      1-254.</p>
+    <p><strong>11. Load DMX Write Buffer</strong></p>
+    <p>The DMX Write Buffer is an array of up to 512 bytes which is continously 
+      transmitted by the XC-DMX512T as long as the DMX Write Length (last address 
+      to transmit + 1) is greater than 0. This output report is used to load values 
+      into the array in user defined chunks. When the XC-DMX512T is plugged in 
+      the values in this array and the DMX Length are 0. When this output report 
+      is sent it checks the current DMX Length and if it is too small, increases 
+      it automatically to Start Address+Span then it transmits the buffer from 
+      address 1 to the DMX Length. If the Start Address+Span is greather than 
+      512, it sets DMX Write Length to 0, stopping transmission. This output report 
+      will not ever decrease the DMX Write Length so if devices on upper addresses 
+      are removed or no longer needed and the user wishes to shorten the DMX Write 
+      Length, the output report Set DMX Write Length can be used to manually set 
+      it. In this documentation &quot;address&quot; has the same meaning as &quot;slot&quot;.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8...</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes x to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Start Address LSB</td>
+        <td>Start Address MSB</td>
+        <td>Number of Addresses to Load</td>
+        <td>DMX value for Start Address</td>
+        <td>DMX value for Start Address+1</td>
+        <td>DMX value for Start Address+2...</td>
+        <td> DMX value or Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">161</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>AddLo</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>AddHi</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Span</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B3</b>...</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value or 0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>AddLo:</b> The least significant byte of the Start Address which is 
+      the address to begin loading the DMX Write Buffer.<br>
+      <b>AddHi:</b> The most significant byte of the Start Address which is the 
+      address to begin loading the DMX Write Buffer.<br>
+      <b>Span:</b> Number of addresses to load, maximum value is 31 as output 
+      report length is 36.<br>
+      <b>B1: </b>DMX value for address Start Address, 0-255.<br>
+      <b>B2:</b> DMX value for address (Start Address + 1), 0-255.<br>
+      <b>B3:</b> DMX value for address (Start Address + 2), 0-255 and so on for 
+      as many bytes as specified in the Span. If less than 31 address to load 
+      then fill remaining bytes with 0.</p>
+    <p>Example:</p>
+    <p>Below is the DMX Write Buffer on startup or hotplug of the XC-DMX512T, 
+      all addresses 0 to 511 are set to 0. The DMX Length is 0. Nothing transmitted.</p>
+    <table width="686" border="1" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td width="119" height="26"> 
+          <div align="center"><span class="style6">Address</span></div>
+        </td>
+        <td width="44" height="26"><span class="style6">0</span></td>
+        <td width="32" height="26"><span class="style6">1</span></td>
+        <td width="32" height="26"><span class="style6">2</span></td>
+        <td width="34" height="26"><span class="style6">3</span></td>
+        <td width="34" height="26"><span class="style6">4</span></td>
+        <td width="34" height="26"><span class="style6">5</span></td>
+        <td width="32" height="26"><span class="style6">6</span></td>
+        <td width="32" height="26"><span class="style6">7</span></td>
+        <td width="25" height="26"><span class="style6">8</span></td>
+        <td width="25" height="26"><span class="style6">9</span></td>
+        <td width="25" height="26"><span class="style6">10</span></td>
+        <td width="25" height="26"><span class="style6">11</span></td>
+        <td width="32" height="26"><span class="style6">12</span></td>
+        <td width="32" height="26"><span class="style6">13</span></td>
+        <td width="25" height="26"><span class="style6">14</span></td>
+        <td width="25" height="26"><span class="style6">15</span></td>
+        <td width="25" height="26"><span class="style6">16</span></td>
+        <td width="32" height="26"><span class="style6">17</span></td>
+        <td width="32" height="26"><span class="style6">18</span></td>
+        <td width="30" height="26"><span class="style6">19...</span></td>
+      </tr>
+      <tr> 
+        <td width="119"> 
+          <div align="center"><span class="style6">Value</span></div>
+        </td>
+        <td width="44"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="30"><span class="style6">0...</span></td>
+      </tr>
+    </table>
+    <p>Next a Load DMX Write Buffer output report is sent with Start Address = 
+      3, Span = 3, and 255 for values corresponding to addresses 3, 4, and 5 (0, 
+      161, 3, 0, 3, 255, 255, 255, 0...) which results in the DMX Write Buffer 
+      shown below and DMX Write Length = Start Address + Span = 6. Continuous 
+      tranmission of 6 bytes corresponding to addresses 0 to 5. Only the 3 addresses 
+      were modified, all other addresses remain untouched.</p>
+    <table width="686" border="1" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td width="119" height="26"> 
+          <div align="center"><span class="style6">Address</span></div>
+        </td>
+        <td width="44" height="26"><span class="style6">0</span></td>
+        <td width="32" height="26"><span class="style6">1</span></td>
+        <td width="32" height="26"><span class="style6">2</span></td>
+        <td width="34" height="26"><span class="style6">3</span></td>
+        <td width="34" height="26"><span class="style6">4</span></td>
+        <td width="34" height="26"><span class="style6">5</span></td>
+        <td width="32" height="26"><span class="style6">6</span></td>
+        <td width="32" height="26"><span class="style6">7</span></td>
+        <td width="25" height="26"><span class="style6">8</span></td>
+        <td width="25" height="26"><span class="style6">9</span></td>
+        <td width="25" height="26"><span class="style6">10</span></td>
+        <td width="25" height="26"><span class="style6">11</span></td>
+        <td width="32" height="26"><span class="style6">12</span></td>
+        <td width="32" height="26"><span class="style6">13</span></td>
+        <td width="25" height="26"><span class="style6">14</span></td>
+        <td width="25" height="26"><span class="style6">15</span></td>
+        <td width="25" height="26"><span class="style6">16</span></td>
+        <td width="32" height="26"><span class="style6">17</span></td>
+        <td width="32" height="26"><span class="style6">18</span></td>
+        <td width="30" height="26"><span class="style6">19...</span></td>
+      </tr>
+      <tr> 
+        <td width="119"> 
+          <div align="center"><span class="style6">Value</span></div>
+        </td>
+        <td width="44"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="30"><span class="style6">0...</span></td>
+      </tr>
+    </table>
+    <p>Next a Load DMX Write Buffer output report is sent with Start Address = 
+      12, Span = 4, and 255 for values corresponding to addresses 12, 13, 14, 
+      15 (0, 161, 12, 0, 4, 255, 255, 255, 255, 0..) which results in the DMX 
+      WriteBuffer shown below. Since the current DMX Write Length of 6 is less 
+      than the new Start Address + Span = 16, it is set to 16 and continuous transmission 
+      of 16 bytes corresponding addresses 0 to 15.</p>
+    <table width="686" border="1" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td width="119" height="26"> 
+          <div align="center"><span class="style6">Address</span></div>
+        </td>
+        <td width="44" height="26"><span class="style6">0</span></td>
+        <td width="32" height="26"><span class="style6">1</span></td>
+        <td width="32" height="26"><span class="style6">2</span></td>
+        <td width="34" height="26"><span class="style6">3</span></td>
+        <td width="34" height="26"><span class="style6">4</span></td>
+        <td width="34" height="26"><span class="style6">5</span></td>
+        <td width="32" height="26"><span class="style6">6</span></td>
+        <td width="32" height="26"><span class="style6">7</span></td>
+        <td width="25" height="26"><span class="style6">8</span></td>
+        <td width="25" height="26"><span class="style6">9</span></td>
+        <td width="25" height="26"><span class="style6">10</span></td>
+        <td width="25" height="26"><span class="style6">11</span></td>
+        <td width="32" height="26"><span class="style6">12</span></td>
+        <td width="32" height="26"><span class="style6">13</span></td>
+        <td width="25" height="26"><span class="style6">14</span></td>
+        <td width="25" height="26"><span class="style6">15</span></td>
+        <td width="25" height="26"><span class="style6">16</span></td>
+        <td width="32" height="26"><span class="style6">17</span></td>
+        <td width="32" height="26"><span class="style6">18</span></td>
+        <td width="30" height="26"><span class="style6">19...</span></td>
+      </tr>
+      <tr> 
+        <td width="119"> 
+          <div align="center"><span class="style6">Value</span></div>
+        </td>
+        <td width="44"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">255</span></td>
+        <td width="32"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="30"><span class="style6">0...</span></td>
+      </tr>
+    </table>
+    <p>Finally a Load DMX Write Buffer output report is sent with Start Address=8, 
+      Span=2, and values 128 for values corresponding to addresses 8 and 9 (0, 
+      161, 8, 0, 2, 128, 128, 0...) which results in the DMX Write Buffer shown 
+      below. Since the current DMX Write Length of 16 is greater than this Start 
+      Address + Span = 10, it remains at 16. Continuous transmission of 16 bytes 
+      corresponding addresses 0 to 15.</p>
+    <table width="686" border="1" cellspacing="1" cellpadding="1">
+      <tr> 
+        <td width="119" height="26"> 
+          <div align="center"><span class="style6">Address</span></div>
+        </td>
+        <td width="44" height="26"><span class="style6">0</span></td>
+        <td width="32" height="26"><span class="style6">1</span></td>
+        <td width="32" height="26"><span class="style6">2</span></td>
+        <td width="34" height="26"><span class="style6">3</span></td>
+        <td width="34" height="26"><span class="style6">4</span></td>
+        <td width="34" height="26"><span class="style6">5</span></td>
+        <td width="32" height="26"><span class="style6">6</span></td>
+        <td width="32" height="26"><span class="style6">7</span></td>
+        <td width="25" height="26"><span class="style6">8</span></td>
+        <td width="25" height="26"><span class="style6">9</span></td>
+        <td width="25" height="26"><span class="style6">10</span></td>
+        <td width="25" height="26"><span class="style6">11</span></td>
+        <td width="32" height="26"><span class="style6">12</span></td>
+        <td width="32" height="26"><span class="style6">13</span></td>
+        <td width="25" height="26"><span class="style6">14</span></td>
+        <td width="25" height="26"><span class="style6">15</span></td>
+        <td width="25" height="26"><span class="style6">16</span></td>
+        <td width="32" height="26"><span class="style6">17</span></td>
+        <td width="32" height="26"><span class="style6">18</span></td>
+        <td width="30" height="26"><span class="style6">19...</span></td>
+      </tr>
+      <tr> 
+        <td width="119"> 
+          <div align="center"><span class="style6">Value</span></div>
+        </td>
+        <td width="44"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="34"><span class="style6">255</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">128</span></td>
+        <td width="25"><span class="style6">128</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">255</span></td>
+        <td width="32"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">255</span></td>
+        <td width="25"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="32"><span class="style6">0</span></td>
+        <td width="30"><span class="style6">0...</span></td>
+      </tr>
+    </table>
+    <p><br>
+      <strong>12. Set DMX Write Length</strong></p>
+    <p>Normally the DMX Write Length is automatically determined as the DMX Write 
+      Buffer is loaded up using the Load Write DMX Buffer output report. However 
+      a user may wish to manually set the DMX Write Length. One reason for this 
+      may be if devices on the were previously set up on upper addresses are removed 
+      or no longer needed and there is no reason to be transmitting out the larger 
+      DMX Write Buffer. The smaller the DMX Write Length is the faster the transmission. 
+      Setting the DMX Write Length to 0 will stop transmission. A DMX Write Length 
+      of 0 will also result in the next Load Write DMX Buffer output report to 
+      automatically set the DMX Write Length.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>DMX Write Length LSB</td>
+        <td>DMX Write Length MSB</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">162</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LenLo</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LenHi</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>LenLo:</b> The least significant byte of the DMX Write Length (0-512). 
+      <br>
+      <b>LenHi:</b> The most significant byte of the DMX Write Length (0-512).<br>
+    </p>
+    <p><strong>13. Get DMX Write Length</strong></p>
+    <p>Use this to get the DMX Write Length. After sending this output a DMX Write 
+      Length input report will be generated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">163</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>14. Clear DMX Write Buffer</strong></p>
+    <p>Send this output report to clear the DMX Write Buffer.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">164</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>15. Configure Mode </strong></p>
+    <p>Send this output report to configure the XC-DMX512T in either transmit 
+      mode (factory default) or receive mode. Sending this output report will 
+      not save the mode to the eeprom, ie on reboot of the XC-DMX512T it will 
+      be in the mode that was saved to the eeprom. To change the mode saved in 
+      the eeprom send the Save Mode output report.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Desired Mode</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">169</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Mode</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Mode:</b> Enter 0 for transmit (write DMX) and 1 for receive (read DMX). 
+    </p>
+    <p><strong>16. Save Mode </strong></p>
+    <p>Send this output report to save the desired mode to the eeprom so that 
+      when the device is rebooted it will automatically be in the desired mode. 
+      Sending this output report does not change the mode the device is currently 
+      in. To change the mode the device is currently in, send the Configure Mode 
+      output report.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Desired Startup Mode</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">172</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Mode</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Mode:</b> Enter 0 for transmit (write DMX) and 1 for receive (read DMX). 
+    </p>
+    <p><strong>17. Set and Clear DMX Buffer for Read</strong></p>
+    <p>Send this output report to both set the mode to receive and to clear the 
+      DMX buffer. If the device was previously set up for receive using the Configure 
+      Mode output report, sending this output report is not necessary. If the 
+      device was previously setup to boot up in receive mode using the Save Mode 
+      output report and the device was rebooted, sending this output report is 
+      not necessary, the DMX buffer will be cleared automatically on start up.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">171</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>18. Read DMX Data Manually</strong></p>
+    <p>Send the output report to read the DMX values of 20 addresses beginning 
+      at the entered Start Address. After sending this output report, a Read DMX 
+      Data Manually input report will be generated with the desired data. In this 
+      documentation &quot;address&quot; has the same meaning as &quot;slot&quot;.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Start Address LSB</td>
+        <td>Start Address MSB</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">165</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>AddLo</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>AddHi</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>AddLo:</b> The least significant byte of the desired Start Address. 
+      <br>
+      <b>AddHi:</b> The most significant byte of the desired Start Address.<br>
+      For example, if want values of DMX addresses from 300 to 319, Start Address 
+      = 0x012C (300 decimal) so AddHi = 0x01 (1 decimal) and AddLo = 0x2C (44 
+      decimal). </p>
+    <p><strong>19. Enable Read DMX Data by Notification</strong></p>
+    <p>Send the output report to enable notification when changes in DMX values 
+      occur in the desired address range of Start Address to End Address. If a 
+      DMX value changes within the range, including Start Address and End Address, 
+      then a Read DMX Data by Notification input report will be generated for 
+      that address. If multiple changes occurred then multiple input reports will 
+      be sent and the Time Stamp on the input report tells whether the changes 
+      occurred at the same time or different times. In this documentation &quot;address&quot; 
+      has the same meaning as &quot;slot&quot;.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Start Address LSB</td>
+        <td>Start Address MSB</td>
+        <td>End Address LSB</td>
+        <td>End Address MSB</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">165</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>StartAddLo</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>StartAddHi</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>EndAddLo</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>EndAddHi</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>StartAddLo:</b> The least significant byte of the desired Start Address. 
+      <br>
+      <b>StartAddHi:</b> The most significant byte of the desired Start Address.<br>
+      <b>EndAddLo:</b> The least significant byte of the desired End Address. 
+      <br>
+      <b>EndAddHi:</b> The most significant byte of the desired End Address. <br>
+    </p>
+    <p><strong>20. Get DMX Read Length</strong></p>
+    <p>Send this output report to request the DMX read length of the connected 
+      device being read from. After sending a DMX Read Length input report will 
+      be generated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td> Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">146</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>*This first byte may be omitted on some non-PC operating systems. On 
+      these systems the read and write lengths will be 1 byte smaller.</b></p>
+    <p><!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a> 
+    </p>
+  </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2022&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

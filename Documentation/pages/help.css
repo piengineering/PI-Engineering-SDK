@@ -1,0 +1,97 @@
+/* MWII SPLAT Development Kit Help File */
+/* Copyright 2007 | P.I. Engineering, Inc. | Select Rights Reserved */
+
+
+/* GENERAL -------------- */
+
+body 				{ background-color: #fff; background-image: url(grid.jpg); color: #000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; min-width: 570px; }
+
+p {}
+blockquote		  { border-left: 2px solid #ddd; padding-left: 10px; }
+
+h1, h2, h3, h4	  { font-family: Verdana, Arial, Helvetica, sans-serif; }
+h1				  { /* font-size: 18px; font-weight: bold; */ text-align: center; }
+h2				  { border-bottom: #ddd 2px solid; clear: both; }
+h3				  { /* font-size: 12px; font-weight: bold; */}
+h6		  		  { font-size: 10px; margin: 0; padding: 0 }
+
+table             { background-color: #ccc; border: #000 1px solid; border-collapse: collapse; margin-bottom: 1em; }
+caption           { margin-bottom: 3px; }
+td, th            { border: #000 1px solid; padding: 5px; text-align: center; }
+td, tr            { margin: 10px; padding: 5px; }
+th                { background-color: #ccc; } 
+td                { text-align: center; }
+td.alignright     { text-align: right; }
+td.alignleft      { text-align: left; }
+
+
+
+ul {}
+ul.nobullets { list-style: none; padding-left: 0; }
+ul.nobullets ul { list-style: none; paffing-left: 20px; }
+ol {}
+li { line-height: 1.5em; }
+
+pre { background-color: #fff; border: #000 1px dashed; font-family: "Courier New", Courier, monospace; margin: 10px 10px 10px 20px; padding: 10px; }
+
+img { margin: auto; }
+
+
+
+/* LINKS ---------------- */
+
+a 				  { color: #636395; text-decoration: none; font-weight: bold; }
+
+a:hover 		  { color: #fff; text-decoration: none; background-color: #636395 }
+
+a img			  { border-width: 0; border-style: none; text-decoration: none; background: none }
+a:hover img		  { border-width: 0; border-style: none; text-decoration: none; background: none }
+img a:hover		  { border-width: 0; border-style: none; text-decoration: none; background: none }
+
+
+/* CONTENT -------------- */
+body { margin: 0; padding: 0 } 
+#page { margin: 0; padding: 0; }
+#banner { background: #636395 url(../images/masthead.gif) center center repeat-x scroll; height: 68px; margin: 0; padding: 0; }
+#banner h1 { color: #fff; font-size: 36px; margin: 0; padding-top: 14px; overflow: hidden; }
+#main { margin: 0 10px; }
+
+/* Data Report Tables */
+table.datareport { background-color: #fff; } /* white */
+table.datareport th { width: 70px; }
+table.datareport td { width: 70px; }
+table.datareport tr.descriptions { background-color: #ff0; } /* yellow */
+table.datareport tr.variables { background-color: #ccc; } /* gray */
+
+/* Preformatted Code Samples */
+pre span.cs_comment { color: #060; } /* dark green */
+pre span.cs_system { color: #00f; } /* blue */
+pre span.cs_red { color: #900; } /* red */
+
+#footer { clear: both; border-top: #ddd 2px solid; margin: 0 10px; padding: 5px; text-align: center; }
+#footer p { margin: 0; padding: 0; }
+
+.nindent { text-indent: 1.5em; }
+
+.anchor { display: block; height: 0; width: 0; margin: 0; padding: 0; border: none; }
+.backtotop { clear: both; float: right; margin-bottom: 10px; }
+
+
+/*
+#page 			  { width: 550px; margin: 0 auto; position: relative }
+#banner 		  { width: 550px; height: 68px; position: absolute; top: 0; display: inline }
+
+
+#main			  { width: 472px; position: absolute; top: 95px; right: 36px; left: 36px }
+#main p 		  { text-indent: 25px; text-align: justify; line-height: 145%; margin: 0; padding: 5px 0 }
+
+4#footer			  { clear: both; height: 22px }
+#copyright 		  { font: 12px georgia, serif; margin: 0; padding: 12px 0px; border-top: 1px solid #242424; font-weight: bold }
+
+
+.anchor           { height: 0; width: 0; margin: 0; parring: 0; }
+.style3 {font-size: 10; font-weight: bold; }
+.style6 {font-size: 12px}
+.style8 {font-size: 10}
+*/
+

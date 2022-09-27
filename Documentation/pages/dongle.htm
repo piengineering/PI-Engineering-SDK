@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>Dongle Implementation</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Help</h1>
+      </div><!-- end of "banner" -->
+      <div id="main">
+<!-- InstanceBeginEditable name="MainContent" -->
+        
+    <h1><a name="idh_enumerate" id="idh_enumerate"></a>Dongle Implementation </h1>
+        <h2>Overview</h2>
+        
+    <p>Several P.I. Engineering devices are capable of being used as a software 
+      dongle for piracy prevention of developer's applications. The main use of 
+      the dongle feature is to prevent people from using the developer's software 
+      without purchasing a P.I. Engineering Product from that developer. The developer 
+      must &quot;initialize&quot; each X-keys unit with a &quot;key&quot;. Sample 
+      code for setting up a unit for dongle protection is shown in the samples 
+      under Set Dongel Key. Sample code for checking the unit is shown in the 
+      samples under Check Dongle Key. Below are the steps needed to implement 
+      this feature. Note: This feature is not available in PIEHidNetCore.dll.</p>
+    <h3>Set Dongle Key</h3>
+        <p>This one step procedure is done once per unit by the developer prior to sale.</p>
+        
+    <p>The developer must choose four arbitrary values between 1 and 254, write 
+      them to the device using the Set Dongle Key output report format. See the 
+      Set Dongle Key example code included in each sample for specific details. 
+      The values; K0, K1, K2 and K3, must be recorded for later use in the check 
+      of the key.</p>
+    <p><em>Important</em>: The programming switch on the unit must be set (switch 
+      up on most devices) in order for the Set Dongle Key to work for the following 
+      devices: X-keys Desktop (PID 677), X-keys Professional (PID 679), X-keys 
+      Stick (PID 693), Legacy X-keys Switch Interface (PID 695), Legacy X-keys 
+      Jog & Shuttle (PID 689), X-keys Button Panel (PID 697), X-keys Pendant (PID 
+      687). </p>
+    <h3>Check Dongle Key</h3>
+        <p>This is done within the developer application to determine if the proper hardware &quot;dongle&quot; is connected.</p>
+        <p>Checking the key requires the developer to choose four arbitrary values between 1 and 254. These values; N0, N1, N2 and N3 are hashed with the K values from the Set Key process to obtain R0, R1, R2, R3 as shown in the code below.</p>
+        <p>Next a Check Key output report is sent using the N values.</p>
+        
+    <p>After writing the Check Key output report the unit will send back an input 
+      report with the R values from the hash. The developer simply has to compare 
+      the values of returned bytes to that of the R values obtained from the <a href="DongleCheck2.htm">DongleCheck2()</a> 
+      function to confirm the required hardware is attached.</p>
+        <h3>Sample [C++]</h3>
+        
+    <pre>.......
+<span class="cs_comment">//Set Key Routine</span>
+
+<span class="cs_comment">//Pick 4 numbers between 1 and 254.</span>
+<span class="cs_system">int</span> K0 =  7;
+<span class="cs_system">int</span> K1 = 58;
+<span class="cs_system">int</span> K2 = 33;
+<span class="cs_system">int</span> K3 = 243;
+<span class="cs_comment">//Save these numbers, they are needed to check the key!</span>
+
+<span class="cs_comment">//Write these to the device using the appropriate Set Key output report of desired device</span>
+BYTE  buffer[80];
+buffer [0] =  0;
+buffer [1]  = 192; <span class="cs_comment">//Set Dongle Key command</span>
+buffer [2]  = K0;
+buffer [3]  = K1;
+buffer [4]  = K2;
+buffer [5]  = K3;
+
+result = WriteData(hDevice, buffer);
+//----------------------------------------------
+<span class="cs_comment">//Check Key Routine
+
+//IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
+DisableDataCallback(hDevice, true);
+</span>
+<span class="cs_comment">//randomn numbers</span>
+<span class="cs_system">int</span> N0 =  3; <span class="cs_comment">//pick any  number between 1 and 254</span>
+<span class="cs_system">int</span> N1 =  1; <span class="cs_comment">//pick any  number between 1 and 254</span>
+<span class="cs_system">int</span> N2 =  4; <span class="cs_comment">//pick any  number between 1 and 254</span>
+<span class="cs_system">int</span> N3 =  1; <span class="cs_comment">//pick any  number between 1 and 254</span>
+
+<span class="cs_comment">//this is the key from Set Dongle Key</span>
+K0 = 7;
+K1 = 58;
+K2 = 33;
+K3 = 243;
+
+<span class="cs_comment">//hash and save these for comparison later</span>
+DongleCheck2(K0, K1, K2, K3,  N0, N1, N2, N3, R0, R1, R2, R3);
+BYTE buffer[80];
+<font color="#008000">//Write to the device using the appropriate Check Key output report of desired device, the following is for an X-keys Desktop (PID=677)</font>
+buffer[0]=0;
+buffer[1]=193;
+buffer[2]=N0;
+buffer[3]=N1;
+buffer[4]=N2;
+buffer[5]=N3;
+
+result =  WriteData(hDevice, buffer);
+<span class="cs_comment"><font color="#008000">//after this write the next read will give 4 values which are used below for comparison</font></span>
+<span class="cs_system">for</span> (<span class="cs_system">int</span> i=0;i&lt;80;i++)
+{
+    buffer[i]=0;
+}
+
+<span class="cs_system">int</span> countout=0;
+<span class="cs_system">int</span> result = BlockingReadData(HDevice, buffer, 100);
+
+<span class="cs_system">while</span> (result == 304 || (result == 0 &amp;&amp; buffer[2]!=193)) <font color="#008000">//for MWII devices first byte=3</font> 
+{
+	<span class="cs_system">if</span> (result == 304)<span class="cs_comment">//No data received after 100 ms, so increment countout extra</span>
+	{
+		countout+= 99;
+	}
+	countout++;
+	<span class="cs_system">if</span> (countout &gt;1000) <span class="cs_comment">//increase this if have to check more than once</span>
+	{
+		break;
+	}
+
+	result = BlockingReadData(hDevice,buffer,100);
+}
+
+<span class="cs_system">if</span> (result == 0 &amp;&amp; buffer[2]== 193)
+{
+	<span class="cs_system">bool</span> fail=<span class="cs_system">false</span>;
+	<span class="cs_comment">//compare with R  values</span> from the DongleCheck2 function
+	<span class="cs_system">if</span> (R0!=buffer[3]) fail=<span class="cs_system">true</span>;
+	<span class="cs_system">if</span> (R1!=buffer[4]) fail=<span class="cs_system">true</span>;
+	<span class="cs_system">if</span> (R2!=buffer[5]) fail=<span class="cs_system">true</span>;
+	<span class="cs_system">if</span> (R3!=buffer[6]) fail=<span class="cs_system">true</span>;
+	<span class="cs_comment">//if fail==true  then correct hardware is not present</span>
+}
+
+........</pre>
+    <h3>Sample [C#]</h3>
+    <pre>.......
+
+<span class="cs_comment">//Set Key Routine</span>
+
+<span class="cs_comment">//Pick 4 numbers between 1 and 254</span>
+<span class="cs_system">int</span> K0 = 7; <span class="cs_comment">//pick any number between 1 and 254, 0 and 255 not allowed</span>
+<span class="cs_system">int</span> K1 = 58; <span class="cs_comment">//pick any number between 1 and 254, 0 and 255 not allowed</span>
+<span class="cs_system">int</span> K2 = 33; <span class="cs_comment">//pick any number between 1 and 254, 0 and 255 not allowed</span>
+<span class="cs_system">int</span> K3 = 243; <span class="cs_comment">//pick any number between 1 and 254, 0 and 255 not allowed</span>
+<span class="cs_comment">//Save these numbers, they are needed to check the key</span>
+
+<span class="cs_comment">//Write these to the device using the appropriate Set Key output report of desired device</span>
+wData(0) = 0;
+wData(1) = 192; <span class="cs_comment">//Set Dongle Key command</span>
+wData(2) = (<font color="#0000FF">byte</font>)K0;
+wData(3) = (<font color="#0000FF">byte</font>)K1;
+wData(4) = (<font color="#0000FF">byte</font>)K2;
+wData(5) = (<font color="#0000FF">byte</font>)K3;
+
+<font color="#0000FF">int</font> result = devices[selecteddevice].WriteData(wData); 
+//----------------------------------------------
+<span class="cs_comment">//Check Key Routine</span>
+<font color="#008000">
+//IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)</font>
+devices[selecteddevice].callNever = true;
+
+<span class="cs_comment">//random numbers</span>
+<span class="cs_system">int</span> N0 = 3; <span class="cs_comment">//pick 4 randomn numbers between 1 and 254</span>
+<span class="cs_system">int</span> N1 = 1; <span class="cs_comment">//pick 4 randomn numbers between 1 and 254</span>
+<span class="cs_system">int</span> N2 = 4; <span class="cs_comment">//pick 4 randomn numbers between 1 and 254</span>
+<span class="cs_system">int</span> N3 = 1; <span class="cs_comment">//pick 4 randomn numbers between 1 and 254</span>
+
+<span class="cs_comment">//this is the key from the Set Key</span>
+<span class="cs_system">int</span> K0 = 7;
+<span class="cs_system">int</span> K1 = 58;
+<span class="cs_system">int</span> K2 = 33;
+<span class="cs_system">int</span> K3 = 243;
+
+<span class="cs_comment">//hash and save these for comparison later</span>
+<span class="cs_comment">int</span> R0;
+<span class="cs_comment">int</span> R1;
+<span class="cs_comment">int</span> R2;
+<span class="cs_comment">int</span> R3;
+
+<span class="cs_comment"><font color="#00FFFF">PIEDevice</font></span>.DongleCheck2(K0. K1, K2, K3, N0, N1, N2, N3, out R0, out R1, out R2, out R3);
+<font color="#008000">//Write to the device using the appropriate Check Dongle Key output report of desired device</font>
+wdata[0] = 0;
+wdata[1] = 193;
+wdata[2] = (<font color="#0000FF">byte</font>)N0;
+wdata[3] = (<font color="#0000FF">byte</font>)N1;
+wdata[4] = (<font color="#0000FF">byte</font>)N2;
+wdata[5] = (<font color="#0000FF">byte</font>)N3;
+
+<span class="cs_system">int</span> result = devices[selecteddevice].WriteData(WData);
+
+<span class="cs_comment"><font color="#008000">//after this write the next read will give 4 values which are used below for comparison</font></span>
+<span class="cs_system">byte[]</span> data = <span class="cs_system">null</span>; 
+<span class="cs_system">int</span> countout = 0; 
+<span class="cs_system">int</span> ret = devices[selecteddevice].BlockingReadData(<font color="#0000FF">ref</font> data, 100);
+
+<span class="cs_system">While</span> ((ret == 0 && data[2] != 193) || ret == 304) <font color="#008000">//for MWII devices first byte=3</font> 
+{
+	<span class="cs_system">if</span> (ret == 304)
+	{
+		<span class="cs_comment">//Didn't get any data for 100ms, increment the countout extra </span>
+		countout += 100;
+	}
+	countout ++;
+
+	<span class="cs_system">if</span> (countout > 500) <span class="cs_comment">//increase this if have to check more than once</span>
+	{ 
+		<font color="#0000FF">break</font>;
+	}
+
+	ret = devices[selecteddevice].BlockingReadData(<font color="#0000FF">ref</font> data, 100);
+}
+
+<span class="cs_system">if</span> (ret == 0 && data[2] == 193)
+{
+
+<span class="cs_comment">	//compare with R values from the DongleCheck2 function</span>
+<span class="cs_system">	bool</span> fail = <span class="cs_system">false</span>
+<span class="cs_system">	if</span> (R0 != data[3]) fail = <span class="cs_system">true</span>;
+<span class="cs_system">	if</span> (R1 != data[4]) fail = <span class="cs_system">true</span>;
+<span class="cs_system">	if</span> (R2 != data[5]) fail = <span class="cs_system">true</span>;
+<span class="cs_system">	if</span> (R3 != data[6]) fail = <span class="cs_system">true</span>;
+<span class="cs_comment">	//if fail==true then correct hardware is not present</span>
+}
+
+........</pre>
+    <h3>Sample [VB.NET]</h3>      
+        
+    <pre>.......
+
+<span class="cs_comment">'Set Key Routine</span>
+<span class="cs_comment">'Pick 4 numbers between 1 and 254</span>
+<span class="cs_system">Dim</span> K0 <span class="cs_system">As Integer</span> = 7
+<span class="cs_system">Dim</span> K1 <span class="cs_system">As Integer</span> = 58
+<span class="cs_system">Dim</span> K2 <span class="cs_system">As Integer</span> = 33
+<span class="cs_system">Dim</span> K3 <span class="cs_system">As Integer</span> = 243
+<span class="cs_comment">'Save these numbers, they are needed to check the key</span>
+
+<span class="cs_comment">'Write these to the device using the appropriate Set Dongle Key output report of desired device</span>
+<span class="cs_system">Dim</span> buffer() <span class="cs_system">As Byte</span> = <span class="cs_system">New Byte</span>() {} <span class="cs_comment">'write data buffer</span>
+buffer(0) = 0
+buffer(1) = 192 'Set Dongle Key command
+buffer(2) = K0
+buffer(3) = K1
+buffer(4) = K2
+buffer(5) = K3
+
+<span class="cs_system">Dim</span> result <span class="cs_system">As Integer</span> = devices(selecteddevice).WriteData(wdata)
+
+<span class="cs_comment">'Check Key Routine</span>
+
+<font color="#008000">'IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)</font>
+devices(selecteddevice).callNever = True
+
+<span class="cs_comment">'pick 4 randomn numbers between 1 and 254</span>
+<span class="cs_system">Dim</span> N0 <span class="cs_system">As Integer</span> = 3
+<span class="cs_system">Dim</span> N1 <span class="cs_system">As Integer</span> = 1
+<span class="cs_system">Dim</span> N2 <span class="cs_system">As Integer</span> = 4
+<span class="cs_system">Dim</span> N3 <span class="cs_system">As Integer</span> = 1
+
+<span class="cs_comment">'this is the key from the Set Key</span>
+<span class="cs_system">Dim</span> K0 <span class="cs_system">As Integer</span> = 7
+<span class="cs_system">Dim</span> K1 <span class="cs_system">As Integer</span> = 58
+<span class="cs_system">Dim</span> K2 <span class="cs_system">As Integer</span> = 33
+<span class="cs_system">Dim</span> K3 <span class="cs_system">As Integer</span> = 243
+
+<span class="cs_comment">'hash and save these for comparison later</span>
+
+PIEHid32Net.PIEDevice.DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, R0, R1, R2, R3)
+
+<font color="#008000">'Write to the device using the appropriate Check Dongle Key output report of desired device</font>
+<span class="cs_system">Dim</span> buffer() <span class="cs_system">As Byte</span> = <span class="cs_system">New Byte</span>() {} <span class="cs_comment">'write data buffer</span>
+buffer(0) = 0
+buffer(1) = 193 <font color="#008000">'check key command</font>
+buffer(2) = N0
+buffer(3) = N1
+buffer(4) = N2
+buffer(5) = N3
+<span class="cs_comment"><font color="#008000">
+'after this write the next read will give 4 values which are used below for comparison</font></span>
+<span class="cs_system">Dim</span> result <span class="cs_system">As Integer</span> = devices(selecteddevice).WriteData(wdata)
+
+<span class="cs_system">Dim</span> keydata(devices(selecteddevice).ReadLength) <span class="cs_system">As Byte</span>
+<span class="cs_system">Dim</span> countout <span class="cs_system">As Integer</span> = 0
+
+result = devices(selecteddevice).BlockingReadData(keydata, 100)
+
+<span class="cs_system">While</span> (result = 304 <span class="cs_system">Or</span> (result = 0 <span class="cs_system">And</span> keydata(2) <> 193)
+	<span class="cs_system">If</span> result = 304 <span class="cs_system">Then</span>
+		<span class="cs_comment">'no new data after 100 ms, so increment countout extra</span>
+		countout = countout + 99  
+	<span class="cs_system">End If</span> 
+	countout = countout + 1  
+	<span class="cs_system">If</span> (countout > 500) <span class="cs_system">Then</span>
+		<span class="cs_system">Exit While</span>
+	<span class="cs_system">End If</span>
+	result = devices(selecteddevice).BlockingReadData(keydata, 100)
+<span class="cs_system">End While</span>
+
+<span class="cs_system">If</span> keydata(2) = 193 <span class="cs_system">Then</span>
+<span class="cs_system">	Dim</span> fail <span class="cs_system">As Boolean</span> = <span class="cs_system">False</span>
+<span class="cs_system">	If</span> R0 <> keydata(3) <span class="cs_system">Then</span> fail = <span class="cs_system">True</span>
+<span class="cs_system">	If</span> R1 <> keydata(4) <span class="cs_system">Then</span> fail = <span class="cs_system">True</span>
+<span class="cs_system">	If</span> R2 <> keydata(5) <span class="cs_system">Then</span> fail = <span class="cs_system">True</span>
+<span class="cs_system">	If</span> R3 <> keydata(6) <span class="cs_system">Then</span> fail = <span class="cs_system">True</span>
+<span class="cs_comment">	'if fail==true then correct hardware is not present </span>
+<span class="cs_system">End If</span>
+
+........</pre>
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a> 
+  </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2021&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

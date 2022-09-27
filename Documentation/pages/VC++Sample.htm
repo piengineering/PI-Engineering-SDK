@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>Visual C++ 2010 Sample</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_visualc" id="idh_visualc"></a>Visual C++ 2010 Sample<b> | <a href="../index.htm">Main Page</a></b></h2>
+        
+    <h3>Overview</h3>
+    <p>The Visual C++ 2010 sample is included in the C:\Program Files\PI Engineering\PI 
+      Engineering SDK\<em>Product</em>\C++\PIHCallbackDemo.sln.</p>
+        
+    <p>Executable located in C:\Program Files\PI Engineering\PI Engineering SDK\<em>Product</em>\C++\Release\PIHCallbackDemo.exe</p>
+        
+    <p>A copy of PIEHid32.dll is required in either the project directory or the 
+      windows\system32 directory.</p>
+        
+    <p>This sample makes use of the callback features of PIEHid32.dll. The <em>Start</em> 
+      button performs <a href="enumeratePIE.htm">EnumeratePIE()</a> and <a href="SetupInterfaceEx.htm">SetupInterfaceEx()</a> 
+      calls which are necessary to establish communication. The None, New Data 
+      and Changed Data selection determine the type of callback desired using 
+      <a href="SetDataCallback.htm">SetDataCallback()</a>. None means no callbacks 
+      ever, New Data will send a callback when new data is received and Changed 
+      Data will callback only if the data changed from the last callback. The 
+      data is received in the HandleDataEvent function.</p>
+        
+    <p><img src="images/cpp2005.png" /></p>
+<!-- InstanceEndEditable -->
+        <a class="backtotop" href="#top">Back to top</a>
+      </div><!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

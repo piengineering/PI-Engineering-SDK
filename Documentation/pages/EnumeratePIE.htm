@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>EnumeratePIE()</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+<div id="page"> <a class="anchor" name="top"></a> 
+  <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" --> 
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_enumerate" id="idh_enumerate"></a>EnumeratePIE() | <a href="../index.htm">Main Page</a></h2>
+    <h3>Overview</h3>
+    <p>Call <b>EnumeratePIE</b>() once, before doing anything else, to determine 
+      a list of available devices.</p>
+    <div id="page">
+      <div id="main"> .NET Framework Class Library
+        <h3>PIEDevice.EnumeratePIE()</h3>
+        <p>Namespace: PIEHid32Net<br>
+          Assembly: PIEHid32Net.dll</p>
+        <h4>Syntax</h4>
+        <p>C#</p>
+      </div>
+    </div>
+<blockquote> 
+  <div id="page"> 
+    <div id="main">public static PIEDevice[] EnumeratePIE()</div>
+  </div>
+</blockquote>
+<div id="page"> 
+  <div id="main"> 
+    <p>Visual Basic (Declaration)</p>
+  </div>
+</div>
+<blockquote> 
+  <div id="page"> 
+    <div id="main">
+<p> Public Shared Function EnumeratePIE() As PIEHid32Net.PIEDevice() 
+          </p>
+          </div>
+  </div>
+</blockquote>
+<div id="page"> 
+  <div id="main"> 
+    <p>Visual Basic (Usage)</p>
+  </div>
+</div>
+<blockquote> 
+  <div id="page"> 
+    <div id="main">
+<p>Dim devices() As PIEHid32Net.PIEDevice<br>
+            devices = PIEHid32Net.PIEDevice.EnumeratePIE() </p>
+          <p></p>
+    </div>
+  </div>
+</blockquote>
+<div id="page"> 
+  <div id="main"> 
+    <h4>Examples</h4>
+        <pre>C# 
+
+private void BtnEnumerate_Click(object sender, EventArgs e)
+{
+	<font color="#000000">PIEDevice</font>[] devices;	
+	devices = PIEHid32Net.<font color="#000000">PIEDevice</font>.EnumeratePIE();
+	if (devices.Length == 0)
+	{
+		//No Devices Found
+	}
+	else
+	{
+		for (int i = 0; i < devices.Length; i++)
+		{
+			listBox1.Items.Add(devices[i].Pid);  //list all devices found
+			devices[i].SetupInterface();  //call SetupInterface to read and write to device
+		}
+	}
+}</pre>
+    <br>
+        <pre>Visual Basic
+
+
+Private Sub BtnEnumerate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEnumerate.Click
+	Dim devices() As PIEHid32Net.PIEDevice
+	devices = PIEHid32Net.PIEDevice.EnumeratePIE()
+	If devices.Length = 0 Then
+            'No Devices Found
+	Else
+		For i As Integer = 0 To devices.Length - 1
+			listBox1.Items.Add(devices(i).Pid.ToString  'list all devices found
+			devices(i).SetupInterface()  'call SetupInterface to read and write to device
+		Next
+	End If
+End Sub</pre>
+        <div id="page">
+          <div id="main">
+            <p>&nbsp;</p>
+            <p>Unmanaged DLL</p>
+            <h3>EnumeratePIE Function </h3>
+            <h4>Syntax</h4>
+          </div>
+        </div>
+        <blockquote> 
+          <div id="page"> 
+            <div id="main">DWORD __stdcall EnumeratePIE(long VID, TEnumHIDInfo 
+              *info, long &count);</div>
+          </div>
+        </blockquote>
+        <div id="page"> 
+          <div id="main"> 
+            <h4>Parameters</h4>
+          </div>
+        </div>
+        <blockquote> 
+          <div id="page"> 
+            <div id="main"> VID [in] Vendor Identification number, for all P.I. 
+              Engineering products this value is 5F3h or 1523. </div>
+          </div>
+          <div id="page"> 
+            <div id="main">info [out] Returned data on the enumerated devices. 
+            </div>
+          </div>
+          <div id="page"> 
+            <div id="main">count [out] Number of detected devices. </div>
+          </div>
+        </blockquote>
+        <div id="page"> 
+          <div id="main"> 
+            <h4>Return Value</h4>
+          </div>
+        </div>
+        <blockquote> 
+          <div id="page"> 
+            <div id="main">0 if successful; otherwise an error code, see <a href="PIEHidErrors.htm">PIEHid32 
+              Errors</a>. </div>
+          </div>
+        </blockquote>
+        <div id="page"> 
+          <div id="main"> 
+            <h4>Example</h4>
+            <pre>C++
+
+
+void FindAndStart(HWND hDialog)
+{
+	DWORD result;
+	TEnumHIDInfo info[128];  
+	long  hnd;
+	long  count;
+	int pid;
+	result = EnumeratePIE(0x5F3, info, count);
+	if (result != 0)    
+	{
+		//Error finding PI Engineering Devices
+		return;
+	} 
+	else if (count == 0)    
+	{
+		//No PI Engineering Devices Found
+		return;
+	}
+	for (long i=0;i&lt;count; i++)
+	{
+		pid=info[i].PID; //get the device pid
+		hnd = info[i].Handle; //this is passed to all other piehid calls
+		int version=info[i].Version; //user defined version
+		int hidusagepage=info[i].UP; //hid usage page
+		if ((hidusagepage == 0xC && writelen==36))    
+		{	
+			SetupInterfaceEx(hnd); //call SetupInterfaceEx to read and write to device
+		}
+	}
+
+}
+</pre>
+            <div id="page">
+              <div id="main"></div>
+            </div>
+            <blockquote>
+              <div id="page"></div>
+            </blockquote>
+            <h4>Remarks PIEHid32.dll</h4>
+          </div>
+        </div>
+        <blockquote> 
+          <div id="page"> 
+            <div id="main"> <b>EnumeratePIE()</b> will return information on up 
+              to 128 HID devices. The &quot;Handle&quot; is a number identifying 
+              the device to additional PIEHid calls that follow. Zero is a valid 
+              value, so don't confuse zero to mean &quot;no device.&quot; This 
+              number has no meaning to the operating system; it is purely for 
+              internal use. Usage and Usage Page define whether the device is 
+              a mouse, keyboard, game controller, etc, according to the HID standard.</div>
+          </div>
+        </blockquote>
+        <div id="page"> 
+          <div id="main"> 
+            <div id="page">
+              <div id="main">
+                <h4>Function Information</h4>
+              </div>
+            </div>
+            <blockquote> 
+              <div id="page"> 
+                <div id="main">Minimum DLL Version: PIEHid32.dll<br>
+                  Header: PIEHid32.h<br>
+                  Import Library: PIEHid32.lib</div>
+              </div>
+            </blockquote>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <blockquote>
+      <div id="page"></div>
+</blockquote>
+<div id="page">
+      <div id="main"></div>
+    </div>
+    <blockquote>
+      <div id="page"></div>
+</blockquote>
+
+
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a><a href="index.htm"> 
+    </a></div>
+  <!-- end of "main" --> 
+  <div id="footer"> 
+    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+  </div>
+  <!-- end of "footer" --> </div>
+<!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

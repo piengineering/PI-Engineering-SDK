@@ -1,0 +1,1557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>X-keys XK-12/XK-3 Switch Interface KVM Data Report</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+
+
+<link href="help.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style3 {font-size: 10; font-weight: bold; }
+.style6 {font-size: 12px}
+.style8 {font-size: 10}
+-->
+</style>
+
+
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XK-12/XK-3 Switch Interface 
+      KVM Data Report<b> | <a href="../index.htm">Main Page</a></b></h2>
+<h3>General Information</h3>
+    <table width="276" border="1" cellspacing="1" cellpadding="1">
+      <tr class="style6"> 
+        <th width="170"> 
+          <div align="left">VID</div>
+        </th>
+        <td width="93" bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">05f3h</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">XK-3 Switch Interface KVM PID #1</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">0514h or 1300</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">XK-3 Switch Interface KVM PID #2</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">0515h or 1301</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">XK-12 Switch Interface KVM PID #1</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">0516h or 1302</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">XK-12 Switch Interface KVM PID #2</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">0517h or 1303</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">Consumer Usage Page</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">1</span></div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <th> 
+          <div align="left">Usage Page</div>
+        </th>
+        <td bgcolor="#CCCCCC"> 
+          <div align="left"><span class="style8">000Ch or 12</span></div>
+        </td>
+      </tr>
+    </table>
+    <p>The XK-12/XK-3 Switch Interface KVM is a special X-keys device designed 
+      to work specifically with KVMs. In PID #2 the XK-12/XK-3 Switch Interface 
+      KVM is only a keyboard, no input or output reports are available thus making 
+      it compatible with KVM units. <b>The information below is relevant only 
+      to PID #1</b> which does contain an input and output endpoint.<b> Please 
+      note that the XK-12/XK-3 Switch Interface KVM in PID #1 will NOT be compatible 
+      with most KVMs, it must operate in PID #2 to be compatible</b>. To convert 
+      the device to PID #1 when it is currently in PID #2 unplug the device then 
+      replug it in and press the Scroll Lock key repeatingly 10-15 times. The 
+      device gives 10 seconds after reboot to detect the Scroll Lock toggles. 
+      If it is not done quick enough, hotplug and try again. This procedure requires 
+      a regular keyboard to be attached to the computer for the Scroll Lock key. 
+      The device will revert back to PID #2 (KVM mode) on reboot unless Reboot 
+      Mode (see output reports) was changed.<br>
+    </p>
+    <p>XK-12/XK-3 Switch Interface KVM is supported bP.I. Engineering <a href="http://www.piengineering.com/PISupport/SoftwareMacroWorks.php" target="_blank">Macroworks 
+      3.1</a>, <a href="http://xkeys.com/PISupport/SoftwareMacroWorksHW.php">X-keys 
+      Basic Setup</a> for PC users, <a href="http://www.piengineering.com/PISupport/DeveloperWindowsSDK.php" target="_blank">P.I. 
+      Engineering SDK </a> for C# .NET, VB .NET, C++, our <a href="http://www.piengineering.com/PISupport/DeveloperAndroidSamples.php" target="_blank"> 
+      Eclipse SDK</a>, our <a href="http://www.piengineering.com/PISupport/DeveloperLinuxSDK.php" target="_blank">Linux 
+      SDK</a>, and our <a href="http://xkeys.com/PISupport/DeveloperMacSDK.php">Mac 
+      OS X SDK</a>. </p>
+    <p>&nbsp; </p>
+    <h3>X-keys XK-12/XK-3 Switch Interface KVM Input Report</h3>
+    <p><img src="images/xk12switchinterface.png" alt="X-keys XK-12 Jog &amp; Shuttle" name="boxImage" border="0" id="boxImage" width="240" height="450" /> 
+    </p>
+    <p><em>Figure 1a</em>: X-keys XK-12 Switch Interface.</p>
+    <p><img src="images/XK3-Switch%20Interface.png" width="412" height="302"></p>
+    <p><em>Figure 1b</em>: X-keys XK-3 Switch Interface.</p>
+    <p>Report Length: 37 bytes</p>
+    <p><b>1a. General Incoming Data for XK-12 Switch Interface KVM</b></p>
+    <p>This data is returned when new data is detected such as button presses 
+      or unit id change. This report can be manually stimulated by sending an 
+      output report: Generate Data which is very useful for obtaining the initial 
+      state of the device immediately after enumeration. This report is available 
+      only in PID #1.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 6-7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 9-32 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 33-36 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 37 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Jacks 1-4</td>
+        <td id="bt4">Jacks 5-6</td>
+        <td id="bt5">Reserved</td>
+        <td id="bt4">NumLck, CapsLck, ScrLck</td>
+        <td id="bt5">Reserved</td>
+        <td>Time Stamp</td>
+        <td># of times rebooted</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DT</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D1</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D2</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D3</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Time</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Reboot</b></div>
+        </td>
+      </tr>
+    </table>
+
+    <p><b>DT</b>: Data Type value of 0 or 2 indicates the following data is a 
+      General Incoming Data report, 2 if generated by the output report: Generate 
+      Data. Data Type value of 214 indicates a Descriptor Data Report, see below. 
+      Data Type value of 224 indicates a Custom Data Report, see below.<br>
+      <strong>D1</strong>: If using a splitter to read both L and R then for all 
+      bits 0 for switch open, 1 for switch closed. If plugging in only one switch 
+      to the jack then the corresponding R will always be closed for that jack. 
+      Bit 1=1R, bit 2=1L, bit 3=2R, bit 4=2L, bit 5=3R, bit 6=3L, bit 7=4R, bit 
+      8=4L. <br>
+      <strong>D2</strong>: If using a splitter to read both L and R then for all 
+      bits 0 for switch open, 1 for switch closed. If plugging in only one switch 
+      to the jack then the corresponding R will always be closed for that jack. 
+      Bit 1=5R, bit 2=5L, bit 3=6R, bit 4=6L, bits 5-8=na. <br />
+      <b>D3</b>: Bit 1=NumLock, bit 2=CapsLock, bit 3=ScrLock, bit 4=On Boot (sets 
+      the bit when device is booted up by the usb then sets it back to 0) . <br>
+      <b>Time:</b> If enabled using output report: Enable Time Stamp gives a time 
+      in ms starting from when the device was plugged into a port in 4 bytes where 
+      byte 36 is the LSB or low byte and byte 33 is the MSB or high byte.<br>
+      <strong>Reboot</strong>: This is a number that indicates how many times 
+      the device has been rebooted by the USB.</p>
+    <p><b>1b. General Incoming Data for XK-3 Switch Interface KVM</b></p>
+    <p>This data is returned when new data is detected such as button presses 
+      or unit id change. This report can be manually stimulated by sending an 
+      output report: Generate Data which is very useful for obtaining the initial 
+      state of the device immediately after enumeration. This report is available 
+      only in PID #1.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 6-7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 9-32 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 33-36 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 37 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">SW1-3 </td>
+        <td id="bt4">Reserved</td>
+        <td id="bt5">Reserved</td>
+        <td id="bt4">NumLck, CapsLck, ScrLck</td>
+        <td id="bt5">Reserved</td>
+        <td>Time Stamp</td>
+        <td># of times rebooted</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DT</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D1</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D3</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Time</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Reboot</b></div>
+        </td>
+      </tr>
+    </table>
+    <p><b>DT</b>: Data Type value of 0 or 2 indicates the following data is a 
+      General Incoming Data report, 2 if generated by the output report: Generate 
+      Data. Data Type value of 214 indicates a Descriptor Data Report, see below. 
+      Data Type value of 224 indicates a Custom Data Report, see below.<br>
+      <strong>D1</strong>: Bit 1=SW2, bit 2= SW1, bits 3 is unset if nothing is 
+      plugged in and set if anything is plugged in, bit 4=undefined, bit 5=SW3. 
+      <br />
+      <b>D3</b>: Bit 1=NumLock, bit 2=CapsLock, bit 3=ScrLock, bit 4=On Boot (sets 
+      the bit when device is booted up by the usb then sets it back to 0) . <br>
+      <b>Time:</b> If enabled using output report: Enable Time Stamp gives a time 
+      in ms starting from when the device was plugged into a port in 4 bytes where 
+      byte 36 is the LSB or low byte and byte 33 is the MSB or high byte.<br>
+      <strong>Reboot</strong>: This is a number that indicates how many times 
+      the device has been rebooted by the USB.</p>
+    <p><b>2. Descriptor Data</b></p>
+    <p>This data is returned after an output report: Request for Descriptor is 
+      sent. This report is available only in PID #1. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 11</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 12</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 13</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 14</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 15-37 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Mode</td>
+        <td id="bt5">Key mapstart</td>
+        <td>Layer2 Offset</td>
+        <td  id="bt7">Constant</td>
+        <td>Constant</td>
+        <td>Max Columns</td>
+        <td>Max Rows</td>
+        <td>LED State</td>
+        <td>Version</td>
+        <td>PID Low</td>
+        <td>PID Hi</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">214</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Mode</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">32</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">208</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">192</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">14</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Cols</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Rows</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LEDs</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>PIDL</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>PIDH</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">Value</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Mode:</b> 0 means device is in PID #1, 1 = PID #2.<br>
+      <b>Cols:</b> 1 for XK-3 Switch Interface KVM, 2 for XK-12 Switch Interface 
+      KVM.<br>
+      <b>Rows:</b> 5 for XK-3 Switch Interface KVM, 8 for XK-12 Switch Interface 
+      KVM.<br>
+      <b>LEDs: </b>Bit 7 set means Green LED is on, bit 8 set means Red LED is 
+      on.<br>
+      <b>PIDL:</b> LSB of the Product Identification number or PID.<br>
+      <b>PIDH:</b> MSB of the Product Identification number or PID.<br>
+    </p>
+    <p><b>3. Custom Data</b></p>
+    <p>This data is returned after an output report: Generate Custom Data is sent. 
+      This report is available only in PID #1 and PID #4. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes Count+5 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Count of custom bytes to follow</td>
+        <td id="bt5">Custom byte 1</td>
+        <td>Custom byte 2</td>
+        <td  id="bt7">Custom byte 3...</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">224</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B3</b>...</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p> <b>Count</b>: Number of custom bytes to follow.<br>
+      <b>B1: </b>1st custom byte.<br>
+      <b>B2:</b> 2nd custom byte.<br>
+      <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b>.</p>
+    <p><b>4. Check Dongle Key</b></p>
+    <p>This is received immediately following a Check Dongle Key output report 
+      is sent. The four values R0-R3 are required to continue the check. See <a href="dongle.htm">Dongle 
+      Implementation</a> for further details. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 8 to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">1st byte returned from hash</td>
+        <td id="bt5">2nd byte returned from hash</td>
+        <td>3rd byte returned from hash</td>
+        <td  id="bt7">4th byte returned from hash</td>
+        <td>Reserved</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">193</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>R0</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>R3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>R0</b>: Value need for comparison to check for correct dongle key. <br>
+      <b>R1</b>: Value need for comparison to check for correct dongle key. <br>
+      <b>R2</b>: Value need for comparison to check for correct dongle key. <br>
+      <b>R3</b>: Value need for comparison to check for correct dongle key.</p>
+    <p><b>*This first byte may be omitted on some non-PC operating systems. On 
+      these systems the read and write lengths will be 1 byte smaller.</b><br />
+    </p>
+    <h3>X-keys XK-12/XK-3 Switch Interface KVM Output Report</h3>
+    <p>The following types of output reports are shown in the summary below. Available 
+      for all PIDs. Please be aware that several of these commands result in writing 
+      to the device's eeprom which has a limit to the number of writes allowed 
+      before it is &quot;burnt out&quot;. The manufacturer's specification is 
+      50,000 eeprom writes. Because of this we recommend the commands designated 
+      with <span class="style6"><sup>e</sup></span> be executed <span class="style6"></span> 
+      rarely and not within timing loops. Note, the first byte listed in this 
+      documentation is 0 and represents the report ID. This is not present on 
+      some non-PC operating systems. So when sending an output report on Android 
+      for example, eliminate this byte. </p>
+    <table width="617" border="1" cellspacing="1" cellpadding="1">
+      <tr bgcolor="#CCCCCC"> 
+        <th width="56" scope="col"> 
+          <div align="center"><span class="style6">Report</span></div>
+        </th>
+        <th width="252" scope="col"> 
+          <div align="center"><span class="style6">Format</span></div>
+        </th>
+        <th width="291" scope="col"> 
+          <div align="center"><span class="style6">Description</span></div>
+        </th>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center" class="style6"> 
+            <div align="center">1</div>
+          </div>
+        </td>
+        <td><span class="style6">0, 179, LEDIndex, State, 0...</span></td>
+        <td><span class="style6">Index Based Set LED (Flash)</span></td>
+      </tr>
+      <tr> 
+        <td height="24"> 
+          <div align="center" class="style6"> 
+            <div align="center">2</div>
+          </div>
+        </td>
+        <td height="24"><span class="style6">0, 189, UnitID, 0...</span></td>
+        <td height="24"><span class="style6">Set Unit ID<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td height="24"> 
+          <div align="center" class="style6"> 
+            <div align="center">3</div>
+          </div>
+        </td>
+        <td height="24"><span class="style6">0, 180, Freq, 0...</span></td>
+        <td height="24"><span class="style6">Set Frequency of Flash</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center" class="style6"> 
+            <div align="center">4</div>
+          </div>
+        </td>
+        <td><span class="style6">0, 214, 0...</span></td>
+        <td><span class="style6">Request Descriptor</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">5</span></div>
+        </td>
+        <td><span class="style6">0, 210, Enable, 0...</span></td>
+        <td><span class="style6">Enable Time Stamp</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">6</span></div>
+        </td>
+        <td><span class="style6">0, 177, 0...</span></td>
+        <td><span class="style6">Generate Data</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">7</span></div>
+        </td>
+        <td><span class="style6">0, 224, Count, B1, B2, B3..., 0...</span></td>
+        <td><span class="style6">Generate Custom Data</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">8</span></div>
+        </td>
+        <td><span class="style6">0, 204, Mode, 0...</span></td>
+        <td><span class="style6">Change PID<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">9</span></div>
+        </td>
+        <td><span class="style6">0, 201, Modifier, 0, HC1, HC2, HC3, HC4, HC5, 
+          HC6, 0...</span></td>
+        <td><span class="style6">Keyboard Reflector (PID #2 and #4 only)</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">10</span></div>
+        </td>
+        <td><span class="style6">0, 203, Buttons, Mouse X, Mouse Y, Wheel Y, 0...</span></td>
+        <td><span class="style6">Mouse Reflector</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">11</span></div>
+        </td>
+        <td><span class="style6">0, 196, RebootMode, 0...</span></td>
+        <td><span class="style6">Reboot Mode<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">12</span></div>
+        </td>
+        <td><span class="style6">0, 195, Version LSB, Version MSB, 0...</span></td>
+        <td><span class="style6">Set Version Number<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">13</span></div>
+        </td>
+        <td><span class="style6">0, 238, 0...</span></td>
+        <td><span class="style6">Reboot Device</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">14</span></div>
+        </td>
+        <td><span class="style6">0, 192, K0, K1, K2, K3, 0...</span></td>
+        <td><span class="style6">Set Dongle Key<sup>e</sup></span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">15</span></div>
+        </td>
+        <td><span class="style6">0, 193, N0, N1, N2, N3, 0...</span></td>
+        <td><span class="style6">Check Dongle Key</span></td>
+      </tr>
+    </table>
+    <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
+      perform this command excessively, do not exceed 50,000 writes to EEPROM.<br>
+    </p>
+
+    <p>Endpoint: Vendor Defined Usage Page.</p>
+
+    <p>Report Length: 36 bytes.</p>
+    <p><strong>1. Index Based Set LED (Flash)</strong></p>
+    <p>Send this output report to control the LEDs and the 2 additional digial 
+      outputs. </p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>LED Index</td>
+        <td>LED State</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">179</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LEDIndex</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>LEDState</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>LEDIndex: </b>0=Out 1, 1=Out 2, 6 = Green LED, 7 = Red LED.<br>
+      <b>LEDState: </b>0 = off, 1 = on and 2 = flash. Set the frequency of the 
+      flash with output report: Set Frequency of Flash.</p>
+    <p><strong>2. Set Unit ID</strong></p>
+    <p>Send this output report to set the Unit ID of the device. This is useful 
+      if connecting more than one of the same device to the a computer.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC">
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Unit ID (0-255)</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">189</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC">
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>3. Set Frequency of Flash</strong></p>
+    <p>Send this output report to control the frequency of the flashing of the 
+      indicator LEDs.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Frequency</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">180</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Freq</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Freq:</b> 1-255 where 1 is the fastest flash and 255 is the slowest. 
+      255 is approximately 4 seconds between flashes.</p>
+    <p><strong>4. Request Descriptor</strong></p>
+    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">214</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>5. Enable Time Stamp</strong></p>
+    <p>By default the Time Stamp feature is enabled. To turn off send this command 
+      with Byte 3=0.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Enable</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">210</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0=off, 1=on</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>6. Generate Data</strong></p>
+    <p>After sending this output report a General Incoming Data input report will 
+      be generated with bit 2 of Byte 3 set. This is useful in determining the 
+      initial state of the device before any data has changed.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">177</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>7. Generate Cutom Data</strong></p>
+    <p>After sending this output report a Custom Data input report will be generated 
+      with Byte 3 set to 224 and the count and custom 
+      bytes following.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6...</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes (Count+4) to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Count of custom bytes to follow</td>
+        <td id="bt5" bgcolor="#FFFF0">Custom byte 1</td>
+        <td bgcolor="#FFFF0">Custom byte 2</td>
+        <td  id="bt7" bgcolor="#FFFF0">Custom byte 3...</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">224</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>Count</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>B3</b>...</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Count:</b> Number of custom bytes to follow.<br>
+      <b>B1: </b>1st custom byte.<br>
+      <b>B2:</b> 2nd custom byte.<br>
+      <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b>.</p>
+    <p><strong>8. Change PID</strong></p>
+    <p>Send this output report to change from PID #1 which is the programming 
+      mode to PID #2 which is the KVM operating mode. To change from PID #2 (KVM 
+      PID) to PID #1 unplug the device, replug and tap the main keyboard's Scroll 
+      Lock key 10-15 times within 10 seconds of replugging it. IMPORTANT: after 
+      converting to PID #1 the user must manually convert back to PID #2, it will 
+      not automatically revert on reboot.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Mode</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">204</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Mode</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Mode:</b> 1 for PID #2 (KVM mode).<br>
+      PID #1 Endpoints: Endpoints: Consumer Usage Page Input and Output (Hid Usage 
+      Page 12, Hid Usage 1), Boot Mouse (Hid Usage Page 1, Hid Usage 2), Boot 
+      Keyboard (Hid Usage Page 1, Hid Usage 6).<br>
+      PID #2 Endpoints: Boot Keyboard (Hid Usage Page 1, Hid Usage 6).<br>
+    </p>
+    <p><strong>9. Keyboard Reflector</strong></p>
+    <p>Sends native keyboard messages. Must have the device set to a PID with 
+      a keyboard endpoint; PID #4 or PID #2.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 11-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td> Command</td>
+        <td>Modifier</td>
+        <td>Constant</td>
+        <td>Hid Code 1</td>
+        <td>Hid Code 2</td>
+        <td>Hid Code 3</td>
+        <td>Hid Code 4</td>
+        <td>Hid Code 5</td>
+        <td>Hid Code 6</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">201</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Modifier</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC4</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC5</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>HC6</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Modifier:</b> Bit 1=Left Ctrl, bit 2=Left Shift, bit 3=Left Alt, bit 
+      4=Left Gui, bit 5=Right Ctrl, bit 6=Right Shift, bit 7=Right Alt, bit 8=Right 
+      Gui.<br>
+      <b>HC1</b>=Hid Code for 1st key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC2</b>=Hid Code for 2nd key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC3</b>=Hid Code for 3rd key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC4</b>=Hid Code for 4th key down, or 0 to release previous key press 
+      in this byte position. <br>
+      <b>HC5</b>=Hid Code for 5th key down, or 0 to release previous key press 
+      in this byte position.<br>
+      <b>HC6</b>=Hid Code for 6th key down, or 0 to release previous key press 
+      in this byte position. </p>
+    <p><strong>10. Mouse Reflector</strong></p>
+    <p>Sends native mouse messages.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="11%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="9%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="9%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="8%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="7%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="18%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td width="10%">Constant</td>
+        <td width="11%"> Command</td>
+        <td width="9%">Buttons</td>
+        <td width="9%">Mouse X</td>
+        <td width="8%">Mouse Y</td>
+        <td width="7%">Wheel Y</td>
+        <td width="18%">Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC" width="10%"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC" width="11%"> 
+          <div align="center">203</div>
+        </td>
+        <td bgcolor="#CCCCCC" width="9%"> 
+          <div align="center"><b>Buttons</b></div>
+        </td>
+        <td bgcolor="#CCCCCC" width="9%"> 
+          <div align="center"><b>X</b></div>
+        </td>
+        <td bgcolor="#CCCCCC" width="8%"> 
+          <div align="center"><b>Y</b></div>
+        </td>
+        <td bgcolor="#CCCCCC" width="7%"> 
+          <div align="center"><b>WY</b></div>
+        </td>
+        <td bgcolor="#CCCCCC" width="18%"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Buttons:</b> Bit 1=Left, bit 2=Right, bit 3=Center, bit 4=XButton1, 
+      bit 5=XButton2.<br>
+      <b>X</b>=Mouse X motion. 0 no motion, 1-127 is right, 255-129=left, 
+      finest inc (1 and 255) to coarsest (127 and 129).<br>
+      <b>Y</b>=Mouse Y motion. 0 no motion, 1-127 is down, 255-129=up, finest 
+      inc (1 and 255) to coarsest (127 and 129). <br>
+      <b>WY</b>=Wheel Y. 0 no motion, 1-127 is up, 255-129=down, finest inc 
+      (1 and 255) to coarsest (127 and 129).<br>
+      <br>
+      Example 1: Move mouse 1 mickey, the finest increment.<br>
+      x+: 0, 203, 0, 1, 0, 0, 0<br>
+      x-: 0, 203, 0, 255, 0, 0, 0<br>
+      y+: 0, 203, 0, 0, 1, 0, 0<br>
+      y-: 0, 203, 0, 0, 255, 0, 0 <br>
+      <br>
+      Example 2: Wheel Y with increment of 5.<br>
+      + motion: 0, 203, 0, 0, 0, 0, 5<br>
+      - motion: 0, 203, 0, 0, 0, 0, 250 where 250=255-5<br>
+      <br>
+      Example 3: Left button click.<br>
+      left button down: 0, 203, 1, 0, 0, 0, 0 <br>
+      left button up: 0, 203, 0, 0, 0, 0, 0 <br>
+      <br>
+      Example 4: Left button down and drag<br>
+      with mouse at starting position: 0, 203, 1, 0, 0, 0, 0<br>
+      move mouse with button down: 0, 203, 1, 30, 30, 0, 0<br>
+      release button: 0, 203, 0, 0, 0, 0, 0<br>
+    </p>
+    <p><strong>11. Reboot Mode</strong></p>
+    <p>Send this output report to determine if the device will automatically return 
+      to PID #2 (KVM) on each reboot or if it will remain in the current PID between 
+      reboots.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Change</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">196</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Change</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Change:</b> 0 to have device remain in its current PID between reboots, 
+      1 to have the device always revert to PID #2 at every reboot. Factory default 
+      is 1.</p>
+    <p><strong>12. Set Version Number</strong></p>
+    <p>Send this output report to set the Version of the device. This is not the 
+      firmware version given in the descriptor but a 2 byte number available on 
+      enumeration. The value is &quot;remembered&quot; so if it is changed, using 
+      this report, the device must be rebooted. The device can be rebooted by 
+      replugging it or by sending the output report : Reboot Device. The device 
+      is also rebooted when changing pids using output report: Change PID.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 5-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Version LB (0-255)</td>
+        <td>Version HB (0-255)</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">195</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">value</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>13. Reboot Device</strong></p>
+    <p>Send this output report to reboot the device without having to unplug it. 
+      After sending this report the device must be re-enumerated.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">238</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>14. Set Dongle Key</strong></p>
+    <p>Sets the user entered key. Remember these numbers as they are required 
+      to check for the key. This is intented to be done once by the developer 
+      prior to sale. See <a href="dongle.html">Dongle Implemenation</a> for more 
+      details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>1st byte of key</td>
+        <td>2nd byte of key</td>
+        <td>3rd byte of key</td>
+        <td>4th byte of key</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">192</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K0</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>K0:</b> 1st byte of user determined dongle key, any number 1-254.<br>
+      <b>K1: </b>2nd byte of user determined dongle key, any number 1-254.<br>
+      <b>K2:</b> 3rd byte of user determined dongle key, any number 1-254.<br>
+      <b>K3:</b> 4th byte of user determined dongle key, any number 1-254.</p>
+    <p><strong>15. Check Dongle Key</strong></p>
+    <p>Checks the key that was entered in Set Dongle Key. This is intented to 
+      be done by the developer within their own software to determine if the connected 
+      X-keys device is the one they sold to the customer. 4 random bytes along 
+      with the actual key are entered into the DongleCheck2() hash function of 
+      the Piehid32.dll/PieHid32Net.dll which returns 4 bytes. Then after sending 
+      this output report a Check Dongle Key input report will be received containing 
+      the same 4 bytes returned from the hash if the key matches. See <a href="dongle.html">Dongle 
+      Implemenation</a> for more details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Random number</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">192</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N0</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>N3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>K0:</b> 1st byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K1: </b>2nd byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K2:</b> 3rd byte of a random number that was used in the hash, any number 
+      1-254.<br>
+      <b>K3:</b> 4th byte of a random number that was used in the hash, any number 
+      1-254.</p>
+    <p><b>*This first byte may be omitted on some non-PC operating systems. On 
+      these systems the read and write lengths will be 1 byte smaller.</b></p>
+    <p><!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a> 
+    </p>
+  </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

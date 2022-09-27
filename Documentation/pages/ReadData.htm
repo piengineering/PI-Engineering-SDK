@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>ReadData()</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_readdata" id="idh_readdata"></a>ReadData() | <a href="../index.htm">Main Page</a></h2>
+        
+    <h3>Overview</h3>
+    <p>Copies the first HID read report present in the ring buffer into data. 
+      An error status of 304 is returned if there is no remaining data in the 
+      buffer. Strictly speaking, this is not an error, it just means that you 
+      are reading data packets faster than the device is sending them. This is 
+      a common occurrence if the state of the device is not changing. An error 
+      status of 307 means the handle is invalid or the device has been disconnected. 
+      If this function call returns a data packet, then the packet is removed 
+      from the front of the ring buffer, so that the next call will return the 
+      next packet.</p>
+    <div id="page">
+      <div id="main">
+        <p>.NET Framework Class Library </p>
+        <h3>PIEDevice.ReadData()</h3>
+        Namespace: PIEHid32Net<br>
+        Assembly: PIEHid32Net.dll<br>
+        <h4>Syntax</h4>
+        <p>C#</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">public int ReadData(ref byte[] dest)</div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <p>Visual Basic (Declaration)</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p>Public Function ReadData(ByRef dest() As Byte) As Integer</p>
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <p>Visual Basic (Usage)</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p> Dim data(100) As Byte<br>
+            devices(selecteddevice).ReadData(data))</p>
+          </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Examples</h4>
+        <pre>C#
+
+
+private void timer1_Tick(object sender, EventArgs e)
+{
+	//read data
+	byte[] data = null;
+	while (0 == devices[selecteddevice].ReadData(ref data))
+	{
+		//now handle data
+		//write data to listbox
+		String output = "Polling: " + devices[selecteddevice].Pid + ", data=";
+		for (int i = 0; i < devices[selecteddevice].ReadLength; i++)
+		{
+			output = output + data[i].ToString() + " ";
+		}
+		//add only if different from last output
+		listBox1.Items.Add(output);
+		listBox1.SelectedIndex = listBox1.Items.Count - 1;         
+	}
+}</pre>
+        <br>
+        <pre>Visual Basic
+
+
+Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+
+        Dim data(devices(selecteddevice).ReadLength) As Byte
+        While (0 = devices(selecteddevice).ReadData(data))
+            Dim output As String
+            output = "Polling: " + devices(selecteddevice).Pid.ToString + ", data="
+            For i As Integer = 0 To devices(selecteddevice).ReadLength-1
+                output = output + data(i).ToString + " "
+            Next
+            'add only if different from last output
+            ListBox1.Items.Add(output)
+            ListBox1.SelectedIndex = listBox1.Items.Count - 1
+        End While
+End Sub</pre>
+        <p>&nbsp;</p>
+        <p>Unmanaged DLL</p>
+        <h3>ReadData Function </h3>
+        <h4>Syntax</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">DWORD __stdcall <b>ReadData</b>(long hnd, UCHAR *data); 
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Parameters</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> hnd [in]. Handle to desired device, obtained from the 
+          <a href="enumeratepie.htm">EnumeratePIE()</a> call.</div>
+      </div>
+      <div id="page"> 
+        <div id="main">
+          <p>data [out] Input report, see Data Reports for desired device.</p>
+        </div>
+      </div>
+      <div id="page">
+        <div id="main">
+          
+          </div>
+      </div>
+    </blockquote>
+    <div id="page">
+      <div id="main"> 
+        <h4>Return Value</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">0 if successful; otherwise an error code, see <a href="PIEHidErrors.htm">PIEHid32 
+          Errors</a>. </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Example</h4>
+        <pre>C++
+
+
+
+{
+	DWORD result;
+	Byte buffer[80];  
+	
+	while (0==(result=ReadData(hnd, buffer)))   //0 means good read<br>	{<br>		//handle data
+		//1st byte of data is buffer[0], 2nd byte is buffer[1], etc.
+	}
+}</pre>
+      </div>
+    </div>
+    <blockquote>
+      <div id="page"></div>
+    </blockquote>
+    <div id="page">
+<div id="main">
+        <h4>Function Information</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">Minimum DLL Version: PIEHid32.dll<br>
+          Header: PIEHid32.h<br>
+          Import Library: PIEHid32.lib</div>
+      </div>
+    </blockquote>
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a><a href="index.htm"> 
+    </a> </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

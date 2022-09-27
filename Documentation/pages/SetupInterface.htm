@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>SetupInterface()</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_setupinterface" id="idh_setupinterface"></a>SetupInterface()<b> 
+      | <a href="../index.htm">Main Page</a></b></h2>
+        
+    <h3>Overview</h3>
+    <p>This call opens handles for reading from and writing to the device, and 
+      creates a dedicated read thread to constantly watch the device for new input. 
+      Therefore, <b>SetupInterface</b>() <i>must</i> be called before any read 
+      or write calls are made. In general, it is best only to call this function 
+      once, and leave the read and write handles open. If you must repeatedly 
+      call this function, make sure that your code calls <a href="CloseInterface.htm">CloseInterface()</a>every 
+      time, before <b>SetupInferface</b>() is called again. Failure to do this 
+      will waste system resources, slow down execution, and possibly cause the 
+      computer to hang on shutdown. Note that it is <i>not</i> necessary (but 
+      acceptable) to call <a href="CloseInterface.htm">CloseInterface()</a> before 
+      the executable using PIEHid32Net closes, because the DLL will automatically 
+      call this function itself when it unloads.</p>
+    <div id="page">
+      <div id="main">
+        <p>.NET Framework Class Library </p>
+        <h3>PIEDevice.SetupInterface()</h3>
+        Namespace: PIEHid32Net<br>
+        Assembly: PIEHid32Net.dll<br>
+        <h4>Syntax</h4>
+        <p>C#</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">
+          <p>public int SetupInterface();</p>
+          <p>public int SetupInterface(bool suppressDuplicateReports); </p>
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <p>Visual Basic (Declaration)</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p>Public Function SetupInterface() As Integer</p>
+          <p>Public Function SetupInterface(ByVal suppressDuplicateReports As 
+            Boolean) As Integer</p>
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <p>Visual Basic (Usage)</p>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p>devices(hnd).SetupInterface()</p>
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Examples</h4>
+        <pre>C#
+
+
+private void BtnEnumerate_Click(object sender, EventArgs e)
+{
+	<font color="#000000">PIEDevice</font>[] devices;	
+	devices = <font color="#000000">PIEDevice</font>.EnumeratePIE();
+	if (devices.Length == 0)
+	{
+	//No Devices Found
+	}
+	else
+	{
+		for (int i = 0; i < devices.Length; i++)
+		{
+			listBox1.Items.Add(devices[i].Pid);  //list all devices found
+			devices[i].SetupInterface();  //call SetupInterface to read and write to device
+			devices[i].suppressDuplicateReports=false;
+		}
+	}
+}</pre>
+        <br>
+        <pre>Visual Basic
+
+
+Private Sub BtnEnumerate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEnumerate.Click
+	Dim devices() As PIEHid32Net.PIEDevice
+	devices = PIEHid32Net.PIEDevice.EnumeratePIE()
+	If devices.Length = 0 Then
+            'No Devices Found
+	Else
+		For i As Integer = 0 To devices.Length - 1
+			listBox1.Items.Add(devices(i).Pid.ToString  'list all devices found
+			devices(i).SetupInterface()  'call SetupInterface to read and write to device
+		Next
+	End If
+End Sub</pre>
+        <p>&nbsp;</p>
+        <p>Unmanaged DLL - not available, see SetupInterfaceEx instead.</p>
+      </div>
+    </div>
+    <div id="page">
+      <div id="main"></div>
+    </div>
+    <blockquote>
+      <div id="page"></div>
+    </blockquote>
+    <p><!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a><a href="index.htm"> 
+      </a></p>
+  </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

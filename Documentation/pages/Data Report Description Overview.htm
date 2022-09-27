@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>Data Report Description Overview</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      <div id="main">
+<!-- InstanceBeginEditable name="MainContent" -->
+        
+    
+    <h2>Data Report Description Overview | <a href="../index.htm">Main Page</a></h2>
+        
+    <p>The following sections describe the data available from the P.I. Engineering 
+      products. The PID (Product Identification number) , Hid Usage and Usage 
+      Page are obtained using the <a href="enumeratePIE.htm">EnumeratePIE()</a> 
+      call. The Input Report contains information that can be obtained by using 
+      the <a href="ReadData.htm">ReadData()</a> or <a href="ReadLast.htm">ReadLast()</a> 
+      calls or the <a href="SetDataCallback.htm">SetDataCallback()</a> feature. 
+      The Output report contains information on writing to the device using the 
+      <a href="WriteData.htm">WriteData()</a> call. The bytes are numbered as 
+      they are seen when calling the <a href="ReadData.htm">ReadData()</a> or 
+      <a href="ReadLast.htm">ReadLast()</a> and how they would be filled for the 
+      <a href="WriteData.htm">WriteData()</a>. The first byte of the report is 
+      reserved for the Report ID (note some non PC operating systems may omit 
+      the Report ID).&nbsp; Information is passed between the computer and the 
+      device via bytes of data. A byte consists of 8 bits which have a value of 
+      either 0 or 1. The Reports describe exactly what information is stored in 
+      each byte. Figure 1 shows the break down of 1 byte (8 bits) into its corresponding 
+      bits for reference. In the example shown 00010001 is converted into a decimal 
+      value of 17. </p>
+    <p><img src="images/Byte.jpg" alt="" border="0" width="369" height="118" /></p>
+<p>Figure 1: Breakdown of 1 byte.</p>
+
+<!-- InstanceEndEditable -->
+        <a class="backtotop" href="#top">Back to top</a>
+      </div><!-- end of "main" -->
+      <div id="footer">
+        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>

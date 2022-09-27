@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>SetupInterfaceEx()</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2><a name="idh_enumerate" id="idh_enumerate"></a>SetupInterfaceEx()<b> | <a href="../index.htm">Main Page</a></b></h2>
+        
+    <h3>Overview</h3>
+    <p>This call opens handles for reading from and writing to the device, and 
+      creates a dedicated read thread to constantly watch the device for new input. 
+      Therefore, <strong>SetupInterface()</strong> or <strong>SetupInterfaceEx()</strong> 
+      <em>must</em> be called before any read or write calls are made. Use <strong>SetupInterfaceEx()</strong> 
+      if using the unmanaged PIEHid32.dll. In general, it is best only to call 
+      this function once, and leave the read and write handles open. If you must 
+      repeatedly call this function, make sure that your code calls <a href="CloseInterface.htm">CloseInterface()</a>every 
+      time, before <a href="SetupInterface.htm">SetupInferface()</a> or <strong>SetupInterfaceEx()</strong> 
+      is called again. Failure to do this will waste system resources, slow down 
+      execution, and possibly cause the computer to hang on shutdown. Note that 
+      it is <em>not</em> necessary (but acceptable) to call <a href="CloseInterface.htm">CloseInterface()</a> 
+      before the executable closes, because the DLL will automatically call this 
+      function itself when it unloads.</p>
+    <p>This function is not available in .NET Framework Class Library.</p>
+    <div id="page">
+      <div id="main"></div>
+    </div>
+    <blockquote>
+      <div id="page">
+        <div id="main"></div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+       
+        
+        <p>Unmanaged DLL</p>
+        <h3>SetupInterfaceEx Function </h3>
+        <h4>Syntax</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p>DWORD __stdcall <strong>SetupInterfaceEx</strong>(long hnd, BOOL 
+            suppressDuplicateReports);</p>
+        </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Parameters</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main"> 
+          <p>hnd [in]. Handle to desired device, obtained from the <a href="enumeratepie.htm">EnumeratePIE()</a> 
+            call.<br>
+          </p>
+        </div>
+      </div>
+      <div id="page"></div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Return Value</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">0 if successful; otherwise an error code, see <a href="PIEHidErrors.htm">PIEHid32 
+          Errors</a>. </div>
+      </div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Example</h4>
+        <pre>C++
+
+
+void FindAndStart(HWND hDialog)
+{
+	DWORD result;
+	TEnumHIDInfo info[128];
+	long  hnd;
+	long  count;
+	int pid;
+	result = EnumeratePIE(0x5F3, info, count);
+	if (result != 0)    
+	{
+		//Error finding PI Engineering Devices
+		return;
+	} 
+	else if (count == 0)    
+	{
+		//No PI Engineering Devices Found
+		return;
+	}
+	for (long i=0;i&lt;count; i++)
+	{
+		pid=info[i].PID; //get the device pid
+		hnd = info[i].Handle;
+		SetupInterfaceEx(hnd);
+	}
+
+}
+
+</pre>
+      </div>
+    </div>
+    <blockquote>
+      <div id="page"></div>
+    </blockquote>
+    <div id="page"> 
+      <div id="main"> 
+        <h4>Function Information</h4>
+      </div>
+    </div>
+    <blockquote> 
+      <div id="page"> 
+        <div id="main">Minimum DLL Version: PIEHid32.dll<br>
+          Header: PIEHid32.h<br>
+          Import Library: PIEHid32.lib</div>
+      </div>
+    </blockquote>
+    <p>&nbsp;</p>
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a><a href="index.htm"> 
+    </a> </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>
