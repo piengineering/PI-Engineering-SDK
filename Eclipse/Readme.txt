@@ -1,7 +1,7 @@
 PIUsbSampleBroadcastReceiver
 7/23/13
 
-PIUsbSampleBroadcastReceiver demonstrates how to connect to, write to and read from an X-keys Plus series device.  It is written in Java using Eclipse from the Android Development Tools Build: v21.0.0-519525.
+PIUsbSampleBroadcastReceiver demonstrates how to connect to, write to and read from an X-keys Android series device.  It is written in Java using Eclipse from the Android Development Tools Build: v21.0.0-519525.
 
 To run an sdk sample in Eclipse right click in the Package Explorer window.
 
