@@ -1,1 +1,3 @@
+This is not an android sample but samples for the X-keys Android style product. An android sample is available in the Eclipse folder.
 
+The XK-16 Stick Android is an Android enabled device in PIDs #1, #2 or #3. This means the device can be enumerated, read (if input report available), and written to on Android OS that support host USB, generally 3.1 or higher. Android OS is not able to enumerate a device with a boot keyboard and thus if the XK-16 Stick Android is in PID #4 it will appear to the Android OS as only a hardware keyboard/mouse, you will not be able to get a handle to it but it will work as a keyboard/mouse assuming there are hardware macros recorded on the keys.
