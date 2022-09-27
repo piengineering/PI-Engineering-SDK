@@ -1,0 +1,192 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 617, 476
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++ X-keys XK-80/XK-60"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Enumerate",IDSTART,7,6,89,14
+    PUSHBUTTON      "Cancel",IDCANCEL,224,6,50,14
+    LISTBOX         ID_EVENTS,7,83,533,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Halt",IDHALT,168,6,50,14
+    LTEXT           "Data (hex):",IDC_STATIC,7,70,77,9
+    PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,144,57,17
+    EDITTEXT        IDC_EDIT1,69,145,37,14,ES_AUTOHSCROLL
+    LTEXT           "Write Unit ID:",IDC_STATIC,7,131,111,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,477,65,61,14
+    LTEXT           "PID Convert (must re-enumerate after changing):",IDC_STATIC,289,372,156,9
+    PUSHBUTTON      "To PID #2",IDC_TOPID2,289,406,73,17
+    LTEXT           "Enable Time Stamp:",IDC_STATIC,7,283,91,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,7,297,73,17
+    PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,289,147,73,17
+    PUSHBUTTON      "Joystick Reflector",IDC_JOYREFLECT,289,192,73,17
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,219,73,17
+    LTEXT           "Open up the Game Controller control panel to accept commands.",IDC_STATIC,289,179,216,9
+    PUSHBUTTON      "Multimedia Reflector",IDC_Multimedia,289,343,75,17
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,289,131,146,9
+    LTEXT           "Descriptor:",IDC_STATIC,7,208,63,9
+    PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,87,297,73,17
+    PUSHBUTTON      "Generate Data",IDC_GENERATE,7,256,73,17
+    LTEXT           "Stimulate a general incoming data report or a custom report:",IDC_STATIC,7,245,190,11
+    LTEXT           "Keyboard, Mouse, Input, Output",IDC_STATIC,376,390,102,9
+    LTEXT           "Keyboard, Mouse, Multimedia, Output, v5+ firmware only",IDC_STATIC,377,454,195,9
+    PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,289,272,73,17
+    LTEXT           "unit id",IDC_UNITID3,116,147,30,12
+    LTEXT           "LEDs and Outputs:",IDC_STATIC,7,176,111,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,191,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,191,29,10
+    PUSHBUTTON      "To PID #3",IDC_TOPID3,289,430,73,17
+    PUSHBUTTON      "To PID #4",IDC_TOPID4,289,452,73,17
+    PUSHBUTTON      "Custom Data*",IDC_CUSTOM,87,256,73,17
+    EDITTEXT        IDC_EDIT2,383,148,92,14,ES_AUTOHSCROLL
+    LTEXT           "Joystick Reflector (PID #2 and #3 only):",IDC_STATIC,289,168,146,9
+    EDITTEXT        IDC_JoyX,392,193,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyY,443,193,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyZ,492,192,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyZr,392,208,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoySlider,492,208,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame1,392,224,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame2,417,224,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame3,443,224,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame4,469,224,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyHat,392,240,24,14,ES_AUTOHSCROLL
+    LTEXT           "X:",IDC_STATIC,379,195,8,8
+    LTEXT           "Y:",IDC_STATIC,430,195,8,8
+    LTEXT           "Z:",IDC_STATIC,481,195,8,8
+    LTEXT           "Zr:",IDC_STATIC,379,211,10,8
+    LTEXT           "Slider:",IDC_STATIC,467,211,20,8
+    LTEXT           "Buttons:",IDC_STATIC,361,227,27,8
+    LTEXT           "Hat:",IDC_STATIC,373,243,14,8
+    LTEXT           "0-255",IDC_STATIC,519,194,19,8
+    LTEXT           "0-255",IDC_STATIC,519,211,19,8
+    LTEXT           "0-255",IDC_STATIC,499,226,19,8
+    LTEXT           "0-8",IDC_STATIC,419,243,11,8
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate, v5+ firmware only):",IDC_STATIC,7,321,256,9
+    PUSHBUTTON      "Write Version",IDC_Version,7,335,73,17
+    EDITTEXT        IDC_TxtVersion,83,335,40,14,ES_AUTOHSCROLL
+    LTEXT           "Mouse Reflector (PID #1, PID #2, PID #4 only):",IDC_STATIC,289,257,190,8
+    EDITTEXT        IDC_MouseButtons,391,272,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseX,392,289,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseY,440,289,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseWheel,392,306,25,14,ES_AUTOHSCROLL
+    LTEXT           "Button:",IDC_STATIC,365,275,24,8
+    LTEXT           "1=left, 2=right, 4=center, 8=XButton1, 16=XButton2",IDC_STATIC,419,273,169,12
+    LTEXT           "dX:",IDC_STATIC,376,291,12,8
+    LTEXT           "dY:",IDC_STATIC,425,291,12,8
+    LTEXT           "Wheel Y:",IDC_STATIC,359,311,30,8
+    LTEXT           "Multimedia (PID #4 only, v5+  firmware only):",IDC_STATIC,289,329,207,8
+    PUSHBUTTON      "To PID #1",IDC_TOPID1,289,385,73,17
+    EDITTEXT        IDC_TxtMultiHi,433,343,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TxtMultiLo,499,343,24,14,ES_AUTOHSCROLL
+    LTEXT           "High (hex)",IDC_STATIC,399,347,33,8
+    LTEXT           "Low (hex)",IDC_STATIC,465,345,32,8
+    PUSHBUTTON      "My Computer",IDC_MyComputer,531,343,56,17
+    LTEXT           "Keyboard, Mouse, Joystick, Output",IDC_STATIC,376,409,116,9
+    LTEXT           "Keyboard, Joystick, Input, Output",IDC_STATIC,376,433,109,9
+    LTEXT           "Select device then click Setup for Callback:",IDC_STATIC,7,27,139,8
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,176,44,66,14
+    LTEXT           "-",IDC_LblVersion,128,337,39,8
+    LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,357,192,9
+    EDITTEXT        IDC_TXTBL,7,369,40,14,ES_AUTOHSCROLL
+    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,53,373,38,10
+    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,373,33,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,373,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,382,72,10
+    PUSHBUTTON      "Toggle",IDC_BLToggle,7,387,49,17
+    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,62,387,49,17
+    LTEXT           "*v5+ firmware only",IDC_STATIC,169,262,58,8
+    LTEXT           "Do this first",IDC_STATIC,101,6,44,8
+    LTEXT           "Dongle Feature, v8+ firmware only:",IDC_STATIC,7,438,110,8
+    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,7,449,73,17
+    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,86,449,73,17
+    LTEXT           "Pass/Fail",IDC_PASSFAIL,166,452,109,11
+    PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,93,411,65,17
+    PUSHBUTTON      "Set Freq",IDC_FREQ,7,411,49,17
+    EDITTEXT        IDC_EDIT3,60,413,25,14,ES_AUTOHSCROLL
+    LISTBOX         IDC_LIST1,7,39,165,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 610
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 469
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
