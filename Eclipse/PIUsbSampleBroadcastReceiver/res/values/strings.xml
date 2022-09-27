@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PIUsbSample BroadcastReceiver</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+	
+    <string name="main_enumerate">Enumerate</string>
+    <string name="main_textview1">raw data</string>
+    <string name="main_textview2">button status</string>
+    <string name="main_textview3">device status</string>
+    <string name="main_ledgreen">Green LED</string>
+    <string name="main_descriptor">Descriptor</string>
+</resources>
