@@ -1,0 +1,998 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>P.I. Engineering | X-keys .NET Component Documentation</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	background: #ffffff;
+	margin: 0; 
+	padding: 0;
+	text-align: center; 
+	color: #000000;
+}
+.twoColFixRtHdr #container { 
+	width: 780px; 
+	background: #FFFFFF;
+	margin: 20px auto;
+	text-align: justify; 
+} 
+.twoColFixRtHdr #header { 
+	background: #99c; 
+	color: #ffffff;
+	padding: 0 10px 10px 20px; 
+	border: #000000 1.75px solid;
+} 
+.twoColFixRtHdr #header h1 {
+	margin: 0px; 
+	padding: 10px 0; 
+}
+.twoColFixRtHdr #sidebar1 {
+	float: right;
+	width: 130px; 
+	overflow: auto;
+	margin-top: 0px;
+	text-align: right;
+
+}
+
+.twoColFixRtHdr #sidebar1 a {
+	background-color: #99c;
+	border-color: #000;
+	border-width: 1px;
+    border-style: solid;
+    color: #fff;
+	font-size: .75em;
+	font-weight: normal;
+	margin-bottom: 2px;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	width: 100px;
+	float: right;
+	clear: both;
+}
+
+.twoColFixRtHdr #sidebar1 a:hover {
+ color: #99c; background-color: #fff; border-color: #99c;
+ }
+
+.twoColFixRtHdr #mainContent { 
+	margin: 0 0 0 0; 
+	padding: 0 0 0 0;
+	font-size: .95em;
+} 
+
+.twoColFixRtHdr #mainContent h2 { 
+display: block; background-color: #99c; border: #000000 1.75px solid; color: #ffffff; padding: 5px; 
+}
+
+.twoColFixRtHdr #mainContent h3 { 
+ border-bottom: #99c 4px solid; }
+
+.twoColFixRtHdr #footer { 
+	padding: 0 10px 0 20px;
+	background:#99c; 
+	color: #ffffff;
+    font-size: .75em;
+	border: #000000 thin solid;
+} 
+.twoColFixRtHdr #footer p {
+	margin: 0;
+	padding: 10px 0; 
+}
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+.backtotop { text-align: right; }
+
+a {
+	font-weight: bold;
+}
+a:link {
+	text-decoration: none;
+	color: #4B4B96;
+}
+a:visited {
+	text-decoration: none;
+	color: #4B4B96;
+}
+a:hover {
+	text-decoration: underline;
+	color: #6565b1;
+}
+a:active {
+	text-decoration: none;
+	color: #6565b1;
+}
+--> 
+</style></head>
+<body class="twoColFixRtHdr">
+
+<div id="container">
+  <div id="header">
+    <h1 align ="center" style="padding: 0px; margin: 0px;">P.I. Engineering</h1>
+    <h3 align="center" style="padding: 0px; margin: 0px;">X-keys .NET Component Documentation</h3>
+  </div>
+  <div id="sidebar1">
+  			  			<ul style="list-style: none;">
+                <li><a href="#install">Installation</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#methods">Methods</a></li>
+	  <li><a href="#events">Events</a></li>
+	  <li><a href="#contact">Contact/Info</a></li>
+
+              </ul>
+  </div>
+  <div id="mainContent">
+    <div id="top">
+       
+	  <div id="overview">
+	    <p>The X-keys .NET components are designed to make integrating X-keys into applications easier than ever. With a simplified API that encapsulates much of the functionality of the standard SDK, developers no longer need to get wrapped up in complex or time-consuming tasks, enabling cleaner and more rapid integration.</p>
+          <p>Should you have any additional questions, please  e-mail <a href="mailto:tech@piengineering.com">tech@piengineering.com</a> or call (517) 655-5523 ex. 19.</p>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div id="install">
+        <h2 style="margin-top: 10px; ">Installing the Component</h2></div>
+        	
+            
+      <p>The first step is to install the X-keys .NET component(s) that you would 
+        like to use into Visual Studio. Visual Studio 2010 or newer is required, 
+        though it does not matter if it is an Express or Professional edition.</p>
+            <p>Each X-keys .NET component is designed for a specific type of device (for example, the XK-24), so if handling assorted X-keys is desired, be sure to install the component for each. A generic component is introducted starting in PI Engineering SDK v1061. This component is designed to work with all of our products on a basic level. </p>
+            <p>To run the appropriate installer, find the component's Install folder (sample path: C:\Program Files (x86)\PI Engineering\PI Engineering SDK\.NET Components\<em>product folder</em>\Install\) and <strong>double-click on the .vscontent file</strong> contained therein.</p>
+            
+      <p>After successful install, the component should be available to be dragged 
+        onto a form from the Toolbox in Visual Studio.</p>
+      <p>The samples make use of the .NET class library PIEHid32Net.dll and the 
+        .NET component dll file. The sample already has both dlls located in the 
+        proper directories and added as references but if starting with a new 
+        project one must copy the PIEHid32Net.dll to the desired project directory. Then in Visual Studio 
+        right click on the project name and select Add Reference, click on the 
+        Browse tab and select PIEHid32Net.dll. The .NET component dll will be 
+        automatically added once it is dragged onto the form from the Toolbox. 
+      </p>
+	  <p>If the component install fails it can be installed manually. Right click on the toolbox and select Choose Items..., under the .NET Framework Components tab select Browse and navigate to C:\Program Files (x86)\PI Engineering\PI Engineering SDK\.NET Components\<em>product folder</em>\Install and select the component dll. The component now appears in the list. Click OK. The component should now be available to be dragged onto a form from the Toolbox in Visual Studio.</p>
+                 
+<p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top...</a></p></div>
+              
+   <div id="properties">
+   	  <h2>Properties</h2>
+            <h3>AutoEnumerate</h3>
+            <p>Whether or not the software will attempt to enumerate X-keys devices and setup interfaces automatically when a recognized
+              
+              X-keys device is connected. </p>
+      <p>Default value is <strong>True</strong>. Set to <strong>False</strong> to disable this functionality. </p>
+            <p><em>If set to False, the developer will need to call the Enumerate() method explicitly each time they wish to detect and work with new devices.</em></p>
+            <h3>ConnectedDevices</h3>
+            <p>Collection of connected devices. Not available at design time, as enumeration must occur to fill in the list. Most component methods require that the index of the correct device is passed; if only one device is connected this will always be 0. As further devices are connected they are added to the collection.</p>
+            
+      <p>The ConnectedDevices structure contains:<br>
+        <strong>int BaudRate</strong>-XC-RS232 DB9 only. Baudrate of the device, 8 possible values; 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115400. Factory default is 9600. <br>
+		<strong>int FirmwareVersion</strong>-The firmware version of the device. <br>
+        <strong>bool IsDeviceLock</strong>-True if the device is locked via password protection, false if it is not.  This is not the same as the security key (dongle) which can be implemented by users.  Locking can only be done by P.I. Engineering at the factory.  The following features are disabled on locked devices: changing unit id, changing OEM id, changing Pid, saving the backlighting state, SendKeystrokes, SendJoystick, SendMouse, SetSecurityKey and writing of macros using either MacroWorks 3.1 or X-keys Basic Setup. <br>
+        <strong>bool JoystickInterface</strong>-True if a joystick endpoint is available.  A joystick endpoint is required in order to use SendJoystick. Endpoints for each X-keys device are listed in the P.I.Engineering SDK Help under X-keys Data Reports. <br>
+        <strong>bool KeyboardInterface</strong>-True if a keyboard endpoint is available.  A keyboard endpoint is required in order to use SendKeystrokes. Endpoints for each X-keys device are listed in the P.I.Engineering SDK Help under X-keys Data Reports. <br>
+        <strong>byte[] lastdata</strong>-The raw input report last received.  See the P.I. Engineering SDK Help for details.<br>
+		<strong>int lastTbar</strong>-XKE-124 T-bar only. The calibrated T-bar value last received.<br>
+        <strong>bool MouseInterface</strong>-True if a mouse endpoint is available.  A mouse endpoint is required in order to use SendMouse. Endpoints for each X-keys device are listed in the P.I.Engineering SDK Help under X-keys Data Reports. <br>
+        <strong>bool MultimediaInterface</strong>-True if a multimedia endpoint is available.  A multimedia endpoint is required in order to use SendMultimedia or SendMultimediaPower. Endpoints for each X-keys device are listed in the P.I.Engineering SDK Help under X-keys Data Reports. <br>
+		<strong>int OEMVersion</strong>-The device's actual OEM Version ID. This 
+        is different from the TargetOEMVersionID which is the desired OEM Version 
+        ID. If the OEMVersion is different from the TargetOEMVersionID and the 
+        TargetOEMVersionID is not -1 then this device would be ignored. Note some 
+        devices such as the XK-12 Jog &amp; Shuttle do not have an OEMVersion 
+        ID. <br>
+		<strong>XkeysParityType Parity</strong>-XC-RS232 DB9 only. Parity of the device, 3 possible values; XkeysParityType.None, XkeysParityType.Even, XkeysParityType.Odd. Factory default is XkeysParityType.None. <br>
+        <strong>bool PassThrough</strong>-XC-RS232 DB9 only. True if user wishes to receive incoming data from the connected RS232 device. Factory default is True. <br>
+		<strong>int Pid</strong>-The Product ID of this device. This is different from the TargetProductID which is the desired Product ID. If the Pid is different from the TargetProductID and the TargetProductID is not -1 then this device would be ignored.<br>
+        <strong>int PieHandle</strong>-The actual handle used by PIEHid32Net.dll.  If using the raw calls from PIEHid32Net.dll as demonstrated in the P.I. Engineering SDK use this handle. <br>
+        <strong>string ProductString</strong>-Description of the device. <br>
+        <strong>int ReadLength</strong>-Length of the device's input report. <br>
+		<strong>bool SendAsciiToKeyboard</strong>-XC-RS232 DB only. If True all incoming ASCII messages from the connected serial device will be converted and sent out to the keyboard. For example if there is an RS232 message "31 0D" when this message is sent "1" followed by a carriage return is typed out. This feature requires the IAB-RS232 to have a keyboard endpoint. Factory default is False. <br>
+        <strong>int UnitID</strong>-The device's Unit ID. This is different from the TargetUnitID which is the desired Unit ID. If the UnitID is different from the TargetUnitID and the TargetUnitID is not -1 then this device would be ignored. <br>
+        <strong>int WriteLength</strong>-Length of the device's output report.</p>
+      <p><font face="monospace">lblUID.Text = &quot;Unit ID: &quot; + xk24_1.ConnectedDevices[0].UnitID.ToString();</font></p>
+      <h3>Enabled</h3>
+            <p>Whether or not the device will send input to the computer. Default value is <strong>True</strong>. Change to <strong>False</strong> to temporarily disable the X-keys input.</p>
+            
+            <h3>Name</h3>
+      <p>The name you will use to refer to the component from within your code. Standard control naming rules apply.</p>
+      <h3>TargetOEMVersionID</h3>
+      <p>What OEM Version IDs the component will handle. This ID can be used by the OEM/developer to distinguish devices they sell their clients from standard off-the-shelf devices, or any other developer-defined purpose.</p>
+      <p>Default value is <strong>-1</strong> which means that the software will work with any OEM Version ID. Change this to a specific value (<strong>0-65535</strong>) to limit the software to only devices with that ID. </p>
+      <h3>TargetProductID</h3>             
+            <p>What Product IDs, or PIDs, the software will handle. Default value is <strong>-1</strong> which means that the component will handle all valid software mode PIDs for a particular type of device. Change value to a specific, <em>valid</em> PID for the device (for example, with the XK-24, either <strong>1029</strong> or <strong>1027</strong>) to limit the component to a particular PID.</p>
+            
+      <h3>TargetUnitID</h3>
+            <p>What Unit IDs, or UIDs, the component will handle. </p>
+      <p>Unit IDs are typically used by developers to distinguish between two or more otherwise identical X-keys devices. More than one device can have the same Unit ID without issue, but usually the devices will perform the same actions when buttons are pushed.</p>
+            <p>Default value is <strong>-1</strong> which means that the software will work with any UID. Change value to a specific UID (<strong>0-255</strong>) to limit the software to a particular UID.      </p>
+      <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top...</a></p>
+   </div>
+ 
+    <div id="methods">
+	  <h2>Methods</h2>
+      
+      <h3>ChangePID(int ConnectedDevice, int DesiredPID)</h3>
+      <p>Converts the selected device to a different PID. DesiredPID must be a valid choice for the device (for example, for an XK-24, 1029 or 1027 are valid).</p>
+      <p><font face="monospace">xk24_1.ChangePID(0, 1029);</font></p>
+      <h3>Enumerate()</h3>
+      <p>Gets all connected devices. Filters based on chosen ProductID, UnitID, and OEMVersionID; then adds all applicable devices to the ConnectedDevices collection. </p>
+      <p>This functionality is performed automatically upon plug of a device, and most developers will never need to use this method explicitly.</p>
+      <p><font face="monospace">xk24_1.Enumerate();</font></p>
+	  
+      <h3>GenerateReport(int ConnectedDevice)</h3>
+      <p>Generates an input report for the selected device.</p>
+      <p><font face="monospace">xk24_1.GenerateReport(0);</font></p>
+	  
+	  <h3>GenericWriteData(int ConnectedDevice, byte[] DataBytes)</h3>
+      <p>XKGeneric only. Writes an output report for the selected device with the given bytes in DataBytes.</p>
+	  <font face="monospace">byte[] wData = new byte[xkGEN_1.ConnectedDevices[0].WriteLength];</font><br>
+	  <font face="monospace">for (int j = 0; j < xkGEN_1.ConnectedDevices[0].WriteLength; j++) {wData[j] = 0;}</font><br>
+	  <font face="monospace">wData[0] = 0;</font><br>
+	  <font face="monospace">wData[1] = 184; //toggle backlights</font><br>
+      <font face="monospace">xkGEN_1.GenericWriteData(0, wData);</font>
+	  
+      <h3>GetNumberOfSlots(int ConnectedDevice)</h3>
+      <p>XC-DMX512T only. Returns the number of slots for which the device is 
+        currently setup to transmit. A number between 1 and 512 is returned, default 
+        is 512 if SetNumberOfSlots is never called.</p>
+      <p><font face="monospace">int numberofslots = xkDMX_1.GetNumberOfSlots(0);</font></p>
+	  
+      <h3>GetSecurityKey(int ConnectedDevice, byte K0, byte K1, byte K2, byte K3 )</h3>
+      <p>Checks the dongle, returns boolean. K0-K3 are the user's 4 byte Security Key. If it matches what was passed when originally set, True will be returned. Otherwise, False will be returned. It is recommended to call this seldomly as it can interrupt the reading of data.</p>
+      <p><font face="monospace">bool dongle = xk24_1.GetSecurityKey(0, byte1, byte2, byte3, byte4);</font></p>
+	  
+	  <h3>RebootDevice(int ConnectedDevice)</h3>
+      <p>Reboots the selected device without the user needing to replug it. </p>
+      <p><font face="monospace">xk24_1.RebootDevice(0);</font></p>
+	  
+	  <h3>RegisterAnalog(int ConnectedDevice, int AnalogByte)</h3>
+      <p>XKGeneric only. Registers to receive the analog data on the given byte in AnalogByte for the selected device. AnalogByte is the position in the input report of the desired analog data. To determine the byte positions please consult PI Engineeing SDK documentation(PIEngineeringSDK.chm) Data Reports for specific device. Analog data is given in the AnalogChange event. See also UnregisterAnalog. </p>
+      <font face="monospace">xkGEN_1.RegisterAnalog(0, 16); //XK-68 Joystick X</font><br>
+	  <font face="monospace">xkGEN_1.RegisterAnalog(0, 17); //XK-68 Joystick Y</font><br>
+      <font face="monospace">xkGEN_1.RegisterAnalog(0, 18); //XK-68 Joystick Z</font>
+	  
+      <h3>SaveBacklightState(int ConnectedDevice)</h3>
+      <p>Saves the current backlighting state to the memory of the selected device.</p>
+      <p><font face="monospace">xk24_1.SaveBacklightState(0);</font></p>
+	  
+      <h3>SendJoystick(int ConnectedDevice, byte JoystickX, byte JoystickY, byte JoystickZrot, byte JoystickZ, byte Slider, byte Hat, bool[]GameButtons)</h3>
+      <p>Sends joystick commands using the game controller endpoint of the selected device. Device must have a joystick endpoint, as without it these commands will not work properly.</p>
+      <p>JoystickX, 0 through 255: 0 is full left, 255 is full right. JoystickY, 0 through 255: 0 is full down, 255 is full up. JoystickZrot, 0 through 255.  JoystickZ, 0 through 255. Slider, 0-255.  Hat 0-8 where 8 is no hat.</p>
+      <p>GameButtons are an array of at least 32 length. False means the game button is off, True means the game button is on. Index 0-7 are game buttons 1-8, 8-15 are game buttons 9-16, 16-23 are game buttons 17-24 and 24-31 are game buttons 25-32.</p>
+      <p><font face="monospace">xk24_1.SendJoystick(0, 100, 100, 0, 0, 0, 0, buttons);</font></p>
+	  
+      <h3>SendKeystrokes(int ConnectedDevice, bool LeftCtrl, bool LeftShift, bool LeftAlt, bool LeftGUI, bool RightCtrl, bool RightShift, bool RightAlt, bool RightGui, byte Hid1, byte Hid2, byte Hid3, byte Hid4, byte Hid5, byte Hid6)</h3>
+      <p>Sends keystrokes using the keyboard endpoint of the selected device. Device must be in an endpoint which includes keyboard. For each modifier parameter, False means it has not been pressed, while True means that it has. Hid1 through Hid6 are hidcodes in decimal. <u>Remember to keep track of keystroke presses and releases to avoid stuck keys.</u></p>
+      <p>Example to  type Abcd:<br />
+        <font face="monospace">//Sends A; at this point both LeftShift and the 'a' key are down<br />
+          SendKeystrokes(0, false, true, false, false, false, false, false, false, 4, 0, 0, 0, 0, 0)</font><br />
+  <font face="monospace">//this releases the LeftShift and 'a' key and presses 'b', 'c' and 'd'<br />
+    SendKeystrokes(0, false, false, false, false, false, false, false, false, 0, 5, 6, 7, 0, 0)</font><br />
+  <font face="monospace">//IMPORTANT this releases the b,c,d; this statement would also release ALL keys that were pressed<br />
+    SendKeystrokes(0, false, false, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0)</font></p>
+	
+      <h3>SendMouse(int ConnectedDevice, bool LeftButton, bool RightButton, bool CenterButton, bool XButton1, bool XButton2, byte MouseX, byte MouseY, byte WheelY) </h3>
+      <p>Sends mouse commands using the mouse endpoint of the selected device. Device must be have a mouse endpoint, as without it these commands will not work properly.</p>
+      <p>For the mouse buttons False means it is not pressed, while True means it is pressed.</p>
+      <p>MouseX values are as follows: 0 for no motion; 1 through 127 to move right, with higher values being more course movements; 255 through 129 to move left, with lower values being more course movements.</p>
+      <p>MouseY values are as follows: 0 for no motion; 1 through 127 to move down, with higher values being more course movements; 255 through 129 to move up, with lower values being more course movement.</p>
+      <p>WheelY (vertical scroll bar) values are as follows: 0 for no motion; 1 through 127 are up; 255 through 129 are down.</p>
+      <p><font face="monospace">xk24_1.SendMouse(0, false, false, false, false, false, 100, 100, 0);</font></p>
+	  
+	  <h3>SendMultimedia(int ConnectedDevice, string MMCodeHigh, string MMCodeLow) </h3>
+      <p>Sends multimedia command using the multimedia endpoint of the selected device. Device must be have a multimedia endpoint, as without it these commands will not work properly.</p>
+      <p>MMCodeHigh is the high byte of the 2 byte multimedia hexadecimal code, for example for Volume Down the code is 00EA, MMCodeHigh is 00.</p>
+      <p>MMCodeLow is the high byte of the 2 byte multimedia hexadecimal code, for example for Volume Down the code is 00EA, MMCodeLow is EA.</p>
+	  <p>IMPORTANT must send a terminate command. When the "terminate" command is sent can sometimes have an effect on the behavior of the command. For example in volume decrement (EA=low byte, 00=high byte) if you send the terminate immediately after the SendMultimedia("00" "EA") command it will decrement the volume one step, if you send the SendMultimedia("00" "EA") on the press and the terminate; SendMultimedia("00" "00") on the release the volume will continuously decrement until the key is released.</p>
+      <p><font face="monospace">xk16LCD_1.SendMultimedia(0, "00", "EA");</font></p>
+	  <p><font face="monospace">xk16LCD_1.SendMultimedia(0, "00", "00");</font></p>
+	  
+      <h3>SetAllBlue(int ConnectedDevice, bool State)</h3>
+      <p>Turns the entire blue bank on a selected device on or off. State is True for on, False for off.</p>
+      <p><font face="monospace">xk24_1.SetAllBlue(0, false);</font></p>
+      <h3>SetAllRed(int ConnectedDevice, bool State)</h3>
+      <p>Turns the entire red bank on a selected device on or off. State is True for on, False for off.</p>
+      <p><font face="monospace">xk24_1.SetAllRed(0, true);</font></p>
+	  
+      <h3>SetBacklightIntensity(int ConnectedDevice, int Bank1, int Bank2)</h3>
+      <p>Sets the intensity level of both backlighting banks on the selected device. Bank1 is the value for blue and Bank2 is the value for red on most devices. Value for each can be 0-255, with 255 being the brightest.</p>
+      <p><font face="monospace">xk24_1.SetBacklightIntensity(0, <em>Intensity1</em>, <em>Intensity2</em>);</font></p>
+	  
+      <h3>SetBacklightLED(int ConnectedDevice, int ButtonID, int Bank, int State)</h3>
+      <p>Sets the state of an individual backlight LED on the selected device. Button ID starts at 1 (for example, an XK-24 has buttons 1-24). Bank is 0 (blue) or 1 (red) for most devices. State is 0 = off; 1 = on; 2 = flash.</p>
+      <p><font face="monospace">xk24_1.SetBacklightLED(0, <em>ButtonID</em>, 0, <em>LightState</em>);</font></p>
+	  
+	   <h3>SetBaudRate(int ConnectedDevice, int baudrate)</h3>
+      <p>XC-RS232-DB9 only. Sets the XC-RS232-DB9 baudrate.  This rate must match that of the connected serial device. Valid integers are 1200, 2400, 4800, 9600 (factory default), 19200, 38400, 57600, 115400. If an integer is entered that is not equal to one in the list, the closest baudrate in the list will be used. The XC-RS232-DB9 will reboot following this command if the desired baud rate differs from the current one.</p>
+      <p><font face="monospace">XkRS232_1.SetBaudRate(0, 9600);</font>      </p>
+	  
+      <h3>SetDeviceUID(int ConnectedDevice, int UID)</h3>
+      <p>Sets Unit ID for the selected device. </p>
+      <p><font face="monospace">xk24_1.SetDeviceUID(0, <em>id</em>);</font></p>
+	  
+      <h3>SetFlashFrequency(int ConnectedDevice, int Frequency)</h3>
+      <p>Sets the frequency with which a the selected device's lights will flash. Values 1-255 (with 255 being the slowest value, at approximately 4 seconds between flashes). Not available on XC-RS232-DB9.</p>
+      <p><font face="monospace">xk24_1.SetFlashFrequency(0, <em>Frequency</em>);</font></p>
+      
+	  <h3>SetGreenIndicator(int ConnectedDevice, int State)</h3>
+      <p>Sets the state of the green indicator LED for the selected device. State is 0 = off; 1 = on; 2 = flash. Flash not available on XC-RS232-DB9.</p>
+      <p><font face="monospace">xk24_1.SetGreenIndicator(0, 1);</font></p>
+	  
+	  <h3>SetLCDRow(int ConnectedDevice, int Row, int Backlightstate, string Message)</h3>
+      <p>X-keys with LCD modules only. Writes a 16 character message on the desired row of the LCD module, an empty string "" clears the row. Backlightstate is 0 for none and 1 for backlighting on.</p>
+      <p><font face="monospace">Xk16LCD_1.SetLCDRow(0, 0, 1, "Hello");</font></p>
+	  
+      <h3>SetNumberOfSlots(int ConnectedDevice, int numslots)</h3>
+      <p>XC-DMX512T only. Sets the number of slots for the device to transmit. 
+        Valid values are any number between 1 and 512. Returns numslots if successful 
+        or -1 if failed.</p>
+      <p><font face="monospace">xkDMX_1.SetNumberOfSlots(0, 10);</font></p>
+	  
+      <h3>SetOEMVersionID(int ConnectedDevice, int OEMID, bool Reboot)</h3>
+      <p>Sets the OEM Version ID for the selected device. The device will reboot if Reboot=true. A reboot of the device is required for the change to take.</p>
+      <p><font face="monospace">xk24_1.SetOEMVersionID(0, <em>id</em>, true);</font></p>
+	  
+	  <h3>SetParity(int ConnectedDevice, XkeysParityType pt)</h3>
+      <p>XC-RS232-DB9 only. Sets the XC-RS232-DB9 parity.  This parity must match that of the connected serial device. Valid values are XkRS232.XkRS232_.XkeysParityType.None (factory default), XkRS232.XkRS232_.XkeysParityType.Even and XkRS232.XkRS232_.XkeysParityType.Odd. The XC-RS232-DB9 will reboot following this command if the parity entered differs from the current parity. A reboot of the device is required for the change to take.</p>
+      <p><font face="monospace">xkRS232_1.SetParity(0, XkRS232.XkRS232_.XkeysParityType.None);</font>      </p>
+	  
+	  <h3>SetPassThrough(int ConnectedDevice, bool Send)</h3>
+	  <p>XC-RS232-DB9 only. Set to true to receive data from the connected serial device or false to not receive the data.</p>
+      <p><font face="monospace">xkRS232_1.SetPassThrough(0, true);</font>      </p>
+	  
+      <h3>SetRedIndicator(int ConnectedDevice, int State)</h3>
+      <p>Sets the state of the red indicator LED for the selected device. State is 0 = off; 1 = on; 2 = flash. Flash not available on XC-RS232-DB9.</p>
+      <p><font face="monospace">xk24_1.SetRedIndicator(0, 0);</font>      </p>
+	  
+      <h3>SetRowsOfBacklights(int ConnectedDevice, int Bank,  bool Row1, bool Row2, bool Row3, bool Row4, bool Row5, bool Row6)</h3>
+      <p>Turns entire rows of backlighting on or off for the given bank, on the selected device.</p>
+      <p><font face="monospace">xk24_1.SetRowsOfBacklights(0, 0, <em>row1</em>, <em>row2</em>, <em>row3</em>, <em>row4</em>, <em>row5</em>, <em>row6</em>);</font></p>
+	  
+      <h3>SetRTS(int ConnectedDevice, int ClearWait)</h3>
+	  <p>XC-RS232-DB9 only. Sets the ReadyToSend.  0 for clear and 1 for wait.</p>
+      <p><font face="monospace">xkRS232_1.SetRTS(0, 1);</font>      </p>
+	  
+      <h3>SetSecurityKey(int ConnectedDevice, byte K0, byte K1, byte K2, byte K3)</h3>
+      <p>Works as a dongle. K0-K3 is the user's 4 byte Security Key.  Write this down and make sure it is used to check the Security Key.   <em>The K values must be between 1 and 254 (0 and 255 are not valid values).</em></p>
+      <p><font face="monospace">xk24_1.SetSecurityKey(0, byte1, byte2, byte3, byte4);</font></p>
+	  
+      <h3>SetSendAsciiToKeyboard(int ConnectedDevice, bool Send)</h3>
+	  <p>XC-RS232-DB9 only with keyboard endpoint (Pid 1260). Sends the incoming data from the connected serial devices to the keyboard which types it out.  If using this feature it is stronly recommended to exit the SDK sample after turning it on and set the focus on a text input such as Notepad to see the results. Factory default is off.</p>
+      <p><font face="monospace">xkRS232_1.SetSendAsciiToKeyboard(0, true);</font> 
+      </p>
+	  
+      <h3>SetSlotValue(int ConnectedDevice, int slot, byte value)</h3>
+      <p>XC-DMX512T only. Sets the given slot with the given value. Returns value 
+        if successful or -1 if failed.</p>
+      <p><font face="monospace">int numberofslots = xkDMX_1.GetNumberOfSlots(0);<br>
+        for (int i=0;i&lt;numberofslots;i++)<br>
+        {<br>
+        xkDMX_1.SetSlotValue(0, i+1, 128); //setting them all to a value of 128<br>
+        } </font> </p>
+		
+      <h3>StartCal(int ConnectedDevice)</h3>
+      <p>XKE-124 Tbar only. The Tbar is calibrated in the factory and should have values of 0 (full down) to 255 (full up).  Recalibrate only if absolutely necessary.  Starts the calibration of Tbar, after calling move the Tbar slowly up and down at least twice making sure to hit the limits on each end.</p>
+	  <p><font face="monospace">xk124Tbar_1.StartCal(0);</font></p>
+	  
+	  <h3>StopCal(int ConnectedDevice)</h3>
+      <p>XKE-124 Tbar only. The Tbar is calibrated in the factory and should have values of 0 (full down) to 255 (full up).  Recalibrate only if absolutely necessary.  Stops the calibration of Tbar.</p>
+	  <p><font face="monospace">xk124Tbar_1.StopCal(0);</font></p>
+	  
+      <h3>ToggleBacklights(int ConnectedDevice)</h3>
+<p>Toggles the backlighting banks on the selected device (with repeated uses the lights will be turned on and off).</p>
+      <p><font face="monospace">xk24_1.ToggleBacklights(0);</font></p>
+	  
+      <h3>Transmit(int ConnectedDevice)</h3>
+      <p>XC-DMX512T only. Transmits the values currently set for each of the slots 
+        out via DMX protocol. This is a &quot;one shot&quot; transmission, to 
+        continously transmit use TransmitContinuous(). Returns 0 if successful 
+        or -1 if failed.</p>
+      <p><font face="monospace">//sending only 3 channels for this example <br>
+        xkDMXT_1.SetNumberOfSlots(0, 3); <br>
+        xkDMXT_1.SetSlotValue(0, 1, 0); //slot 1 = 0 <br>
+        xkDMXT_1.SetSlotValue(0, 2, 255); //slot 2 = 255 <br>
+        xkDMXT_1.SetSlotValue(0, 3, 0); //slot 3 = 0 <br>
+        xkDMXT_1.Transmit(0);</font></p>
+		
+      <h3>TransmitContinuous(int ConnectedDevice, bool On)</h3>
+      <p>XC-DMX512T only. Transmits continuously at an interval of 50 ms the values 
+        currently set for each of the slots out via DMX protocol. This method 
+        is essentially Transmit() on a 50 ms timer. Returns the value of On if 
+        successful or false if failed.</p>
+      <p><font face="monospace">if (btnStart.Text == "Start") <br>
+        { <br>
+        btnStart.Text = "Stop"; <br>
+        xkDMXT_1.TransmitContinuous(0, true); <br>
+        } <br>
+        else <br>
+        { <br>
+        btnStart.Text = "Start"; <br>
+        xkDMXT_1.TransmitContinuous(0, false); <br>
+        }<br>
+        </font></p>
+		
+	  <h3>UnregisterAnalog(int ConnectedDevice, int AnalogByte)</h3>
+      <p>XKGeneric only. Unregisters or stops receiving the analog data on the given byte in AnalogByte for the selected device. AnalogByte is the position in the input report of the desired analog data. To determine the byte positions please consult PI Engineeing SDK documentation(PIEngineeringSDK.chm) Data Reports for specific device. See also RegisterAnalog. </p>
+      <font face="monospace">xkGEN_1.UnRegisterAnalog(0, 18); //XK-68 Joystick Z</font>
+		
+      <h3>WriteBytes(int ConnectedDevice, byte[] buffer, int offset, int count)</h3>
+<p>XC-RS232-DB9 only. Writes a specified number of bytes to the connected serial device using data from a buffer.</p>
+<p><font face="monospace">XkRS232_1.WriteBytes(0, buffer, 10, 3);</font></p>
+
+<h3>WriteChars(int ConnectedDevice, char[] buffer, int offset, int count)</h3>
+<p>XC-RS232-DB9 only. Writes a specified number of characters to the connected serial device using data from a buffer.</p>
+<p><font face="monospace">XkRS232_1.WriteChars(0, buffer, 10, 3);</font></p>
+
+      <h3>WriteString(int ConnectedDevice, string text, bool newline, bool carriagereturn)</h3>
+      <p>XC-RS232-DB9 only. Writes a specified string. If newline is true the new 
+        line value (0x0a) is appended to the end of text, if carriagereturn is 
+        true the carriage return value (0x0d) is appended to the end of text.</p>
+<p><font face="monospace">XkRS232_1.WriteString(0, "B8;", false);</font></p>
+
+    
+             <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top...</a></p>
+    </div>
+          
+          <div id="events">
+            <h2>Events</h2>
+			
+			<h3>AnalogChange</h3>	
+            <p>XK Generic only. Occurs when a registered analog byte's value changes.	Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occured.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>AnalogByte</td>
+                <td>The analog byte position in the input report. This byte must be registered first in order to trigger this event. To determine analog byte position see PI Engineering SDK documentation (PIEngineeringSDK.chm) for input reports. For example the byte position for the Joystick X analog data on an XK-68 Joystick is 16.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>AnalogVal</td>
+                <td>The analog value.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event Occurs.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>GeneratedData</td>
+                <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID**</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer[]</td>
+                <td>RawData</td>
+                <td>The actual input report. This is useful if user needs the time stamp feature. Because the time stamp is often in differing byte positions it is not given in TimeStamp. Users desiring time stamp need to consult the PI Engineering SDK documentation (PIEngineeringSDK.chm) to determine the bytes that contain the time stamp and get their values here or in the RawDataChange event.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>long</td>
+                <td>TimeStamp</td>
+                <td>This value is always 0.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+			 
+			<h3>ButtonChange</h3>	
+            <p>Occurs when button's state is changed, ie. pressed or released. One separate event for every button individual state change.	Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>integer[]</td>
+                <td>ButtonStates</td>
+                <td>Integer array of all the buttons current state where 0 is released and 1 is pressed.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>CID</td>
+                <td>Button number where first button is 1001 in upper left corner.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>GeneratedData</td>
+                <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID**</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>PressState</td>
+                <td>True for pressed, false for released.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>long</td>
+                <td>TimeStamp*</td>
+                <td>4-byte integer which is a running clock from reboot of device, it is useful for determining time betwen button presses or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+			
+			<h3>DataReceived</h3>	
+            <p>XC-RS232-DB9 only. Occurs when data has been received from the connected serial device. Arguments: </p>
+            <table width="80%" border="0">
+               <tr>
+                <td>string</td>
+                <td>AsciiReceived</td>
+                <td>Bytes received converted to an ascii string.</td>
+              </tr>
+			  <tr>
+                <td>byte[]</td>
+                <td>BytesReceived</td>
+                <td>Byte array of the bytes received.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>NumberOfBytesReceived</td>
+                <td>Number of bytes received for this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+            
+            <h3>DevicePlug</h3>
+            <p>Occurs when device is plugged in. Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID**</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+			  
+            </table>
+            <h3>DeviceUnplug</h3>
+			<p>Occurs when device is unplugged.  Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID**</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+			  
+            </table>
+			 
+            <h3>GenerateReportData</h3>
+			<p>Occurs when a GenerateReport method is used.  This technique is useful for determining the intial state of the buttons before any button changes take place.	Arguments: </p>
+			<table width="80%" border="0">
+			  <tr>
+			    <td>boolean</td>
+			    <td>Alt</td>
+			    <td>State of the keyboard's alt key when event occurred.</td>
+		      </tr>
+			  <tr>
+			    <td>integer[]</td>
+			    <td>ButtonStates</td>
+			    <td>Integer array of all the buttons current state where 0 is released and 1 is pressed.</td>
+		      </tr>
+			  <tr>
+			    <td>integer</td>
+			    <td>CID</td>
+			    <td>Button number where first button is 1001 in upper left corner.</td>
+		      </tr>
+			  <tr>
+			    <td>boolean</td>
+			    <td>Control</td>
+			    <td>State of the keyboard's control key when event occurred.</td>
+		      </tr>
+			  <tr>
+			    <td>boolean</td>
+			    <td>GeneratedData</td>
+			    <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+		      </tr>
+			  <tr>
+			    <td>integer</td>
+			    <td>OEMVersionID**</td>
+			    <td>OEM Version ID of device that triggered this event.</td>
+		      </tr>
+			  <tr>
+			    <td>integer</td>
+			    <td>PID</td>
+			    <td>Product ID of device that triggered this event.</td>
+		      </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+			  <tr>
+			    <td>boolean</td>
+			    <td>PressState</td>
+			    <td>True for pressed, false for released.</td>
+		      </tr>
+			  <tr>
+			    <td>boolean</td>
+			    <td>Shift</td>
+			    <td>State of the keyboard's shift key when event occurred.</td>
+		      </tr>
+			  <tr>
+			    <td>long</td>
+			    <td>TimeStamp*</td>
+			    <td>4-byte integer which is a running clock from reboot of device, it is useful for determining time betwen button presses or releases.</td>
+		      </tr>
+			  <tr>
+			    <td>integer</td>
+			    <td>UID</td>
+			    <td>Unit ID of device that triggered this event.</td>
+		      </tr>
+		    </table>
+			<p>* Please note that TimeStamp is not available on XKE-124 Tbar</p>
+			<p>** Please note that OEM Version ID is not available on XK-12 Jog & Shuttle</p>
+			 
+			<h3>JogChange</h3>	
+            <p>XK-12 Jog & Shuttle and XK-68 Jog & Shuttle only. Occurs when the job knob's value changes, also when a GenerateReport event occurs. Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>GeneratedData</td>
+                <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>Jog</td>
+                <td>1 if jog knob moving clockwise, 255 if jog knob moving counterclockwise, 0 if at rest.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+			  <tr>
+                <td>long</td>
+                <td>TimeStamp</td>
+                <td>4-byte integer which is a running clock from reboot of device, it is useful for determining time between button presses or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+			
+			<h3>PinChange</h3>	
+            <p>XC-RS232-DB9 only. Occurs when a change is detected on the connected serial device's RTS pin. Arguments: </p>
+            <table width="80%" border="0">
+               <tr>
+                <td>bool</td>
+                <td>ClearToSend</td>
+                <td>True if clear, false is wait.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+           
+			<h3>RawDataChange</h3>	
+            <p>XK Generic only. Occurs when any byte in the input report changes. Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID**</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer[]</td>
+                <td>RawData</td>
+                <td>The actual input report.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+			
+			<h3>ShuttleChange</h3>	
+            <p>XK-12 Jog & Shuttle and XK-68 Jog & Shuttle only.  Executed when the shuttle value changes, also when a GenerateReport event occurred. Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>GeneratedData</td>
+                <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>Shuttle</td>
+                <td>1, 2, 3, 4, 5, 6, 7 for each segment clockwise and -1, -2, -3, -4, -5, -6, -7 for each segment counterclockwise, 0 at center.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>ShuttleRaw</td>
+                <td>1, 2, 3, 4, 5, 6, 7 for each segment clockwise and 255, 254, 253, 252, 251, 250, 249 for each segment counterclockwise, 0 at center.</td>
+              </tr>
+			  <tr>
+                <td>long</td>
+                <td>TimeStamp</td>
+                <td>4-byte integer which is a running clock from reboot of device, it is useful for determining time between button presses or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+            
+			<h3>TbarChange</h3>	
+            <p>XKE-124 Tbar only.  Executed when the Tbar's calibrated value changes, also when a GenerateReport event is Occurs. Arguments: </p>
+            <table width="80%" border="0">
+              <tr>
+                <td>boolean</td>
+                <td>Alt</td>
+                <td>State of the keyboard's alt key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Control</td>
+                <td>State of the keyboard's control key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>GeneratedData</td>
+                <td>True if this was generated using GenerateReport method, false if actual button press or releases.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>OEMVersionID</td>
+                <td>OEM Version ID of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>PID</td>
+                <td>Product ID of device that triggered this event.</td>
+              </tr>
+			  <tr>
+                <td>integer</td>
+                <td>PIEHandle</td>
+                <td>Handle of device that triggered this event.</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>Shift</td>
+                <td>State of the keyboard's shift key when event occurred.</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>Tbar</td>
+                <td>Calibrated Tbar value (0-255).</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>TbarRaw</td>
+                <td>Tbar uncalibrated value (0-65536).</td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td>UID</td>
+                <td>Unit ID of device that triggered this event.</td>
+              </tr>
+            </table>
+			 <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top...</a></p>
+			
+</div>
+
+            
+          <div id="contact">
+            <h2>More Information &amp; Contact Us</h2>
+            <p>If you have any questions or comments regarding the X-keys .NET components or this document, please contact Technical Support through our website at <a href="http://www.piengineering.com" target="_blank">piengineering.com</a>, via e-mail at <a href="mailto:tech@piengineering.com">tech@piengineering.com</a> or call (517) 655-5523 ex 19.</p>
+            <p class="backtotop" style="margin-bottom: 50px;"><a href="#top">Back to top...</a></p>
+          </div>      
+            
+	</div>
+	<br class="clearfloat" />
+  <div id="footer">
+    <p align="center">   &copy; 2017 <a href="http://www.piengineering.com" target="_blank">P.I. Engineering, Inc.</a></p>
+  </div>
+</div>
+
+</body>
+</html>
