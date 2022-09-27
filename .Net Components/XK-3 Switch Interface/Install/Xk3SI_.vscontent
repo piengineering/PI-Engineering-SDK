@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VSContent xmlns="http://schemas.microsoft.com/developer/vscontent/2005"> 
+    <Content>
+        <FileName>PIEHid32Net.dll</FileName>
+        <FileName>Xk3SI_.dll</FileName>
+        <DisplayName>Xk3SI_</DisplayName>
+        <Description>P.I. Engineering</Description>
+        <FileContentType>Toolbox Control</FileContentType>
+        <ContentVersion>2.0</ContentVersion>
+    </Content>
+</VSContent>
