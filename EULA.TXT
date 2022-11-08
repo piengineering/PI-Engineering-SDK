@@ -1,0 +1,67 @@
+End-User License Agreement and Copyright Notice for P.I. Engineering, Inc. MacroWorks and Software Development Kits (SDKs). 
+
+This PI Engineering End-User License Agreement ("EULA") is a legal agreement for the PI Engineering Software Product in which this EULA is contained, which includes computer software, digital images and associated media, printed materials, and "online" or electronic documentation (collectively the "Software Product"), between you and PI Engineering, Inc. ("PI Engineering"). By installing, copying, or otherwise using the Software Product, you agree to be bound by the terms of this EULA. If you do not agree to the terms of this EULA, you may not install or use the Software Product.  If you are installing the Software Product on a computer that is not owned by you, you are bound to the terms of this EULA both in your individual capacity and as an agent of the owner of the computer, and your actions will bind the owner of the computer.  You represent and warrant to PI Engineering that you have the capacity and authority to enter into this Agreement on your own behalf as well as on behalf of the owner of the computer the Software Product is being installed upon. For purposes of this EULA, the "owner" of a computer is the individual or entity that has legal title to the computer or that possesses the computer if it is leased or loaned by the actual title owner.
+
+Copyright.
+
+This Software Product is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. All title and copyrights in and to the Software Product (including but not limited to any images, photographs, animations, video, audio, music, text, and "applets" incorporated into the Software Product) are owned by PI Engineering or its suppliers. 
+
+Grant Of License.
+
+The Software Product is licensed, not sold.  Subject to the condition that you are in compliance with the terms of this EULA: This Software Product is licensed solely for the use with P.I. Engineering, Inc. computer hardware products, X-keys, RailDriver, ShipDriver and other P.I. Engineering, Inc. products sold directly by P.I. Engineering, Inc. having the P.I. Engineering, Inc. USB Vender ID ( P.I. Hardware Products).   You may not rent the Software Product, nor may you offer use of it to others through a service bureau or application service provider with out an associated Hardware Product.  If you are installing this copy of the Software Product as an upgrade, update, patch or enhancement of a prior release of the same Software Product which was installed on the same computer, your rights under the prior license agreement for the Software Product are terminated, and all of your use of the Software Product (including its prior versions) are solely under the terms of this license agreement. In no case can this Software Product or any component of this software be sold or used to support hardware products not originally sold by P.I. Engineering, Inc. without express written permission by P.I. Engineering, Inc.  
+
+Limitations. 
+
+Except to the extent such a restriction is unenforceable under local law, you may not reverse engineer, de-compile, or disassemble the Software Product. The Software Product is licensed as a single product, and its component parts may not be separated for use on more than one computer. You may not modify, amend, or create derivative works of the Software Product.
+
+Term. 
+
+The licenses granted under this EULA commence upon the installation of the Software Product with an associated P.I. Engineering, Inc. hardware product and are effective in perpetuity unless terminated per the terms of this Agreement. 
+
+Transfer.
+
+You may permanently transfer all of your rights under this EULA (except if your rights are in an Evaluation Version), provided you retain no copies, you transfer all copies of the Software Product (including all component parts, the media and printed materials, any prior versions, and this EULA), and the recipient agrees to be subject to the terms of this EULA.  Upon the occurrence of such a transfer, your rights under this EULA terminate immediately.
+
+Termination.
+
+Upon the expiration of the Evaluation Term (if any), your rights under this EULA terminate automatically without notice from PI Engineering. Without prejudice to any other rights, PI Engineering may terminate this EULA or your rights under this EULA at any time if you fail to comply with the terms and conditions of this EULA. Upon termination of your rights under this EULA for any reason, or upon termination of the EULA itself, you must destroy all copies of the Software Product and all of its component parts in your possession (including all component parts, the media and printed materials, any prior versions, and this EULA).  The terms of this paragraph shall survive any termination of this EULA.
+
+Limited Warranty.
+
+The warranties and disclaimers described in this paragraph are collectively the "Limited Warranty". PI Engineering warrants to you (and only you) that the Software Product will perform substantially in accordance with the accompanying documentation (if any) for a period of ninety (90) days from the date of original purchase of a license to the Software Product from an authorized retailer or directly from PI Engineering (or the date you have obtained authorization from PI Engineering or an authorized retailer to convert an Evaluation Version to a Full-License Version) (in each case the "Purchase Date"). Implied warranties on the Software Product, to the extent required by applicable law, are limited to ninety (90) days from the Purchase Date. Some states do not allow limitations on how long an implied warranty lasts, so the above limitation may not apply to you. To the maximum extent permitted by applicable law, PI Engineering and its suppliers disclaim all other warranties and conditions with regard to or arising out of the Software Product, either express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement and/or accuracy of information. The Limited Warranty is void if failure of the Software Product has resulted from accident, abuse, misapplication, use of the Software Product other than as described in the documentation issued by PI Engineering, use of the Software Product in combination with other Software Products that are not described as compatible in the documentation issued by PI Engineering, or your breach of the terms of this EULA. This warranty gives you specific legal rights, and you may also have other rights that vary from State to State.  No individual (except a duly authorized officer of PI Engineering) and no reseller or retailer has any authority to amend or add to any of the above representations and disclaimers. Warranty is void upon the apocalypse or rabid moose invasion. 
+
+Your Remedy.
+
+Your exclusive remedy for any breach of the Limited Warranty is for you to give us notice of the breach by returning to PI Engineering (at the address shown below) a copy of your purchase receipt for your copy of the Software Product and a description of the alleged breach, and then, at PI Engineering's option, PI Engineering shall either: (a) return the price you paid (if any) for the Software Product (at which time your rights under this EULA are deemed to have terminated); or (b) repair or replace the Software Product. The Limited Warranty period for any replacement Software Product will be extended for the remainder of the original warranty period or thirty (30) days after the replacement Software Product is delivered to you, whichever is longer. If your license is for an Evaluation Version, your exclusive remedy for any breach of this EULA, including a breach of the Limited Warranty, shall be to terminate your rights under this EULA.  Your remedies described in this paragraph are your exclusive remedies, and shall not be deemed to fail of their essential purpose so long as PI Engineering is willing to repair or replace the Software Product or return the price you paid for the Software Product.
+
+Limitation of Liability.
+
+To the maximum extent permitted by applicable law, in no event shall PI Engineering or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use the Software Product, even if PI Engineering has been advised of the possibility of such damages. In any case, PI Engineering's entire liability under any provision of this EULA shall be limited to the greater of the amount actually paid by you for the Software Product or US$5.50. Some states do not allow the exclusion or limitation of incidental or consequential damages, so the above limitation or exclusion may not apply to you.
+
+Statement Concerning U.S. Government Users.
+The Software Product is commercial computer software developed exclusively at private expense, and in all respects is proprietary data belonging to PI Engineering or its suppliers.  The Software Product is comprised of "commercial computer software" and "commercial computer software documentation" as such terms are used in 48 C.F.R § 12.212.  Consistent with 48 C.F.R. § 12.212 and 48 C.F.R. § 227.7202-1 through § 227.7202-4, all U.S. Government licensees acquire the Software Product with only those rights set forth in this EULA. 
+
+Site Licenses.
+
+The owner of the computer that you are installing the Software Product upon may have entered into a broad license agreement with PI Engineering governing the use of certain PI Engineering products including this Software Product.  To the extent that the owner of the computer has entered into such an agreement that specifically states that it governs the use of the Software Product on computers owned by the owner, then any conflict between that agreement and this EULA shall be resolved in favor of the terms of that agreement, but otherwise this EULA shall simultaneously govern your license to the Software Product.
+
+Third Party Works.
+
+To the extent that any third party's intellectual property is incorporated within the Software Product, you agree that such third party is a third-party beneficiary of the terms of this EULA to the extent of the third party's license to PI Engineering.
+
+Samples and Scripts.
+
+Sample code in source code or script form, may be provided with this software. The user may use or modify this code and distribute derivatives so long as the user does not claim rights or authorship to the portions used. Additionally the right to re-distribute certain complied code, these codes will be indicted in other documentation and are solely for use with P.I. Engineering, Inc. products or written permission must be obtained from P.I. Engineering, Inc. 
+
+
+General.
+
+This EULA constitutes the entire agreement between you and PI Engineering concerning the Software Product. No terms of any purchase order, acceptance, purported amendment, or any document or communication other than an agreement expressly agreed upon in writing by a duly authorized officer of PI Engineering shall replace, modify, amend or override this EULA. If any provision of this EULA is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make it enforceable, and such decision shall not affect the enforceability of such provision under other circumstances, or of the remaining provisions hereof under all circumstances. No waiver by PI Engineering of any breach of any term or provision of this EULA shall be construed to be a waiver of any preceding or succeeding breach of the same or any other term or provision hereof.  Our various rights and remedies hereunder shall be construed to be cumulative and no one of them is exclusive of any other or of any right or remedy allowed by law or in equity. This EULA shall be governed by and construed in accordance with the laws of the State of Michigan, USA (without regard to its choice of law principles), except to the extent the local law of your local jurisdiction requires use of your local jurisdiction's law, and shall benefit PI Engineering, its successors and assignees. The United Nations Convention on Contracts for the International Sale of Goods shall not apply to this EULA.
+
+No High Risk Use. WARNING: 
+This Software Product is not fault-tolerant, it isnot designed or intended for use with any program where failureor fault of any kind of the software could lead to death or serious bodily injury ofany person, or to severe physical or environmental damage (“High Risk Use”). You are not licensed to,and you agree not to, use, distribute or sublicense the use of the software in,or in conjunction with, High Risk Use. High Risk Use is STRICTLY PROHIBITED. High Risk Useincludes, for example, the following: aircraft navigation and control of other modes ofhuman mass transportation, nuclear or chemical facilities.
+
+
+Should you have any questions concerning this EULA, or if you desire to contact PI Engineering for any reason, please contact: 
+Customer Service, PI Engineering, 101 Innovation Parkway, Williamston, MI 48895 USA/Telephone: (517) 655-5523/Facsimile: (517) 655-4926/E-mail: info@piengineering.com 
+
