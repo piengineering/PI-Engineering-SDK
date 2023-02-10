@@ -1,0 +1,218 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 891, 508
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++ X-blox XBA-Trackball Module"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Enumerate",IDSTART,7,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,270,6,50,14
+    LISTBOX         ID_EVENTS,7,91,437,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Halt",IDHALT,214,6,50,14
+    LTEXT           "Data (hex):",IDC_STATIC,7,78,77,9
+    PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,212,57,17
+    EDITTEXT        IDC_EDIT1,69,214,37,14,ES_AUTOHSCROLL
+    LTEXT           "Write Unit ID:",IDC_STATIC,7,199,111,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,383,73,61,14
+    LTEXT           "PID Convert (must re-enumerate after changing):",IDC_STATIC,287,385,156,9
+    PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,287,181,73,17
+    PUSHBUTTON      "Joystick Reflector",IDC_JOYREFLECT,287,226,73,17
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,473,81,17
+    LTEXT           "Open up the Game Controller control panel to accept commands.",IDC_STATIC,287,213,216,9
+    PUSHBUTTON      "Multimedia",IDC_Multimedia,287,357,73,17
+    LTEXT           "Keyboard Reflector (Keyboard endpoint required):",IDC_STATIC,287,165,175,9
+    LTEXT           "Descriptor:",IDC_STATIC,7,462,63,9
+    PUSHBUTTON      "Generate Data",IDC_GENERATE,611,176,73,17
+    LTEXT           "Stimulate a general incoming data report or a custom report:",IDC_STATIC,611,165,190,11
+    PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,287,306,73,17
+    LTEXT           "NumLck",IDC_KEYSTATES,202,80,50,9
+    LTEXT           "CapsLck",IDC_KEYSTATES2,256,80,50,9
+    LTEXT           "ScrLck",IDC_KEYSTATES3,312,80,50,11
+    LTEXT           "unit id",IDC_UNITID3,116,215,30,12
+    LTEXT           "LEDs and Outputs:",IDC_STATIC,7,166,111,10
+    CONTROL         "LED 1",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,182,36,10
+    CONTROL         "LED 2",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,50,182,36,10
+    PUSHBUTTON      "Custom Data",IDC_CUSTOM,691,176,73,17
+    EDITTEXT        IDC_EDIT2,381,182,92,14,ES_AUTOHSCROLL
+    LTEXT           "Joystick Reflector (Joystick endpoint required):",IDC_STATIC,287,202,146,9
+    EDITTEXT        IDC_JoyX,390,228,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyY,441,228,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyZ,490,226,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyZr,390,242,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoySlider,490,242,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame1,390,258,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame2,415,258,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame3,441,258,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyGame4,467,258,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JoyHat,390,274,24,14,ES_AUTOHSCROLL
+    LTEXT           "X:",IDC_STATIC,377,229,8,8
+    LTEXT           "Y:",IDC_STATIC,428,229,8,8
+    LTEXT           "Z:",IDC_STATIC,479,229,8,8
+    LTEXT           "Zr:",IDC_STATIC,377,245,10,8
+    LTEXT           "Slider:",IDC_STATIC,465,245,20,8
+    LTEXT           "Buttons:",IDC_STATIC,359,261,27,8
+    LTEXT           "Hat:",IDC_STATIC,371,277,14,8
+    LTEXT           "0-255",IDC_STATIC,517,228,19,8
+    LTEXT           "0-255",IDC_STATIC,517,245,19,8
+    LTEXT           "0-255",IDC_STATIC,497,260,19,8
+    LTEXT           "0-8",IDC_STATIC,417,277,11,8
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate):",IDC_STATIC,611,204,192,9
+    PUSHBUTTON      "Write Version",IDC_Version,612,217,73,17
+    EDITTEXT        IDC_TxtVersion,688,217,40,14,ES_AUTOHSCROLL
+    LTEXT           "Mouse Reflector (Mouse endpoint required):",IDC_STATIC,287,292,173,8
+    EDITTEXT        IDC_MouseButtons,389,306,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseX,390,324,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseY,438,324,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseWheel,502,324,25,14,ES_AUTOHSCROLL
+    LTEXT           "Button:",IDC_STATIC,363,309,24,8
+    LTEXT           "1=left, 2=right, 4=center, 8=XButton1, 16=XButton2",IDC_STATIC,423,308,175,9
+    LTEXT           "dX:",IDC_STATIC,374,325,12,8
+    LTEXT           "dY:",IDC_STATIC,423,325,12,8
+    LTEXT           "Wheel Y:",IDC_STATIC,469,326,30,8
+    LTEXT           "Multimedia (Multimedia endpoint required):",IDC_STATIC,287,343,180,8
+    PUSHBUTTON      "Change",IDC_TOPID1,287,415,73,17
+    EDITTEXT        IDC_TxtMultiHi,401,358,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TxtMultiLo,467,358,24,14,ES_AUTOHSCROLL
+    LTEXT           "High (hex)",IDC_STATIC,367,361,33,8
+    LTEXT           "Low (hex)",IDC_STATIC,433,361,32,8
+    PUSHBUTTON      "My Computer",IDC_MyComputer,499,357,56,17
+    LTEXT           "Select device then click Setup for Callback:",IDC_STATIC,9,26,139,8
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,269,37,66,14
+    LTEXT           "-",IDC_LblVersion,733,220,39,8
+    LTEXT           "Legacy Backlight (see code or help doc for index #s):",IDC_STATIC,7,331,192,9
+    EDITTEXT        IDC_TXTBL,7,345,40,14,ES_AUTOHSCROLL
+    CONTROL         "On/Flash/Off",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,51,347,58,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,342,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,353,72,10
+    PUSHBUTTON      "Toggle",IDC_BLToggle,7,402,50,17
+    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,7,361,61,17
+    LTEXT           "Do this first",IDC_STATIC,63,11,36,8
+    PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,59,402,66,17
+    LTEXT           "Dongle:",IDC_STATIC,609,282,26,8
+    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,611,295,73,17
+    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,691,295,68,17
+    LTEXT           "Pass/Fail",IDC_PASSFAIL,762,298,104,11
+    LISTBOX         IDC_LIST1,7,36,257,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Buttons:",IDC_Buttons,7,135,112,8
+    CONTROL         "LED 3",IDC_CHECK3,"Button",BS_AUTO3STATE | WS_TABSTOP,89,182,36,10
+    CONTROL         "LED 4",IDC_CHECK4,"Button",BS_AUTO3STATE | WS_TABSTOP,128,182,36,10
+    LTEXT           "RGB Backlight (see code or help doc for index #s):",IDC_STATIC,7,239,192,9
+    EDITTEXT        IDC_TXTBL2,78,262,40,14,ES_AUTOHSCROLL
+    CONTROL         "On/Flash/Off",IDC_CHKBLONOFF2,"Button",BS_AUTO3STATE | WS_TABSTOP,195,263,58,10
+    PUSHBUTTON      "Set All Bank 1",IDC_BUTTON2,7,282,62,17
+    PUSHBUTTON      "Set All Bank 2",IDC_BUTTON3,76,282,62,17
+    PUSHBUTTON      "Set Dim Factors",IDC_BUTTON4,7,303,90,17
+    EDITTEXT        IDC_TXTBL3,102,306,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TXTBL4,148,306,40,14,ES_AUTOHSCROLL
+    LTEXT           "Global Backlight Features:",IDC_STATIC,7,389,192,9
+    PUSHBUTTON      "Set Flash Frequency",IDC_BUTTON5,128,402,71,17
+    EDITTEXT        IDC_TXTBL5,71,363,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TXTBL6,117,363,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TXTBL7,202,403,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Get Backlight LED State*",IDC_GETBLSTATE,7,423,97,17
+    LTEXT           "Enable/Disable Time Stamp:",IDC_STATIC,611,247,192,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMPOFF,611,257,73,17
+    PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMPON,691,257,68,17
+    LTEXT           "Color",IDC_STATIC,7,253,17,8
+    LTEXT           "Button",IDC_STATIC,79,252,22,8
+    LTEXT           "Bank",IDC_STATIC,138,252,18,8
+    LTEXT           "*requires callback on",IDC_STATIC,14,440,84,9
+    LTEXT           "GPIO :",IDC_GPIOInput,7,144,112,18
+    LTEXT           "GPIO:",IDC_STATIC,610,327,20,8
+    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,612,340,73,17
+    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,692,340,102,17
+    LTEXT           "X:",IDC_TrackballX,201,137,38,8
+    LTEXT           "Y:",IDC_TrackballY,201,146,38,8
+    LTEXT           "Mouse Settings:",IDC_STATIC,612,372,52,8
+    PUSHBUTTON      "Set Resolution",IDC_SetResolution,613,387,73,17
+    PUSHBUTTON      "Set ClickLock Delay",IDC_SetCLDelay,693,387,73,17
+    PUSHBUTTON      "Rotate Unit",IDC_RotateUnit,773,387,73,17
+    PUSHBUTTON      "Native Mouse Enable",IDC_NativeMouse,614,410,79,17
+    PUSHBUTTON      "Mouse Report Enable",IDC_MouseReport,698,410,79,17
+    PUSHBUTTON      "General Incoming Data Report Enable",IDC_GeneralData,614,433,149,17
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 884
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 501
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
