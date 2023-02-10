@@ -3,4 +3,4 @@ This Software Development Kit (SDK) supports all X-keys devices we are currently
 
 For Installshield install see aFull Install folder.
 
-Current version v1070 6/28/2022.
+Current version v1071 2/10/2023.
