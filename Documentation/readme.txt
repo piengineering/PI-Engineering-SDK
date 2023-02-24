@@ -1,1 +1,1 @@
-Information about the samples as well as data reports for every product are here. Input Reports describe the messages that a product will send out to the PC. Output Reports describe how to write messages to the product in order to control LEDs and backlighting for example.
+Information about the samples as well as HID data reports for every product are here. Input Reports describe the messages that a product will send out to the PC. Output Reports describe how to write messages to the product in order to control LEDs and backlighting for example.
