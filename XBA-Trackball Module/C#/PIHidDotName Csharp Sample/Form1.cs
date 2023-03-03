@@ -949,21 +949,37 @@ namespace PIHidDotName_Csharp_Sample
                 string temp = "PID=" + (data[13] * 256 + data[12]).ToString();
                 listBox2.Items.Add(temp);
 
-                dontchange = true;
-                if ((data[17]) == 1)
+                listBox2.Items.Add("Dim Factor Bank 1=" + data[17].ToString());
+                listBox2.Items.Add("Dim Factor Bank 2=" + data[18].ToString());
+                txtBank1.Text = data[17].ToString();
+                txtBank2.Text = data[18].ToString();
+
+                listBox2.Items.Add("GPIO Input/Output Configuration=" + data[19].ToString());
+                listBox2.Items.Add("GPIO Input Configuration=" + data[20].ToString());
+                rb1O.Checked = true; rb2O.Checked = true; rb3O.Checked = true; rb4O.Checked = true;
+                if ((byte)(data[19] & 1) == 1) //pin is input, check which type of input
                 {
-                    temp = "Mouse message report on";
-                    rbMouseMessageOn.Checked = true;
+                    rb1ID.Checked = true;
+                    if ((byte)(data[20] & 1) == 1) rb1I.Checked = true;
                 }
-                else
+                if ((byte)(data[19] & 2) == 2) //pin is input, check which type of input
                 {
-                    temp = "Mouse message report off";
-                    rbMouseMessageOff.Checked = true;
+                    rb2ID.Checked = true;
+                    if ((byte)(data[20] & 2) == 2) rb2I.Checked = true;
                 }
-                listBox2.Items.Add(temp);
-                
+                if ((byte)(data[19] & 4) == 4) //pin is input, check which type of input
+                {
+                    rb3ID.Checked = true;
+                    if ((byte)(data[20] & 4) == 4) rb3I.Checked = true;
+                }
+                if ((byte)(data[19] & 8) == 8) //pin is input, check which type of input
+                {
+                    rb4ID.Checked = true;
+                    if ((byte)(data[20] & 8) == 8) rb4I.Checked = true;
+                }
+
                 dontchange = true;
-                if ((data[19]) == 1)
+                if ((data[21]) == 1)
                 {
                     temp = "Native mouse on";
                     rbNativeMouseOn.Checked = true;
@@ -976,7 +992,20 @@ namespace PIHidDotName_Csharp_Sample
                 listBox2.Items.Add(temp);
 
                 dontchange = true;
-                if ((data[20]) == 1)
+                if ((data[22]) == 1)
+                {
+                    temp = "Mouse message report on";
+                    rbMouseMessageOn.Checked = true;
+                }
+                else
+                {
+                    temp = "Mouse message report off";
+                    rbMouseMessageOff.Checked = true;
+                }
+                listBox2.Items.Add(temp);
+
+                dontchange = true;
+                if ((data[24]) == 1)
                 {
                     temp = "General Incoming data report on";
                     rbGIOn.Checked = true;
@@ -987,8 +1016,13 @@ namespace PIHidDotName_Csharp_Sample
                     rbGIOff.Checked = true;
                 }
                 listBox2.Items.Add(temp);
+
+                cboResolution.SelectedIndex = data[25] - 1;
+                string thisres = cboResolution.Text;
+                listBox2.Items.Add("Resolution=" + thisres);
+
                 string rotation = "0deg";
-                switch (data[21])
+                switch (data[26])
                 {
                     case 0:
                         rotation = "0deg";
@@ -1003,45 +1037,14 @@ namespace PIHidDotName_Csharp_Sample
                         rotation = "270deg";
                         break;
                 }
-                listBox2.Items.Add("Rotation="+rotation);
-                cboRotate.SelectedIndex = data[21];
-
-                cboResolution.SelectedIndex = data[22] - 1;
-                string thisres = cboResolution.Text;
-                listBox2.Items.Add("Resolution="+thisres);
+                listBox2.Items.Add("Rotation=" + rotation);
+                cboRotate.SelectedIndex = data[26];
                 
-                temp = "ClickLock Delay=" + (data[24] * 256 + data[23]).ToString();
+                temp = "ClickLock Delay=" + (data[28] * 256 + data[27]).ToString();
                 listBox2.Items.Add(temp);
-                tbClickLock.Value = (data[24] * 256 + data[23]);
+                tbClickLock.Value = (data[28] * 256 + data[27]);
 
-                listBox2.Items.Add("Dim Factor Bank 1=" + data[25].ToString());
-                listBox2.Items.Add("Dim Factor Bank 2=" + data[26].ToString());
-                txtBank1.Text = data[25].ToString();
-                txtBank2.Text = data[26].ToString();
-
-                listBox2.Items.Add("GPIO Input/Output Configuration=" + data[27].ToString());
-                listBox2.Items.Add("GPIO Input Configuration=" + data[28].ToString());
-                rb1O.Checked = true; rb2O.Checked = true; rb3O.Checked = true; rb4O.Checked = true;
-                if ((byte)(data[27] & 1) == 1) //pin is input, check which type of input
-                {
-                    rb1ID.Checked = true;
-                    if ((byte)(data[28] & 1) == 1) rb1I.Checked = true;
-                }
-                if ((byte)(data[27] & 2) == 2) //pin is input, check which type of input
-                {
-                    rb2ID.Checked = true;
-                    if ((byte)(data[28] & 2) == 2) rb2I.Checked = true;
-                }
-                if ((byte)(data[27] & 4) == 4) //pin is input, check which type of input
-                {
-                    rb3ID.Checked = true;
-                    if ((byte)(data[28] & 4) == 4) rb3I.Checked = true;
-                }
-                if ((byte)(data[27] & 8) == 8) //pin is input, check which type of input
-                {
-                    rb4ID.Checked = true;
-                    if ((byte)(data[28] & 8) == 8) rb4I.Checked = true;
-                }
+                
 
 
                 devices[selecteddevice].callNever = savecallbackstate;
