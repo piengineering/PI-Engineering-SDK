@@ -660,18 +660,56 @@ Public Class Form1
             Dim temp As String = "PID=" + (ddata(13) * 256 + ddata(12)).ToString
             listBox2.Items.Add(temp)
 
-            dontchange = True
-            If (ddata(17) = 1) Then
-                temp = "Mouse message report on"
-                rbMouseMessageOn.Checked = True
-            Else
-                temp = "Mouse message report off"
-                rbMouseMessageOff.Checked = True
+            listBox2.Items.Add("Dim Factor Bank 1=" + ddata(17).ToString)
+            listBox2.Items.Add("Dim Factor Bank 2=" + ddata(18).ToString)
+            txtBank1.Text = ddata(17).ToString
+            txtBank2.Text = ddata(18).ToString
+
+            listBox2.Items.Add("GPIO Input/Output Configuration=" + ddata(19).ToString)
+            listBox2.Items.Add("GPIO Input Configuration=" + ddata(20).ToString)
+            rb1O.Checked = True
+            rb2O.Checked = True
+            rb3O.Checked = True
+            rb4O.Checked = True
+
+            Dim val2 As Byte = CByte(ddata(19) And 1)
+            If (val2 = 1) Then 'pin is input, check which type of input
+                rb1ID.Checked = True
+                val2 = CByte(ddata(20) And 1)
+                If (val2 = 1) Then
+                    rb1I.Checked = True
+                End If
             End If
-            listBox2.Items.Add(temp)
+
+            val2 = CByte(ddata(19) And 2)
+            If (val2 = 2) Then 'pin is input, check which type of input
+                rb2ID.Checked = True
+                val2 = CByte(ddata(20) And 2)
+                If (val2 = 2) Then
+                    rb2I.Checked = True
+                End If
+            End If
+
+            val2 = CByte(ddata(19) And 4)
+            If (val2 = 4) Then 'pin is input, check which type of input
+                rb3ID.Checked = True
+                val2 = CByte(ddata(20) And 4)
+                If (val2 = 4) Then
+                    rb3I.Checked = True
+                End If
+            End If
+
+            val2 = CByte(ddata(19) And 8)
+            If (val2 = 8) Then 'pin is input, check which type of input
+                rb4ID.Checked = True
+                val2 = CByte(ddata(20) And 8)
+                If (val2 = 8) Then
+                    rb4I.Checked = True
+                End If
+            End If
 
             dontchange = True
-            If (ddata(19) = 1) Then
+            If (ddata(21) = 1) Then
                 temp = "Native mouse on"
                 rbNativeMouseOn.Checked = True
             Else
@@ -681,7 +719,17 @@ Public Class Form1
             listBox2.Items.Add(temp)
 
             dontchange = True
-            If (ddata(20) = 1) Then
+            If (ddata(22) = 1) Then
+                temp = "Mouse message report on"
+                rbMouseMessageOn.Checked = True
+            Else
+                temp = "Mouse message report off"
+                rbMouseMessageOff.Checked = True
+            End If
+            listBox2.Items.Add(temp)
+
+            dontchange = True
+            If (ddata(24) = 1) Then
                 temp = "General Incoming data report on"
                 rbGIOn.Checked = True
             Else
@@ -689,8 +737,12 @@ Public Class Form1
                 rbGIOff.Checked = True
             End If
             listBox2.Items.Add(temp)
+
+            cboResolution.SelectedIndex = ddata(25) - 1
+            listBox2.Items.Add("Resolution=" + cboResolution.Text)
+
             Dim rotation As String = "0deg"
-            Select Case ddata(21)
+            Select Case ddata(26)
                 Case 0
                     rotation = "0deg"
                 Case 1
@@ -701,65 +753,13 @@ Public Class Form1
                     rotation = "270deg"
             End Select
             listBox2.Items.Add(rotation)
-            cboRotate.SelectedIndex = ddata(21)
+            cboRotate.SelectedIndex = ddata(26)
 
-            cboResolution.SelectedIndex = ddata(22) - 1
-            listBox2.Items.Add("Resolution=" + cboResolution.Text)
-
-            temp = "ClickLock Delay=" + (ddata(24) * 256 + ddata(23)).ToString
+            temp = "ClickLock Delay=" + (ddata(28) * 256 + ddata(27)).ToString
             listBox2.Items.Add(temp)
-
-            listBox2.Items.Add("Dim Factor Bank 1=" + ddata(25).ToString)
-            listBox2.Items.Add("Dim Factor Bank 2=" + ddata(26).ToString)
-            txtBank1.Text = ddata(25).ToString
-            txtBank2.Text = ddata(26).ToString
-
-            listBox2.Items.Add("GPIO Input/Output Configuration=" + ddata(27).ToString)
-            listBox2.Items.Add("GPIO Input Configuration=" + ddata(28).ToString)
-            rb1O.Checked = True
-            rb2O.Checked = True
-            rb3O.Checked = True
-            rb4O.Checked = True
-
-            Dim val2 As Byte = CByte(ddata(27) And 1)
-            If (val2 = 1) Then 'pin is input, check which type of input
-                rb1ID.Checked = True
-                val2 = CByte(ddata(28) And 1)
-                If (val2 = 1) Then
-                    rb1I.Checked = True
-                End If
-            End If
-
-            val2 = CByte(ddata(27) And 2)
-            If (val2 = 2) Then 'pin is input, check which type of input
-                rb2ID.Checked = True
-                val2 = CByte(ddata(28) And 2)
-                If (val2 = 2) Then
-                    rb2I.Checked = True
-                End If
-            End If
-
-            val2 = CByte(ddata(27) And 4)
-            If (val2 = 4) Then 'pin is input, check which type of input
-                rb3ID.Checked = True
-                val2 = CByte(ddata(28) And 4)
-                If (val2 = 4) Then
-                    rb3I.Checked = True
-                End If
-            End If
-
-            val2 = CByte(ddata(27) And 8)
-            If (val2 = 8) Then 'pin is input, check which type of input
-                rb4ID.Checked = True
-                val2 = CByte(ddata(28) And 8)
-                If (val2 = 8) Then
-                    rb4I.Checked = True
-                End If
-            End If
+            
 
             devices(selecteddevice).callNever = savecallbackstate
-
-
         End If
     End Sub
 
