@@ -508,6 +508,7 @@ Public Class Form1
         cboKeyIndexGet.SelectedIndex = 0
         cboColor.SelectedIndex = 1
         cboIndex.SelectedIndex = 0
+        cboFader.SelectedIndex = 0
 
     End Sub
 
@@ -1745,12 +1746,13 @@ Public Class Form1
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
             Next
-            Dim pos As Integer = Convert.ToInt16(textBox10.Text)
+            Dim sensitivity As Integer = Convert.ToInt16(txtFaderSens.Text)
+            Dim fader As Integer = cboFader.SelectedIndex
             wdata(0) = 0
             wdata(1) = 152 '98h
-            wdata(2) = 255 '0=fader 1, 1=fader 2, 2=fader 3, 3=fader 4 OR 255 to set all
-            wdata(3) = 1 'MSB of sensitivity
-            wdata(4) = 255 'LSB of sensitivity
+            wdata(2) = CByte(fader) '0=fader 1, 1=fader 2, 2=fader 3, 3=fader 4
+            wdata(3) = CByte(sensitivity >> 8) 'MSB of sensitivity
+            wdata(4) = (sensitivity And &HFF) 'LSB of sensitivity
 
             Dim result As Integer
             result = 404

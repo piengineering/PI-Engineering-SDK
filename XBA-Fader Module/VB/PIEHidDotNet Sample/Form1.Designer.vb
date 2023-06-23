@@ -175,6 +175,10 @@ Partial Class Form1
         Me.btnSetCapSens = New System.Windows.Forms.Button()
         Me.btnDisableTouchStop = New System.Windows.Forms.Button()
         Me.btnEnableTouchStop = New System.Windows.Forms.Button()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.txtFaderSens = New System.Windows.Forms.TextBox()
+        Me.cboFader = New System.Windows.Forms.ComboBox()
         CType(Me.tbFader4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFader3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFader2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1661,12 +1665,53 @@ Partial Class Form1
         Me.btnEnableTouchStop.Text = "Enable Touch Stop"
         Me.btnEnableTouchStop.UseVisualStyleBackColor = True
         '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(1029, 689)
+        Me.Label44.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(37, 13)
+        Me.Label44.TabIndex = 525
+        Me.Label44.Text = "Value:"
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(1029, 648)
+        Me.Label48.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(37, 13)
+        Me.Label48.TabIndex = 524
+        Me.Label48.Text = "Fader:"
+        '
+        'txtFaderSens
+        '
+        Me.txtFaderSens.Location = New System.Drawing.Point(1032, 705)
+        Me.txtFaderSens.Name = "txtFaderSens"
+        Me.txtFaderSens.Size = New System.Drawing.Size(82, 20)
+        Me.txtFaderSens.TabIndex = 523
+        Me.txtFaderSens.Text = "511"
+        '
+        'cboFader
+        '
+        Me.cboFader.FormattingEnabled = True
+        Me.cboFader.Items.AddRange(New Object() {"Fader 1", "Fader 2", "Fader 3", "Fader 4"})
+        Me.cboFader.Location = New System.Drawing.Point(1032, 664)
+        Me.cboFader.Name = "cboFader"
+        Me.cboFader.Size = New System.Drawing.Size(82, 21)
+        Me.cboFader.TabIndex = 522
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1350, 901)
+        Me.Controls.Add(Me.Label44)
+        Me.Controls.Add(Me.Label48)
+        Me.Controls.Add(Me.txtFaderSens)
+        Me.Controls.Add(Me.cboFader)
         Me.Controls.Add(Me.Label36)
         Me.Controls.Add(Me.textBox10)
         Me.Controls.Add(Me.btnSetAllFaders)
@@ -1984,5 +2029,9 @@ Partial Class Form1
     Private WithEvents btnSetCapSens As System.Windows.Forms.Button
     Private WithEvents btnDisableTouchStop As System.Windows.Forms.Button
     Private WithEvents btnEnableTouchStop As System.Windows.Forms.Button
+    Private WithEvents Label44 As System.Windows.Forms.Label
+    Private WithEvents Label48 As System.Windows.Forms.Label
+    Private WithEvents txtFaderSens As System.Windows.Forms.TextBox
+    Private WithEvents cboFader As System.Windows.Forms.ComboBox
 
 End Class
