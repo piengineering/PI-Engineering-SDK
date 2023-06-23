@@ -1277,17 +1277,17 @@
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(311, 611);
+            this.listBox3.Location = new System.Drawing.Point(272, 623);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(159, 121);
             this.listBox3.TabIndex = 362;
             // 
             // btnGetBLState
             // 
-            this.btnGetBLState.Location = new System.Drawing.Point(123, 611);
+            this.btnGetBLState.Location = new System.Drawing.Point(95, 623);
             this.btnGetBLState.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetBLState.Name = "btnGetBLState";
-            this.btnGetBLState.Size = new System.Drawing.Size(183, 22);
+            this.btnGetBLState.Size = new System.Drawing.Size(172, 22);
             this.btnGetBLState.TabIndex = 360;
             this.btnGetBLState.Text = "Request RGB Backlight Values*";
             this.btnGetBLState.UseVisualStyleBackColor = true;
@@ -1440,7 +1440,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(29, 616);
+            this.label52.Location = new System.Drawing.Point(21, 607);
             this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(41, 13);
@@ -1474,10 +1474,82 @@
             "20",
             "21",
             "22",
-            "23"});
-            this.cboKeyIndexGet.Location = new System.Drawing.Point(74, 613);
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95"});
+            this.cboKeyIndexGet.Location = new System.Drawing.Point(24, 623);
             this.cboKeyIndexGet.Name = "cboKeyIndexGet";
-            this.cboKeyIndexGet.Size = new System.Drawing.Size(42, 21);
+            this.cboKeyIndexGet.Size = new System.Drawing.Size(66, 21);
             this.cboKeyIndexGet.TabIndex = 440;
             // 
             // txtBank2
