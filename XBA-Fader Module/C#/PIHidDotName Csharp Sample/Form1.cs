@@ -41,7 +41,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             InitializeComponent();
             //BtnEnumerate_Click(this, null);
-           
+            cboFader.SelectedIndex = 0;
         }
 
         //data callback    
@@ -2079,11 +2079,14 @@ namespace PIHidDotName_Csharp_Sample
                     wData[j] = 0;
                 }
 
+                int sensitivity = Convert.ToInt16(txtFaderSens.Text);
+                int fader = cboFader.SelectedIndex;
+
                 wData[0] = 0;
                 wData[1] = 152; //0x98
-                wData[2] = 255; //0=fader 1, 1=fader 2, 2=fader 3, 3=fader 4 OR 255 to set all
-                wData[3] = 1; //MSB of sensitivity
-                wData[4] = 255; //LSB of sensitivity
+                wData[2] = (byte)fader; //0=fader 1, 1=fader 2, 2=fader 3, 3=fader 4
+                wData[3] = (byte)(sensitivity >> 8); //MSB of sensitivity
+                wData[4] = (byte)(sensitivity); //LSB of sensitivity
 
                 int result = 404;
                 while (result == 404) { result = devices[selecteddevice].WriteData(wData); }

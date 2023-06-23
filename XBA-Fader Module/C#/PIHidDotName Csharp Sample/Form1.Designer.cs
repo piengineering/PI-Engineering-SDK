@@ -182,6 +182,10 @@
             this.btnSetAllFaders = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtFaderSens = new System.Windows.Forms.TextBox();
+            this.cboFader = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbFader1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbFader2)).BeginInit();
@@ -1724,14 +1728,14 @@
             // listBox4
             // 
             this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(1202, 664);
+            this.listBox4.Location = new System.Drawing.Point(1202, 668);
             this.listBox4.Name = "listBox4";
             this.listBox4.Size = new System.Drawing.Size(124, 69);
             this.listBox4.TabIndex = 506;
             // 
             // btnVoltage
             // 
-            this.btnVoltage.Location = new System.Drawing.Point(1068, 748);
+            this.btnVoltage.Location = new System.Drawing.Point(1068, 770);
             this.btnVoltage.Name = "btnVoltage";
             this.btnVoltage.Size = new System.Drawing.Size(126, 23);
             this.btnVoltage.TabIndex = 507;
@@ -1742,7 +1746,7 @@
             // lblVoltage
             // 
             this.lblVoltage.AutoSize = true;
-            this.lblVoltage.Location = new System.Drawing.Point(1203, 753);
+            this.lblVoltage.Location = new System.Drawing.Point(1203, 775);
             this.lblVoltage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVoltage.Name = "lblVoltage";
             this.lblVoltage.Size = new System.Drawing.Size(43, 13);
@@ -1777,12 +1781,57 @@
             this.label31.TabIndex = 511;
             this.label31.Text = "0-255";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(1073, 706);
+            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(37, 13);
+            this.label36.TabIndex = 519;
+            this.label36.Text = "Value:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(1073, 665);
+            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(37, 13);
+            this.label35.TabIndex = 518;
+            this.label35.Text = "Fader:";
+            // 
+            // txtFaderSens
+            // 
+            this.txtFaderSens.Location = new System.Drawing.Point(1076, 722);
+            this.txtFaderSens.Name = "txtFaderSens";
+            this.txtFaderSens.Size = new System.Drawing.Size(82, 20);
+            this.txtFaderSens.TabIndex = 517;
+            this.txtFaderSens.Text = "511";
+            // 
+            // cboFader
+            // 
+            this.cboFader.FormattingEnabled = true;
+            this.cboFader.Items.AddRange(new object[] {
+            "Fader 1",
+            "Fader 2",
+            "Fader 3",
+            "Fader 4"});
+            this.cboFader.Location = new System.Drawing.Point(1076, 681);
+            this.cboFader.Name = "cboFader";
+            this.cboFader.Size = new System.Drawing.Size(82, 21);
+            this.cboFader.TabIndex = 516;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1369, 853);
+            this.Controls.Add(this.label36);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.txtFaderSens);
+            this.Controls.Add(this.cboFader);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.btnSetAllFaders);
@@ -2109,6 +2158,10 @@
         private System.Windows.Forms.Button btnSetAllFaders;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtFaderSens;
+        private System.Windows.Forms.ComboBox cboFader;
     }
 }
 
