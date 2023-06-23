@@ -1997,8 +1997,8 @@
       make sure they are as desired. After programming send the Reboot Mode command 
       with Change=7, then either reboot device or send the Change PID command 
       with Mode=7.</p>
-    <p>To return a device previously setup for KVM use, press and release the 
-      Scroll Lock key 10 times immediately after plugging in the device. The device 
+    <p>To return a device previously setup for KVM use press and hold the programming 
+      switch at the top of the device while plugging in the device. The device 
       will return to the factory default PID #1. Now it is important to send the 
       Reboot Mode command with Change=0. The device will now be back to factory 
       default. User may or may not wish to clear the hardware keyboard macros 
@@ -2011,8 +2011,7 @@
       Setup</a>. Replug the device and it will be in the KVM mode again.<br>
     </p>
     <p><strong>14. Keyboard Reflector</strong></p>
-    <p>Sends native keyboard messages. Must have the device set to a PID with 
-      a keyboard endpoint; PID #1, #2, #3, #5, #7, or #8 (KVM mode).</p>
+    <p>Sends native keyboard messages.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2114,8 +2113,7 @@
       <b>HC6</b>=Hid Code for 6th key down, or 0 to release previous key press 
       in this byte position. </p>
     <p><strong>15. Mouse Reflector</strong></p>
-    <p>Sends native mouse messages. Must have the device set to a PID with a mouse 
-      endpoint; PID #4, #5, or #7.</p>
+    <p>Sends native mouse messages.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2203,7 +2201,7 @@
     </p>
     <p><strong>16. Joystick Reflector</strong></p>
     <p>Sends native joystick messages. Must have the device set to a PID with 
-      a joystick endpoint; PID #3, #4, or #7.</p>
+      a joystick endpoint; PID #1 or PID #3.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2331,7 +2329,7 @@
       <b>Hat:</b> 0 to 7 clockwise, 8 is no hat.</p>
     <p><strong>17. Multimedia Reflector</strong></p>
     <p>Sends 2 byte multimedia messages. Must have the device set to a PID with 
-      a multimedia endpoint; PID #1, #2, or #3. When in this PID there is no input 
+      a multimedia endpoint; PID #2 or PID #3. When in this PID there is no input 
       data report available thus users of this feature will not be able to read 
       any data, only write output reports. If desiring this feature users are 
       instructed to use MacroWorks 3.1 programming utility for programming of 
@@ -2470,7 +2468,7 @@
     <p><strong>20. Set Dongle Key</strong></p>
     <p>Sets the user entered key. Remember these numbers as they are required 
       to check for the key. This is intented to be done once by the developer 
-      prior to sale. See <a href="dongle.html">Dongle Implemenation</a> for more 
+      prior to sale. See <a href="dongle.htm">Dongle Implemenation</a> for more 
       details.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -2540,7 +2538,7 @@
       with the actual key are entered into the DongleCheck2() hash function of 
       the Piehid32.dll/PieHid32Net.dll which returns 4 bytes. Then after sending 
       this output report a Check Dongle Key input report will be received containing 
-      the same 4 bytes returned from the hash if the key matches. See <a href="dongle.html">Dongle 
+      the same 4 bytes returned from the hash if the key matches. See <a href="dongle.htm">Dongle 
       Implemenation</a> for more details.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
