@@ -324,6 +324,7 @@ Public Class Form1
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+        ReDim lastdata(devices(selecteddevice).ReadLength - 1)
     End Sub
 
 
@@ -504,8 +505,7 @@ Public Class Form1
             End If
             listBox2.Items.Add("Keymapstart=" + ddata(4).ToString)
             listBox2.Items.Add("Layer2offset=" + ddata(5).ToString)
-            listBox2.Items.Add("Size of Eeprom MSB=" + ddata(6).ToString)
-            listBox2.Items.Add("Size of Eeprom LSB=" + ddata(7).ToString)
+            
             listBox2.Items.Add("MaxCol=" + ddata(8).ToString)
             listBox2.Items.Add("MaxRow=" + ddata(9).ToString)
             Dim greenled As String = "Off"

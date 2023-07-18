@@ -665,8 +665,6 @@ namespace PIHidDotName_Csharp_Sample
                 else if (data[3] == 3) listBox2.Items.Add("PID #4");
                 listBox2.Items.Add("Keymapstart=" + data[4].ToString());
                 listBox2.Items.Add("Layer2offset=" + data[5].ToString());
-                listBox2.Items.Add("Size of Eeprom MSB=" + data[6].ToString());
-                listBox2.Items.Add("Size of Eeprom LSB=" + data[7].ToString());
                 listBox2.Items.Add("MaxCol=" + data[8].ToString());
                 listBox2.Items.Add("MaxRow=" + data[9].ToString());
                 //(byte)(rdata[7] & 1

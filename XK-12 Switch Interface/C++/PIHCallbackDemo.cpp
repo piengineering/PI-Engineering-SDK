@@ -843,16 +843,6 @@ int CALLBACK DialogProc(
 				strcpy_s (str,"Layer2offset ");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
-
-				_itoa_s(buffer[6],dataStr,10);
-				strcpy_s (str,"Size of EEPROM MSB ");
-				strcat_s (str,dataStr);
-				AddEventMsg(hDialog, str);
-
-				_itoa_s(buffer[7],dataStr,10);
-				strcpy_s (str,"Size of EEPROM LSB ");
-				strcat_s (str,dataStr);
-				AddEventMsg(hDialog, str);
 				
 				_itoa_s(buffer[8],dataStr,10);
 				strcpy_s (str,"MaxCol ");
