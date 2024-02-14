@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -88,8 +86,8 @@ BEGIN
     LTEXT           "ScrLck",IDC_KEYSTATES3,361,50,50,13
     LTEXT           "unit id",IDC_UNITID3,116,134,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,163,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,178,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,178,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,178,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,52,178,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,7,411,73,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,216,411,73,17
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,243,73,17
@@ -143,12 +141,11 @@ BEGIN
     LTEXT           "-",IDC_LblVersion,128,324,39,8
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,344,192,9
     EDITTEXT        IDC_TXTBL,7,356,40,14,ES_AUTOHSCROLL
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,53,360,38,10
-    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,360,33,10
-    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,360,72,10
-    PUSHBUTTON      "Toggle",IDC_BLToggle,216,354,50,17
-    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,270,353,50,17
-    PUSHBUTTON      "Incremenat Intensity",IDC_BLIncInt,323,353,81,17
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,53,360,58,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,116,360,72,10
+    PUSHBUTTON      "Toggle",IDC_BLToggle,191,356,50,17
+    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,245,355,50,17
+    PUSHBUTTON      "Incremenat Intensity",IDC_BLIncInt,299,355,81,17
     LTEXT           "Do this first",IDC_STATIC,62,6,36,8
 END
 
@@ -159,7 +156,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MAIN, DIALOG
     BEGIN
@@ -171,7 +168,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

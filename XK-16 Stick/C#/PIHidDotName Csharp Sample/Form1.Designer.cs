@@ -118,20 +118,18 @@
             this.ChkBLOnOff = new System.Windows.Forms.CheckBox();
             this.CboBL = new System.Windows.Forms.ComboBox();
             this.label42 = new System.Windows.Forms.Label();
-            this.ChkGreenOnOff = new System.Windows.Forms.CheckBox();
+            this.ChkBank1OnOff = new System.Windows.Forms.CheckBox();
             this.label43 = new System.Windows.Forms.Label();
             this.BtnSetFlash = new System.Windows.Forms.Button();
             this.TxtFlashFreq = new System.Windows.Forms.TextBox();
             this.BtnBLToggle = new System.Windows.Forms.Button();
             this.BtnSaveBL = new System.Windows.Forms.Button();
             this.BtnBL = new System.Windows.Forms.Button();
-            this.ChkFlash2 = new System.Windows.Forms.CheckBox();
             this.ChkSuppress = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.BtnMousereflect = new System.Windows.Forms.Button();
             this.TxtMouseWheelX = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.LblPassFail = new System.Windows.Forms.Label();
             this.BtnCheckDongle = new System.Windows.Forms.Button();
             this.BtnSetDongle = new System.Windows.Forms.Button();
@@ -238,9 +236,9 @@
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "1. Do this first";
+            this.label1.Text = "Do this first";
             // 
             // label2
             // 
@@ -248,9 +246,9 @@
             this.label2.Location = new System.Drawing.Point(11, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 13);
+            this.label2.Size = new System.Drawing.Size(174, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "2. Set for data callback and read data";
+            this.label2.Text = "Set for data callback and read data";
             // 
             // button1
             // 
@@ -269,9 +267,9 @@
             this.label5.Location = new System.Drawing.Point(511, 452);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 13);
+            this.label5.Size = new System.Drawing.Size(221, 13);
             this.label5.TabIndex = 23;
-            this.label5.Text = "14. Change PID (must Enumerate after changing)";
+            this.label5.Text = "Change PID (must Enumerate after changing)";
             // 
             // BtnPID3
             // 
@@ -301,9 +299,9 @@
             this.label7.Location = new System.Drawing.Point(510, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 13);
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 30;
-            this.label7.Text = "10. Keyboard Reflector";
+            this.label7.Text = "Keyboard Reflector";
             // 
             // BtnKBreflect
             // 
@@ -467,9 +465,9 @@
             this.label21.Location = new System.Drawing.Point(11, 305);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(67, 13);
+            this.label21.Size = new System.Drawing.Size(55, 13);
             this.label21.TabIndex = 61;
-            this.label21.Text = "5. Descriptor";
+            this.label21.Text = "Descriptor";
             // 
             // BtnDescriptor
             // 
@@ -497,9 +495,9 @@
             this.label23.Location = new System.Drawing.Point(11, 469);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(111, 13);
+            this.label23.Size = new System.Drawing.Size(99, 13);
             this.label23.TabIndex = 67;
-            this.label23.Text = "7. Enable Time Stamp";
+            this.label23.Text = "Enable Time Stamp";
             // 
             // BtnTimeStampOn
             // 
@@ -518,9 +516,9 @@
             this.label13.Location = new System.Drawing.Point(11, 227);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 13);
+            this.label13.Size = new System.Drawing.Size(68, 13);
             this.label13.TabIndex = 87;
-            this.label13.Text = "3. Write Unit ID";
+            this.label13.Text = "Write Unit ID";
             // 
             // BtnGetDataNow
             // 
@@ -702,9 +700,9 @@
             this.label17.Location = new System.Drawing.Point(510, 69);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(211, 13);
+            this.label17.Size = new System.Drawing.Size(193, 13);
             this.label17.TabIndex = 204;
-            this.label17.Text = "11. Joystick Reflector (PID #2 and #3 only)";
+            this.label17.Text = "Joystick Reflector (PID #2 and #3 only)";
             // 
             // label24
             // 
@@ -712,9 +710,9 @@
             this.label24.Location = new System.Drawing.Point(510, 210);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(248, 13);
+            this.label24.Size = new System.Drawing.Size(230, 13);
             this.label24.TabIndex = 205;
-            this.label24.Text = "12. Mouse Reflector (PID #1, PID #2, PID #4 only)";
+            this.label24.Text = "Mouse Reflector (PID #1, PID #2, PID #4 only)";
             // 
             // label3
             // 
@@ -722,9 +720,9 @@
             this.label3.Location = new System.Drawing.Point(11, 270);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 206;
-            this.label3.Text = "4. Write LEDs";
+            this.label3.Text = "Write LEDs";
             // 
             // ChkGreen
             // 
@@ -735,8 +733,9 @@
             this.ChkGreen.TabIndex = 207;
             this.ChkGreen.Tag = "6";
             this.ChkGreen.Text = "Green";
+            this.ChkGreen.ThreeState = true;
             this.ChkGreen.UseVisualStyleBackColor = true;
-            this.ChkGreen.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkGreen.CheckStateChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // ChkRed
             // 
@@ -747,8 +746,9 @@
             this.ChkRed.TabIndex = 208;
             this.ChkRed.Tag = "7";
             this.ChkRed.Text = "Red";
+            this.ChkRed.ThreeState = true;
             this.ChkRed.UseVisualStyleBackColor = true;
-            this.ChkRed.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkRed.CheckStateChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // BtnPID2
             // 
@@ -788,9 +788,9 @@
             this.label35.Location = new System.Drawing.Point(624, 555);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(349, 13);
+            this.label35.Size = new System.Drawing.Size(255, 13);
             this.label35.TabIndex = 214;
-            this.label35.Text = "Endpoints: Keyboard, Mouse, Multimedia and Output, v10+ firmware only";
+            this.label35.Text = "Endpoints: Keyboard, Mouse, Multimedia and Output";
             // 
             // label4
             // 
@@ -865,9 +865,9 @@
             this.label38.Location = new System.Drawing.Point(510, 366);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(170, 13);
+            this.label38.Size = new System.Drawing.Size(122, 13);
             this.label38.TabIndex = 225;
-            this.label38.Text = "13. Multimedia (PID #4 only, v10+)";
+            this.label38.Text = "Multimedia (PID #4 only)";
             // 
             // BtnSleep
             // 
@@ -946,7 +946,7 @@
             this.BtnCustom.Name = "BtnCustom";
             this.BtnCustom.Size = new System.Drawing.Size(92, 22);
             this.BtnCustom.TabIndex = 258;
-            this.BtnCustom.Text = "Custom Data*";
+            this.BtnCustom.Text = "Custom Data";
             this.BtnCustom.UseVisualStyleBackColor = true;
             this.BtnCustom.Click += new System.EventHandler(this.BtnCustom_Click);
             // 
@@ -956,9 +956,9 @@
             this.label14.Location = new System.Drawing.Point(11, 397);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(328, 13);
+            this.label14.Size = new System.Drawing.Size(313, 13);
             this.label14.TabIndex = 259;
-            this.label14.Text = "6.  Stimulate a general incoming data report or a custom input report.";
+            this.label14.Text = "Stimulate a general incoming data report or a custom input report.";
             // 
             // label41
             // 
@@ -966,9 +966,9 @@
             this.label41.Location = new System.Drawing.Point(511, 597);
             this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(307, 13);
+            this.label41.Size = new System.Drawing.Size(195, 13);
             this.label41.TabIndex = 267;
-            this.label41.Text = "15. Write Version (0-65535), reboot required, v10+ firmware only";
+            this.label41.Text = "Write Version (0-65535), reboot required";
             // 
             // LblVersion
             // 
@@ -1055,21 +1055,21 @@
             this.label42.Location = new System.Drawing.Point(11, 533);
             this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(153, 13);
+            this.label42.Size = new System.Drawing.Size(141, 13);
             this.label42.TabIndex = 270;
-            this.label42.Text = "8. Indivdual Backlight Features";
+            this.label42.Text = "Indivdual Backlight Features";
             // 
-            // ChkGreenOnOff
+            // ChkBank1OnOff
             // 
-            this.ChkGreenOnOff.AutoSize = true;
-            this.ChkGreenOnOff.Location = new System.Drawing.Point(218, 557);
-            this.ChkGreenOnOff.Margin = new System.Windows.Forms.Padding(2);
-            this.ChkGreenOnOff.Name = "ChkGreenOnOff";
-            this.ChkGreenOnOff.Size = new System.Drawing.Size(110, 17);
-            this.ChkGreenOnOff.TabIndex = 268;
-            this.ChkGreenOnOff.Text = "All Bank 1 On/Off";
-            this.ChkGreenOnOff.UseVisualStyleBackColor = true;
-            this.ChkGreenOnOff.CheckedChanged += new System.EventHandler(this.ChkGreenOnOff_CheckedChanged);
+            this.ChkBank1OnOff.AutoSize = true;
+            this.ChkBank1OnOff.Location = new System.Drawing.Point(218, 557);
+            this.ChkBank1OnOff.Margin = new System.Windows.Forms.Padding(2);
+            this.ChkBank1OnOff.Name = "ChkBank1OnOff";
+            this.ChkBank1OnOff.Size = new System.Drawing.Size(110, 17);
+            this.ChkBank1OnOff.TabIndex = 268;
+            this.ChkBank1OnOff.Text = "All Bank 1 On/Off";
+            this.ChkBank1OnOff.UseVisualStyleBackColor = true;
+            this.ChkBank1OnOff.CheckedChanged += new System.EventHandler(this.ChkBank1OnOff_CheckedChanged);
             // 
             // label43
             // 
@@ -1077,9 +1077,9 @@
             this.label43.Location = new System.Drawing.Point(11, 595);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(140, 13);
+            this.label43.Size = new System.Drawing.Size(128, 13);
             this.label43.TabIndex = 280;
-            this.label43.Text = "9. Global Backlight Features";
+            this.label43.Text = "Global Backlight Features";
             // 
             // BtnSetFlash
             // 
@@ -1134,18 +1134,6 @@
             this.BtnBL.UseVisualStyleBackColor = true;
             this.BtnBL.Click += new System.EventHandler(this.BtnBL_Click);
             // 
-            // ChkFlash2
-            // 
-            this.ChkFlash2.AutoSize = true;
-            this.ChkFlash2.Location = new System.Drawing.Point(204, 269);
-            this.ChkFlash2.Name = "ChkFlash2";
-            this.ChkFlash2.Size = new System.Drawing.Size(51, 17);
-            this.ChkFlash2.TabIndex = 281;
-            this.ChkFlash2.Tag = "7";
-            this.ChkFlash2.Text = "Flash";
-            this.ChkFlash2.UseVisualStyleBackColor = true;
-            this.ChkFlash2.CheckedChanged += new System.EventHandler(this.ChkFlash2_CheckedChanged);
-            // 
             // ChkSuppress
             // 
             this.ChkSuppress.AutoSize = true;
@@ -1191,15 +1179,6 @@
             this.label33.TabIndex = 285;
             this.label33.Text = "Wheel X:";
             // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(245, 430);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(83, 13);
-            this.label34.TabIndex = 287;
-            this.label34.Text = "*v10 and above";
-            // 
             // LblPassFail
             // 
             this.LblPassFail.AutoSize = true;
@@ -1237,9 +1216,9 @@
             this.label44.Location = new System.Drawing.Point(511, 654);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(153, 13);
+            this.label44.Size = new System.Drawing.Size(41, 13);
             this.label44.TabIndex = 298;
-            this.label44.Text = "16. Dongle, v11+ firmware only";
+            this.label44.Text = "Dongle";
             // 
             // TxtIntensity
             // 
@@ -1291,12 +1270,10 @@
             this.Controls.Add(this.BtnCheckDongle);
             this.Controls.Add(this.BtnSetDongle);
             this.Controls.Add(this.label44);
-            this.Controls.Add(this.label34);
             this.Controls.Add(this.TxtMouseWheelX);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.BtnMousereflect);
             this.Controls.Add(this.ChkSuppress);
-            this.Controls.Add(this.ChkFlash2);
             this.Controls.Add(this.label43);
             this.Controls.Add(this.BtnSetFlash);
             this.Controls.Add(this.TxtFlashFreq);
@@ -1307,7 +1284,7 @@
             this.Controls.Add(this.ChkBLOnOff);
             this.Controls.Add(this.CboBL);
             this.Controls.Add(this.label42);
-            this.Controls.Add(this.ChkGreenOnOff);
+            this.Controls.Add(this.ChkBank1OnOff);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.LblVersion);
             this.Controls.Add(this.TxtVersion);
@@ -1497,20 +1474,18 @@
         private System.Windows.Forms.CheckBox ChkBLOnOff;
         private System.Windows.Forms.ComboBox CboBL;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.CheckBox ChkGreenOnOff;
+        private System.Windows.Forms.CheckBox ChkBank1OnOff;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button BtnSetFlash;
         private System.Windows.Forms.TextBox TxtFlashFreq;
         private System.Windows.Forms.Button BtnBLToggle;
         private System.Windows.Forms.Button BtnSaveBL;
         private System.Windows.Forms.Button BtnBL;
-        private System.Windows.Forms.CheckBox ChkFlash2;
         private System.Windows.Forms.CheckBox ChkSuppress;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button BtnMousereflect;
         private System.Windows.Forms.TextBox TxtMouseWheelX;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label LblPassFail;
         private System.Windows.Forms.Button BtnCheckDongle;
         private System.Windows.Forms.Button BtnSetDongle;

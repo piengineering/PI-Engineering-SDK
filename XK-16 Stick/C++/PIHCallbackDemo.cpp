@@ -246,7 +246,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -266,7 +266,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -296,13 +296,8 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+			
 			result=404;
 			while (result==404)
 			{
@@ -314,48 +309,7 @@ int CALLBACK DialogProc(
 				AddEventMsg(hwndDlg, errordescription);
 			}
 			return TRUE;
-		case IDC_CHKBLFLASH:
-			
-            //Key Index for (in decimal) 
-			//0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			if (result != 0)    {
-				AddEventMsg(hwndDlg, "Error:");
-				GetErrorString(result, errordescription, 100);
-				AddEventMsg(hwndDlg, errordescription);
-			}
-			return TRUE;
+		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)

@@ -227,7 +227,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -247,7 +247,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -277,55 +277,8 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			if (result != 0)    {
-				AddEventMsg(hwndDlg, "Error:");
-				GetErrorString(result, errordescription, 100);
-				AddEventMsg(hwndDlg, errordescription);
-			}
-			return TRUE;
-		case IDC_CHKBLFLASH:
-			
-            //Key Index for (in decimal) 
-			//0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
 			result=404;
 			while (result==404)
 			{
@@ -337,6 +290,7 @@ int CALLBACK DialogProc(
 				AddEventMsg(hwndDlg, errordescription);
 			}
 			return TRUE;
+		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)
@@ -966,12 +920,12 @@ void FindAndStart(HWND hDialog)
 		return;
 	}
 
-	for (int i=0;i<128;i++)combotodevice[i]=-1;
-	int cbocount=0;
+	//for (int i=0;i<128;i++)combotodevice[i]=-1;
+	//int cbocount=0;
 
-	for (long i=0; i<count; i++)    {
+	for (long i=0; i<count; i++)    
+	{
 		pid=info[i].PID; //get the device pid
-		
 		int hidusagepage=info[i].UP; //hid usage page
 		int version=info[i].Version;
 		int writelen=GetWriteLength(info[i].Handle);
@@ -986,86 +940,44 @@ void FindAndStart(HWND hDialog)
 			}
 			else    
 			{
-				if (pid==1089)
+				if (pid==1217)
 				{
-					AddDevices(hDialog, "Found Device: XK-80, PID=1089 (PID #1)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
+					AddEventMsg(hDialog, "Found Device: X-keys XK-80 Android, PID=1217 or PID #1");
+					hDevice = hnd;
+					return;
 				}
-				else if (pid==1090)
+				else if (pid==1220)
 				{
-					AddDevices(hDialog, "Found Device: XK-80, PID=1090 (PID #2)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
+					AddEventMsg(hDialog, "Found Device: X-keys XK-80 Android, PID=1220 or PID #4");
+					hDevice = hnd;
+					return;
 				}
-				else if (pid==1091)
+				else if (pid==1231)
 				{
-					AddDevices(hDialog, "Found Device: XK-80, PID=1091 (PID #3)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
+					AddEventMsg(hDialog, "Found Device: X-keys XK-60 Android, PID=1231 or PID #1");
+					hDevice = hnd;
+					return;
 				}
-				else if (pid==1250)
+				else if (pid==1234)
 				{
-					AddDevices(hDialog, "Found Device: XK-80, PID=1250 (PID #4)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
-				}
-				else if (pid==1121)
-				{
-					AddDevices(hDialog, "Found Device: XK-60, PID=1121 (PID #1)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
-				}
-				else if (pid==1122)
-				{
-					AddDevices(hDialog, "Found Device: XK-60, PID=1122 (PID #2)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
-				}
-				else if (pid==1123)
-				{
-					AddDevices(hDialog, "Found Device: XK-60, PID=1123 (PID #3)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
-				}
-				else if (pid==1254)
-				{
-					AddDevices(hDialog, "Found Device: XK-60, PID=1254 (PID #4)");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
+					AddEventMsg(hDialog, "Found Device: X-keys XK-60 Android, PID=1234 or PID #4");
+					hDevice = hnd;
+					return;
 				}
 				else
 				{
-					AddDevices(hDialog, "Unknown device found");
-					combotodevice[cbocount] = i; //this is the handle
-					cbocount++;
+					AddEventMsg(hDialog, "Unknown device found");
+					hDevice = hnd;
+					return;
 				}
 				
 			}
 			
-		}
-	}
-
-	if (cbocount>0)
-	{
-		hDevice=combotodevice[0]; //which is same as hDevice=info[combotodevice[0]].Handle
-		readlength=info[combotodevice[0]].readSize;
-		//print version, this is NOT firmware version which is given in the descriptor
-		int version=info[combotodevice[0]].Version;
-		char dataStr[256];
-		_itoa_s(version,dataStr,10);
+		} //end of hidpage=c
 		
-		hList = GetDlgItem(hDialog, IDC_LblVersion);
-		SendMessage(hList, WM_SETTEXT,0, (LPARAM)(LPCSTR)dataStr);
-		//show first device as selected
-		hList = GetDlgItem(hDialog, IDC_LIST1);
-		if (hList == NULL) return;
-		SendMessage(hList, LB_SETCURSEL, 0, 0);
-	}
-	else
-	{
-		AddDevices(hDialog, "No X-keys devices found");
-	}
+	} //end of for
+
+	
 }
 //------------------------------------------------------------------------
 void AddDevices(HWND hDialog, char *msg)
@@ -1077,6 +989,7 @@ void AddDevices(HWND hDialog, char *msg)
     cnt=SendMessage(hList, LB_GETCOUNT, 0, 0);
 	SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)msg);
 }
+
 void AddEventMsg(HWND hDialog, char *msg)
 {
 	HWND hList;
@@ -1089,6 +1002,7 @@ void AddEventMsg(HWND hDialog, char *msg)
 	SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)msg);
    
 	SendMessage(hList, LB_SETCURSEL, cnt, 0);
+
 }
 //------------------------------------------------------------------------
 

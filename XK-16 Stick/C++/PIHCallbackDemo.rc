@@ -83,11 +83,11 @@ BEGIN
     PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,304,300,73,17
     LTEXT           "unit id",IDC_UNITID3,116,172,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,201,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,216,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,216,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,216,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,52,216,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,203,433,73,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,203,452,73,17
-    PUSHBUTTON      "Custom Data*",IDC_CUSTOM,87,281,73,17
+    PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,281,73,17
     EDITTEXT        IDC_EDIT2,398,176,92,14,ES_AUTOHSCROLL
     LTEXT           "Joystick Reflector (PID #2 and #3 only):",IDC_STATIC,304,196,146,9
     EDITTEXT        IDC_JoyX,407,221,24,14,ES_AUTOHSCROLL
@@ -111,7 +111,7 @@ BEGIN
     LTEXT           "0-255",IDC_STATIC,534,239,19,8
     LTEXT           "0-255",IDC_STATIC,514,254,19,8
     LTEXT           "0-8",IDC_STATIC,434,271,11,8
-    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate, v10+ firmware only):",IDC_STATIC,7,347,256,9
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate):",IDC_STATIC,7,347,256,9
     PUSHBUTTON      "Write Version",IDC_Version,7,360,73,17
     EDITTEXT        IDC_TxtVersion,83,360,40,14,ES_AUTOHSCROLL
     LTEXT           "Mouse Reflector (PID#1, PID #2, PID #4 only):",IDC_STATIC,304,285,160,8
@@ -124,7 +124,7 @@ BEGIN
     LTEXT           "dX:",IDC_STATIC,391,319,12,8
     LTEXT           "dY:",IDC_STATIC,440,319,12,8
     LTEXT           "Wheel Y:",IDC_STATIC,374,339,30,8
-    LTEXT           "Multimedia Reflector (PID #4 only, v10+ firmware only):",IDC_STATIC,304,357,197,8
+    LTEXT           "Multimedia Reflector (PID #4 only):",IDC_STATIC,304,357,197,8
     PUSHBUTTON      "To PID #1",IDC_TOPID1,7,433,73,17
     EDITTEXT        IDC_TxtMultiHi,428,371,24,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TxtMultiLo,494,371,24,14,ES_AUTOHSCROLL
@@ -132,20 +132,18 @@ BEGIN
     LTEXT           "Low (hex)",IDC_STATIC,460,373,32,8
     PUSHBUTTON      "My Computer",IDC_MyComputer,526,370,56,17
     LTEXT           "Keyboard, Joystick, Input, Output",IDC_STATIC,280,439,116,9
-    LTEXT           "Keyboard, Mouse, Multimedia, Output, v10+ firmware only",IDC_STATIC,280,457,194,9
+    LTEXT           "Keyboard, Mouse, Multimedia, Output",IDC_STATIC,280,457,194,9
     LTEXT           "Setup for Callback:",IDC_STATIC,7,65,61,8
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,76,66,14
     LTEXT           "-",IDC_LblVersion,128,362,39,8
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,382,192,9
     EDITTEXT        IDC_TXTBL,7,394,40,14,ES_AUTOHSCROLL
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,53,398,38,10
-    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,398,33,10
-    CONTROL         "All On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,129,398,47,10
-    PUSHBUTTON      "Toggle",IDC_BLToggle,186,392,50,17
-    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,240,392,50,17
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,53,398,58,10
+    CONTROL         "All On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,112,398,47,10
+    PUSHBUTTON      "Toggle",IDC_BLToggle,161,393,50,17
+    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,215,393,50,17
     LTEXT           "Do this first",IDC_STATIC,60,6,36,8
-    LTEXT           "*v10+ firmware only",IDC_STATIC,167,286,62,8
-    LTEXT           "Dongle Security Feature, v11+ firmware only:",IDC_STATIC,304,393,142,8
+    LTEXT           "Dongle Security Feature:",IDC_STATIC,304,393,79,8
     PUSHBUTTON      "Set Dongle",IDC_SETDONGLE,304,407,73,17
     PUSHBUTTON      "Check Dongle",IDC_CHECKDONGLE,389,407,73,17
     LTEXT           "Pass/Fail",IDC_PASSFAIL,475,412,114,8
