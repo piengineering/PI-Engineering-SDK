@@ -495,7 +495,7 @@ int CALLBACK DialogProc(
 				//The X-keys XC-DMX512T is continuously transmitting the desired addresses up to the DMX Length.
 				if (hDevice == -1) return TRUE;
 				char values[10];
-				hList = GetDlgItem(hDialog, IDC_EDITStartAddr);
+				hList = GetDlgItem(hDialog, IDC_EDITStartAddr); 
 				if (hList == NULL) return TRUE;
 				SendMessage(hList, WM_GETTEXT, 8, (LPARAM)values);
 				int startaddress= atoi(values);
@@ -592,6 +592,7 @@ int CALLBACK DialogProc(
 
 		case IDC_BTNClearDMX:
 		{
+			//Clear DMX Buffer, sets all values to 0
 			if (hDevice == -1) return TRUE;
 				
 			for (int i=0;i<wlen;i++)
@@ -610,10 +611,8 @@ int CALLBACK DialogProc(
 		//DMX Receive
 		case IDC_DMXConfigRead:
 		{
-			//Send this command to setup the XC-DMX512T to receive DMX data instead of transmit. This is the same as clicking Set mode - Receive (IDC_ModeReceive) button.
-            //If the default mode of the XC-DMX512T has been previously set to receive then this is not necessary.
-            //Data can be read in 2 ways; reading 20 bytes from a specified start address (Read Once) or registering to receive notification of any changes (Start Notification).
-			if (hDevice == -1) return TRUE;
+			//This command to sets up the XC-DMX512T to receive DMX data instead of transmit, sets the DMX Write Length to 0, sets the DMX Read Length, and clears the DMX read and write buffers. 
+            if (hDevice == -1) return TRUE;
 				
 			for (int i=0;i<wlen;i++)
 			{
@@ -1059,6 +1058,20 @@ int CALLBACK DialogProc(
 				else strcat_s (str,"Output 3 Off ");
 				if (pBuff[17]&8) strcat_s (str,"Output 4 On ");
 				else strcat_s (str,"Output 4 Off ");
+				AddEventMsg(hDialog, str);
+
+				strcpy_s (str,"DMX Current Mode transmit");
+				if (pBuff[18]==1)
+				{
+					strcpy_s (str,"DMX Current Mode receive");
+				}
+				AddEventMsg(hDialog, str);
+
+				strcpy_s (str,"DMX Default Mode transmit");
+				if (pBuff[19]==1)
+				{
+					strcpy_s (str,"DMX Default Mode receive");
+				}
 				AddEventMsg(hDialog, str);
 			}			
 			return TRUE;

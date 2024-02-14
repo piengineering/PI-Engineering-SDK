@@ -26,7 +26,6 @@ Public Class Form1
     Dim slidertextboxes As List(Of TextBox) = Nothing
     
     Dim donttrigger As Boolean = False
-    Dim startaddress As Integer
     Dim ReadLabels As Label() = New Label(7) {}
 
     Public Sub HandlePIEHidData(ByVal data() As Byte, ByVal sourceDevice As PIEHid32Net.PIEDevice, ByVal perror As Integer) Implements PIEHid32Net.PIEDataHandler.HandlePIEHidData
@@ -137,6 +136,30 @@ Public Class Form1
                                 ElseIf state = 3 Then
                                     btnSW4L.BackColor = SystemColors.ButtonFace
                                 End If
+                            Case 8
+                                If state = 1 Then
+                                    btnDI1.BackColor = Color.Lime
+                                ElseIf state = 3 Then
+                                    btnDI1.BackColor = SystemColors.ButtonFace
+                                End If
+                            Case 9
+                                If state = 1 Then
+                                    btnDI2.BackColor = Color.Lime
+                                ElseIf state = 3 Then
+                                    btnDI2.BackColor = SystemColors.ButtonFace
+                                End If
+                            Case 10
+                                If state = 1 Then
+                                    btnDI3.BackColor = Color.Lime
+                                ElseIf state = 3 Then
+                                    btnDI3.BackColor = SystemColors.ButtonFace
+                                End If
+                            Case 11
+                                If state = 1 Then
+                                    btnDI4.BackColor = Color.Lime
+                                ElseIf state = 3 Then
+                                    btnDI4.BackColor = SystemColors.ButtonFace
+                                End If
                         End Select
                     Next
                 Next
@@ -163,12 +186,9 @@ Public Class Form1
                 Next
             ElseIf (data(2) = 147) Then '&H93 Incoming DMX Data via Start Notification
                 Dim count As Integer = data(5) 'number of addresses to follow, always 1 in this case
-                Dim address As Integer = data(4) * 256 + data(3) 'address of changed DMX data
-                Dim thislabel As Integer = address - startaddress
-                If ReadLabels(thislabel) IsNot Nothing Then
-                    c = ReadLabels(thislabel)
-                    SetText("Addr: " + address.ToString + "=" + data(6).ToString)
-                End If
+                Dim thisaddress As Integer = data(4) * 256 + data(3) 'address of changed DMX data
+                thisListBox = ListBox4
+               
                 'Time Stamp-Note if the time stamp is the same, change in DMX value occurred simultaneously
                 Dim absolutetime As Long = 16777216 * data(32) + 65536 * data(33) + 256 * data(34) + data(35)  'ms
                 Dim absolutetime2 As Long = absolutetime / 1000 'seconds
@@ -178,6 +198,12 @@ Public Class Form1
                 c = lblDeltaTime
                 SetText("delta time: " + deltatime.ToString + " ms")
                 saveabsolutetime = absolutetime
+
+                For i As Integer = 0 To count - 1
+                    output = "Addr: " + (thisaddress + i).ToString + " = " + data(6 + i).ToString + " changed at " + absolutetime2.ToString()
+                    SetListBox(output)
+                Next
+
             ElseIf (data(2) = 163) Then '&HA3 DMX Length
                 c = lblDMXLength
                 SetText((data(3) + (256 * data(4))).ToString())
@@ -282,8 +308,10 @@ Public Class Form1
             selecteddevice = cbotodevice(CboDevices.SelectedIndex)
             ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
             ReDim lastdata(devices(selecteddevice).ReadLength - 1)
-            'fill in version
+
             LblVersion.Text = devices(selecteddevice).Version.ToString
+            LblStatus.Text = devices(selecteddevice).ProductString + " found"
+            lblSiliconGeneratedID.Text = devices(selecteddevice).SerialNumberString
             EnumerationSuccess = True
             Me.Cursor = Cursors.Default
         End If
@@ -337,6 +365,7 @@ Public Class Form1
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+        ReDim lastdata(devices(selecteddevice).ReadLength - 1)
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -734,19 +763,11 @@ Public Class Form1
                 result = devices(selecteddevice).BlockingReadData(ddata, 100)
             End While
             listBox2.Items.Clear()
-            If (ddata(3) = 0) Then
-                listBox2.Items.Add("PID #1")
-            ElseIf (ddata(3) = 1) Then
-                listBox2.Items.Add("PID #2")
-            ElseIf (ddata(3) = 2) Then
-                listBox2.Items.Add("PID #3")
-            ElseIf (ddata(3) = 3) Then
-                listBox2.Items.Add("PID #4")
-            End If
+
+            LblUnitID.Text = ddata(1).ToString()
             listBox2.Items.Add("Keymapstart=" + ddata(4).ToString)
             listBox2.Items.Add("Layer2offset=" + ddata(5).ToString)
-            listBox2.Items.Add("OutSize=" + ddata(6).ToString)
-            listBox2.Items.Add("ReportSize=" + ddata(7).ToString)
+            listBox2.Items.Add("SizeOfEEProm=" + (ddata(6) + 256 * ddata(7)).ToString)
             listBox2.Items.Add("MaxCol=" + ddata(8).ToString)
             listBox2.Items.Add("MaxRow=" + ddata(9).ToString)
             Dim greenled As String = "Off"
@@ -785,6 +806,20 @@ Public Class Form1
                 output3 = "On"
             End If
             listBox2.Items.Add("Output 4=" & output4)
+
+            If ddata(18) = 0 Then
+                temp = "transmit"
+            Else
+                temp = "receive"
+            End If
+            listBox2.Items.Add("Current mode=" & temp)
+
+            If ddata(19) = 0 Then
+                temp = "transmit"
+            Else
+                temp = "receive"
+            End If
+            listBox2.Items.Add("Default mode=" & temp)
 
             devices(selecteddevice).callNever = savecallback 'Turn back on callback, if it was on
         End If
@@ -1284,15 +1319,18 @@ Public Class Form1
 
     Private Sub btnReadDMX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReadDMX.Click
         'Sending this command will return the current values for 20 bytes of DMX data, starting at the desired start address
-        'In this sample, the results will return in the callback (HandlePIEHidData), however the commented out code below shows how to read the 
-        'data directly without using the callback.
+        'In this sample, the results will return in the callback (HandlePIEHidData)
         If selecteddevice <> -1 Then
+
+            Dim startaddress As Integer = Convert.ToInt16(txtReadStartAdd.Text)
 
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
             Next
             wdata(0) = 0
             wdata(1) = 165 '0&HA5
+            wdata(2) = CByte(startaddress)
+            wdata(3) = CByte(startaddress >> 8)
 
             Dim result As Integer
             result = 404
@@ -1306,51 +1344,7 @@ Public Class Form1
                 LblStatus.Text = "Write Success - Read DMX data"
             End If
 
-            ''This code demonstrates how to directly read the returned results without using the callback
-            ''IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
-            'Dim savecallback As Boolean
-            'savecallback = devices(selecteddevice).callNever
-            'devices(selecteddevice).callNever = True
-
-            'Dim ddata(devices(selecteddevice).ReadLength) As Byte
-            'Dim countout As Integer = 0
-            'result = devices(selecteddevice).BlockingReadData(ddata, 100)
-            'While (result = 304 Or (result = 0 And ddata(2) <> 165))
-            '    If result = 304 Then
-            '        'no new data after 100ms, so increment countout extra
-            '        countout = countout + 99
-            '    End If
-            '    countout = countout + 1
-            '    If (countout > 1000) Then
-            '        Exit While
-            '    End If
-            '    result = devices(selecteddevice).BlockingReadData(ddata, 100)
-            'End While
-            ''returned values in data
-            ''ddata(1)=unit id
-            ''ddata(2)=165
-            ''ddata(3)=start address lo (LSB), this equals wData[2] above
-            ''ddata(4)=start address hi (MSB), this equals wData[3] above
-            ''ddata(5)=count, normally 20 but could be less is start address is over 491
-            ''ddata(6)=start of DMX data, this first byte is usually 0
-            ''ddata(7)=value of start address
-            ''ddata(8)=value of start address + 1
-            ''ddata(9)=value of start address + 2
-            ''etc.
-            ''display results in listBox3
-            'Dim count As Integer
-            'count = ddata(5)
-            'Dim startaddress As Integer
-            'startaddress = ddata(4) * 256 + ddata(3)
-
-            'listBox3.Items.Clear()
-            'Dim output As String
-            'For i As Integer = 0 To count
-            '    output = "Addr: " + (startaddress + i).ToString + " = " + ddata(6 + i).ToString
-            '    listBox3.Items.Add(output)
-            'Next
-
-            'devices(selecteddevice).callNever = savecallback 'Turn back on callback, if it was on
+            
 
 
         End If
@@ -1358,6 +1352,9 @@ Public Class Form1
     End Sub
 
     Private Sub btnCallbackDMX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCallbackDMX.Click
+        '//Valid only if device DMX mode set to receive
+        '//Setup to receive notification of DMX changes in desired range of addresses
+
         If selecteddevice <> -1 Then
 
             Dim onoff As Byte
@@ -1370,9 +1367,8 @@ Public Class Form1
                 btnCallbackDMX.Text = "Start Notification"
             End If
 
-            'setup to receive notification of DMX changes in desired range. This sample is looking for changes at addresses 1 to 8. If want to be notified of all DMX changes then use 0 to 511
-            startaddress = 1 'this is global so know what it is when reading the data back in HandlePIEHidData
-            Dim endaddress As Integer = 8
+            Dim startaddress As Integer = Convert.ToInt16(txtReadStartAdd.Text)
+            Dim endaddress As Integer = Convert.ToInt16(txtReadEndAdd.Text)
 
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
@@ -1380,19 +1376,10 @@ Public Class Form1
             wdata(0) = 0
             wdata(1) = 147 '0&H93
             wdata(2) = onoff
-            wdata(3) = startaddress 'start address lo (LSB)
-            wdata(4) = (startaddress >> 8) 'start address hi (MSB)
-            wdata(5) = endaddress 'end address lo (LSB)
-            wdata(6) = (endaddress >> 8) 'end address hi (MSB)
-
-            'setup the labels to display results
-            Dim numberofaddresses As Integer = endaddress - startaddress + 1
-            For i As Integer = 0 To numberofaddresses - 1
-                If ReadLabels(i) IsNot Nothing Then
-                    Dim thisaddress As String = "Addr: " & (startaddress + i).ToString()
-                    ReadLabels(i).Text = thisaddress
-                End If
-            Next
+            wdata(3) = CByte(startaddress) 'start address lo (LSB)
+            wdata(4) = CByte(startaddress >> 8) 'start address hi (MSB)
+            wdata(5) = CByte(endaddress) 'end address lo (LSB)
+            wdata(6) = CByte(endaddress >> 8) 'end address hi (MSB)
 
             Dim result As Integer
             result = 404
@@ -1481,6 +1468,65 @@ Public Class Form1
             Else
                 LblStatus.Text = "Write Success - Time Stamp On"
             End If
+        End If
+    End Sub
+
+    Private Sub button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button2.Click
+        listBox3.Items.Clear()
+    End Sub
+
+    Private Sub button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button3.Click
+        ListBox4.Items.Clear()
+    End Sub
+
+    Private Sub btnSiliconGeneratedID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSiliconGeneratedID.Click
+        If selecteddevice <> -1 Then
+
+            ' //This command is only necessary if devices[].SerialNumberString is not available on enumerate
+            ' //Sending the command will make the device return information about it
+            Dim savecallbackstate As Boolean = devices(selecteddevice).callNever
+            devices(selecteddevice).callNever = True
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 157
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Silicon Generated ID"
+            End If
+            'after this write the next read with 3rd byte = 214 gives descriptor data
+            Dim ddata(devices(selecteddevice).ReadLength) As Byte
+            Dim countout As Integer = 0
+            result = devices(selecteddevice).BlockingReadData(ddata, 100)
+            While (result = 304 Or (result = 0 And ddata(2) <> 157))
+                If result = 304 Then
+                    'no new data after 100ms, so increment countout extra
+                    countout = countout + 99
+                End If
+                countout = countout + 1
+                If (countout > 1000) Then
+                    Exit While
+                End If
+                result = devices(selecteddevice).BlockingReadData(ddata, 100)
+            End While
+
+            Dim uniqueID As String = ""
+            For i As Integer = 0 To 7
+                uniqueID = uniqueID + BinToHex(ddata(i + 3))
+            Next
+            lblSiliconGeneratedID.Text = uniqueID
+            devices(selecteddevice).callNever = savecallbackstate
         End If
     End Sub
 End Class

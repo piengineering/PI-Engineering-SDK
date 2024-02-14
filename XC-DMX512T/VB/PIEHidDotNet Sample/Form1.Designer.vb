@@ -74,7 +74,6 @@ Partial Class Form1
         Me.txtManualData2 = New System.Windows.Forms.TextBox()
         Me.txtManualData1 = New System.Windows.Forms.TextBox()
         Me.lblDMXLength = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.txtSetDMXLength = New System.Windows.Forms.TextBox()
         Me.btnGetDMXLength = New System.Windows.Forms.Button()
         Me.btnSetDMXLength = New System.Windows.Forms.Button()
@@ -122,15 +121,6 @@ Partial Class Form1
         Me.txtManualData6 = New System.Windows.Forms.TextBox()
         Me.txtManualData5 = New System.Windows.Forms.TextBox()
         Me.txtManualData4 = New System.Windows.Forms.TextBox()
-        Me.label34 = New System.Windows.Forms.Label()
-        Me.lblRead8 = New System.Windows.Forms.Label()
-        Me.lblRead7 = New System.Windows.Forms.Label()
-        Me.lblRead6 = New System.Windows.Forms.Label()
-        Me.lblRead5 = New System.Windows.Forms.Label()
-        Me.lblRead4 = New System.Windows.Forms.Label()
-        Me.lblRead3 = New System.Windows.Forms.Label()
-        Me.lblRead2 = New System.Windows.Forms.Label()
-        Me.lblRead1 = New System.Windows.Forms.Label()
         Me.label35 = New System.Windows.Forms.Label()
         Me.txtReadStartAdd = New System.Windows.Forms.TextBox()
         Me.listBox3 = New System.Windows.Forms.ListBox()
@@ -150,6 +140,24 @@ Partial Class Form1
         Me.lblDeltaTime = New System.Windows.Forms.Label()
         Me.lblAbsTime = New System.Windows.Forms.Label()
         Me.BtnTimeStamp = New System.Windows.Forms.Button()
+        Me.label40 = New System.Windows.Forms.Label()
+        Me.label39 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.btnDI1 = New System.Windows.Forms.Button()
+        Me.btnDI2 = New System.Windows.Forms.Button()
+        Me.btnDI4 = New System.Windows.Forms.Button()
+        Me.btnDI3 = New System.Windows.Forms.Button()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.ListBox4 = New System.Windows.Forms.ListBox()
+        Me.button3 = New System.Windows.Forms.Button()
+        Me.button2 = New System.Windows.Forms.Button()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.txtReadEndAdd = New System.Windows.Forms.TextBox()
+        Me.lblSiliconGeneratedID = New System.Windows.Forms.Label()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.btnSiliconGeneratedID = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -272,7 +280,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(357, 91)
+        Me.Button1.Location = New System.Drawing.Point(368, 91)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(86, 22)
@@ -350,7 +358,7 @@ Partial Class Form1
         'LblScrLk
         '
         Me.LblScrLk.AutoSize = True
-        Me.LblScrLk.Location = New System.Drawing.Point(293, 231)
+        Me.LblScrLk.Location = New System.Drawing.Point(354, 233)
         Me.LblScrLk.Name = "LblScrLk"
         Me.LblScrLk.Size = New System.Drawing.Size(53, 13)
         Me.LblScrLk.TabIndex = 232
@@ -359,7 +367,7 @@ Partial Class Form1
         'LblCapsLk
         '
         Me.LblCapsLk.AutoSize = True
-        Me.LblCapsLk.Location = New System.Drawing.Point(293, 217)
+        Me.LblCapsLk.Location = New System.Drawing.Point(354, 219)
         Me.LblCapsLk.Name = "LblCapsLk"
         Me.LblCapsLk.Size = New System.Drawing.Size(61, 13)
         Me.LblCapsLk.TabIndex = 231
@@ -368,7 +376,7 @@ Partial Class Form1
         'LblNumLk
         '
         Me.LblNumLk.AutoSize = True
-        Me.LblNumLk.Location = New System.Drawing.Point(293, 202)
+        Me.LblNumLk.Location = New System.Drawing.Point(354, 204)
         Me.LblNumLk.Name = "LblNumLk"
         Me.LblNumLk.Size = New System.Drawing.Size(59, 13)
         Me.LblNumLk.TabIndex = 230
@@ -652,16 +660,6 @@ Partial Class Form1
         Me.lblDMXLength.Size = New System.Drawing.Size(36, 13)
         Me.lblDMXLength.TabIndex = 382
         Me.lblDMXLength.Text = "length"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(1019, 35)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(40, 13)
-        Me.Label18.TabIndex = 381
-        Me.Label18.Text = "(0-512)"
         '
         'txtSetDMXLength
         '
@@ -1131,108 +1129,10 @@ Partial Class Form1
         Me.txtManualData4.Tag = "3"
         Me.txtManualData4.Text = "255"
         '
-        'label34
-        '
-        Me.label34.AutoSize = True
-        Me.label34.Location = New System.Drawing.Point(1235, 383)
-        Me.label34.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.label34.Name = "label34"
-        Me.label34.Size = New System.Drawing.Size(66, 13)
-        Me.label34.TabIndex = 470
-        Me.label34.Text = "and so on ..."
-        '
-        'lblRead8
-        '
-        Me.lblRead8.AutoSize = True
-        Me.lblRead8.Location = New System.Drawing.Point(1235, 362)
-        Me.lblRead8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead8.Name = "lblRead8"
-        Me.lblRead8.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead8.TabIndex = 469
-        Me.lblRead8.Tag = "7"
-        Me.lblRead8.Text = "Addr: 8"
-        '
-        'lblRead7
-        '
-        Me.lblRead7.AutoSize = True
-        Me.lblRead7.Location = New System.Drawing.Point(1235, 335)
-        Me.lblRead7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead7.Name = "lblRead7"
-        Me.lblRead7.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead7.TabIndex = 468
-        Me.lblRead7.Tag = "6"
-        Me.lblRead7.Text = "Addr: 7"
-        '
-        'lblRead6
-        '
-        Me.lblRead6.AutoSize = True
-        Me.lblRead6.Location = New System.Drawing.Point(1235, 308)
-        Me.lblRead6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead6.Name = "lblRead6"
-        Me.lblRead6.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead6.TabIndex = 467
-        Me.lblRead6.Tag = "5"
-        Me.lblRead6.Text = "Addr: 6"
-        '
-        'lblRead5
-        '
-        Me.lblRead5.AutoSize = True
-        Me.lblRead5.Location = New System.Drawing.Point(1235, 281)
-        Me.lblRead5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead5.Name = "lblRead5"
-        Me.lblRead5.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead5.TabIndex = 466
-        Me.lblRead5.Tag = "4"
-        Me.lblRead5.Text = "Addr: 5"
-        '
-        'lblRead4
-        '
-        Me.lblRead4.AutoSize = True
-        Me.lblRead4.Location = New System.Drawing.Point(1235, 255)
-        Me.lblRead4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead4.Name = "lblRead4"
-        Me.lblRead4.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead4.TabIndex = 465
-        Me.lblRead4.Tag = "3"
-        Me.lblRead4.Text = "Addr: 4"
-        '
-        'lblRead3
-        '
-        Me.lblRead3.AutoSize = True
-        Me.lblRead3.Location = New System.Drawing.Point(1235, 226)
-        Me.lblRead3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead3.Name = "lblRead3"
-        Me.lblRead3.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead3.TabIndex = 464
-        Me.lblRead3.Tag = "2"
-        Me.lblRead3.Text = "Addr: 3"
-        '
-        'lblRead2
-        '
-        Me.lblRead2.AutoSize = True
-        Me.lblRead2.Location = New System.Drawing.Point(1235, 199)
-        Me.lblRead2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead2.Name = "lblRead2"
-        Me.lblRead2.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead2.TabIndex = 463
-        Me.lblRead2.Tag = "1"
-        Me.lblRead2.Text = "Addr: 2"
-        '
-        'lblRead1
-        '
-        Me.lblRead1.AutoSize = True
-        Me.lblRead1.Location = New System.Drawing.Point(1235, 173)
-        Me.lblRead1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblRead1.Name = "lblRead1"
-        Me.lblRead1.Size = New System.Drawing.Size(41, 13)
-        Me.lblRead1.TabIndex = 462
-        Me.lblRead1.Tag = "0"
-        Me.lblRead1.Text = "Addr: 1"
-        '
         'label35
         '
         Me.label35.AutoSize = True
-        Me.label35.Location = New System.Drawing.Point(1152, 95)
+        Me.label35.Location = New System.Drawing.Point(1153, 132)
         Me.label35.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label35.Name = "label35"
         Me.label35.Size = New System.Drawing.Size(131, 13)
@@ -1241,7 +1141,7 @@ Partial Class Form1
         '
         'txtReadStartAdd
         '
-        Me.txtReadStartAdd.Location = New System.Drawing.Point(1103, 92)
+        Me.txtReadStartAdd.Location = New System.Drawing.Point(1104, 129)
         Me.txtReadStartAdd.Name = "txtReadStartAdd"
         Me.txtReadStartAdd.Size = New System.Drawing.Size(44, 20)
         Me.txtReadStartAdd.TabIndex = 460
@@ -1251,7 +1151,7 @@ Partial Class Form1
         '
         Me.listBox3.FormattingEnabled = True
         Me.listBox3.HorizontalScrollbar = True
-        Me.listBox3.Location = New System.Drawing.Point(1100, 162)
+        Me.listBox3.Location = New System.Drawing.Point(1101, 233)
         Me.listBox3.Name = "listBox3"
         Me.listBox3.Size = New System.Drawing.Size(100, 277)
         Me.listBox3.TabIndex = 459
@@ -1259,7 +1159,7 @@ Partial Class Form1
         'label28
         '
         Me.label28.AutoSize = True
-        Me.label28.Location = New System.Drawing.Point(1205, 120)
+        Me.label28.Location = New System.Drawing.Point(1206, 191)
         Me.label28.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label28.Name = "label28"
         Me.label28.Size = New System.Drawing.Size(16, 13)
@@ -1269,7 +1169,7 @@ Partial Class Form1
         'label27
         '
         Me.label27.AutoSize = True
-        Me.label27.Location = New System.Drawing.Point(1223, 141)
+        Me.label27.Location = New System.Drawing.Point(1224, 212)
         Me.label27.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label27.Name = "label27"
         Me.label27.Size = New System.Drawing.Size(106, 13)
@@ -1279,7 +1179,7 @@ Partial Class Form1
         'label26
         '
         Me.label26.AutoSize = True
-        Me.label26.Location = New System.Drawing.Point(1097, 74)
+        Me.label26.Location = New System.Drawing.Point(1098, 111)
         Me.label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label26.Name = "label26"
         Me.label26.Size = New System.Drawing.Size(60, 13)
@@ -1289,7 +1189,7 @@ Partial Class Form1
         'label25
         '
         Me.label25.AutoSize = True
-        Me.label25.Location = New System.Drawing.Point(1097, 20)
+        Me.label25.Location = New System.Drawing.Point(1224, 40)
         Me.label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label25.Name = "label25"
         Me.label25.Size = New System.Drawing.Size(120, 13)
@@ -1308,7 +1208,7 @@ Partial Class Form1
         '
         'btnCallbackDMX
         '
-        Me.btnCallbackDMX.Location = New System.Drawing.Point(1226, 115)
+        Me.btnCallbackDMX.Location = New System.Drawing.Point(1227, 186)
         Me.btnCallbackDMX.Name = "btnCallbackDMX"
         Me.btnCallbackDMX.Size = New System.Drawing.Size(100, 23)
         Me.btnCallbackDMX.TabIndex = 453
@@ -1317,11 +1217,11 @@ Partial Class Form1
         '
         'btnReadDMX
         '
-        Me.btnReadDMX.Location = New System.Drawing.Point(1100, 115)
+        Me.btnReadDMX.Location = New System.Drawing.Point(1101, 186)
         Me.btnReadDMX.Name = "btnReadDMX"
         Me.btnReadDMX.Size = New System.Drawing.Size(100, 23)
         Me.btnReadDMX.TabIndex = 452
-        Me.btnReadDMX.Text = "Read Once"
+        Me.btnReadDMX.Text = "Read Once*"
         Me.btnReadDMX.UseVisualStyleBackColor = True
         '
         'btnReadOnlyDMX
@@ -1336,7 +1236,7 @@ Partial Class Form1
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(1100, 498)
+        Me.Label37.Location = New System.Drawing.Point(1101, 88)
         Me.Label37.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(106, 13)
@@ -1346,7 +1246,7 @@ Partial Class Form1
         'lblDMXReadLength
         '
         Me.lblDMXReadLength.AutoSize = True
-        Me.lblDMXReadLength.Location = New System.Drawing.Point(1247, 478)
+        Me.lblDMXReadLength.Location = New System.Drawing.Point(1248, 68)
         Me.lblDMXReadLength.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDMXReadLength.Name = "lblDMXReadLength"
         Me.lblDMXReadLength.Size = New System.Drawing.Size(36, 13)
@@ -1355,7 +1255,7 @@ Partial Class Form1
         '
         'btnGetDMXReadLength
         '
-        Me.btnGetDMXReadLength.Location = New System.Drawing.Point(1100, 473)
+        Me.btnGetDMXReadLength.Location = New System.Drawing.Point(1101, 63)
         Me.btnGetDMXReadLength.Name = "btnGetDMXReadLength"
         Me.btnGetDMXReadLength.Size = New System.Drawing.Size(142, 22)
         Me.btnGetDMXReadLength.TabIndex = 471
@@ -1412,12 +1312,205 @@ Partial Class Form1
         Me.BtnTimeStamp.Text = "Time Stamp Off"
         Me.BtnTimeStamp.UseVisualStyleBackColor = True
         '
+        'label40
+        '
+        Me.label40.AutoSize = True
+        Me.label40.Location = New System.Drawing.Point(240, 222)
+        Me.label40.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label40.Name = "label40"
+        Me.label40.Size = New System.Drawing.Size(24, 13)
+        Me.label40.TabIndex = 486
+        Me.label40.Text = "DI2"
+        '
+        'label39
+        '
+        Me.label39.AutoSize = True
+        Me.label39.Location = New System.Drawing.Point(271, 222)
+        Me.label39.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label39.Name = "label39"
+        Me.label39.Size = New System.Drawing.Size(24, 13)
+        Me.label39.TabIndex = 485
+        Me.label39.Text = "DI3"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(302, 222)
+        Me.Label42.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(24, 13)
+        Me.Label42.TabIndex = 484
+        Me.Label42.Text = "DI4"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(209, 222)
+        Me.Label43.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(24, 13)
+        Me.Label43.TabIndex = 483
+        Me.Label43.Text = "DI1"
+        '
+        'btnDI1
+        '
+        Me.btnDI1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDI1.Location = New System.Drawing.Point(212, 204)
+        Me.btnDI1.Name = "btnDI1"
+        Me.btnDI1.Size = New System.Drawing.Size(15, 15)
+        Me.btnDI1.TabIndex = 482
+        Me.btnDI1.Tag = "0"
+        Me.btnDI1.UseVisualStyleBackColor = True
+        '
+        'btnDI2
+        '
+        Me.btnDI2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDI2.Location = New System.Drawing.Point(243, 204)
+        Me.btnDI2.Name = "btnDI2"
+        Me.btnDI2.Size = New System.Drawing.Size(15, 15)
+        Me.btnDI2.TabIndex = 481
+        Me.btnDI2.Tag = "0"
+        Me.btnDI2.UseVisualStyleBackColor = True
+        '
+        'btnDI4
+        '
+        Me.btnDI4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDI4.Location = New System.Drawing.Point(305, 204)
+        Me.btnDI4.Name = "btnDI4"
+        Me.btnDI4.Size = New System.Drawing.Size(15, 15)
+        Me.btnDI4.TabIndex = 480
+        Me.btnDI4.Tag = "0"
+        Me.btnDI4.UseVisualStyleBackColor = True
+        '
+        'btnDI3
+        '
+        Me.btnDI3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDI3.Location = New System.Drawing.Point(273, 204)
+        Me.btnDI3.Name = "btnDI3"
+        Me.btnDI3.Size = New System.Drawing.Size(15, 15)
+        Me.btnDI3.TabIndex = 479
+        Me.btnDI3.Tag = "0"
+        Me.btnDI3.UseVisualStyleBackColor = True
+        '
+        'Label44
+        '
+        Me.Label44.Location = New System.Drawing.Point(1019, 26)
+        Me.Label44.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(76, 41)
+        Me.Label44.TabIndex = 487
+        Me.Label44.Text = "(0-512, where 0=no transmission)"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(1101, 212)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(106, 13)
+        Me.Label18.TabIndex = 488
+        Me.Label18.Text = "*requires callback on"
+        '
+        'ListBox4
+        '
+        Me.ListBox4.FormattingEnabled = True
+        Me.ListBox4.HorizontalScrollbar = True
+        Me.ListBox4.Location = New System.Drawing.Point(1227, 233)
+        Me.ListBox4.Name = "ListBox4"
+        Me.ListBox4.Size = New System.Drawing.Size(100, 277)
+        Me.ListBox4.TabIndex = 489
+        '
+        'button3
+        '
+        Me.button3.Location = New System.Drawing.Point(1227, 515)
+        Me.button3.Margin = New System.Windows.Forms.Padding(2)
+        Me.button3.Name = "button3"
+        Me.button3.Size = New System.Drawing.Size(93, 22)
+        Me.button3.TabIndex = 491
+        Me.button3.Text = "Clear Listbox"
+        Me.button3.UseVisualStyleBackColor = True
+        '
+        'button2
+        '
+        Me.button2.Location = New System.Drawing.Point(1100, 515)
+        Me.button2.Margin = New System.Windows.Forms.Padding(2)
+        Me.button2.Name = "button2"
+        Me.button2.Size = New System.Drawing.Size(93, 22)
+        Me.button2.TabIndex = 490
+        Me.button2.Text = "Clear Listbox"
+        Me.button2.UseVisualStyleBackColor = True
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(1153, 158)
+        Me.Label34.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(129, 13)
+        Me.Label34.TabIndex = 493
+        Me.Label34.Text = "Enter end address (0-511)"
+        '
+        'txtReadEndAdd
+        '
+        Me.txtReadEndAdd.Location = New System.Drawing.Point(1104, 155)
+        Me.txtReadEndAdd.Name = "txtReadEndAdd"
+        Me.txtReadEndAdd.Size = New System.Drawing.Size(44, 20)
+        Me.txtReadEndAdd.TabIndex = 492
+        Me.txtReadEndAdd.Text = "8"
+        '
+        'lblSiliconGeneratedID
+        '
+        Me.lblSiliconGeneratedID.AutoSize = True
+        Me.lblSiliconGeneratedID.Location = New System.Drawing.Point(1180, 599)
+        Me.lblSiliconGeneratedID.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblSiliconGeneratedID.Name = "lblSiliconGeneratedID"
+        Me.lblSiliconGeneratedID.Size = New System.Drawing.Size(99, 13)
+        Me.lblSiliconGeneratedID.TabIndex = 531
+        Me.lblSiliconGeneratedID.Text = "Silicon Generate ID"
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(1087, 576)
+        Me.Label49.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(128, 13)
+        Me.Label49.TabIndex = 530
+        Me.Label49.Text = "Read Silicon Generate ID"
+        '
+        'btnSiliconGeneratedID
+        '
+        Me.btnSiliconGeneratedID.Location = New System.Drawing.Point(1100, 594)
+        Me.btnSiliconGeneratedID.Name = "btnSiliconGeneratedID"
+        Me.btnSiliconGeneratedID.Size = New System.Drawing.Size(75, 23)
+        Me.btnSiliconGeneratedID.TabIndex = 529
+        Me.btnSiliconGeneratedID.Text = "Read ID"
+        Me.btnSiliconGeneratedID.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1339, 755)
+        Me.ClientSize = New System.Drawing.Size(1371, 755)
+        Me.Controls.Add(Me.lblSiliconGeneratedID)
+        Me.Controls.Add(Me.Label49)
+        Me.Controls.Add(Me.btnSiliconGeneratedID)
+        Me.Controls.Add(Me.Label34)
+        Me.Controls.Add(Me.txtReadEndAdd)
+        Me.Controls.Add(Me.button3)
+        Me.Controls.Add(Me.button2)
+        Me.Controls.Add(Me.ListBox4)
+        Me.Controls.Add(Me.Label18)
+        Me.Controls.Add(Me.Label44)
+        Me.Controls.Add(Me.label40)
+        Me.Controls.Add(Me.label39)
+        Me.Controls.Add(Me.Label42)
+        Me.Controls.Add(Me.Label43)
+        Me.Controls.Add(Me.btnDI1)
+        Me.Controls.Add(Me.btnDI2)
+        Me.Controls.Add(Me.btnDI4)
+        Me.Controls.Add(Me.btnDI3)
         Me.Controls.Add(Me.BtnTimeStampOn)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.lblDeltaTime)
@@ -1426,15 +1519,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.lblDMXReadLength)
         Me.Controls.Add(Me.btnGetDMXReadLength)
-        Me.Controls.Add(Me.label34)
-        Me.Controls.Add(Me.lblRead8)
-        Me.Controls.Add(Me.lblRead7)
-        Me.Controls.Add(Me.lblRead6)
-        Me.Controls.Add(Me.lblRead5)
-        Me.Controls.Add(Me.lblRead4)
-        Me.Controls.Add(Me.lblRead3)
-        Me.Controls.Add(Me.lblRead2)
-        Me.Controls.Add(Me.lblRead1)
         Me.Controls.Add(Me.label35)
         Me.Controls.Add(Me.txtReadStartAdd)
         Me.Controls.Add(Me.listBox3)
@@ -1503,7 +1587,6 @@ Partial Class Form1
         Me.Controls.Add(Me.txtManualData2)
         Me.Controls.Add(Me.txtManualData1)
         Me.Controls.Add(Me.lblDMXLength)
-        Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.txtSetDMXLength)
         Me.Controls.Add(Me.btnGetDMXLength)
         Me.Controls.Add(Me.btnSetDMXLength)
@@ -1605,7 +1688,6 @@ Partial Class Form1
     Private WithEvents txtManualData2 As System.Windows.Forms.TextBox
     Private WithEvents txtManualData1 As System.Windows.Forms.TextBox
     Private WithEvents lblDMXLength As System.Windows.Forms.Label
-    Private WithEvents Label18 As System.Windows.Forms.Label
     Private WithEvents txtSetDMXLength As System.Windows.Forms.TextBox
     Private WithEvents btnGetDMXLength As System.Windows.Forms.Button
     Private WithEvents btnSetDMXLength As System.Windows.Forms.Button
@@ -1653,15 +1735,6 @@ Partial Class Form1
     Private WithEvents txtManualData6 As System.Windows.Forms.TextBox
     Private WithEvents txtManualData5 As System.Windows.Forms.TextBox
     Private WithEvents txtManualData4 As System.Windows.Forms.TextBox
-    Private WithEvents label34 As System.Windows.Forms.Label
-    Private WithEvents lblRead8 As System.Windows.Forms.Label
-    Private WithEvents lblRead7 As System.Windows.Forms.Label
-    Private WithEvents lblRead6 As System.Windows.Forms.Label
-    Private WithEvents lblRead5 As System.Windows.Forms.Label
-    Private WithEvents lblRead4 As System.Windows.Forms.Label
-    Private WithEvents lblRead3 As System.Windows.Forms.Label
-    Private WithEvents lblRead2 As System.Windows.Forms.Label
-    Private WithEvents lblRead1 As System.Windows.Forms.Label
     Private WithEvents label35 As System.Windows.Forms.Label
     Private WithEvents txtReadStartAdd As System.Windows.Forms.TextBox
     Private WithEvents listBox3 As System.Windows.Forms.ListBox
@@ -1681,5 +1754,23 @@ Partial Class Form1
     Private WithEvents lblDeltaTime As System.Windows.Forms.Label
     Private WithEvents lblAbsTime As System.Windows.Forms.Label
     Private WithEvents BtnTimeStamp As System.Windows.Forms.Button
+    Private WithEvents label40 As System.Windows.Forms.Label
+    Private WithEvents label39 As System.Windows.Forms.Label
+    Private WithEvents Label42 As System.Windows.Forms.Label
+    Private WithEvents Label43 As System.Windows.Forms.Label
+    Private WithEvents btnDI1 As System.Windows.Forms.Button
+    Private WithEvents btnDI2 As System.Windows.Forms.Button
+    Private WithEvents btnDI4 As System.Windows.Forms.Button
+    Private WithEvents btnDI3 As System.Windows.Forms.Button
+    Private WithEvents Label44 As System.Windows.Forms.Label
+    Private WithEvents Label18 As System.Windows.Forms.Label
+    Private WithEvents ListBox4 As System.Windows.Forms.ListBox
+    Private WithEvents button3 As System.Windows.Forms.Button
+    Private WithEvents button2 As System.Windows.Forms.Button
+    Private WithEvents Label34 As System.Windows.Forms.Label
+    Private WithEvents txtReadEndAdd As System.Windows.Forms.TextBox
+    Private WithEvents lblSiliconGeneratedID As System.Windows.Forms.Label
+    Private WithEvents Label49 As System.Windows.Forms.Label
+    Private WithEvents btnSiliconGeneratedID As System.Windows.Forms.Button
 
 End Class

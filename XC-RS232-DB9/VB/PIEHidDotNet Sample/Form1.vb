@@ -38,13 +38,14 @@
                 SetText("Switches incoming data")
             End If
 
-            If (data(2) = &HD9 And data(3) = 1) Then
+            Dim val2 As Byte = CByte((data(3) And 64))
+            If (data(2) = &HD9 And val2 = 64) Then
                 c = LblCTS
-                SetText("CTS Wait")
+                SetText("CTS Clear")
             End If
             If (data(2) = &HD9 And data(3) = 0) Then
                 c = LblCTS
-                SetText("CTS Clear")
+                SetText("CTS Wait")
             End If
 
             If data(7) And 1 Then
@@ -323,6 +324,7 @@
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+
     End Sub
 
    

@@ -62,11 +62,11 @@ BEGIN
     LTEXT           "Data (hex):",IDC_STATIC,7,92,77,9
     PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,167,57,17
     EDITTEXT        IDC_EDIT1,69,168,37,14,ES_AUTOHSCROLL
-    LTEXT           "Write Unit ID:",IDC_STATIC,7,154,111,10
+    LTEXT           "Write Unit ID:",IDC_STATIC,7,157,111,10
     PUSHBUTTON      "Clear Listbox",IDC_CLEAR,477,87,61,14
     PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,7,369,73,17
     PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,242,73,17
-    LTEXT           "Keyboard Reflector:",IDC_STATIC,7,353,146,9
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,7,359,146,9
     LTEXT           "Descriptor:",IDC_STATIC,7,231,63,9
     PUSHBUTTON      "Generate Data",IDC_GENERATE,7,279,73,17
     LTEXT           "Stimulate a general incoming data report or a custom report:",IDC_STATIC,7,268,190,11
@@ -74,11 +74,11 @@ BEGIN
     LTEXT           "CapsLck",IDC_KEYSTATES2,305,84,50,13
     LTEXT           "ScrLck",IDC_KEYSTATES3,361,84,50,13
     LTEXT           "unit id",IDC_UNITID3,116,170,30,12
-    LTEXT           "LEDs and Outputs:",IDC_STATIC,7,199,111,10
-    CONTROL         "Green",IDC_CHKGREEN,"Button",BS_AUTO3STATE | WS_TABSTOP,7,214,35,10
+    LTEXT           "LEDs and Outputs:",IDC_STATIC,7,196,111,10
+    CONTROL         "Green",IDC_CHKGREEN,"Button",BS_AUTO3STATE | WS_TABSTOP,7,207,35,10
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,279,73,17
     EDITTEXT        IDC_EDIT2,101,369,92,14,ES_AUTOHSCROLL
-    LTEXT           "Write Version (requires reboot and re-enumerate):",IDC_STATIC,7,310,192,9
+    LTEXT           "Write Version (requires reboot and re-enumerate):",IDC_STATIC,7,314,192,9
     PUSHBUTTON      "Write Version",IDC_Version,7,323,73,17
     EDITTEXT        IDC_TxtVersion,83,323,40,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Set DMX Length Manually",IDC_BTNSetDMXLength,283,372,91,18
@@ -86,14 +86,14 @@ BEGIN
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,72,66,14
     LTEXT           "-",IDC_LblVersion,128,325,39,8
     LTEXT           "Do this first",IDC_STATIC,63,6,36,8
-    LTEXT           "Dongle",IDC_STATIC,7,397,24,8
+    LTEXT           "Dongle",IDC_STATIC,7,402,24,8
     PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,7,413,73,17
     PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,87,413,73,17
     LTEXT           "Pass/Fail",IDC_PASSFAIL,167,420,111,8
     LISTBOX         IDC_LIST1,7,25,246,32,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Transmit DMX (see code for details):",IDC_STATIC,283,252,146,9
     EDITTEXT        IDC_EDITStartAddr,286,265,37,14,ES_AUTOHSCROLL
-    LTEXT           "Enter start address (1-512)",IDC_STATIC,326,266,94,9
+    LTEXT           "Enter start address (1-511)",IDC_STATIC,326,266,94,9
     PUSHBUTTON      "Load DMX Buffer",IDC_BTNLoadDMX,283,335,79,18
     EDITTEXT        IDC_EDITData1,285,313,40,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDITData2,334,313,40,14,ES_AUTOHSCROLL
@@ -102,15 +102,15 @@ BEGIN
     LTEXT           "Data 1",IDC_STATIC,285,303,41,9
     LTEXT           "Data 2",IDC_STATIC,335,303,41,9
     LTEXT           "Data 3",IDC_STATIC,385,303,41,9
-    CONTROL         "Red",IDC_CHKRed,"Button",BS_AUTO3STATE | WS_TABSTOP,51,214,29,10
-    CONTROL         "1",IDC_CHKOUT1,"Button",BS_AUTO3STATE | WS_TABSTOP,89,214,20,10
-    CONTROL         "2",IDC_CHKOUT2,"Button",BS_AUTO3STATE | WS_TABSTOP,118,214,20,10
-    CONTROL         "3",IDC_CHKOUT3,"Button",BS_AUTO3STATE | WS_TABSTOP,147,214,20,10
-    CONTROL         "4",IDC_CHKOUT4,"Button",BS_AUTO3STATE | WS_TABSTOP,176,214,20,10
+    CONTROL         "Red",IDC_CHKRed,"Button",BS_AUTO3STATE | WS_TABSTOP,46,207,29,10
+    CONTROL         "Pin 1",IDC_CHKOUT1,"Button",BS_AUTO3STATE | WS_TABSTOP,79,207,32,10
+    CONTROL         "Pin 2",IDC_CHKOUT2,"Button",BS_AUTO3STATE | WS_TABSTOP,115,207,32,10
+    CONTROL         "Pin 3",IDC_CHKOUT3,"Button",BS_AUTO3STATE | WS_TABSTOP,151,207,32,10
+    CONTROL         "Pin 4",IDC_CHKOUT4,"Button",BS_AUTO3STATE | WS_TABSTOP,187,207,32,10
     EDITTEXT        IDC_EDITSpan,286,284,37,14,ES_AUTOHSCROLL
     LTEXT           "Enter span",IDC_STATIC,326,286,94,9
     EDITTEXT        IDC_EDITDMXLength,378,374,40,14,ES_AUTOHSCROLL
-    LTEXT           "(0-512)",IDC_STATIC25,421,377,40,8
+    LTEXT           "(0-512, where 0=no transmission)",IDC_STATIC25,422,374,69,19
     PUSHBUTTON      "Get DMX Length",IDC_BTNGetDMXLength,283,393,91,18
     LTEXT           "Static",IDC_LBLDMXLength,381,398,19,8
     PUSHBUTTON      "Clear DMX Buffer",IDC_BTNClearDMX,284,415,91,18
@@ -133,7 +133,7 @@ BEGIN
     PUSHBUTTON      "Clear for Read",IDC_DMXConfigRead,505,176,60,17
     LTEXT           "Configure to Read DMX",IDC_STATIC,505,164,146,9
     EDITTEXT        IDC_EDITReadStartAddr,506,207,37,14,ES_AUTOHSCROLL
-    LTEXT           "Enter start address (0-511)",IDC_UNITID4,553,209,101,12
+    LTEXT           "Enter start address (0-512, where 0=no transmission)",IDC_UNITID4,548,206,137,15
     PUSHBUTTON      "Read Once",IDC_DMXReadOnce,505,228,60,17
     LTEXT           "or",IDC_UNITID5,566,231,11,12
     PUSHBUTTON      "Notification",IDC_DMXNotification,577,228,60,17

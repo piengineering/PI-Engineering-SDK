@@ -1280,17 +1280,17 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 	}
 	
 	//CTS
-	if (pData[2]==0xd9 && pData[3]==1) //received message from connected serial device to wait
+	if ((pData[2]==0xd9) && ((pData[3]&0x40)==0x40)) //received message from connected serial device to wait
 	{
 		hList = GetDlgItem(hDialog, IDC_CTS);
 		if (hList == NULL) return 0;
-		SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"CTS Wait");
+		SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"CTS Clear");
 	}
 	else if (pData[2]==0xd9 && pData[3]==0)
 	{
 		hList = GetDlgItem(hDialog, IDC_CTS);
 		if (hList == NULL) return 0;
-		SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"CTS Clear");
+		SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"CTS Wait");
 	}
 	
 	//error handling

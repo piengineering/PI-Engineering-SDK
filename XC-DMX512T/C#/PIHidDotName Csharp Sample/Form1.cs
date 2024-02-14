@@ -27,7 +27,7 @@ namespace PIHidDotName_Csharp_Sample
         Label[] DataLabels = new Label[8];
         TextBox[] DataTextBoxes = new TextBox[8];
 
-        Label[] ReadLabels = new Label[8];
+       
        
         //for thread-safe way to call a Windows Forms control
         // This delegate enables asynchronous calls for setting
@@ -46,7 +46,7 @@ namespace PIHidDotName_Csharp_Sample
 
         bool donttrigger = false;
 
-        int startaddress = 0; //for reading DMX data
+        //int startaddress = 0; //for reading DMX data
 
         public Form1()
         {
@@ -67,13 +67,7 @@ namespace PIHidDotName_Csharp_Sample
                         int j = Convert.ToInt32(k);
                         DataLabels[j] = p;
                     }
-                    else if (cl.Name.Contains("lblRead"))
-                    {
-                        Label p = (Label)cl;
-                        string k = p.Tag.ToString();
-                        int j = Convert.ToInt32(k);
-                        ReadLabels[j] = p;
-                    }
+                   
                 }
                 else if (cl is TextBox)
                 {
@@ -91,7 +85,7 @@ namespace PIHidDotName_Csharp_Sample
             txtManualStartAdd.Text = "1";
             txtManualSpan.Text = "0";
             txtManualSpan.Text = "3";
-            int sopt = 0;
+            
         }
 
         //data callback    
@@ -148,7 +142,7 @@ namespace PIHidDotName_Csharp_Sample
                         c = LblScrLk;
                         SetText("ScrLock: off");
                     }
-                    //jacks
+                    //jacks and digital inputs
                     if (data[2] < 3)
                     {
                         int maxcols = 2;
@@ -249,6 +243,46 @@ namespace PIHidDotName_Csharp_Sample
                                             btnSW4L.BackColor = SystemColors.ButtonFace;
                                         }
                                         break;
+                                    case 8:
+                                        if (state == 1)
+                                        {
+                                            btnDI1.BackColor = Color.Lime;
+                                        }
+                                        else if (state == 3)
+                                        {
+                                            btnDI1.BackColor = SystemColors.ButtonFace;
+                                        }
+                                        break;
+                                    case 9:
+                                        if (state == 1)
+                                        {
+                                            btnDI2.BackColor = Color.Lime;
+                                        }
+                                        else if (state == 3)
+                                        {
+                                            btnDI2.BackColor = SystemColors.ButtonFace;
+                                        }
+                                        break;
+                                    case 10:
+                                        if (state == 1)
+                                        {
+                                            btnDI3.BackColor = Color.Lime;
+                                        }
+                                        else if (state == 3)
+                                        {
+                                            btnDI3.BackColor = SystemColors.ButtonFace;
+                                        }
+                                        break;
+                                    case 11:
+                                        if (state == 1)
+                                        {
+                                            btnDI4.BackColor = Color.Lime;
+                                        }
+                                        else if (state == 3)
+                                        {
+                                            btnDI4.BackColor = SystemColors.ButtonFace;
+                                        }
+                                        break;
                                 } //switch (keynum)
                             } //for maxrows
                         } //for maxcols
@@ -294,13 +328,12 @@ namespace PIHidDotName_Csharp_Sample
                 else if (data[2] == 147) //0x93 Incoming DMX Data via Start Notification
                 {
                     int count = data[5]; //number addresses to follow, always 1 in this case
-                    int address = data[4] * 256 + data[3]; //address of changed DMX data
-                    int thislabel = address - startaddress;
-                    if (ReadLabels[thislabel] != null)
-                    {
-                        c = ReadLabels[thislabel];
-                        SetText("Addr: " + address.ToString() + "="+data[6].ToString());
-                    }
+                    int thisaddress = data[4] * 256 + data[3]; //address of changed DMX data
+                    thisListBox = listBox4;
+                    //DMX Read Length
+                    int readlength= data[8] * 256 + data[7]; //address of changed DMX data
+                    c = this.lblDMXReadLength;
+                    SetText(readlength.ToString());
 
                     //time stamp info 4 bytes-Note if the time stamp is the same, change in DMX value occurred simultaneously
                     long absolutetime = 16777216 * data[32] + 65536 * data[33] + 256 * data[34] + data[35];  //ms
@@ -311,6 +344,12 @@ namespace PIHidDotName_Csharp_Sample
                     c = this.lblDeltaTime;
                     this.SetText("delta time: " + deltatime + " ms");
                     saveabsolutetime = absolutetime;
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        output = "Addr: " + (thisaddress + i).ToString() + " = " + data[6 + i].ToString() +" changed at "+absolutetime2.ToString();
+                        this.SetListBox(output);
+                    }
                 }
                 else if (data[2] == 163) //0xA3 DMX Write Length
                 {
@@ -424,13 +463,14 @@ namespace PIHidDotName_Csharp_Sample
             selecteddevice = cbotodevice[CboDevices.SelectedIndex];
             wData = new byte[devices[selecteddevice].WriteLength];//size write array 
             lastdata = new byte[devices[selecteddevice].ReadLength + 1];
+            LblVersion.Text = devices[selecteddevice].Version.ToString();
         }
 
         private void BtnCallback_Click(object sender, EventArgs e)
         {
             //setup callback if there are devices found for each device found
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 for (int i = 0; i < CboDevices.Items.Count; i++)
                 {
@@ -446,13 +486,14 @@ namespace PIHidDotName_Csharp_Sample
         {
             listBox1.Items.Clear();
 
-            devices = PIEHid32Net.PIEDevice.EnumeratePIE();
+            
         }
 
         private void BtnEnumerate_Click(object sender, EventArgs e)
         {
             EnumerationSuccess = false;
             CboDevices.Items.Clear();
+            CboDevices.Text = "";
             cbotodevice = new int[128]; //128=max # of devices
             //enumerate and setupinterfaces for all devices
             devices = PIEHid32Net.PIEDevice.EnumeratePIE();
@@ -478,20 +519,10 @@ namespace PIHidDotName_Csharp_Sample
                         switch (devices[i].Pid)
                         {
                             case 1225:
-                                CboDevices.Items.Add("XC-DMX512T-RJ45 (" + devices[i].Pid +")" +" version="+devices[i].Version.ToString());
+                                CboDevices.Items.Add("XC-DMX512T (" + devices[i].Pid +")");
                                 cbotodevice[cbocount] = i;
                                 cbocount++;
                                 break;
-                            case 1324:
-                                CboDevices.Items.Add("XC-DMX512T-ST (" + devices[i].Pid + ")");
-                                cbotodevice[cbocount] = i;
-                                cbocount++;
-                                break;
-                            //case 1479:
-                            //    CboDevices.Items.Add("XC-DMX512T-PSoC (" + devices[i].Pid + ")");
-                            //    cbotodevice[cbocount] = i;
-                            //    cbocount++;
-                            //    break;
                             default:
                                 CboDevices.Items.Add("Unknown Device (" + devices[i].Pid+")");
                                 cbotodevice[cbocount] = i;
@@ -510,6 +541,8 @@ namespace PIHidDotName_Csharp_Sample
                 wData = new byte[devices[selecteddevice].WriteLength];//go ahead and setup for write
                 //fill in version
                 LblVersion.Text = devices[selecteddevice].Version.ToString();
+                lblSiliconGeneratedID.Text = devices[selecteddevice].SerialNumberString;
+                toolStripStatusLabel1.Text = devices[selecteddevice].ProductString + " found";
                 EnumerationSuccess = true;
                 CboDevices.SelectedIndex = 0; //does the descriptor not too so moved it down
                 this.Cursor = Cursors.Default;
@@ -519,7 +552,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnUnitID_Click(object sender, EventArgs e)
         {
             //Write Unit ID to the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -545,15 +578,10 @@ namespace PIHidDotName_Csharp_Sample
             }
         }
 
-        private void BtnJoyreflect_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void BtnDescriptor_Click(object sender, EventArgs e)
         {
             //Sending the command will make the device return information about it
-            if (CboDevices.SelectedIndex != -1 && devices[selecteddevice].ReadLength>0)
+            if (selecteddevice != -1 && devices[selecteddevice].ReadLength>0)
             {
                 //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later
                 bool savecallback = devices[selecteddevice].callNever;
@@ -603,10 +631,7 @@ namespace PIHidDotName_Csharp_Sample
                 //CboDevices.Items[CboDevices.SelectedIndex] =  "Unit ID: " + data[2].ToString();
               
                 LblUnitID.Text = data[1].ToString();
-                if (data[3] == 0) listBox2.Items.Add("PID #1");
-                else if (data[3] == 1) listBox2.Items.Add("PID #2"); //0=PID #1, 1=PID #2, 2=PID #3, 3=PID #4
-                else if (data[3] == 2) listBox2.Items.Add("PID #3");
-                else if (data[3] == 3) listBox2.Items.Add("PID #4");
+               
                 listBox2.Items.Add("Keymapstart=" + data[4].ToString());
                 listBox2.Items.Add("Layer2offset=" + data[5].ToString());
                 listBox2.Items.Add("SizeOfEEProm=" + (data[7] * 256 + data[6]).ToString());
@@ -618,26 +643,53 @@ namespace PIHidDotName_Csharp_Sample
                 {
                     greenled="On"; 
                 }
+                listBox2.Items.Add("Green LED=" + greenled);
                 String redled="Off";
                 if ((data[10] & 128) != 0)
                 {
                     redled="On"; 
                 }
-                listBox2.Items.Add("Green LED=" + greenled);
                 listBox2.Items.Add("Red LED=" + redled);
+
                 listBox2.Items.Add("Firmware Version=" + data[11].ToString());
-                
                 string temp = "PID=" + (data[13] * 256 + data[12]).ToString();
                 listBox2.Items.Add(temp);
                 //data[14] = internal
                 int MaxAddressToRead = 256 * data[16] + data[15]; //internal use only
-                listBox2.Items.Add("MaxAddressToRead= " + (MaxAddressToRead).ToString());
+                listBox2.Items.Add("MaxAddress= " + (MaxAddressToRead).ToString());
+
+                String digital1 = "Off";
+                if ((data[17] & 1) != 0)
+                {
+                    digital1 = "On";
+                }
+                listBox2.Items.Add("Digital Ouput 1=" + digital1);
+                String digital2 = "Off";
+                if ((data[17] & 2) != 0)
+                {
+                    digital2 = "On";
+                }
+                listBox2.Items.Add("Digital Ouput 2=" + digital2);
+                String digital3 = "Off";
+                if ((data[17] & 4) != 0)
+                {
+                    digital3 = "On";
+                }
+                listBox2.Items.Add("Digital Ouput 3=" + digital3);
+                String digital4 = "Off";
+                if ((data[17] & 8) != 0)
+                {
+                    digital4 = "On";
+                }
+                listBox2.Items.Add("Digital Ouput 4=" + digital4);
+
                 if (data[18] == 0) temp = "transmit";
                 else temp = "receive";
                 listBox2.Items.Add("Current mode="+temp);
                 if (data[19] == 0) temp = "transmit";
                 else temp = "receive";
                 listBox2.Items.Add("Default mode=" + temp);
+
                 devices[selecteddevice].callNever = savecallback;
             }
         }
@@ -649,7 +701,7 @@ namespace PIHidDotName_Csharp_Sample
             //the 3rd byte (Data Type) 2nd bit set.  If program switch is up byte 3 will be 2
             //and if it is pressed byte 3 will be 3.  This is useful for getting the initial state
             //or unit id of the device before it sends any data.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 devices[selecteddevice].callNever = false;
                 //write Unit ID given in the TxtSetUnitID box
@@ -693,7 +745,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkGreen_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte state = (byte) ChkGreen.CheckState;
                 
@@ -723,7 +775,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkRed_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte state = (byte)ChkRed.CheckState;
 
@@ -753,7 +805,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void chkDO1_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 byte state = (byte)chkDO1.CheckState;
@@ -784,7 +836,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void chkDO2_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte state = (byte)chkDO2.CheckState;
 
@@ -814,7 +866,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void chkDO3_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte state = (byte)chkDO3.CheckState;
 
@@ -844,7 +896,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void chkDO4_CheckStateChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte state = (byte)chkDO4.CheckState;
 
@@ -878,7 +930,7 @@ namespace PIHidDotName_Csharp_Sample
             //the 3rd byte (Data Type) set to 0xE0, the 4th byte set to the count given below when the command was sent
             //and the following bytes whatever the user wishes.  In this example we are send 3 bytes; 1, 2, 3
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 devices[selecteddevice].callNever = false;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -888,10 +940,14 @@ namespace PIHidDotName_Csharp_Sample
 
                 wData[0] = 0;
                 wData[1] = 224; //0xe0
-                wData[2] = 3; //count of bytes to follow
                 wData[3] = 1; //1st custom byte
                 wData[4] = 2; //2nd custom byte
                 wData[5] = 3; //3rd custom byte
+                for (int i = 0; i < 33; i++)
+                {
+                    wData[i+3] = (byte)(i + 1);
+                }
+               
 
                 int result=404;
 				while(result==404){result = devices[selecteddevice].WriteData(wData);}
@@ -910,7 +966,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Write version, this is a 2 byte number that is available on enumeration.  You must reboot the device to see the 
             //newly written version!
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -943,7 +999,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkSuppress_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 if (ChkSuppress.Checked == false)
                 {
@@ -966,7 +1022,7 @@ namespace PIHidDotName_Csharp_Sample
             //Sends native keyboard messages
             //Write some keys to the textbox, should be Abcd
             //send some hid codes to the textbox, these will be coming in on the native keyboard endpoint
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result;
                 textBox1.Focus();
@@ -1030,7 +1086,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnSetDongle_Click(object sender, EventArgs e)
         {
             //Use the Dongle feature to set a 4 byte code into the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //This routine is done once per unit by the developer prior to sale.
                 //Pick 4 numbers between 1 and 254.
@@ -1071,7 +1127,7 @@ namespace PIHidDotName_Csharp_Sample
             //Reads the secret key set in Set Key
             //This is done within the developer's application to check for the correct
             //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //check hardware
 
@@ -1090,16 +1146,17 @@ namespace PIHidDotName_Csharp_Sample
                 int K2 = 33;
                 int K3 = 243;
 
+                 K0 = 1;
+                 K1 = 2;
+                 K2 = 3;
+                 K3 = 4;
+
                 //randomn numbers, use different numbers every check, we use the time to generate some random numbers below
                 Random rnd = new Random();
                 int N0 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
                 int N1 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
                 int N2 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
                 int N3 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
-                N0 = 1;
-                N1 = 2;
-                N2 = 3;
-                N3 = 4;
 
                 PIEDevice.DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, out R0, out R1, out R2, out R3);
 
@@ -1171,16 +1228,16 @@ namespace PIHidDotName_Csharp_Sample
         {
             this.Cursor = Cursors.WaitCursor;
 
-            //initialize DMX - This will automatically set the DMX Length based on entered start address and span and initialize everything to 0
+            //initialize DMX - This will automatically set the DMX Length based on entered start address and number of bytes of bytes to load and initialize everything to 0
             //transmission begins at the moment this command is sent
-            int span = Convert.ToInt16(txtSpan.Text);
+            int ByteCount = Convert.ToInt16(txtSpan.Text); //number of bytes to load into the buffer
             int startaddress = Convert.ToInt16(txtStartAddress.Text);
-            if ((startaddress + span) > 511)
+            if ((startaddress + ByteCount) > 512)
             {
-                span = 512 - startaddress;
-                txtSpan.Text = span.ToString();
+                ByteCount = 512 - startaddress;
+                txtSpan.Text = ByteCount.ToString();
             }
-            //note if startaddress+span>512 then DMX Length will be set to 0 on the next DMX Load Buffer command
+            //note if startaddress+ByteCount>512 then DMX Length will be set to 512 on the next DMX Load Buffer command
             //transmission begins at the moment this command is sent
             for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
             {
@@ -1190,10 +1247,11 @@ namespace PIHidDotName_Csharp_Sample
             wData[1] = 161; //0xA1
             wData[2] = (byte)(startaddress);
             wData[3] = (byte)(startaddress>>8);
-            wData[4] = (byte)span;
-            for (int i = 0; i < span; i++)
+            wData[4] = (byte)ByteCount;
+            //ByteCount addresses are initialized with 0
+            for (int i = 0; i < ByteCount; i++)
             {
-                wData[5+i] = 0;
+                wData[5 + i] = 0;
             }
 
             int result = 404;
@@ -1209,7 +1267,7 @@ namespace PIHidDotName_Csharp_Sample
             }
             //DMX is transmitting all 0s at this point.
 
-            //Creates a trackbar, label, and textbox control for each "slot" or address based on start address and span.
+            //Creates a trackbar, label, and textbox control for each "slot" or address based on start address and ByteCount.
             //When the value of the trackbar control or corresponding textbox is changed, the DMX buffer is updated with the
             //new values, see sliders_ValueChanged event.
 
@@ -1233,7 +1291,7 @@ namespace PIHidDotName_Csharp_Sample
             sliders.Clear();
             sliderlabels.Clear();
             slidertextboxes.Clear();
-            for (int i = 0; i < span; i++)
+            for (int i = 0; i < ByteCount; i++)
             {
                 TrackBar thistrackbar = new TrackBar();
                 thistrackbar.Orientation = Orientation.Vertical;
@@ -1290,8 +1348,8 @@ namespace PIHidDotName_Csharp_Sample
             //When a value for one of the trackbars change the DMX buffer is updated here. 
             //The DMX buffer is always transmitting if the DMX Length is greater than 0. The DMX Length starts at 0 on bootup of the X-keys XK-DMT512T unit.
             //When the Load DMX Buffer command is sent, the DMX Length is checked, if it is too small then it is automatically increased to
-            //(start address + span). The DMX Length is never decreased since the user may have devices on upper addresses. The DMX Length
-            //can be manually changed using the Set DMX Length command and read with the Get DMX Length command.
+            //(start address + number of bytes to load). The DMX Length is never decreased since the user may have devices on upper addresses. The DMX Write Length
+            //can be manually changed using the Set DMX Length command and read with the Get DMX Write Length command.
             TrackBar thistrackbar = (TrackBar)sender;
             string tag = thistrackbar.Tag.ToString();
             //int startaddress = Convert.ToInt16(txtStartAddress.Text)+Convert.ToInt16(tag); //this also equals the label below the slider
@@ -1317,7 +1375,7 @@ namespace PIHidDotName_Csharp_Sample
             wData[1] = 161; //0xA1 Load DMX Buffer
             wData[2] = (byte)startaddress; //start addr lo
             wData[3] = (byte)(startaddress >> 8); //start addr hi
-            wData[4] = 1; //span
+            wData[4] = 1; //number of bytes to load
             wData[5] = (byte)thistrackbar.Value; //data
 
             int result = 404;
@@ -1375,14 +1433,14 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnSetDMXLength_Click(object sender, EventArgs e)
         {
-            //Set DMX Length manually. This may be desireable of the DMX Length was set to something higher than is currently desired.
-            //Otherwise the Load DMX Buffer command will automatically increase the DMX Length based on the start address and span it 
+            //Set DMX Write Length manually. This may be desireable of the DMX Write Length was set to something higher than is currently desired.
+            //Otherwise the Load DMX Buffer command will automatically increase the DMX Write Length based on the start address and number of bytes to load it 
             //receives.
             int length = -1;
             try
             {
                 length = Convert.ToInt16(txtSetDMXLength.Text);
-                if (length > 511) txtSetDMXLength.Text = "0";
+                if (length > 512) txtSetDMXLength.Text = "0";
                 if (length < 0) txtSetDMXLength.Text = "0";
             }
             catch
@@ -1442,7 +1500,7 @@ namespace PIHidDotName_Csharp_Sample
             //Loads the DMX buffer
             //Due to the size of the output report, only 31 addresses can be loaded at a time. 
             //Thus if one wanted to change all 512 addresses, it would require 17 (512/31 rounded up)Load DMX Buffer commands.
-            //The X-keys XC-DMX512T however is designed to only call the Load DMX Buffer command when required and only change
+            //The X-keys XC-DMX512T is designed to only call the Load DMX Buffer command when required and only change
             //an address or subset of addresses that need updating.
             //The X-keys XC-DMX512T is continuously transmitting the desired addresses up to the DMX Length.
             if (selecteddevice == -1) return;
@@ -1451,18 +1509,28 @@ namespace PIHidDotName_Csharp_Sample
             {
                 wData[j] = 0;
             }
-            int startaddress = Convert.ToInt16(txtManualStartAdd.Text);
-            int span = Convert.ToInt16(txtManualSpan.Text);
+            int startaddress = Convert.ToInt16(txtManualStartAdd.Text);  //0 not allowed, will load nothing if 0
+            if (startaddress == 0 || startaddress>511)
+            {
+                MessageBox.Show("Error","Invalid start address", MessageBoxButtons.OK);
+                return;
+            }
+            int bytecount = Convert.ToInt16(txtManualSpan.Text);
             int data1 = Convert.ToInt16(txtManualData1.Text);
             int data2 = Convert.ToInt16(txtManualData2.Text);
             int data3 = Convert.ToInt16(txtManualData3.Text);
+            int data4 = Convert.ToInt16(txtManualData4.Text);
+            int data5 = Convert.ToInt16(txtManualData5.Text);
+            int data6 = Convert.ToInt16(txtManualData6.Text);
+            int data7 = Convert.ToInt16(txtManualData7.Text);
+            int data8 = Convert.ToInt16(txtManualData8.Text);
             
             
             wData[0] = 0;
             wData[1] = 161; //0xA1 Load DMX Buffer
             wData[2] = (byte) startaddress; //start addr lo
             wData[3] = (byte) (startaddress>>8); //start addr hi
-            wData[4] = (byte) span; //span, max value 30 per WriteData
+            wData[4] = (byte) bytecount; //number of bytes to load, max value is 31 per WriteData
             wData[5] = (byte)data1; //data 1
             wData[6] = (byte)data2; //data 2
             wData[7] = (byte)data3; //data 3
@@ -1486,9 +1554,9 @@ namespace PIHidDotName_Csharp_Sample
             //Check to make sure the span is not too big based on the start address
             try
             {
-                int span = Convert.ToInt16(txtSpan.Text);
-                int startadd = Convert.ToInt16(txtStartAddress.Text);
-                if ((startadd + span) > 512)
+                int bytecount = Convert.ToInt16(txtSpan.Text); //number of bytes to load
+                int startadd = Convert.ToInt16(txtStartAddress.Text); //start address
+                if ((startadd + bytecount) > 512)
                 {
                     int recommend = 512 - startadd;
                     DialogResult result=MessageBox.Show("Span to big for start address, "+recommend.ToString()+" recommended", "Error", MessageBoxButtons.YesNo);
@@ -1504,7 +1572,7 @@ namespace PIHidDotName_Csharp_Sample
             }
             catch
             {
-                MessageBox.Show("Enter number between 1 and 512", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Enter number", "Error", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -1512,21 +1580,21 @@ namespace PIHidDotName_Csharp_Sample
         private void txtManualStartAdd_TextChanged(object sender, EventArgs e)
         {
             int startadd = Convert.ToInt16(txtManualStartAdd.Text);
-            int span = Convert.ToInt16(txtManualSpan.Text);
-            if ((startadd + span) > 512)
+            int bytecount = Convert.ToInt16(txtManualSpan.Text);
+            if ((startadd + bytecount) > 512)
             {
-                MessageBox.Show("(Start address + span) > 512", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("(Start address + number of bytes to load) > 512", "Error", MessageBoxButtons.OK);
             }
-            if (span > 30)
+            if (bytecount > 31)
             {
-                MessageBox.Show("Span > 30, multiple WriteData commands required", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("number of bytes to load > 31, multiple WriteData commands required", "Error", MessageBoxButtons.OK);
             }
             for (int i = 0; i < 8; i++)
             {
                 DataLabels[i].Text = "unused";
                 DataTextBoxes[i].Enabled = false;
             }
-            for (int i = 0; i < span; i++)
+            for (int i = 0; i < bytecount; i++)
             {
                 DataLabels[i].Text = "Data 1 - addr: " + (startadd + i).ToString();
                 DataTextBoxes[i].Enabled = true;
@@ -1537,21 +1605,21 @@ namespace PIHidDotName_Csharp_Sample
         private void txtManualSpan_TextChanged(object sender, EventArgs e)
         {
             int startadd = Convert.ToInt16(txtManualStartAdd.Text);
-            int span = Convert.ToInt16(txtManualSpan.Text);
-            if ((startadd + span) > 512)
+            int bytecount = Convert.ToInt16(txtManualSpan.Text);
+            if ((startadd + bytecount) > 512)
             {
                 MessageBox.Show("(Start address + span) > 512", "Error", MessageBoxButtons.OK);
             }
-            if (span > 30)
+            if (bytecount > 31)
             {
-                MessageBox.Show("Span > 30, multiple WriteData commands required", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Span > 31, multiple WriteData commands required", "Error", MessageBoxButtons.OK);
             }
             for (int i = 0; i < 8; i++)
             {
                 DataLabels[i].Text = "unused";
                 DataTextBoxes[i].Enabled = false;
             }
-            for (int i = 0; i < span; i++)
+            for (int i = 0; i < bytecount; i++)
             {
                 DataLabels[i].Text = "Data "+(i+1).ToString() + " - addr: " + (startadd + i).ToString();
                 DataTextBoxes[i].Enabled = true;
@@ -1560,6 +1628,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnDMXOff_Click(object sender, EventArgs e)
         {
+            
             if (selecteddevice == -1) return;
             for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
             {
@@ -1567,7 +1636,7 @@ namespace PIHidDotName_Csharp_Sample
             }
 
             wData[0] = 0;
-            wData[1] = 164; //0xA4 Clear DMX Buffer
+            wData[1] = 164; //0xA4 Clear DMX Buffer, sets all values to 0
           
             int result = 404;
 
@@ -1584,10 +1653,8 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnReadOnlyDMX_Click(object sender, EventArgs e)
         {
-            //Send this command to setup the XC-DMX512T to receive DMX data instead of transmit. This is the same as clicking Set mode Receive (btnModeRec).
-            //If the default mode of the XC-DMX512T has been previously set to receive then this is not necessary.
-            //Data can be read in 2 ways; reading 20 bytes from a specified start address (Read Once) or registering to receive notification of any changes (Start Notification).
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            //This command to sets up the XC-DMX512T to receive DMX data instead of transmit, sets the DMX Write Length to 0, sets the DMX Read Length, and clears the DMX read and write buffers. 
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1612,10 +1679,10 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnReadDMX_Click(object sender, EventArgs e)
         {
+            //Valid only if device DMX mode set to receive
             //Sending this command will return the current values for 20 bytes of DMX data, starting at the desired start address
-            //In this sample, the results will return in the callback (HandlePIEHidData), however the commented out code below shows how to read the 
-            //data directly without using the callback.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            //In this sample, the results will return in the callback (HandlePIEHidData)
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 listBox3.Items.Clear(); //clear for new results
                 
@@ -1641,62 +1708,16 @@ namespace PIHidDotName_Csharp_Sample
                     toolStripStatusLabel1.Text = "Write Success - Read DMX data";
                 }
 
-                //This code demonstrates how to directly read the returned results without using the callback
-                /*
-                bool savecallback = devices[selecteddevice].callNever;  //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later
-                devices[selecteddevice].callNever = true;
-                byte[] data = null;
-                int countout = 0;
-                data = new byte[80];
-                data[1] = 0;
-                int ret = devices[selecteddevice].BlockingReadData(ref data, 100);
-                while ((ret == 0 && data[2] != 165) || ret == 304)
-                {
-                    if (ret == 304)
-                    {
-                        // Didn't get any data for 100ms, increment the countout extra
-                        countout += 99;
-                    }
-                    countout++;
-
-                    if (countout > 1000) //increase this if have to check more than once
-                    {
-                        //System.Media.SystemSounds.Beep.Play();
-                        break;
-                    }
-                    ret = devices[selecteddevice].BlockingReadData(ref data, 100);
-                }
-                //returned values in data
-                //data[1]=unit id
-                //data[2]=165
-                //data[3]=start address lo (LSB), this equals wData[2] above
-                //data[4]=start address hi (MSB), this equals wData[3] above
-                //data[5]=count, normally 20 but could be less is start address is over 491
-                //data[6]=start of DMX data, this first byte is usually 0
-                //data[7]=value of start address
-                //data[8]=value of start address + 1
-                //data[9]=value of start address + 2
-                //etc.
-                //display results in listBox3
-                int count = data[5]; //number address reported
-                int startaddress = data[4] * 256 + data[3]; //start address
-                string output="";    
-                for (int i = 0; i < count; i++)
-                {
-                    output = "Addr: " +(startaddress+i).ToString()+ " = "+ data[6 + i].ToString();
-                    this.SetListBox(output);
-                }
                 
-                //Turn back on callback, if it was on
-                devices[selecteddevice].callNever = savecallback;
-                
-                */
             }
         }
 
         private void btnCallbackDMX_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            //Valid only if device DMX mode set to receive
+            //Setup to receive notification of DMX changes in desired range of addresses
+                
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte onoff = 0;
                 if (btnCallbackDMX.Text.Contains("Start") == true)
@@ -1710,9 +1731,8 @@ namespace PIHidDotName_Csharp_Sample
                     btnCallbackDMX.Text = "Start Notification*";
                 }   
 
-                //setup to receive notification of DMX changes in desired range. This sample is looking for changes at addresses 1 to 8. If want to be notified of all DMX changes then use 0 to 511
-                startaddress=1; //this is global so know what it is when reading the data back in HandlePIEHidData
-                int endaddress=8;
+                int startaddress = Convert.ToInt16(txtReadStartAdd.Text);
+                int endaddress = Convert.ToInt16(txtReadEndAdd.Text);  
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1726,17 +1746,6 @@ namespace PIHidDotName_Csharp_Sample
                 wData[4] = (byte)(startaddress>>8); //start address hi (MSB)
                 wData[5] = (byte)endaddress; //end address lo (LSB)
                 wData[6] = (byte)(endaddress>>8); //end address hi (MSB)
-
-                //setup the labels to display results
-                int numberofaddresses=endaddress-startaddress+1;
-                for (int i=0;i<numberofaddresses;i++)
-                {
-                    if (ReadLabels[i]!=null)
-                    {
-                        string thisaddress = "Addr: "+(startaddress+i).ToString();
-                        ReadLabels[i].Text = thisaddress;
-                    }
-                }
 
                 int result = 404;
                 while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
@@ -1753,7 +1762,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void rbCallbackDMXOn_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -1781,7 +1790,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void rbCallbackDMXOff_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -1809,7 +1818,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnSaveModeTrans_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //Note: Command writes to EEPROM, do not perform this command excessively.
                 //Save to device the default bootup mode (transmit or receive). Does not change mode.
@@ -1837,7 +1846,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnSaveModeRec_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //Note: Command writes to EEPROM, do not perform this command excessively 
                 //Save to device the default bootup mode (transmit or receive). Does not change mode.
@@ -1866,7 +1875,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnTimeStamp_Click(object sender, EventArgs e)
         {
             //Sending this command will turn off the 4 bytes of data which assembled give the time in ms from the start of the computer
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1893,7 +1902,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnTimeStampOn_Click(object sender, EventArgs e)
         {
             //Sending this command will turn on the 4 bytes of data which assembled give the time in ms from the start of the computer
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1919,7 +1928,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnModeTrans_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //Configure device to transmit. Factory default is configured in transmit mode. This command only used if changing between transmit and read modes.
                 
@@ -1947,7 +1956,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnModeRec_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //Configure device to receive. Factory default is configured in transmit mode. This command only used if changing between transmit and receive modes.
                 //To make the device default (state on bootup) configured for receive mode, click Receive under "Set default bootup mode", see btnSaveModeRec_Click.
@@ -1976,6 +1985,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnGetDMXReadLength_Click(object sender, EventArgs e)
         {
+            //Valid only if device DMX mode set to receive
             //Get DMX read length, result will return in callback in this sample but could also read them using BlockingReadData as demonstrated in BtnDescriptor_Click
             for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
             {
@@ -1990,11 +2000,124 @@ namespace PIHidDotName_Csharp_Sample
             if (result != 0)
             {
                 toolStripStatusLabel1.Text = "Write Fail: " + result;
-
             }
             else
             {
                 toolStripStatusLabel1.Text = "Write Success - Get DMX Read Length";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listBox3.Items.Clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox4.Items.Clear();
+        }
+
+        private void btnTransmit100_Click(object sender, EventArgs e)
+        {
+            //Example of transmitting over 31 bytes, in this example the value for each address 1 to 100 is 1 to 100
+
+            int BytesToLoad = 100;
+            int[] DMXdata = new int[BytesToLoad];
+            for (int i = 0; i < BytesToLoad; i++) DMXdata[i] = (i+1); //
+
+            byte[] wData = new byte[devices[selecteddevice].WriteLength];
+
+            int bytessent = 0;
+            int StartAddress = 1;
+            int thisstartaddress = StartAddress;
+
+            while (bytessent < (BytesToLoad))
+            {
+                thisstartaddress = StartAddress + bytessent;
+                int temp = (BytesToLoad - bytessent);
+                int thisbytestoload = 31;
+                if (temp < 31)
+                {
+                    thisbytestoload = temp;
+                }
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 161; //0xA1
+                wData[2] = (byte)(thisstartaddress);
+                wData[3] = (byte)(thisstartaddress >> 8);
+                wData[4] = (byte)thisbytestoload;
+                for (int i = 0; i < thisbytestoload; i++)
+                {
+                    wData[5 + i] = (byte)DMXdata[bytessent + i];
+                }
+
+                int result = 404;
+                while (result == 404)
+                {
+                    result = devices[selecteddevice].WriteData(wData);
+                }
+                bytessent = bytessent + thisbytestoload;
+            }
+        }
+
+        private void btnSiliconGeneratedID_Click(object sender, EventArgs e)
+        {
+            //Sending the command will make the device return information about it
+            if (selecteddevice != -1)
+            {
+                //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later
+                bool savecallbackstate = devices[selecteddevice].callNever;
+                devices[selecteddevice].callNever = true;
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 157; //0x9D
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Silicon Generated ID";
+                }
+
+                byte[] data = null;
+                int countout = 0;
+                data = new byte[80];
+
+                int ret = devices[selecteddevice].BlockingReadData(ref data, 100);
+                while ((ret == 0 && data[2] != 157) || ret == 304)
+                {
+                    if (ret == 304)
+                    {
+                        // Didn't get any data for 100ms, increment the countout extra
+                        countout += 99;
+                    }
+                    countout++;
+                    if (countout > 1000) //increase this if have to check more than once
+                        break;
+                    ret = devices[selecteddevice].BlockingReadData(ref data, 100);
+                }
+                string uniqueID = "";
+                for (int i = 0; i < 8; i++)
+                {
+                    uniqueID = uniqueID + BinToHex(data[i + 3]);
+                }
+
+                lblSiliconGeneratedID.Text = uniqueID;
+
+                devices[selecteddevice].callNever = savecallbackstate;
             }
         }
 

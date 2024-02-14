@@ -144,18 +144,27 @@
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.txtReadStartAdd = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.lblRead8 = new System.Windows.Forms.Label();
-            this.lblRead7 = new System.Windows.Forms.Label();
-            this.lblRead6 = new System.Windows.Forms.Label();
-            this.lblRead5 = new System.Windows.Forms.Label();
-            this.lblRead4 = new System.Windows.Forms.Label();
-            this.lblRead3 = new System.Windows.Forms.Label();
-            this.lblRead2 = new System.Windows.Forms.Label();
-            this.lblRead1 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.lblDMXReadLength = new System.Windows.Forms.Label();
             this.btnGetDMXReadLength = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.btnDI1 = new System.Windows.Forms.Button();
+            this.btnDI2 = new System.Windows.Forms.Button();
+            this.btnDI4 = new System.Windows.Forms.Button();
+            this.btnDI3 = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.txtReadEndAdd = new System.Windows.Forms.TextBox();
+            this.btnTransmit100 = new System.Windows.Forms.Button();
+            this.lblSiliconGeneratedID = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.btnSiliconGeneratedID = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -530,9 +539,9 @@
             this.label6.Location = new System.Drawing.Point(611, 229);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 13);
+            this.label6.Size = new System.Drawing.Size(105, 13);
             this.label6.TabIndex = 325;
-            this.label6.Text = "Enter start address (1-511)";
+            this.label6.Text = "Start address (1-511)";
             // 
             // btnMakeSliders
             // 
@@ -645,11 +654,11 @@
             // chkDO1
             // 
             this.chkDO1.AutoSize = true;
-            this.chkDO1.Location = new System.Drawing.Point(277, 310);
+            this.chkDO1.Location = new System.Drawing.Point(355, 309);
             this.chkDO1.Name = "chkDO1";
             this.chkDO1.Size = new System.Drawing.Size(32, 17);
             this.chkDO1.TabIndex = 351;
-            this.chkDO1.Tag = "0";
+            this.chkDO1.Tag = "";
             this.chkDO1.Text = "1";
             this.chkDO1.ThreeState = true;
             this.chkDO1.UseVisualStyleBackColor = true;
@@ -658,11 +667,11 @@
             // chkDO2
             // 
             this.chkDO2.AutoSize = true;
-            this.chkDO2.Location = new System.Drawing.Point(309, 310);
+            this.chkDO2.Location = new System.Drawing.Point(387, 309);
             this.chkDO2.Name = "chkDO2";
             this.chkDO2.Size = new System.Drawing.Size(32, 17);
             this.chkDO2.TabIndex = 352;
-            this.chkDO2.Tag = "1";
+            this.chkDO2.Tag = "";
             this.chkDO2.Text = "2";
             this.chkDO2.ThreeState = true;
             this.chkDO2.UseVisualStyleBackColor = true;
@@ -671,11 +680,11 @@
             // chkDO3
             // 
             this.chkDO3.AutoSize = true;
-            this.chkDO3.Location = new System.Drawing.Point(341, 310);
+            this.chkDO3.Location = new System.Drawing.Point(419, 309);
             this.chkDO3.Name = "chkDO3";
             this.chkDO3.Size = new System.Drawing.Size(32, 17);
             this.chkDO3.TabIndex = 353;
-            this.chkDO3.Tag = "2";
+            this.chkDO3.Tag = "";
             this.chkDO3.Text = "3";
             this.chkDO3.ThreeState = true;
             this.chkDO3.UseVisualStyleBackColor = true;
@@ -684,11 +693,11 @@
             // chkDO4
             // 
             this.chkDO4.AutoSize = true;
-            this.chkDO4.Location = new System.Drawing.Point(373, 310);
+            this.chkDO4.Location = new System.Drawing.Point(451, 309);
             this.chkDO4.Name = "chkDO4";
             this.chkDO4.Size = new System.Drawing.Size(32, 17);
             this.chkDO4.TabIndex = 354;
-            this.chkDO4.Tag = "3";
+            this.chkDO4.Tag = "";
             this.chkDO4.Text = "4";
             this.chkDO4.ThreeState = true;
             this.chkDO4.UseVisualStyleBackColor = true;
@@ -711,7 +720,7 @@
             // 
             this.btnLoadDMXBuffer.Location = new System.Drawing.Point(978, 419);
             this.btnLoadDMXBuffer.Name = "btnLoadDMXBuffer";
-            this.btnLoadDMXBuffer.Size = new System.Drawing.Size(141, 22);
+            this.btnLoadDMXBuffer.Size = new System.Drawing.Size(107, 22);
             this.btnLoadDMXBuffer.TabIndex = 356;
             this.btnLoadDMXBuffer.Text = "Load DMX Buffer";
             this.btnLoadDMXBuffer.UseVisualStyleBackColor = true;
@@ -721,9 +730,9 @@
             // 
             this.btnSetDMXLength.Location = new System.Drawing.Point(978, 44);
             this.btnSetDMXLength.Name = "btnSetDMXLength";
-            this.btnSetDMXLength.Size = new System.Drawing.Size(100, 22);
+            this.btnSetDMXLength.Size = new System.Drawing.Size(127, 22);
             this.btnSetDMXLength.TabIndex = 357;
-            this.btnSetDMXLength.Text = "Set DMX Length";
+            this.btnSetDMXLength.Text = "Set DMX Write Length";
             this.btnSetDMXLength.UseVisualStyleBackColor = true;
             this.btnSetDMXLength.Click += new System.EventHandler(this.btnSetDMXLength_Click);
             // 
@@ -731,9 +740,9 @@
             // 
             this.btnGetDMXLength.Location = new System.Drawing.Point(978, 73);
             this.btnGetDMXLength.Name = "btnGetDMXLength";
-            this.btnGetDMXLength.Size = new System.Drawing.Size(100, 22);
+            this.btnGetDMXLength.Size = new System.Drawing.Size(127, 22);
             this.btnGetDMXLength.TabIndex = 358;
-            this.btnGetDMXLength.Text = "Get DMX Length*";
+            this.btnGetDMXLength.Text = "Get DMX Write Length*";
             this.btnGetDMXLength.UseVisualStyleBackColor = true;
             this.btnGetDMXLength.Click += new System.EventHandler(this.btnGetDMXLength_Click);
             // 
@@ -743,9 +752,9 @@
             this.label12.Location = new System.Drawing.Point(611, 253);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 13);
+            this.label12.Size = new System.Drawing.Size(119, 13);
             this.label12.TabIndex = 360;
-            this.label12.Text = "Enter span";
+            this.label12.Text = "Number of bytes to load";
             // 
             // txtSpan
             // 
@@ -759,7 +768,7 @@
             // 
             // txtSetDMXLength
             // 
-            this.txtSetDMXLength.Location = new System.Drawing.Point(1084, 46);
+            this.txtSetDMXLength.Location = new System.Drawing.Point(1111, 46);
             this.txtSetDMXLength.Name = "txtSetDMXLength";
             this.txtSetDMXLength.Size = new System.Drawing.Size(46, 20);
             this.txtSetDMXLength.TabIndex = 361;
@@ -767,18 +776,17 @@
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1135, 49);
+            this.label15.Location = new System.Drawing.Point(1162, 49);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.Size = new System.Drawing.Size(76, 41);
             this.label15.TabIndex = 362;
-            this.label15.Text = "(0-512)";
+            this.label15.Text = "(0-512, where 0=no transmission)";
             // 
             // lblDMXLength
             // 
             this.lblDMXLength.AutoSize = true;
-            this.lblDMXLength.Location = new System.Drawing.Point(1083, 77);
+            this.lblDMXLength.Location = new System.Drawing.Point(1110, 77);
             this.lblDMXLength.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDMXLength.Name = "lblDMXLength";
             this.lblDMXLength.Size = new System.Drawing.Size(36, 13);
@@ -836,9 +844,9 @@
             this.label4.Location = new System.Drawing.Point(1030, 134);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 13);
+            this.label4.Size = new System.Drawing.Size(105, 13);
             this.label4.TabIndex = 369;
-            this.label4.Text = "Start address";
+            this.label4.Text = "Start address (1-511)";
             // 
             // label8
             // 
@@ -846,9 +854,9 @@
             this.label8.Location = new System.Drawing.Point(1030, 160);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.Size = new System.Drawing.Size(119, 13);
             this.label8.TabIndex = 370;
-            this.label8.Text = "Span";
+            this.label8.Text = "Number of bytes to load";
             // 
             // lblData1
             // 
@@ -907,7 +915,7 @@
             // 
             this.btnDMXOff.Location = new System.Drawing.Point(978, 447);
             this.btnDMXOff.Name = "btnDMXOff";
-            this.btnDMXOff.Size = new System.Drawing.Size(141, 22);
+            this.btnDMXOff.Size = new System.Drawing.Size(107, 22);
             this.btnDMXOff.TabIndex = 376;
             this.btnDMXOff.Text = "Clear DMX Buffer";
             this.btnDMXOff.UseVisualStyleBackColor = true;
@@ -956,7 +964,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(301, 292);
+            this.label20.Location = new System.Drawing.Point(274, 311);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(76, 13);
@@ -1084,7 +1092,7 @@
             // 
             // btnReadOnlyDMX
             // 
-            this.btnReadOnlyDMX.Location = new System.Drawing.Point(1243, 49);
+            this.btnReadOnlyDMX.Location = new System.Drawing.Point(1243, 44);
             this.btnReadOnlyDMX.Name = "btnReadOnlyDMX";
             this.btnReadOnlyDMX.Size = new System.Drawing.Size(117, 23);
             this.btnReadOnlyDMX.TabIndex = 394;
@@ -1094,17 +1102,17 @@
             // 
             // btnReadDMX
             // 
-            this.btnReadDMX.Location = new System.Drawing.Point(1243, 129);
+            this.btnReadDMX.Location = new System.Drawing.Point(1243, 205);
             this.btnReadDMX.Name = "btnReadDMX";
             this.btnReadDMX.Size = new System.Drawing.Size(100, 23);
             this.btnReadDMX.TabIndex = 395;
-            this.btnReadDMX.Text = "Read Once";
+            this.btnReadDMX.Text = "Read 20 Bytes*";
             this.btnReadDMX.UseVisualStyleBackColor = true;
             this.btnReadDMX.Click += new System.EventHandler(this.btnReadDMX_Click);
             // 
             // btnCallbackDMX
             // 
-            this.btnCallbackDMX.Location = new System.Drawing.Point(1369, 129);
+            this.btnCallbackDMX.Location = new System.Drawing.Point(1369, 205);
             this.btnCallbackDMX.Name = "btnCallbackDMX";
             this.btnCallbackDMX.Size = new System.Drawing.Size(100, 23);
             this.btnCallbackDMX.TabIndex = 396;
@@ -1125,7 +1133,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1240, 34);
+            this.label25.Location = new System.Drawing.Point(1366, 49);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(120, 13);
@@ -1135,7 +1143,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(1240, 88);
+            this.label26.Location = new System.Drawing.Point(1240, 127);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(60, 13);
@@ -1145,7 +1153,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(1366, 155);
+            this.label27.Location = new System.Drawing.Point(1243, 231);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(106, 13);
@@ -1155,7 +1163,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(1348, 134);
+            this.label28.Location = new System.Drawing.Point(1348, 210);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(16, 13);
@@ -1308,14 +1316,14 @@
             // 
             this.listBox3.FormattingEnabled = true;
             this.listBox3.HorizontalScrollbar = true;
-            this.listBox3.Location = new System.Drawing.Point(1243, 176);
+            this.listBox3.Location = new System.Drawing.Point(1243, 251);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(100, 277);
             this.listBox3.TabIndex = 418;
             // 
             // txtReadStartAdd
             // 
-            this.txtReadStartAdd.Location = new System.Drawing.Point(1246, 106);
+            this.txtReadStartAdd.Location = new System.Drawing.Point(1246, 145);
             this.txtReadStartAdd.Name = "txtReadStartAdd";
             this.txtReadStartAdd.Size = new System.Drawing.Size(44, 20);
             this.txtReadStartAdd.TabIndex = 420;
@@ -1324,115 +1332,17 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(1295, 109);
+            this.label35.Location = new System.Drawing.Point(1295, 148);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(131, 13);
             this.label35.TabIndex = 421;
             this.label35.Text = "Enter start address (0-511)";
             // 
-            // lblRead8
-            // 
-            this.lblRead8.AutoSize = true;
-            this.lblRead8.Location = new System.Drawing.Point(1378, 376);
-            this.lblRead8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead8.Name = "lblRead8";
-            this.lblRead8.Size = new System.Drawing.Size(41, 13);
-            this.lblRead8.TabIndex = 429;
-            this.lblRead8.Tag = "7";
-            this.lblRead8.Text = "Addr: 8";
-            // 
-            // lblRead7
-            // 
-            this.lblRead7.AutoSize = true;
-            this.lblRead7.Location = new System.Drawing.Point(1378, 349);
-            this.lblRead7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead7.Name = "lblRead7";
-            this.lblRead7.Size = new System.Drawing.Size(41, 13);
-            this.lblRead7.TabIndex = 428;
-            this.lblRead7.Tag = "6";
-            this.lblRead7.Text = "Addr: 7";
-            // 
-            // lblRead6
-            // 
-            this.lblRead6.AutoSize = true;
-            this.lblRead6.Location = new System.Drawing.Point(1378, 322);
-            this.lblRead6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead6.Name = "lblRead6";
-            this.lblRead6.Size = new System.Drawing.Size(41, 13);
-            this.lblRead6.TabIndex = 427;
-            this.lblRead6.Tag = "5";
-            this.lblRead6.Text = "Addr: 6";
-            // 
-            // lblRead5
-            // 
-            this.lblRead5.AutoSize = true;
-            this.lblRead5.Location = new System.Drawing.Point(1378, 295);
-            this.lblRead5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead5.Name = "lblRead5";
-            this.lblRead5.Size = new System.Drawing.Size(41, 13);
-            this.lblRead5.TabIndex = 426;
-            this.lblRead5.Tag = "4";
-            this.lblRead5.Text = "Addr: 5";
-            // 
-            // lblRead4
-            // 
-            this.lblRead4.AutoSize = true;
-            this.lblRead4.Location = new System.Drawing.Point(1378, 269);
-            this.lblRead4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead4.Name = "lblRead4";
-            this.lblRead4.Size = new System.Drawing.Size(41, 13);
-            this.lblRead4.TabIndex = 425;
-            this.lblRead4.Tag = "3";
-            this.lblRead4.Text = "Addr: 4";
-            // 
-            // lblRead3
-            // 
-            this.lblRead3.AutoSize = true;
-            this.lblRead3.Location = new System.Drawing.Point(1378, 240);
-            this.lblRead3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead3.Name = "lblRead3";
-            this.lblRead3.Size = new System.Drawing.Size(41, 13);
-            this.lblRead3.TabIndex = 424;
-            this.lblRead3.Tag = "2";
-            this.lblRead3.Text = "Addr: 3";
-            // 
-            // lblRead2
-            // 
-            this.lblRead2.AutoSize = true;
-            this.lblRead2.Location = new System.Drawing.Point(1378, 213);
-            this.lblRead2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead2.Name = "lblRead2";
-            this.lblRead2.Size = new System.Drawing.Size(41, 13);
-            this.lblRead2.TabIndex = 423;
-            this.lblRead2.Tag = "1";
-            this.lblRead2.Text = "Addr: 2";
-            // 
-            // lblRead1
-            // 
-            this.lblRead1.AutoSize = true;
-            this.lblRead1.Location = new System.Drawing.Point(1378, 187);
-            this.lblRead1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRead1.Name = "lblRead1";
-            this.lblRead1.Size = new System.Drawing.Size(41, 13);
-            this.lblRead1.TabIndex = 422;
-            this.lblRead1.Tag = "0";
-            this.lblRead1.Text = "Addr: 1";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(1378, 397);
-            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(66, 13);
-            this.label34.TabIndex = 430;
-            this.label34.Text = "and so on ...";
-            // 
             // lblDMXReadLength
             // 
             this.lblDMXReadLength.AutoSize = true;
-            this.lblDMXReadLength.Location = new System.Drawing.Point(1390, 502);
+            this.lblDMXReadLength.Location = new System.Drawing.Point(1390, 78);
             this.lblDMXReadLength.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDMXReadLength.Name = "lblDMXReadLength";
             this.lblDMXReadLength.Size = new System.Drawing.Size(36, 13);
@@ -1441,7 +1351,7 @@
             // 
             // btnGetDMXReadLength
             // 
-            this.btnGetDMXReadLength.Location = new System.Drawing.Point(1243, 497);
+            this.btnGetDMXReadLength.Location = new System.Drawing.Point(1243, 73);
             this.btnGetDMXReadLength.Name = "btnGetDMXReadLength";
             this.btnGetDMXReadLength.Size = new System.Drawing.Size(142, 22);
             this.btnGetDMXReadLength.TabIndex = 431;
@@ -1452,12 +1362,191 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(1243, 522);
+            this.label36.Location = new System.Drawing.Point(1243, 98);
             this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(106, 13);
             this.label36.TabIndex = 433;
             this.label36.Text = "*requires callback on";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1243, 533);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 22);
+            this.button2.TabIndex = 434;
+            this.button2.Text = "Clear Listbox";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(1366, 231);
+            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(106, 13);
+            this.label37.TabIndex = 435;
+            this.label37.Text = "*requires callback on";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1369, 533);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(93, 22);
+            this.button3.TabIndex = 437;
+            this.button3.Text = "Clear Listbox";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // listBox4
+            // 
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.HorizontalScrollbar = true;
+            this.listBox4.Location = new System.Drawing.Point(1369, 251);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(100, 277);
+            this.listBox4.TabIndex = 436;
+            // 
+            // btnDI1
+            // 
+            this.btnDI1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDI1.Location = new System.Drawing.Point(216, 206);
+            this.btnDI1.Name = "btnDI1";
+            this.btnDI1.Size = new System.Drawing.Size(15, 15);
+            this.btnDI1.TabIndex = 441;
+            this.btnDI1.Tag = "";
+            this.btnDI1.UseVisualStyleBackColor = true;
+            // 
+            // btnDI2
+            // 
+            this.btnDI2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDI2.Location = new System.Drawing.Point(247, 206);
+            this.btnDI2.Name = "btnDI2";
+            this.btnDI2.Size = new System.Drawing.Size(15, 15);
+            this.btnDI2.TabIndex = 440;
+            this.btnDI2.Tag = "0";
+            this.btnDI2.UseVisualStyleBackColor = true;
+            // 
+            // btnDI4
+            // 
+            this.btnDI4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDI4.Location = new System.Drawing.Point(309, 206);
+            this.btnDI4.Name = "btnDI4";
+            this.btnDI4.Size = new System.Drawing.Size(15, 15);
+            this.btnDI4.TabIndex = 439;
+            this.btnDI4.Tag = "";
+            this.btnDI4.UseVisualStyleBackColor = true;
+            // 
+            // btnDI3
+            // 
+            this.btnDI3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDI3.Location = new System.Drawing.Point(277, 206);
+            this.btnDI3.Name = "btnDI3";
+            this.btnDI3.Size = new System.Drawing.Size(15, 15);
+            this.btnDI3.TabIndex = 438;
+            this.btnDI3.Tag = "0";
+            this.btnDI3.UseVisualStyleBackColor = true;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(213, 224);
+            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(24, 13);
+            this.label34.TabIndex = 442;
+            this.label34.Text = "DI1";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(306, 224);
+            this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(24, 13);
+            this.label38.TabIndex = 443;
+            this.label38.Text = "DI4";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(275, 224);
+            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(24, 13);
+            this.label39.TabIndex = 444;
+            this.label39.Text = "DI3";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(244, 224);
+            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(24, 13);
+            this.label40.TabIndex = 445;
+            this.label40.Text = "DI2";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(1295, 174);
+            this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(129, 13);
+            this.label42.TabIndex = 447;
+            this.label42.Text = "Enter end address (0-511)";
+            // 
+            // txtReadEndAdd
+            // 
+            this.txtReadEndAdd.Location = new System.Drawing.Point(1246, 171);
+            this.txtReadEndAdd.Name = "txtReadEndAdd";
+            this.txtReadEndAdd.Size = new System.Drawing.Size(44, 20);
+            this.txtReadEndAdd.TabIndex = 446;
+            this.txtReadEndAdd.Text = "8";
+            // 
+            // btnTransmit100
+            // 
+            this.btnTransmit100.Location = new System.Drawing.Point(978, 493);
+            this.btnTransmit100.Name = "btnTransmit100";
+            this.btnTransmit100.Size = new System.Drawing.Size(171, 22);
+            this.btnTransmit100.TabIndex = 448;
+            this.btnTransmit100.Text = "Load DMX Buffer with 100 bytes";
+            this.btnTransmit100.UseVisualStyleBackColor = true;
+            this.btnTransmit100.Click += new System.EventHandler(this.btnTransmit100_Click);
+            // 
+            // lblSiliconGeneratedID
+            // 
+            this.lblSiliconGeneratedID.AutoSize = true;
+            this.lblSiliconGeneratedID.Location = new System.Drawing.Point(1323, 594);
+            this.lblSiliconGeneratedID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSiliconGeneratedID.Name = "lblSiliconGeneratedID";
+            this.lblSiliconGeneratedID.Size = new System.Drawing.Size(99, 13);
+            this.lblSiliconGeneratedID.TabIndex = 504;
+            this.lblSiliconGeneratedID.Text = "Silicon Generate ID";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(1234, 571);
+            this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(128, 13);
+            this.label43.TabIndex = 503;
+            this.label43.Text = "Read Silicon Generate ID";
+            // 
+            // btnSiliconGeneratedID
+            // 
+            this.btnSiliconGeneratedID.Location = new System.Drawing.Point(1243, 589);
+            this.btnSiliconGeneratedID.Name = "btnSiliconGeneratedID";
+            this.btnSiliconGeneratedID.Size = new System.Drawing.Size(75, 23);
+            this.btnSiliconGeneratedID.TabIndex = 502;
+            this.btnSiliconGeneratedID.Text = "Read ID";
+            this.btnSiliconGeneratedID.UseVisualStyleBackColor = true;
+            this.btnSiliconGeneratedID.Click += new System.EventHandler(this.btnSiliconGeneratedID_Click);
             // 
             // Form1
             // 
@@ -1465,18 +1554,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1514, 738);
+            this.Controls.Add(this.lblSiliconGeneratedID);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.btnSiliconGeneratedID);
+            this.Controls.Add(this.btnTransmit100);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.txtReadEndAdd);
+            this.Controls.Add(this.label40);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.label38);
+            this.Controls.Add(this.label34);
+            this.Controls.Add(this.btnDI1);
+            this.Controls.Add(this.btnDI2);
+            this.Controls.Add(this.btnDI4);
+            this.Controls.Add(this.btnDI3);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.listBox4);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.lblDMXReadLength);
             this.Controls.Add(this.btnGetDMXReadLength);
-            this.Controls.Add(this.label34);
-            this.Controls.Add(this.lblRead8);
-            this.Controls.Add(this.lblRead7);
-            this.Controls.Add(this.lblRead6);
-            this.Controls.Add(this.lblRead5);
-            this.Controls.Add(this.lblRead4);
-            this.Controls.Add(this.lblRead3);
-            this.Controls.Add(this.lblRead2);
-            this.Controls.Add(this.lblRead1);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.txtReadStartAdd);
             this.Controls.Add(this.listBox3);
@@ -1722,18 +1820,27 @@
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.TextBox txtReadStartAdd;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label lblRead8;
-        private System.Windows.Forms.Label lblRead7;
-        private System.Windows.Forms.Label lblRead6;
-        private System.Windows.Forms.Label lblRead5;
-        private System.Windows.Forms.Label lblRead4;
-        private System.Windows.Forms.Label lblRead3;
-        private System.Windows.Forms.Label lblRead2;
-        private System.Windows.Forms.Label lblRead1;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label lblDMXReadLength;
         private System.Windows.Forms.Button btnGetDMXReadLength;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.Button btnDI1;
+        private System.Windows.Forms.Button btnDI2;
+        private System.Windows.Forms.Button btnDI4;
+        private System.Windows.Forms.Button btnDI3;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox txtReadEndAdd;
+        private System.Windows.Forms.Button btnTransmit100;
+        private System.Windows.Forms.Label lblSiliconGeneratedID;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button btnSiliconGeneratedID;
     }
 }
 
