@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -88,8 +86,8 @@ BEGIN
     LTEXT           "ScrLck",IDC_KEYSTATES3,408,72,50,13
     LTEXT           "unit id",IDC_UNITID3,116,153,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,182,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,197,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,197,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,197,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,52,197,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,7,430,73,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,216,430,73,17
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,262,73,17
@@ -131,7 +129,7 @@ BEGIN
     LTEXT           "Wheel Y:",IDC_STATIC,359,317,30,8
     LTEXT           "Multimedia (PID #2 and #3 Only):",IDC_STATIC,289,335,111,8
     PUSHBUTTON      "To PID #1",IDC_TOPID1,7,409,73,17
-    EDITTEXT        IDC_TxtMultiHi,387,350,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TxtMultiHi,389,351,24,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TxtMultiLo,454,350,24,14,ES_AUTOHSCROLL
     LTEXT           "High (hex)",IDC_STATIC,354,353,33,8
     LTEXT           "Low (hex)",IDC_STATIC,419,352,32,8
@@ -143,10 +141,9 @@ BEGIN
     LTEXT           "-",IDC_LblVersion,128,343,39,8
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,363,192,9
     EDITTEXT        IDC_TXTBL,7,375,40,14,ES_AUTOHSCROLL
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,53,379,38,10
-    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,379,33,10
-    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,379,72,10
-    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,216,379,72,10
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,53,379,58,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,379,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,191,379,72,10
     PUSHBUTTON      "Toggle",IDC_BLToggle,291,374,50,17
     PUSHBUTTON      "Set Intensity",IDC_BLIntensity,347,374,50,17
     PUSHBUTTON      "Incremenat Intensity",IDC_BLIncInt,403,374,81,17
@@ -184,7 +181,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MAIN, DIALOG
     BEGIN
@@ -196,7 +193,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

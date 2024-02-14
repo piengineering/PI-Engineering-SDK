@@ -1,0 +1,163 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 532, 367
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++  X-keys XK-24 KVM Demo- PIEHid32.dll"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Enumerate",IDSTART,7,3,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,39,50,14
+    LISTBOX         ID_EVENTS,7,108,359,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Halt",IDHALT,7,23,50,14
+    LTEXT           "Data (hex):",IDC_STATIC,7,96,77,9
+    PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,173,57,14
+    EDITTEXT        IDC_EDIT1,69,172,37,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Do not change PID on reboot",IDC_SETKEY,7,243,117,22,BS_MULTILINE
+    PUSHBUTTON      "Always change to PID #2 (KVM) on reboot",IDC_CHECKKEY,142,243,115,22,BS_MULTILINE
+    LTEXT           "Reboot Mode:",IDC_STATIC,7,230,100,11
+    LTEXT           "LED Control:",IDC_STATIC,145,158,89,9
+    LTEXT           "Write Unit ID:",IDC_STATIC,7,158,111,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,303,88,61,14
+    LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,196,177,9
+    PUSHBUTTON      "Save BL State",IDC_SaveBL,442,209,59,14
+    PUSHBUTTON      "Set Intensity",IDC_BL2,379,209,54,14
+    PUSHBUTTON      "To PID #1",IDC_TOREFLECT,7,283,73,14
+    LTEXT           "PID Convert:",IDC_STATIC,7,271,89,9
+    PUSHBUTTON      "To PID #2",IDC_TOSPLAT,7,307,73,14
+    LTEXT           "Time Stamp:",IDC_STATIC,7,330,89,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,7,345,73,14
+    PUSHBUTTON      "Keyboard Reflector*",IDC_KEYREFLECT,285,247,73,14
+    PUSHBUTTON      "Joystick Reflector+",IDC_JOYREFLECT,363,247,73,14
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,286,346,73,14
+    PUSHBUTTON      "Toggle",IDC_BLToggle,275,209,43,14
+    PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,87,345,73,14
+    CONTROL         "Scroll Lock",IDC_CHKSCROLL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,323,211,51,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBLUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,99,208,82,11
+    CONTROL         "All Bank 2 On/Off",IDC_CHKRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,175,208,75,11
+    EDITTEXT        IDC_EDIT2,7,207,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,264,167,26,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Set Freq",IDC_FREQ,216,165,43,17
+    CONTROL         "Green",IDC_CHKGREENLED,"Button",BS_AUTO3STATE | WS_TABSTOP,145,169,34,11
+    CONTROL         "Red",IDC_CHKREDLED,"Button",BS_AUTO3STATE | WS_TABSTOP,181,169,34,11
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,39,208,57,11
+    PUSHBUTTON      "Generate Data Report",IDC_FORCEDATA,384,346,82,14
+    LTEXT           "Reflector Features:",IDC_STATIC,285,233,89,9
+    LTEXT           "+Open Game Controllers control panel to accept commands.  Available in PID#2 only.",IDC_STATIC,284,284,215,17
+    LTEXT           "Descriptor:",IDC_STATIC,286,332,58,9
+    LTEXT           "Stimulate a general incoming data report:",IDC_STATIC,384,332,133,9
+    LTEXT           "Endpoints: Keyboard, Joystick, Input and Output",IDC_STATIC,85,286,170,9
+    LTEXT           "Endpoints: Keyboard only for use with KVM",IDC_STATIC,86,308,170,16
+    LTEXT           "Setup for Callback",IDC_STATIC,7,60,68,9
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,72,62,15
+    LTEXT           "Static",IDC_BUTTONSTATE,127,14,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE2,127,25,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE3,127,36,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE4,127,47,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE5,127,58,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE6,127,68,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE7,163,14,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE8,163,25,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE9,163,36,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE10,163,47,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE11,163,58,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE12,163,68,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE13,205,14,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE14,205,25,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE15,205,36,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE16,205,47,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE17,205,58,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE18,205,68,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE19,245,13,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE20,245,24,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE21,245,35,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE22,245,46,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE23,245,57,35,10
+    LTEXT           "Static",IDC_BUTTONSTATE24,245,67,35,10
+    LTEXT           "*After clicking and while reading data, focus on a text input and press first key. Abcd should be typed.  Make sure setup callback.",IDC_STATIC,283,266,215,19
+    LTEXT           "Do this first",IDC_STATIC,59,3,36,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 525
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 360
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

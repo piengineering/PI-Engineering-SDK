@@ -307,7 +307,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -327,8 +327,8 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result=404;
 			while (result==404)
 			{
@@ -373,13 +373,8 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result=404;
 			while (result==404)
 			{
@@ -391,64 +386,7 @@ int CALLBACK DialogProc(
 				AddEventMsg(hwndDlg, errordescription);
 			}
 			return TRUE;
-		case IDC_CHKBLFLASH:
-			
-            //Key Index for (in decimal)
-			//Bank 1
-            //Columns-->
-            //  0   8   16  24
-            //  1   9   17  25
-            //  2   10  18  26
-            //  3   11  19  27
-            //  4   12  20  28
-            //  5   13  21  29
-
-			//Bank 2
-			//Columns-->
-            //  32   40   48  56
-            //  33   41   49  57
-            //  34   42   50  58
-            //  35   43   51  59
-            //  36   44   52  60
-            //  37   45   53  61
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			if (result != 0)    {
-				AddEventMsg(hwndDlg, "Error:");
-				GetErrorString(result, errordescription, 100);
-				AddEventMsg(hwndDlg, errordescription);
-			}
-			return TRUE;
+		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)
@@ -1132,6 +1070,11 @@ void FindAndStart(HWND hDialog)
 				else if (pid==1183)
 				{
 					AddEventMsg(hDialog, "Found Device: XK-24 Android, PID=1183 (PID #4)");
+					hDevice = hnd;
+				}
+				else
+				{
+					AddEventMsg(hDialog, "Unknown device found");
 					hDevice = hnd;
 				}
 				if (hDevice!=-1)
