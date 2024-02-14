@@ -21,6 +21,7 @@ typedef struct  _HID_ENUM_INFO  {
     DWORD   Version;
     char   ManufacturerString[128];
     char   ProductString[128];
+	char   SerialNumberString[128]; //v2001 
 } TEnumHIDInfo;
 
 #define MAX_XKEY_DEVICES		128
