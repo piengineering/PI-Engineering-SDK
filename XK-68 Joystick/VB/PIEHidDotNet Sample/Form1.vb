@@ -583,6 +583,7 @@ Public Class Form1
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         selecteddevice = -1
         CboKeyIndex.SelectedIndex = 0
+        CboColor.SelectedIndex = 0
     End Sub
 
     Private Sub Form1_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -616,7 +617,7 @@ Public Class Form1
             Dim cbocount As Integer = 0
             For i As Integer = 0 To devices.Length - 1
 
-                If devices(i).HidUsagePage = 12 Then
+                If devices(i).HidUsagePage = 12 And devices(i).WriteLength = 36 Then
 
                     Select Case devices(i).Pid
                         Case 1117
@@ -689,6 +690,7 @@ Public Class Form1
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+        ReDim lastdata(devices(selecteddevice).ReadLength - 1)
     End Sub
 
     Private Sub BtnBL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBL.Click
@@ -1095,251 +1097,6 @@ Public Class Form1
         End If
     End Sub
 
-
-
-
-    Private Sub ChkGreenLED_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreenLED.CheckedChanged
-        'turn on the green LED
-        If selecteddevice <> -1 Then
-            Dim saveled As Integer = wdata(2)
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(1) = 179
-            wdata(2) = 6 '6 for green, 7 for red
-
-            If ChkGreenLED.Checked = True Then
-                wdata(3) = 1 '0=off, 1=on, 2=flash
-                If ChkFGreenLED.Checked = True Then
-                    wdata(3) = 2
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Green LED"
-            End If
-        End If
-    End Sub
-
-    Private Sub ChkRedLED_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkRedLED.CheckedChanged
-        'turn on the red LED
-        If selecteddevice <> -1 Then
-            Dim saveled As Integer = wdata(2)
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(1) = 179
-            wdata(2) = 7 '6 for green, 7 for red
-
-            If ChkRedLED.Checked = True Then
-                wdata(3) = 1 '0=off, 1=on, 2=flash
-                If ChkFRedLED.Checked = True Then
-                    wdata(3) = 2
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Red LED"
-            End If
-        End If
-    End Sub
-
-    Private Sub ChkFGreenLED_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkFGreenLED.CheckedChanged
-        'flash the green LED
-        If selecteddevice <> -1 Then
-            Dim saveled As Integer = wdata(2)
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(1) = 179
-            wdata(2) = 6 '6 for green, 7 for red
-
-            If ChkFGreenLED.Checked = True Then
-                wdata(3) = 2 '0=off, 1=on, 2=flash
-            Else
-                If ChkGreenLED.Checked = True Then
-                    wdata(3) = 1
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Green LED"
-            End If
-        End If
-    End Sub
-
-    Private Sub ChkFRedLED_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkFRedLED.CheckedChanged
-        'flash the red LED
-        If selecteddevice <> -1 Then
-            Dim saveled As Integer = wdata(2)
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(1) = 179
-            wdata(2) = 7 '6 for green, 7 for red
-
-            If ChkFRedLED.Checked = True Then
-                wdata(3) = 2 '0=off, 1=on, 2=flash
-            Else
-                If ChkRedLED.Checked = True Then
-                    wdata(3) = 1
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Red LED"
-            End If
-        End If
-    End Sub
-
-    Private Sub ChkBLOnOff_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkBLOnOff.CheckedChanged
-        'use the Set Flash Freq to control frequency of blink
-        'Key Index for XK-68 Joystick (in decimal)
-        'Columns-->
-        '0   8   16  24  32  40  48  56  64  72
-        '1   9   17  25  33  41  49  57  65  73
-        '2   10  18  26  34  42  50  58  66  74
-        '3   11  19  na  na  na  na  59  67  75
-        '4   12  20  na  na  na  na  60  68  76
-        '5   13  21  na  na  na  na  61  69  77
-        '6   14  22  30  38  46  54  62  70  78
-        '7   15  23  31  39  47  55  63  71  79
-
-        If selecteddevice <> -1 Then
-
-            'get selected index from the combobox
-            Dim sindex As String = CboKeyIndex.Text
-            Dim iindex As Integer
-            If (CboColor.SelectedIndex = 0) Then  'bank 1
-                iindex = Convert.ToInt32(sindex)
-            Else
-                iindex = Convert.ToInt32(sindex) + 80 'add 80 to the bank 1 index to get the corresponding bank 2 index
-            End If
-
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 181
-            wdata(2) = iindex
-
-            If (ChkBLOnOff.Checked = True) Then
-                wdata(3) = 1
-                If (ChkFlash.Checked = True) Then
-                    wdata(3) = 2
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Backlight"
-            End If
-            
-        End If
-    End Sub
-
-    Private Sub ChkFlash_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkFlash.CheckedChanged
-        'use the Set Flash Freq to control frequency of blink
-        'Key Index for XK-68 Joystick (in decimal)
-        'Columns-->
-        '0   8   16  24  32  40  48  56  64  72
-        '1   9   17  25  33  41  49  57  65  73
-        '2   10  18  26  34  42  50  58  66  74
-        '3   11  na  na  na  na  na  59  67  75
-        '4   12  na  na  na  na  na  60  68  76
-        '5   13  na  na  na  na  na  61  69  77
-        '6   14  22  30  38  46  54  62  70  78
-        '7   15  23  31  39  47  55  63  71  79
-
-        If selecteddevice <> -1 Then
-
-            'get selected index from the combobox
-            Dim sindex As String = CboKeyIndex.Text
-            Dim iindex As Integer
-            If (CboColor.SelectedIndex = 0) Then  'bank 1
-                iindex = Convert.ToInt32(sindex)
-            Else
-                iindex = Convert.ToInt32(sindex) + 80 'add 80 to the bank 1 index to get the corresponding bank 2 index
-            End If
-
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 181
-            wdata(2) = iindex
-
-            If (ChkBLOnOff.Checked = True) Then
-                wdata(3) = 1
-                If (ChkFlash.Checked = True) Then
-                    wdata(3) = 2
-                End If
-            End If
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Backlight"
-            End If
-
-
-        End If
-    End Sub
 
     Private Sub BtnGetDataNow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnGetDataNow.Click
 
@@ -1769,6 +1526,111 @@ Public Class Form1
             Else
                 LblStatus.Text = "Write Success - Custom Data"
             End If
+        End If
+    End Sub
+
+    Private Sub ChkGreenLED_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreenLED.CheckStateChanged
+        'turn on the green LED
+        If selecteddevice <> -1 Then
+            Dim saveled As Integer = wdata(2)
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(1) = 179
+            wdata(2) = 6 '6 for green, 7 for red
+            wdata(3) = ChkGreenLED.CheckState '0=off, 1=on, 2=flash
+           
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Green LED"
+            End If
+        End If
+    End Sub
+
+    Private Sub ChkRedLED_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkRedLED.CheckStateChanged
+        'turn on the red LED
+        If selecteddevice <> -1 Then
+            Dim saveled As Integer = wdata(2)
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(1) = 179
+            wdata(2) = 7 '6 for green, 7 for red
+            wdata(3) = ChkRedLED.CheckState '0=off, 1=on, 2=flash
+
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Red LED"
+            End If
+        End If
+    End Sub
+
+    Private Sub ChkBLOnOff_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkBLOnOff.CheckStateChanged
+        'use the Set Flash Freq to control frequency of blink
+        'Key Index for XK-68 Joystick (in decimal)
+        'Columns-->
+        '0   8   16  24  32  40  48  56  64  72
+        '1   9   17  25  33  41  49  57  65  73
+        '2   10  18  26  34  42  50  58  66  74
+        '3   11  19  na  na  na  na  59  67  75
+        '4   12  20  na  na  na  na  60  68  76
+        '5   13  21  na  na  na  na  61  69  77
+        '6   14  22  30  38  46  54  62  70  78
+        '7   15  23  31  39  47  55  63  71  79
+
+        If selecteddevice <> -1 Then
+
+            'get selected index from the combobox
+            Dim sindex As String = CboKeyIndex.Text
+            Dim iindex As Integer
+            If (CboColor.SelectedIndex = 0) Then  'bank 1
+                iindex = Convert.ToInt32(sindex)
+            Else
+                iindex = Convert.ToInt32(sindex) + 80 'add 80 to the bank 1 index to get the corresponding bank 2 index
+            End If
+
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 181
+            wdata(2) = iindex
+            wdata(3) = ChkBLOnOff.CheckState '0=off, 1=on, 2=flash
+           
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Backlight"
+            End If
+
         End If
     End Sub
 End Class

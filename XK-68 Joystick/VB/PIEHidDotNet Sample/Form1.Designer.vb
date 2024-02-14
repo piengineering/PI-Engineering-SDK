@@ -71,10 +71,7 @@ Partial Class Form1
         Me.ChkRedOnOff = New System.Windows.Forms.CheckBox()
         Me.ChkGreenOnOff = New System.Windows.Forms.CheckBox()
         Me.ChkGreenLED = New System.Windows.Forms.CheckBox()
-        Me.ChkFRedLED = New System.Windows.Forms.CheckBox()
-        Me.ChkFGreenLED = New System.Windows.Forms.CheckBox()
         Me.ChkRedLED = New System.Windows.Forms.CheckBox()
-        Me.ChkFlash = New System.Windows.Forms.CheckBox()
         Me.ChkBLOnOff = New System.Windows.Forms.CheckBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.BtnGetDataNow = New System.Windows.Forms.Button()
@@ -91,7 +88,6 @@ Partial Class Form1
         Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.label29 = New System.Windows.Forms.Label()
         Me.BtnMousereflect = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.label28 = New System.Windows.Forms.Label()
@@ -128,6 +124,7 @@ Partial Class Form1
         Me.LblVersion = New System.Windows.Forms.Label()
         Me.TxtVersion = New System.Windows.Forms.TextBox()
         Me.BtnVersion = New System.Windows.Forms.Button()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -162,7 +159,7 @@ Partial Class Form1
         'LblStatus
         '
         Me.LblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.LblStatus.Location = New System.Drawing.Point(52, 630)
+        Me.LblStatus.Location = New System.Drawing.Point(52, 644)
         Me.LblStatus.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblStatus.Name = "LblStatus"
         Me.LblStatus.Size = New System.Drawing.Size(264, 19)
@@ -223,9 +220,9 @@ Partial Class Form1
         Me.label3.Location = New System.Drawing.Point(6, 238)
         Me.label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(76, 13)
+        Me.label3.Size = New System.Drawing.Size(64, 13)
         Me.label3.TabIndex = 29
-        Me.label3.Text = "3. LED Control"
+        Me.label3.Text = "LED Control"
         '
         'label2
         '
@@ -233,9 +230,9 @@ Partial Class Form1
         Me.label2.Location = New System.Drawing.Point(7, 77)
         Me.label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(186, 13)
+        Me.label2.Size = New System.Drawing.Size(174, 13)
         Me.label2.TabIndex = 28
-        Me.label2.Text = "2. Set for data callback and read data"
+        Me.label2.Text = "Set for data callback and read data"
         '
         'label1
         '
@@ -243,15 +240,15 @@ Partial Class Form1
         Me.label1.Location = New System.Drawing.Point(7, 2)
         Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(71, 13)
+        Me.label1.Size = New System.Drawing.Size(59, 13)
         Me.label1.TabIndex = 27
-        Me.label1.Text = "1. Do this first"
+        Me.label1.Text = "Do this first"
         '
         'Label5
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(7, 630)
+        Me.Label5.Location = New System.Drawing.Point(7, 644)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(40, 13)
@@ -271,12 +268,12 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(466, 566)
+        Me.Label6.Location = New System.Drawing.Point(465, 570)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(270, 13)
+        Me.Label6.Size = New System.Drawing.Size(252, 13)
         Me.Label6.TabIndex = 37
-        Me.Label6.Text = "14. Change PID-must re-enumerate after changing PIDs"
+        Me.Label6.Text = "Change PID-must re-enumerate after changing PIDs"
         '
         'BtnBL
         '
@@ -300,7 +297,7 @@ Partial Class Form1
         '
         'BtnToPID2
         '
-        Me.BtnToPID2.Location = New System.Drawing.Point(467, 621)
+        Me.BtnToPID2.Location = New System.Drawing.Point(466, 616)
         Me.BtnToPID2.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnToPID2.Name = "BtnToPID2"
         Me.BtnToPID2.Size = New System.Drawing.Size(104, 22)
@@ -310,7 +307,7 @@ Partial Class Form1
         '
         'ToPID1
         '
-        Me.ToPID1.Location = New System.Drawing.Point(467, 586)
+        Me.ToPID1.Location = New System.Drawing.Point(466, 590)
         Me.ToPID1.Margin = New System.Windows.Forms.Padding(2)
         Me.ToPID1.Name = "ToPID1"
         Me.ToPID1.Size = New System.Drawing.Size(104, 22)
@@ -342,14 +339,14 @@ Partial Class Form1
         Me.label7.Location = New System.Drawing.Point(464, 2)
         Me.label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label7.Name = "label7"
-        Me.label7.Size = New System.Drawing.Size(67, 13)
+        Me.label7.Size = New System.Drawing.Size(98, 13)
         Me.label7.TabIndex = 43
-        Me.label7.Text = "9. Reflectors"
+        Me.label7.Text = "Keyboard Reflector"
         '
         'label12
         '
         Me.label12.AutoSize = True
-        Me.label12.Location = New System.Drawing.Point(592, 142)
+        Me.label12.Location = New System.Drawing.Point(592, 150)
         Me.label12.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(27, 13)
@@ -358,7 +355,7 @@ Partial Class Form1
         '
         'textBox6
         '
-        Me.textBox6.Location = New System.Drawing.Point(623, 139)
+        Me.textBox6.Location = New System.Drawing.Point(623, 147)
         Me.textBox6.Margin = New System.Windows.Forms.Padding(2)
         Me.textBox6.Name = "textBox6"
         Me.textBox6.Size = New System.Drawing.Size(41, 20)
@@ -367,7 +364,7 @@ Partial Class Form1
         '
         'textBox5
         '
-        Me.textBox5.Location = New System.Drawing.Point(624, 115)
+        Me.textBox5.Location = New System.Drawing.Point(624, 123)
         Me.textBox5.Margin = New System.Windows.Forms.Padding(2)
         Me.textBox5.Name = "textBox5"
         Me.textBox5.Size = New System.Drawing.Size(38, 20)
@@ -377,7 +374,7 @@ Partial Class Form1
         'label11
         '
         Me.label11.AutoSize = True
-        Me.label11.Location = New System.Drawing.Point(574, 121)
+        Me.label11.Location = New System.Drawing.Point(574, 129)
         Me.label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label11.Name = "label11"
         Me.label11.Size = New System.Drawing.Size(46, 13)
@@ -387,7 +384,7 @@ Partial Class Form1
         'label10
         '
         Me.label10.AutoSize = True
-        Me.label10.Location = New System.Drawing.Point(735, 69)
+        Me.label10.Location = New System.Drawing.Point(735, 77)
         Me.label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label10.Name = "label10"
         Me.label10.Size = New System.Drawing.Size(17, 13)
@@ -397,7 +394,7 @@ Partial Class Form1
         'label9
         '
         Me.label9.AutoSize = True
-        Me.label9.Location = New System.Drawing.Point(666, 68)
+        Me.label9.Location = New System.Drawing.Point(666, 76)
         Me.label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label9.Name = "label9"
         Me.label9.Size = New System.Drawing.Size(17, 13)
@@ -407,7 +404,7 @@ Partial Class Form1
         'label8
         '
         Me.label8.AutoSize = True
-        Me.label8.Location = New System.Drawing.Point(605, 69)
+        Me.label8.Location = New System.Drawing.Point(605, 77)
         Me.label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(17, 13)
@@ -416,7 +413,7 @@ Partial Class Form1
         '
         'textBox4
         '
-        Me.textBox4.Location = New System.Drawing.Point(755, 66)
+        Me.textBox4.Location = New System.Drawing.Point(755, 74)
         Me.textBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.textBox4.Name = "textBox4"
         Me.textBox4.Size = New System.Drawing.Size(38, 20)
@@ -425,7 +422,7 @@ Partial Class Form1
         '
         'textBox3
         '
-        Me.textBox3.Location = New System.Drawing.Point(687, 66)
+        Me.textBox3.Location = New System.Drawing.Point(687, 74)
         Me.textBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.textBox3.Name = "textBox3"
         Me.textBox3.Size = New System.Drawing.Size(38, 20)
@@ -434,7 +431,7 @@ Partial Class Form1
         '
         'textBox2
         '
-        Me.textBox2.Location = New System.Drawing.Point(622, 67)
+        Me.textBox2.Location = New System.Drawing.Point(622, 75)
         Me.textBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.textBox2.Name = "textBox2"
         Me.textBox2.Size = New System.Drawing.Size(38, 20)
@@ -443,23 +440,23 @@ Partial Class Form1
         '
         'BtnJoyreflect
         '
-        Me.BtnJoyreflect.Location = New System.Drawing.Point(467, 68)
+        Me.BtnJoyreflect.Location = New System.Drawing.Point(467, 76)
         Me.BtnJoyreflect.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnJoyreflect.Name = "BtnJoyreflect"
         Me.BtnJoyreflect.Size = New System.Drawing.Size(122, 22)
         Me.BtnJoyreflect.TabIndex = 46
-        Me.BtnJoyreflect.Text = "Joystick Reflector*"
+        Me.BtnJoyreflect.Text = "Joystick Reflector"
         Me.BtnJoyreflect.UseVisualStyleBackColor = True
         '
         'label23
         '
         Me.label23.AutoSize = True
-        Me.label23.Location = New System.Drawing.Point(6, 490)
+        Me.label23.Location = New System.Drawing.Point(6, 494)
         Me.label23.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label23.Name = "label23"
-        Me.label23.Size = New System.Drawing.Size(111, 13)
+        Me.label23.Size = New System.Drawing.Size(99, 13)
         Me.label23.TabIndex = 72
-        Me.label23.Text = "7. Enable Time Stamp"
+        Me.label23.Text = "Enable Time Stamp"
         '
         'lbldeltatime
         '
@@ -494,7 +491,7 @@ Partial Class Form1
         'listBox2
         '
         Me.listBox2.FormattingEnabled = True
-        Me.listBox2.Location = New System.Drawing.Point(577, 324)
+        Me.listBox2.Location = New System.Drawing.Point(574, 308)
         Me.listBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.listBox2.Name = "listBox2"
         Me.listBox2.Size = New System.Drawing.Size(232, 82)
@@ -502,7 +499,7 @@ Partial Class Form1
         '
         'BtnDescriptor
         '
-        Me.BtnDescriptor.Location = New System.Drawing.Point(467, 323)
+        Me.BtnDescriptor.Location = New System.Drawing.Point(467, 307)
         Me.BtnDescriptor.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnDescriptor.Name = "BtnDescriptor"
         Me.BtnDescriptor.Size = New System.Drawing.Size(98, 22)
@@ -513,12 +510,12 @@ Partial Class Form1
         'label21
         '
         Me.label21.AutoSize = True
-        Me.label21.Location = New System.Drawing.Point(465, 305)
+        Me.label21.Location = New System.Drawing.Point(465, 289)
         Me.label21.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label21.Name = "label21"
-        Me.label21.Size = New System.Drawing.Size(73, 13)
+        Me.label21.Size = New System.Drawing.Size(55, 13)
         Me.label21.TabIndex = 73
-        Me.label21.Text = "10. Descriptor"
+        Me.label21.Text = "Descriptor"
         '
         'BtnBLToggle
         '
@@ -546,9 +543,9 @@ Partial Class Form1
         Me.Label13.Location = New System.Drawing.Point(6, 295)
         Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(80, 13)
+        Me.Label13.Size = New System.Drawing.Size(68, 13)
         Me.Label13.TabIndex = 89
-        Me.Label13.Text = "4. Write Unit ID"
+        Me.Label13.Text = "Write Unit ID"
         '
         'Label14
         '
@@ -556,9 +553,9 @@ Partial Class Form1
         Me.Label14.Location = New System.Drawing.Point(7, 347)
         Me.Label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(107, 13)
+        Me.Label14.Size = New System.Drawing.Size(95, 13)
         Me.Label14.TabIndex = 90
-        Me.Label14.Text = "5. Backlight Features"
+        Me.Label14.Text = "Backlight Features"
         '
         'BtnSetFlash
         '
@@ -582,7 +579,7 @@ Partial Class Form1
         'ChkRedOnOff
         '
         Me.ChkRedOnOff.AutoSize = True
-        Me.ChkRedOnOff.Location = New System.Drawing.Point(218, 389)
+        Me.ChkRedOnOff.Location = New System.Drawing.Point(239, 389)
         Me.ChkRedOnOff.Margin = New System.Windows.Forms.Padding(2)
         Me.ChkRedOnOff.Name = "ChkRedOnOff"
         Me.ChkRedOnOff.Size = New System.Drawing.Size(110, 17)
@@ -593,7 +590,7 @@ Partial Class Form1
         'ChkGreenOnOff
         '
         Me.ChkGreenOnOff.AutoSize = True
-        Me.ChkGreenOnOff.Location = New System.Drawing.Point(218, 370)
+        Me.ChkGreenOnOff.Location = New System.Drawing.Point(239, 370)
         Me.ChkGreenOnOff.Margin = New System.Windows.Forms.Padding(2)
         Me.ChkGreenOnOff.Name = "ChkGreenOnOff"
         Me.ChkGreenOnOff.Size = New System.Drawing.Size(110, 17)
@@ -610,29 +607,8 @@ Partial Class Form1
         Me.ChkGreenLED.Size = New System.Drawing.Size(55, 17)
         Me.ChkGreenLED.TabIndex = 102
         Me.ChkGreenLED.Text = "Green"
+        Me.ChkGreenLED.ThreeState = True
         Me.ChkGreenLED.UseVisualStyleBackColor = True
-        '
-        'ChkFRedLED
-        '
-        Me.ChkFRedLED.AutoSize = True
-        Me.ChkFRedLED.Location = New System.Drawing.Point(218, 259)
-        Me.ChkFRedLED.Margin = New System.Windows.Forms.Padding(2)
-        Me.ChkFRedLED.Name = "ChkFRedLED"
-        Me.ChkFRedLED.Size = New System.Drawing.Size(98, 17)
-        Me.ChkFRedLED.TabIndex = 105
-        Me.ChkFRedLED.Text = "Flash Red LED"
-        Me.ChkFRedLED.UseVisualStyleBackColor = True
-        '
-        'ChkFGreenLED
-        '
-        Me.ChkFGreenLED.AutoSize = True
-        Me.ChkFGreenLED.Location = New System.Drawing.Point(131, 259)
-        Me.ChkFGreenLED.Margin = New System.Windows.Forms.Padding(2)
-        Me.ChkFGreenLED.Name = "ChkFGreenLED"
-        Me.ChkFGreenLED.Size = New System.Drawing.Size(83, 17)
-        Me.ChkFGreenLED.TabIndex = 104
-        Me.ChkFGreenLED.Text = "Flash Green"
-        Me.ChkFGreenLED.UseVisualStyleBackColor = True
         '
         'ChkRedLED
         '
@@ -643,18 +619,8 @@ Partial Class Form1
         Me.ChkRedLED.Size = New System.Drawing.Size(46, 17)
         Me.ChkRedLED.TabIndex = 103
         Me.ChkRedLED.Text = "Red"
+        Me.ChkRedLED.ThreeState = True
         Me.ChkRedLED.UseVisualStyleBackColor = True
-        '
-        'ChkFlash
-        '
-        Me.ChkFlash.AutoSize = True
-        Me.ChkFlash.Location = New System.Drawing.Point(146, 389)
-        Me.ChkFlash.Margin = New System.Windows.Forms.Padding(2)
-        Me.ChkFlash.Name = "ChkFlash"
-        Me.ChkFlash.Size = New System.Drawing.Size(51, 17)
-        Me.ChkFlash.TabIndex = 120
-        Me.ChkFlash.Text = "Flash"
-        Me.ChkFlash.UseVisualStyleBackColor = True
         '
         'ChkBLOnOff
         '
@@ -662,24 +628,25 @@ Partial Class Form1
         Me.ChkBLOnOff.Location = New System.Drawing.Point(146, 370)
         Me.ChkBLOnOff.Margin = New System.Windows.Forms.Padding(2)
         Me.ChkBLOnOff.Name = "ChkBLOnOff"
-        Me.ChkBLOnOff.Size = New System.Drawing.Size(59, 17)
+        Me.ChkBLOnOff.Size = New System.Drawing.Size(89, 17)
         Me.ChkBLOnOff.TabIndex = 119
-        Me.ChkBLOnOff.Text = "On/Off"
+        Me.ChkBLOnOff.Text = "On/Off/Flash"
+        Me.ChkBLOnOff.ThreeState = True
         Me.ChkBLOnOff.UseVisualStyleBackColor = True
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(465, 411)
+        Me.Label15.Location = New System.Drawing.Point(463, 401)
         Me.Label15.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(326, 13)
+        Me.Label15.Size = New System.Drawing.Size(308, 13)
         Me.Label15.TabIndex = 121
-        Me.Label15.Text = "11. Stimulate a general incoming data report or a custom data report"
+        Me.Label15.Text = "Stimulate a general incoming data report or a custom data report"
         '
         'BtnGetDataNow
         '
-        Me.BtnGetDataNow.Location = New System.Drawing.Point(466, 430)
+        Me.BtnGetDataNow.Location = New System.Drawing.Point(464, 420)
         Me.BtnGetDataNow.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnGetDataNow.Name = "BtnGetDataNow"
         Me.BtnGetDataNow.Size = New System.Drawing.Size(98, 22)
@@ -690,7 +657,7 @@ Partial Class Form1
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(800, 122)
+        Me.Label16.Location = New System.Drawing.Point(800, 130)
         Me.Label16.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(34, 13)
@@ -700,7 +667,7 @@ Partial Class Form1
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(800, 70)
+        Me.Label17.Location = New System.Drawing.Point(800, 78)
         Me.Label17.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(34, 13)
@@ -710,7 +677,7 @@ Partial Class Form1
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(668, 142)
+        Me.Label18.Location = New System.Drawing.Point(668, 150)
         Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(22, 13)
@@ -720,7 +687,7 @@ Partial Class Form1
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(711, 93)
+        Me.Label19.Location = New System.Drawing.Point(711, 101)
         Me.Label19.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(36, 13)
@@ -730,7 +697,7 @@ Partial Class Form1
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(584, 94)
+        Me.Label20.Location = New System.Drawing.Point(584, 102)
         Me.Label20.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(35, 13)
@@ -739,7 +706,7 @@ Partial Class Form1
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(755, 90)
+        Me.TextBox7.Location = New System.Drawing.Point(755, 98)
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(38, 20)
@@ -748,7 +715,7 @@ Partial Class Form1
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(623, 91)
+        Me.TextBox8.Location = New System.Drawing.Point(623, 99)
         Me.TextBox8.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(38, 20)
@@ -758,7 +725,7 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(800, 94)
+        Me.Label22.Location = New System.Drawing.Point(800, 102)
         Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(34, 13)
@@ -767,7 +734,7 @@ Partial Class Form1
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(666, 115)
+        Me.TextBox9.Location = New System.Drawing.Point(666, 123)
         Me.TextBox9.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(38, 20)
@@ -776,7 +743,7 @@ Partial Class Form1
         '
         'TextBox10
         '
-        Me.TextBox10.Location = New System.Drawing.Point(709, 114)
+        Me.TextBox10.Location = New System.Drawing.Point(709, 122)
         Me.TextBox10.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(38, 20)
@@ -785,7 +752,7 @@ Partial Class Form1
         '
         'TextBox11
         '
-        Me.TextBox11.Location = New System.Drawing.Point(755, 115)
+        Me.TextBox11.Location = New System.Drawing.Point(755, 123)
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.Size = New System.Drawing.Size(38, 20)
@@ -795,47 +762,37 @@ Partial Class Form1
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(6, 402)
+        Me.Label24.Location = New System.Drawing.Point(6, 411)
         Me.Label24.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(140, 13)
+        Me.Label24.Size = New System.Drawing.Size(128, 13)
         Me.Label24.TabIndex = 134
-        Me.Label24.Text = "6. Global Backlight Features"
+        Me.Label24.Text = "Global Backlight Features"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(465, 165)
+        Me.Label25.Location = New System.Drawing.Point(465, 173)
         Me.Label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(131, 13)
+        Me.Label25.Size = New System.Drawing.Size(150, 13)
         Me.Label25.TabIndex = 138
-        Me.Label25.Text = "* Available for PID #1 only"
-        '
-        'label29
-        '
-        Me.label29.AutoSize = True
-        Me.label29.Location = New System.Drawing.Point(466, 276)
-        Me.label29.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.label29.Name = "label29"
-        Me.label29.Size = New System.Drawing.Size(133, 13)
-        Me.label29.TabIndex = 162
-        Me.label29.Text = "+Available for PID #2 only."
+        Me.Label25.Text = "Mouse Reflector (PID #2 only)"
         '
         'BtnMousereflect
         '
-        Me.BtnMousereflect.Location = New System.Drawing.Point(467, 186)
+        Me.BtnMousereflect.Location = New System.Drawing.Point(467, 194)
         Me.BtnMousereflect.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnMousereflect.Name = "BtnMousereflect"
         Me.BtnMousereflect.Size = New System.Drawing.Size(122, 22)
         Me.BtnMousereflect.TabIndex = 152
-        Me.BtnMousereflect.Text = "Mouse Reflector+"
+        Me.BtnMousereflect.Text = "Mouse Reflector"
         Me.BtnMousereflect.UseVisualStyleBackColor = True
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(575, 626)
+        Me.Label26.Location = New System.Drawing.Point(574, 621)
         Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(229, 13)
@@ -844,10 +801,11 @@ Partial Class Form1
         '
         'label28
         '
-        Me.label28.Location = New System.Drawing.Point(575, 586)
+        Me.label28.AutoSize = True
+        Me.label28.Location = New System.Drawing.Point(573, 595)
         Me.label28.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label28.Name = "label28"
-        Me.label28.Size = New System.Drawing.Size(258, 32)
+        Me.label28.Size = New System.Drawing.Size(316, 13)
         Me.label28.TabIndex = 165
         Me.label28.Text = "Endpoints: Keyboard, Joystick, Input and Output (Factory Default)"
         '
@@ -857,9 +815,9 @@ Partial Class Form1
         Me.Label27.Location = New System.Drawing.Point(7, 557)
         Me.Label27.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(167, 13)
+        Me.Label27.Size = New System.Drawing.Size(155, 13)
         Me.Label27.TabIndex = 166
-        Me.Label27.Text = "8. Enable/Disable Native Joystick"
+        Me.Label27.Text = "Enable/Disable Native Joystick"
         '
         'BtnEnable
         '
@@ -972,7 +930,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(693, 213)
+        Me.Label4.Location = New System.Drawing.Point(693, 221)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(61, 13)
@@ -981,7 +939,7 @@ Partial Class Form1
         '
         'label37
         '
-        Me.label37.Location = New System.Drawing.Point(693, 178)
+        Me.label37.Location = New System.Drawing.Point(693, 186)
         Me.label37.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label37.Name = "label37"
         Me.label37.Size = New System.Drawing.Size(141, 35)
@@ -990,7 +948,7 @@ Partial Class Form1
         '
         'TxtWheelX
         '
-        Me.TxtWheelX.Location = New System.Drawing.Point(761, 258)
+        Me.TxtWheelX.Location = New System.Drawing.Point(752, 266)
         Me.TxtWheelX.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtWheelX.Name = "TxtWheelX"
         Me.TxtWheelX.Size = New System.Drawing.Size(41, 20)
@@ -1000,7 +958,7 @@ Partial Class Form1
         'label31
         '
         Me.label31.AutoSize = True
-        Me.label31.Location = New System.Drawing.Point(700, 261)
+        Me.label31.Location = New System.Drawing.Point(700, 269)
         Me.label31.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label31.Name = "label31"
         Me.label31.Size = New System.Drawing.Size(51, 13)
@@ -1010,7 +968,7 @@ Partial Class Form1
         'label30
         '
         Me.label30.AutoSize = True
-        Me.label30.Location = New System.Drawing.Point(588, 261)
+        Me.label30.Location = New System.Drawing.Point(588, 269)
         Me.label30.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label30.Name = "label30"
         Me.label30.Size = New System.Drawing.Size(51, 13)
@@ -1019,7 +977,7 @@ Partial Class Form1
         '
         'TxtWheel
         '
-        Me.TxtWheel.Location = New System.Drawing.Point(642, 258)
+        Me.TxtWheel.Location = New System.Drawing.Point(642, 266)
         Me.TxtWheel.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtWheel.Name = "TxtWheel"
         Me.TxtWheel.Size = New System.Drawing.Size(41, 20)
@@ -1029,7 +987,7 @@ Partial Class Form1
         'label32
         '
         Me.label32.AutoSize = True
-        Me.label32.Location = New System.Drawing.Point(597, 189)
+        Me.label32.Location = New System.Drawing.Point(597, 197)
         Me.label32.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label32.Name = "label32"
         Me.label32.Size = New System.Drawing.Size(41, 13)
@@ -1039,7 +997,7 @@ Partial Class Form1
         'label33
         '
         Me.label33.AutoSize = True
-        Me.label33.Location = New System.Drawing.Point(615, 238)
+        Me.label33.Location = New System.Drawing.Point(615, 246)
         Me.label33.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label33.Name = "label33"
         Me.label33.Size = New System.Drawing.Size(23, 13)
@@ -1049,7 +1007,7 @@ Partial Class Form1
         'label34
         '
         Me.label34.AutoSize = True
-        Me.label34.Location = New System.Drawing.Point(615, 213)
+        Me.label34.Location = New System.Drawing.Point(615, 221)
         Me.label34.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label34.Name = "label34"
         Me.label34.Size = New System.Drawing.Size(23, 13)
@@ -1058,7 +1016,7 @@ Partial Class Form1
         '
         'TxtMouseButtons
         '
-        Me.TxtMouseButtons.Location = New System.Drawing.Point(642, 186)
+        Me.TxtMouseButtons.Location = New System.Drawing.Point(642, 194)
         Me.TxtMouseButtons.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtMouseButtons.Name = "TxtMouseButtons"
         Me.TxtMouseButtons.Size = New System.Drawing.Size(41, 20)
@@ -1067,7 +1025,7 @@ Partial Class Form1
         '
         'TxtMouseY
         '
-        Me.TxtMouseY.Location = New System.Drawing.Point(642, 235)
+        Me.TxtMouseY.Location = New System.Drawing.Point(642, 243)
         Me.TxtMouseY.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtMouseY.Name = "TxtMouseY"
         Me.TxtMouseY.Size = New System.Drawing.Size(41, 20)
@@ -1076,7 +1034,7 @@ Partial Class Form1
         '
         'TxtMouseX
         '
-        Me.TxtMouseX.Location = New System.Drawing.Point(642, 210)
+        Me.TxtMouseX.Location = New System.Drawing.Point(642, 218)
         Me.TxtMouseX.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtMouseX.Name = "TxtMouseX"
         Me.TxtMouseX.Size = New System.Drawing.Size(41, 20)
@@ -1085,7 +1043,7 @@ Partial Class Form1
         '
         'BtnCustom
         '
-        Me.BtnCustom.Location = New System.Drawing.Point(568, 429)
+        Me.BtnCustom.Location = New System.Drawing.Point(566, 419)
         Me.BtnCustom.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnCustom.Name = "BtnCustom"
         Me.BtnCustom.Size = New System.Drawing.Size(98, 22)
@@ -1128,24 +1086,24 @@ Partial Class Form1
         Me.label44.Location = New System.Drawing.Point(464, 515)
         Me.label44.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label44.Name = "label44"
-        Me.label44.Size = New System.Drawing.Size(147, 13)
+        Me.label44.Size = New System.Drawing.Size(41, 13)
         Me.label44.TabIndex = 363
-        Me.label44.Text = "13. Dongle, v5+ firmware only"
+        Me.label44.Text = "Dongle"
         '
         'label41
         '
         Me.label41.AutoSize = True
-        Me.label41.Location = New System.Drawing.Point(464, 467)
+        Me.label41.Location = New System.Drawing.Point(464, 458)
         Me.label41.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label41.Name = "label41"
-        Me.label41.Size = New System.Drawing.Size(301, 13)
+        Me.label41.Size = New System.Drawing.Size(195, 13)
         Me.label41.TabIndex = 362
-        Me.label41.Text = "12. Write Version (0-65535), reboot required, v5+ firmware only"
+        Me.label41.Text = "Write Version (0-65535), reboot required"
         '
         'LblVersion
         '
         Me.LblVersion.AutoSize = True
-        Me.LblVersion.Location = New System.Drawing.Point(621, 494)
+        Me.LblVersion.Location = New System.Drawing.Point(621, 485)
         Me.LblVersion.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LblVersion.Name = "LblVersion"
         Me.LblVersion.Size = New System.Drawing.Size(41, 13)
@@ -1154,7 +1112,7 @@ Partial Class Form1
         '
         'TxtVersion
         '
-        Me.TxtVersion.Location = New System.Drawing.Point(567, 489)
+        Me.TxtVersion.Location = New System.Drawing.Point(567, 480)
         Me.TxtVersion.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtVersion.Name = "TxtVersion"
         Me.TxtVersion.Size = New System.Drawing.Size(49, 20)
@@ -1163,7 +1121,7 @@ Partial Class Form1
         '
         'BtnVersion
         '
-        Me.BtnVersion.Location = New System.Drawing.Point(466, 487)
+        Me.BtnVersion.Location = New System.Drawing.Point(466, 478)
         Me.BtnVersion.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnVersion.Name = "BtnVersion"
         Me.BtnVersion.Size = New System.Drawing.Size(92, 22)
@@ -1171,12 +1129,23 @@ Partial Class Form1
         Me.BtnVersion.Text = "Write Version"
         Me.BtnVersion.UseVisualStyleBackColor = True
         '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(463, 59)
+        Me.Label35.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(156, 13)
+        Me.Label35.TabIndex = 367
+        Me.Label35.Text = "Joystick Reflector (PID #1 only)"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(869, 654)
+        Me.ClientSize = New System.Drawing.Size(909, 668)
+        Me.Controls.Add(Me.Label35)
         Me.Controls.Add(Me.LblPassFail)
         Me.Controls.Add(Me.BtnCheckDongle)
         Me.Controls.Add(Me.BtnSetDongle)
@@ -1212,7 +1181,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Label27)
         Me.Controls.Add(Me.label28)
         Me.Controls.Add(Me.Label26)
-        Me.Controls.Add(Me.label29)
         Me.Controls.Add(Me.BtnMousereflect)
         Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.Label24)
@@ -1229,10 +1197,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.BtnGetDataNow)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.ChkFlash)
         Me.Controls.Add(Me.ChkBLOnOff)
-        Me.Controls.Add(Me.ChkFRedLED)
-        Me.Controls.Add(Me.ChkFGreenLED)
         Me.Controls.Add(Me.ChkRedLED)
         Me.Controls.Add(Me.ChkGreenLED)
         Me.Controls.Add(Me.BtnSetFlash)
@@ -1339,10 +1304,7 @@ Partial Class Form1
     Private WithEvents ChkRedOnOff As System.Windows.Forms.CheckBox
     Private WithEvents ChkGreenOnOff As System.Windows.Forms.CheckBox
     Private WithEvents ChkGreenLED As System.Windows.Forms.CheckBox
-    Private WithEvents ChkFRedLED As System.Windows.Forms.CheckBox
-    Private WithEvents ChkFGreenLED As System.Windows.Forms.CheckBox
     Private WithEvents ChkRedLED As System.Windows.Forms.CheckBox
-    Private WithEvents ChkFlash As System.Windows.Forms.CheckBox
     Private WithEvents ChkBLOnOff As System.Windows.Forms.CheckBox
     Private WithEvents Label15 As System.Windows.Forms.Label
     Private WithEvents BtnGetDataNow As System.Windows.Forms.Button
@@ -1359,7 +1321,6 @@ Partial Class Form1
     Private WithEvents TextBox11 As System.Windows.Forms.TextBox
     Private WithEvents Label24 As System.Windows.Forms.Label
     Private WithEvents Label25 As System.Windows.Forms.Label
-    Private WithEvents label29 As System.Windows.Forms.Label
     Private WithEvents BtnMousereflect As System.Windows.Forms.Button
     Private WithEvents Label26 As System.Windows.Forms.Label
     Private WithEvents label28 As System.Windows.Forms.Label
@@ -1396,5 +1357,6 @@ Partial Class Form1
     Private WithEvents LblVersion As System.Windows.Forms.Label
     Private WithEvents TxtVersion As System.Windows.Forms.TextBox
     Private WithEvents BtnVersion As System.Windows.Forms.Button
+    Private WithEvents Label35 As System.Windows.Forms.Label
 
 End Class
