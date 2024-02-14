@@ -69,7 +69,7 @@ BEGIN
     PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,289,154,73,17
     PUSHBUTTON      "Joystick Reflector",IDC_JOYREFLECT,289,199,73,17
     PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,226,73,17
-    LTEXT           "Open up the Game Controller control panel to accept commands.",IDC_STATIC,289,186,216,9
+    LTEXT           "Open up the Game Controller control panel to accept commands",IDC_STATIC,289,186,216,9
     PUSHBUTTON      "Multimedia",IDC_Multimedia,289,330,73,17
     LTEXT           "Keyboard Reflector (PID #2 and #4 Only):",IDC_STATIC,289,138,146,9
     LTEXT           "Descriptor:",IDC_STATIC,7,215,63,9
@@ -83,8 +83,8 @@ BEGIN
     LTEXT           "ScrLck",IDC_KEYSTATES3,361,75,50,13
     LTEXT           "unit id",IDC_UNITID3,116,154,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,183,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,198,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,198,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,198,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,50,198,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,289,414,73,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,289,434,73,17
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,268,73,17
@@ -138,9 +138,9 @@ BEGIN
     LTEXT           "-",IDC_LblVersion,128,314,39,8
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,345,192,9
     EDITTEXT        IDC_TXTBL,7,358,40,14,ES_AUTOHSCROLL
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,53,361,38,10
-    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,137,361,72,10
-    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,137,371,72,10
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,53,361,58,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,361,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,361,72,10
     PUSHBUTTON      "Toggle",IDC_BLToggle,7,406,50,17
     PUSHBUTTON      "Set Intensity",IDC_BLIntensity,63,406,61,17
     PUSHBUTTON      "Incremenat Intensity Bank1",IDC_BLIncInt,7,385,94,17
@@ -155,9 +155,7 @@ BEGIN
     LTEXT           "Calibrate T-bar, calibration is done at the factory, do this only if necessary:",IDC_STATIC,287,463,232,8
     PUSHBUTTON      "Start Cal",IDC_STARTCAL,289,479,73,17
     PUSHBUTTON      "Stop Cal",IDC_STOPCAL,477,479,73,17
-    LTEXT           "Move T-bar up and down to full extents then click Stop Cal.",IDC_STATIC,369,479,98,24
-    CONTROL         "Flash",IDC_FLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,87,198,33,10
-    CONTROL         "Flash",IDC_BLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,93,361,33,10
+    LTEXT           "Move T-bar up and down to full extents then click Stop Cal",IDC_STATIC,369,479,98,24
     LISTBOX         IDC_LIST1,7,41,173,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 

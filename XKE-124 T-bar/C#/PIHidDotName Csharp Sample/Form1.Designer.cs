@@ -138,7 +138,6 @@
             this.BtnStartCal = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.ChkFlash = new System.Windows.Forms.CheckBox();
-            this.chkFlash2 = new System.Windows.Forms.CheckBox();
             this.LblSwitchPos = new System.Windows.Forms.Label();
             this.LblButtons = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
@@ -993,11 +992,12 @@
             this.ChkBLOnOff.Location = new System.Drawing.Point(173, 551);
             this.ChkBLOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkBLOnOff.Name = "ChkBLOnOff";
-            this.ChkBLOnOff.Size = new System.Drawing.Size(59, 17);
+            this.ChkBLOnOff.Size = new System.Drawing.Size(89, 17);
             this.ChkBLOnOff.TabIndex = 272;
-            this.ChkBLOnOff.Text = "On/Off";
+            this.ChkBLOnOff.Text = "On/Off/Flash";
+            this.ChkBLOnOff.ThreeState = true;
             this.ChkBLOnOff.UseVisualStyleBackColor = true;
-            this.ChkBLOnOff.CheckedChanged += new System.EventHandler(this.ChkBLOnOff_CheckedChanged);
+            this.ChkBLOnOff.CheckStateChanged += new System.EventHandler(this.ChkBLOnOff_CheckStateChanged);
             // 
             // CboBL
             // 
@@ -1149,7 +1149,7 @@
             // ChkRedOnOff
             // 
             this.ChkRedOnOff.AutoSize = true;
-            this.ChkRedOnOff.Location = new System.Drawing.Point(405, 551);
+            this.ChkRedOnOff.Location = new System.Drawing.Point(380, 551);
             this.ChkRedOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkRedOnOff.Name = "ChkRedOnOff";
             this.ChkRedOnOff.Size = new System.Drawing.Size(110, 17);
@@ -1161,7 +1161,7 @@
             // ChkGreenOnOff
             // 
             this.ChkGreenOnOff.AutoSize = true;
-            this.ChkGreenOnOff.Location = new System.Drawing.Point(291, 551);
+            this.ChkGreenOnOff.Location = new System.Drawing.Point(266, 551);
             this.ChkGreenOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkGreenOnOff.Name = "ChkGreenOnOff";
             this.ChkGreenOnOff.Size = new System.Drawing.Size(110, 17);
@@ -1373,18 +1373,6 @@
             this.ChkFlash.UseVisualStyleBackColor = true;
             this.ChkFlash.CheckedChanged += new System.EventHandler(this.ChkFlash_CheckedChanged_1);
             // 
-            // chkFlash2
-            // 
-            this.chkFlash2.AutoSize = true;
-            this.chkFlash2.Location = new System.Drawing.Point(236, 551);
-            this.chkFlash2.Margin = new System.Windows.Forms.Padding(2);
-            this.chkFlash2.Name = "chkFlash2";
-            this.chkFlash2.Size = new System.Drawing.Size(51, 17);
-            this.chkFlash2.TabIndex = 304;
-            this.chkFlash2.Text = "Flash";
-            this.chkFlash2.UseVisualStyleBackColor = true;
-            this.chkFlash2.CheckedChanged += new System.EventHandler(this.chkFlash2_CheckedChanged_1);
-            // 
             // LblSwitchPos
             // 
             this.LblSwitchPos.Location = new System.Drawing.Point(21, 189);
@@ -1412,7 +1400,6 @@
             this.ClientSize = new System.Drawing.Size(1020, 763);
             this.Controls.Add(this.LblButtons);
             this.Controls.Add(this.LblSwitchPos);
-            this.Controls.Add(this.chkFlash2);
             this.Controls.Add(this.ChkFlash);
             this.Controls.Add(this.BtnStopCal);
             this.Controls.Add(this.BtnStartCal);
@@ -1645,7 +1632,6 @@
         private System.Windows.Forms.Button BtnStartCal;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox ChkFlash;
-        private System.Windows.Forms.CheckBox chkFlash2;
         private System.Windows.Forms.Label LblSwitchPos;
         private System.Windows.Forms.Label LblButtons;
     }
