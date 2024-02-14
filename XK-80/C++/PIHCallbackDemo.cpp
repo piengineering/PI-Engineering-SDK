@@ -251,7 +251,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -271,7 +271,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -321,78 +321,15 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			return TRUE;
-		case IDC_CHKBLFLASH:
-            //Turn on/off the backlight of the entered key in IDC_TXTBL
-			//Use the Set Flash Freq to control frequency of blink
-            //Key Index (in decimal)
-			//Bank 1
-            //Columns-->
-            //Columns-->
-            //  0   8   16  24  32  40  48  56  64  72
-            //  1   9   17  25  33  41  49  57  65  73
-            //  2   10  18  26  34  42  50  58  66  74
-            //  3   11  19  27  35  43  51  59  67  75
-            //  4   12  20  28  36  44  52  60  68  76
-            //  5   13  21  29  37  45  53  61  69  77
-            //  6   14  22  30  38  46  54  62  70  78
-            //  7   15  23  31  39  47  55  63  71  79
-
-			//Bank 2
-			//Columns-->
-            //  80	88	96	104	112	120	128	136	144	152
-            //  81	89	97	105	113	121	129	137	145	153
-            //  82	90	98	106	114	122	130	138	146	154
-            //  83	91	99	107	115	123	131	139	147	155
-            //  84	92	100	108	116	124	132	140	148	156
-            //  85	93	101	109	117	125	133	141	149	157
-			//	86	94	102	110	118	126	134	142	150	158
-			//  87  95  103 111 119 127 135 143 151 159
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
 			result=404;
 			while (result==404)
 			{
 				result = WriteData(hDevice, buffer);
 			}
 			return TRUE;
+		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)
@@ -407,6 +344,7 @@ int CALLBACK DialogProc(
 			if (hList == NULL) return TRUE;
 			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=255;
 			else buffer[3]=0;  //0=off, 255=on OR use individual bits to turn on rows, bit 1=row 1, bit 2= row 2, etc
+
 			result=404;
 			while (result==404)
 			{
@@ -452,6 +390,7 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=184;
+
 			result=404;
 			while (result==404)
 			{
@@ -499,6 +438,7 @@ int CALLBACK DialogProc(
 			char Freq[10];
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)Freq);
 			buffer[2]= atoi(Freq);
+
 			result=404;
 			while (result==404)
 			{
@@ -518,6 +458,7 @@ int CALLBACK DialogProc(
 			}
 			buffer[1]=199; //0xc7
 			buffer[2]=1; //anything other than 0 will save bl state to eeprom
+			
 			result=404;
 			while (result==404)
 			{
@@ -533,6 +474,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
 			buffer[2]=0; //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
 			result=404;
 			while (result==404)
 			{
@@ -548,6 +490,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
 			buffer[2]=1;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
 			result=404;
 			while (result==404)
 			{
@@ -562,6 +505,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
 			buffer[2]=2;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
 			result=404;
 			while (result==404)
 			{
@@ -577,6 +521,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
 			buffer[2]=3;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
 			result=404;
 			while (result==404)
 			{
@@ -598,6 +543,7 @@ int CALLBACK DialogProc(
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)versionval);
 			buffer[2]=(BYTE)atoi(versionval);
 			buffer[3]=(BYTE)(atoi(versionval)>>8);
+			
 			result=404;
 			while (result==404)
 			{
@@ -627,6 +573,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=210;
 			buffer[2]=0; //0 to turn off time stamp, 1 to turn on time stamp
+			
 			result=404;
 			while (result==404)
 			{
@@ -644,6 +591,7 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=210;
 			buffer[2]=1; //0 to turn off time stamp, 1 to turn on time stamp
+			
 			result=404;
 			while (result==404)
 			{
@@ -670,6 +618,7 @@ int CALLBACK DialogProc(
 			buffer[7]=0; //4th hid code
 			buffer[8]=0; //5th hid code
 			buffer[9]=0; //6th hid code
+			
 			result=404;
 			while(result==404)
 			{
@@ -686,6 +635,7 @@ int CALLBACK DialogProc(
 			buffer[7]=0x07; //4th hid code d down
 			buffer[8]=0; //5th hid code
 			buffer[9]=0; //6th hid code
+			
 			result=404;
 			while(result==404)
 			{
@@ -702,6 +652,7 @@ int CALLBACK DialogProc(
 			buffer[7]=0; //4th hid code d up
 			buffer[8]=0; //5th hid code
 			buffer[9]=0; //6th hid code
+			
 			result=404;
 			while(result==404)
 			{
@@ -786,6 +737,7 @@ int CALLBACK DialogProc(
 			hList = GetDlgItem(hDialog, IDC_MouseWheel);
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)val);
 			buffer[6]=atoi(val); //Wheel Y, 128=0 no motion, 1-127 is up, 255-129=down, finest inc (1 and 255) to coarsest (127 and 129).
+			
 			result=404;
 			while (result==404)
 			{
@@ -837,6 +789,7 @@ int CALLBACK DialogProc(
 			hList = GetDlgItem(hDialog, IDC_TxtMultiHi);
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)val2);
 			buffer[3]=strtol(val2, &p, 16); //Usage ID hi byte see hut1_12.pdf, pages 75-85 Consumer Page
+			
 			result=404;
 			while (result==404)
 			{
@@ -845,6 +798,7 @@ int CALLBACK DialogProc(
 
 			buffer[2]=0; //terminate
 			buffer[3]=0; //terminate
+			
 			result=404;
 			while (result==404)
 			{
@@ -865,6 +819,7 @@ int CALLBACK DialogProc(
 			buffer[1]=225; //0xe1
 			buffer[2]=strtol("94", &p, 16); //Usage ID lo byte see hut1_12.pdf, pages 75-85 Consumer Page
 			buffer[3]=strtol("01", &p, 16); //Usage ID hi byte see hut1_12.pdf, pages 75-85 Consumer Page
+			
 			result=404;
 			while (result==404)
 			{
@@ -873,6 +828,7 @@ int CALLBACK DialogProc(
 
 			buffer[2]=0; //terminate
 			buffer[3]=0; //terminate
+			
 			result=404;
 			while (result==404)
 			{
@@ -910,6 +866,7 @@ int CALLBACK DialogProc(
             buffer[3] = 1; //1st custom byte
             buffer[4] = 2; //2nd custom byte
             buffer[5] = 3; //3rd custom byte
+			
 			result=404;
 			while (result==404)
 			{
@@ -935,6 +892,7 @@ int CALLBACK DialogProc(
 			buffer[3]=K1;
 			buffer[4]=K2;
 			buffer[5]=K3;
+			
 			result=404;
 			while (result==404)
 			{
@@ -1043,6 +1001,7 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=214;
+
 			result=404;
 			while (result==404)
 			{
@@ -1051,7 +1010,6 @@ int CALLBACK DialogProc(
 			//after this write the next read 3rd byte=214 will give descriptor information
 			for (int i=0;i<80;i++)
 			{buffer[i]=0;}
-			
 			
 			result = BlockingReadData(hDevice, buffer, 100);
 			

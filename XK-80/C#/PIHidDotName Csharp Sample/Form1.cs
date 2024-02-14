@@ -76,6 +76,7 @@ namespace PIHidDotName_Csharp_Sample
                 this.SetListBox(output);
 
                 //buttons
+                #region buttons
                 //this routine is for separating out the individual button presses/releases from the data byte array.
                 int maxcols = 10; //number of columns of Xkeys digital button data, labeled "Keys" in P.I. Engineering SDK - General Incoming Data Input Report
                 int maxrows = 8; //constant, 8 bits per byte
@@ -962,7 +963,7 @@ namespace PIHidDotName_Csharp_Sample
                     lastdata[i] = data[i];
                 }
                 //end buttons
-
+                #endregion buttons
 
                 //time stamp info 4 bytes
                 if (data[2] < 2) //only want time stamp if actual buttons pressed
@@ -1070,7 +1071,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //setup callback if there are devices found for each device found
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 for (int i = 0; i < CboDevices.Items.Count; i++)
                 {
@@ -1085,7 +1086,8 @@ namespace PIHidDotName_Csharp_Sample
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            
+           
+           
         }
 
         private void BtnEnumerate_Click(object sender, EventArgs e)
@@ -1183,7 +1185,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnUnitID_Click(object sender, EventArgs e)
         {
             //Write Unit ID to the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -1215,7 +1217,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnTimeStamp_Click(object sender, EventArgs e)
         {
             //Sending this command will turn off the 4 bytes of data which assembled give the time in ms from the start of the computer
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1243,7 +1245,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Sending this command will turn on the 4 bytes of data which assembled give the time in ms from the start of the computer
             
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1272,7 +1274,7 @@ namespace PIHidDotName_Csharp_Sample
             //Sends native keyboard messages
             //Write some keys to the textbox, should be Abcd
             //send some hid codes to the textbox, these will be coming in on the native keyboard endpoint
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result;
                 textBox1.Focus();
@@ -1329,7 +1331,7 @@ namespace PIHidDotName_Csharp_Sample
             //Sends native joystick messages
             //Open up the game controller control panel to test these features, after clicking this button
             //go and make active the control panel properties and change will be seen
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1442,6 +1444,7 @@ namespace PIHidDotName_Csharp_Sample
                 
                 string temp = "PID=" + (data[13] * 256 + data[12]).ToString();
                 listBox2.Items.Add(temp);
+                listBox2.Items.Add("keymapstart msb=" + data[14].ToString());
                 
             }
         }
@@ -1452,7 +1455,7 @@ namespace PIHidDotName_Csharp_Sample
             //the 3rd byte (Data Type) 2nd bit set.  If program switch is up byte 3 will be 2 
             //and if it is pressed byte 3 will be 3.  This is useful for getting the initial state
             //or unit id of the device before it sends any data.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -1496,45 +1499,12 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkGreen_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
-            {
-                CheckBox thisChk = (CheckBox)sender;
-                string temp = thisChk.Tag.ToString();
-                byte LED = Convert.ToByte(temp); //6=green, 7=red
-                byte state = 0;
-                if (thisChk.Checked == true)
-                {
-                    state = 1;
-                    if (ChkFlash2.Checked == true) state = 2;
-                }
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[0] = 0;
-                wData[1] = 179; //b3
-                wData[2] = LED;
-                wData[3] = state; //0=off, 1=on, 2=flash
-
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - LEDs and Outputs";
-                }
-            }
+            
         }
 
         private void BtnPID1_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1542,7 +1512,7 @@ namespace PIHidDotName_Csharp_Sample
                     wData[j] = 0;
                 }
                 wData[0] = 0;
-                wData[1] = 204;
+                wData[1] = 204; //0xcc
                 wData[2] = 0; //0=pid1, 1=pid2, 2=pid3, 3=pid4
 
                 int result=404;
@@ -1562,7 +1532,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnPID2_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1590,7 +1560,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnPID3_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1620,7 +1590,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Note this PID will not be "recognizable" on Android, you will not be able to enumerate it.  Because it has a boot keyboard this PID will be treated
             //as an exteral hardware keyboard on Android.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1686,7 +1656,7 @@ namespace PIHidDotName_Csharp_Sample
             //Favorites	022A
 
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result = 0;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1729,7 +1699,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnMyComputer_Click(object sender, EventArgs e)
         {
             //Multimedia available on v5 firmware or above.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1771,7 +1741,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnSleep_Click(object sender, EventArgs e)
         {
             //Multimedia available on v5 firmware or above.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1814,7 +1784,7 @@ namespace PIHidDotName_Csharp_Sample
             //the 3rd byte (Data Type) set to 0xE0, the 4th byte set to the count given below when the command was sent
             //and the following bytes whatever the user wishes.  In this example we are send 3 bytes; 1, 2, 3
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1846,7 +1816,7 @@ namespace PIHidDotName_Csharp_Sample
             //This report available only on v5 firmware and above
             //Write version, this is a 2 byte number that is available on enumeration.  You must reboot the device to see the 
             //newly written version!
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1891,7 +1861,7 @@ namespace PIHidDotName_Csharp_Sample
             //  7   15  23  31  39  47  55  63  71  79
 
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //first get selected index
                 string sindex = CboBL.Text;
@@ -1949,7 +1919,7 @@ namespace PIHidDotName_Csharp_Sample
             //  7   15  23  31  39  47  55  63  71  79
 
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //first get selected index
                 string sindex = CboBL.Text;
@@ -1992,14 +1962,14 @@ namespace PIHidDotName_Csharp_Sample
             }
         }
 
-        private void ChkGreenOnOff_CheckedChanged(object sender, EventArgs e)
+        private void ChkBlueOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkGreenOnOff, ALL bank 1 BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
 
-                if (ChkGreenOnOff.Checked == true) sl = 255;
+                if (ChkBlueOnOff.Checked == true) sl = 255;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
                     wData[j] = 0;
@@ -2027,7 +1997,7 @@ namespace PIHidDotName_Csharp_Sample
         private void ChkRedOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkRedOnOff, ALL bank 2 BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
 
@@ -2059,7 +2029,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnSetFlash_Click(object sender, EventArgs e)
         {
             //Sets the frequency of flashing for both the LEDs and backlighting
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
 
@@ -2089,7 +2059,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnBLToggle_Click(object sender, EventArgs e)
         {
             //Sending this command toggles the backlights
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -2116,7 +2086,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnBL_Click(object sender, EventArgs e)
         {
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -2147,7 +2117,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Write current state of backlighting to EEPROM.  
             //NOTE: Is it not recommended to do this frequently as there are a finite number of writes to the EEPROM allowed
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -2173,64 +2143,14 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkFlash2_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
-            {
-
-                byte state = 0;
-                if (ChkGreen.Checked == true)
-                {
-                    state = 1;
-                    if (ChkFlash2.Checked == true)
-                    {
-                        state = 2;
-                    }
-                }
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[0] = 0;
-                wData[1] = 179;
-                wData[2] = 6;
-                wData[3] = state; //0=off, 1=on, 2=flash
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                state = 0;
-                if (ChkRed.Checked == true)
-                {
-                    state = 1;
-                    if (ChkFlash2.Checked == true)
-                    {
-                        state = 2;
-                    }
-                }
-
-                wData[0] = 0;
-                wData[1] = 179;
-                wData[2] = 7;
-                wData[3] = state; //0=off, 1=on, 2=flash
-                result=404;
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - LEDs";
-                }
-
-            }
+            
         }
 
        
 
         private void ChkSuppress_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 if (ChkSuppress.Checked == false)
                 {
@@ -2245,7 +2165,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnMousereflect_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 wData[0] = 0;
                 wData[1] = 203;    //0xcb
@@ -2274,7 +2194,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnSetDongle_Click(object sender, EventArgs e)
         {
             //Use the Dongle feature to set a 4 byte code into the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //This routine is done once per unit by the developer prior to sale.
                 //Pick 4 numbers between 1 and 254.
@@ -2315,7 +2235,7 @@ namespace PIHidDotName_Csharp_Sample
             //Reads the secret key set in Set Key
             //This is done within the developer's application to check for the correct
             //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //check hardware
 
@@ -2400,6 +2320,35 @@ namespace PIHidDotName_Csharp_Sample
                     {
                         LblPassFail.Text = "Fail-Correct Hardward Not Found";
                     }
+                }
+            }
+        }
+
+        private void ChkGreen_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                CheckBox thisChk = (CheckBox)sender;
+                string temp = thisChk.Tag.ToString();
+                byte LED = Convert.ToByte(temp); 
+                byte state = (byte)thisChk.CheckState;
+                
+                wData[0] = 0;
+                wData[1] = 179; //b3
+                wData[2] = LED; //6=green, 7=red
+                wData[3] = state; //0=off, 1=on, 2=flash
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - LEDs and Outputs";
                 }
             }
         }
