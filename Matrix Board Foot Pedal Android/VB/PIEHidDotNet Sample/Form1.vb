@@ -298,16 +298,11 @@
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+        ReDim lastdata(devices(selecteddevice).ReadLength - 1)
     End Sub
 
    
-    Private Sub BtnSetKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub BtnCheckKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
+    
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         ListBox1.Items.Clear()
@@ -554,57 +549,6 @@
     End Sub
 
    
-
-    Private Sub BtnPID1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-
-    End Sub
-
-    Private Sub BtnPID2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-
-    Private Sub ChkGreen_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckedChanged, ChkRed.CheckedChanged
-        'change the device's unit id
-        If selecteddevice <> -1 Then
-
-            Dim thisChk As CheckBox = DirectCast(sender, CheckBox)
-            Dim temp As String = thisChk.Tag.ToString()
-            Dim LED As Byte = Convert.ToByte(temp)
-            '6=green, 7=red, 0=out1, 1=out2
-            Dim state As Byte = 0
-            If thisChk.Checked = True Then
-                state = 1
-                If ChkFlash.Checked = True Then
-                    state = 2
-                End If
-            End If
-
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 179
-            wdata(2) = LED
-            wdata(3) = state '0=off, 1=on, 2=flash
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - LEDs and Output"
-            End If
-        End If
-    End Sub
-
-    
 
     Private Sub BtnCustom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCustom.Click
         'After sending this command a custom incoming data report will be given with
@@ -987,53 +931,7 @@
 
     End Sub
 
-    Private Sub ChkFlash_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkFlash.CheckedChanged
-        Dim state As Byte = 0
-        If (ChkGreen.Checked = True) Then
-            state = 1
-            If (ChkFlash.Checked = True) Then
-                state = 2
-            End If
-        End If
-        For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-            wdata(i) = 0
-        Next
-
-        wdata(0) = 0
-        wdata(1) = 179
-        wdata(2) = 6
-        wdata(3) = state
-
-        Dim result As Integer
-        result = 404
-        While (result = 404)
-            result = devices(selecteddevice).WriteData(wdata)
-        End While
-
-        state = 0
-        If (ChkRed.Checked = True) Then
-            state = 1
-            If (ChkFlash.Checked = True) Then
-                state = 2
-            End If
-        End If
-        wdata(0) = 0
-        wdata(1) = 179
-        wdata(2) = 7
-        wdata(3) = state
-
-        result = 404
-        While (result = 404)
-            result = devices(selecteddevice).WriteData(wdata)
-        End While
-
-        If result <> 0 Then
-            LblStatus.Text = "Write Fail: " + result.ToString
-        Else
-            LblStatus.Text = "Write Success - LEDs"
-        End If
-
-    End Sub
+    
 
     Private Sub BtnMousereflect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMousereflect.Click
         If selecteddevice <> -1 Then
@@ -1072,6 +970,37 @@
                 LblStatus.Text = "Write Fail: " + result.ToString
             Else
                 LblStatus.Text = "Write Success - Mouse Reflector"
+            End If
+        End If
+    End Sub
+
+    Private Sub ChkGreen_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckStateChanged, ChkRed.CheckStateChanged
+        'change the device's unit id
+        If selecteddevice <> -1 Then
+
+            Dim thisChk As CheckBox = DirectCast(sender, CheckBox)
+            Dim temp As String = thisChk.Tag.ToString()
+            Dim LED As Byte = Convert.ToByte(temp)
+            Dim state As Byte = thisChk.CheckState
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 179
+            wdata(2) = LED '6=green, 7=red
+            wdata(3) = state '0=off, 1=on, 2=flash
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - LEDs and Output"
             End If
         End If
     End Sub
