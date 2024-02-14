@@ -223,9 +223,9 @@
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "1. Do this first";
+            this.label1.Text = "Do this first";
             // 
             // label2
             // 
@@ -233,9 +233,9 @@
             this.label2.Location = new System.Drawing.Point(11, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 13);
+            this.label2.Size = new System.Drawing.Size(174, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "2. Set for data callback and read data";
+            this.label2.Text = "Set for data callback and read data";
             // 
             // button1
             // 
@@ -254,9 +254,9 @@
             this.label5.Location = new System.Drawing.Point(510, 404);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 13);
+            this.label5.Size = new System.Drawing.Size(221, 13);
             this.label5.TabIndex = 23;
-            this.label5.Text = "13. Change PID (must Enumerate after changing)";
+            this.label5.Text = "Change PID (must Enumerate after changing)";
             // 
             // BtnPID3
             // 
@@ -286,9 +286,9 @@
             this.label7.Location = new System.Drawing.Point(510, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(214, 13);
+            this.label7.Size = new System.Drawing.Size(202, 13);
             this.label7.TabIndex = 30;
-            this.label7.Text = "9. Keyboard Reflector (PID #2 and #4 Only)";
+            this.label7.Text = "Keyboard Reflector (PID #2 and #4 Only)";
             // 
             // BtnKBreflect
             // 
@@ -452,9 +452,9 @@
             this.label21.Location = new System.Drawing.Point(11, 305);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(67, 13);
+            this.label21.Size = new System.Drawing.Size(55, 13);
             this.label21.TabIndex = 61;
-            this.label21.Text = "5. Descriptor";
+            this.label21.Text = "Descriptor";
             // 
             // BtnDescriptor
             // 
@@ -482,9 +482,9 @@
             this.label23.Location = new System.Drawing.Point(8, 469);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(111, 13);
+            this.label23.Size = new System.Drawing.Size(99, 13);
             this.label23.TabIndex = 67;
-            this.label23.Text = "7. Enable Time Stamp";
+            this.label23.Text = "Enable Time Stamp";
             // 
             // BtnTimeStampOn
             // 
@@ -503,9 +503,9 @@
             this.label13.Location = new System.Drawing.Point(11, 199);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 13);
+            this.label13.Size = new System.Drawing.Size(68, 13);
             this.label13.TabIndex = 87;
-            this.label13.Text = "3. Write Unit ID";
+            this.label13.Text = "Write Unit ID";
             // 
             // BtnGetDataNow
             // 
@@ -655,7 +655,7 @@
             // 
             // TxtMouseWheel
             // 
-            this.TxtMouseWheel.Location = new System.Drawing.Point(707, 284);
+            this.TxtMouseWheel.Location = new System.Drawing.Point(707, 283);
             this.TxtMouseWheel.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseWheel.Name = "TxtMouseWheel";
             this.TxtMouseWheel.Size = new System.Drawing.Size(41, 20);
@@ -714,19 +714,19 @@
             this.label17.Location = new System.Drawing.Point(510, 69);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(211, 13);
+            this.label17.Size = new System.Drawing.Size(193, 13);
             this.label17.TabIndex = 204;
-            this.label17.Text = "10. Joystick Reflector (PID #1 and #3 only)";
+            this.label17.Text = "Joystick Reflector (PID #1 and #3 only)";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(510, 188);
+            this.label24.Location = new System.Drawing.Point(510, 204);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(103, 13);
+            this.label24.Size = new System.Drawing.Size(85, 13);
             this.label24.TabIndex = 205;
-            this.label24.Text = "11. Mouse Reflector";
+            this.label24.Text = "Mouse Reflector";
             // 
             // label3
             // 
@@ -734,9 +734,9 @@
             this.label3.Location = new System.Drawing.Point(11, 270);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 13);
+            this.label3.Size = new System.Drawing.Size(122, 13);
             this.label3.TabIndex = 206;
-            this.label3.Text = "4. Write LEDs and Outputs";
+            this.label3.Text = "Write LEDs and Outputs";
             // 
             // ChkGreen
             // 
@@ -850,7 +850,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(680, 263);
+            this.label29.Location = new System.Drawing.Point(680, 262);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(23, 13);
@@ -860,7 +860,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(680, 239);
+            this.label31.Location = new System.Drawing.Point(680, 237);
             this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(23, 13);
@@ -869,7 +869,7 @@
             // 
             // TxtMouseY
             // 
-            this.TxtMouseY.Location = new System.Drawing.Point(707, 260);
+            this.TxtMouseY.Location = new System.Drawing.Point(707, 258);
             this.TxtMouseY.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseY.Name = "TxtMouseY";
             this.TxtMouseY.Size = new System.Drawing.Size(41, 20);
@@ -878,7 +878,7 @@
             // 
             // TxtMouseX
             // 
-            this.TxtMouseX.Location = new System.Drawing.Point(707, 236);
+            this.TxtMouseX.Location = new System.Drawing.Point(707, 233);
             this.TxtMouseX.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseX.Name = "TxtMouseX";
             this.TxtMouseX.Size = new System.Drawing.Size(41, 20);
@@ -901,9 +901,9 @@
             this.label38.Location = new System.Drawing.Point(510, 318);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(177, 13);
+            this.label38.Size = new System.Drawing.Size(159, 13);
             this.label38.TabIndex = 225;
-            this.label38.Text = "12. Multimedia (PID #2 and #3 only)";
+            this.label38.Text = "Multimedia (PID #2 and #3 only)";
             // 
             // BtnSleep
             // 
@@ -992,9 +992,9 @@
             this.label14.Location = new System.Drawing.Point(8, 401);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(328, 13);
+            this.label14.Size = new System.Drawing.Size(313, 13);
             this.label14.TabIndex = 259;
-            this.label14.Text = "6.  Stimulate a general incoming data report or a custom input report.";
+            this.label14.Text = "Stimulate a general incoming data report or a custom input report.";
             // 
             // label41
             // 
@@ -1002,9 +1002,9 @@
             this.label41.Location = new System.Drawing.Point(8, 531);
             this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(306, 13);
+            this.label41.Size = new System.Drawing.Size(294, 13);
             this.label41.TabIndex = 263;
-            this.label41.Text = "8. Write Version (0-65535), reboot required, may take some time";
+            this.label41.Text = "Write Version (0-65535), reboot required, may take some time";
             // 
             // LblVersion
             // 
@@ -1095,9 +1095,9 @@
             this.label33.Location = new System.Drawing.Point(512, 539);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(59, 13);
+            this.label33.Size = new System.Drawing.Size(41, 13);
             this.label33.TabIndex = 290;
-            this.label33.Text = "14. Dongle";
+            this.label33.Text = "Dongle";
             // 
             // Form1
             // 
@@ -1204,8 +1204,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "C# USB HD15 Wire Interface";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

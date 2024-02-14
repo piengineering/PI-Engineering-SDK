@@ -200,9 +200,9 @@ Partial Class Form1
         Me.label3.Location = New System.Drawing.Point(8, 221)
         Me.label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(80, 13)
+        Me.label3.Size = New System.Drawing.Size(68, 13)
         Me.label3.TabIndex = 29
-        Me.label3.Text = "3. Write Unit ID"
+        Me.label3.Text = "Write Unit ID"
         '
         'label2
         '
@@ -210,9 +210,9 @@ Partial Class Form1
         Me.label2.Location = New System.Drawing.Point(7, 77)
         Me.label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(186, 13)
+        Me.label2.Size = New System.Drawing.Size(174, 13)
         Me.label2.TabIndex = 28
-        Me.label2.Text = "2. Set for data callback and read data"
+        Me.label2.Text = "Set for data callback and read data"
         '
         'label1
         '
@@ -220,9 +220,9 @@ Partial Class Form1
         Me.label1.Location = New System.Drawing.Point(7, 2)
         Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(71, 13)
+        Me.label1.Size = New System.Drawing.Size(59, 13)
         Me.label1.TabIndex = 27
-        Me.label1.Text = "1. Do this first"
+        Me.label1.Text = "Do this first"
         '
         'Label5
         '
@@ -640,9 +640,9 @@ Partial Class Form1
         Me.Label13.Location = New System.Drawing.Point(8, 280)
         Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(106, 13)
+        Me.Label13.Size = New System.Drawing.Size(94, 13)
         Me.Label13.TabIndex = 233
-        Me.Label13.Text = "4. LEDs and Outputs"
+        Me.Label13.Text = "LEDs and Outputs"
         '
         'ChkGreen
         '
@@ -691,22 +691,22 @@ Partial Class Form1
         'label21
         '
         Me.label21.AutoSize = True
-        Me.label21.Location = New System.Drawing.Point(8, 317)
+        Me.label21.Location = New System.Drawing.Point(8, 327)
         Me.label21.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label21.Name = "label21"
-        Me.label21.Size = New System.Drawing.Size(67, 13)
+        Me.label21.Size = New System.Drawing.Size(55, 13)
         Me.label21.TabIndex = 238
-        Me.label21.Text = "5. Descriptor"
+        Me.label21.Text = "Descriptor"
         '
         'label14
         '
         Me.label14.AutoSize = True
-        Me.label14.Location = New System.Drawing.Point(8, 424)
+        Me.label14.Location = New System.Drawing.Point(8, 430)
         Me.label14.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label14.Name = "label14"
-        Me.label14.Size = New System.Drawing.Size(328, 13)
+        Me.label14.Size = New System.Drawing.Size(310, 13)
         Me.label14.TabIndex = 294
-        Me.label14.Text = "6.  Stimulate a general incoming data report or a custom input report."
+        Me.label14.Text = "Stimulate a general incoming data report or a custom input report"
         '
         'BtnCustom
         '
@@ -721,12 +721,12 @@ Partial Class Form1
         'label23
         '
         Me.label23.AutoSize = True
-        Me.label23.Location = New System.Drawing.Point(8, 483)
+        Me.label23.Location = New System.Drawing.Point(8, 489)
         Me.label23.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label23.Name = "label23"
-        Me.label23.Size = New System.Drawing.Size(111, 13)
+        Me.label23.Size = New System.Drawing.Size(99, 13)
         Me.label23.TabIndex = 296
-        Me.label23.Text = "7. Enable Time Stamp"
+        Me.label23.Text = "Enable Time Stamp"
         '
         'BtnTimeStampOn
         '
@@ -741,12 +741,12 @@ Partial Class Form1
         'label41
         '
         Me.label41.AutoSize = True
-        Me.label41.Location = New System.Drawing.Point(7, 538)
+        Me.label41.Location = New System.Drawing.Point(7, 545)
         Me.label41.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label41.Name = "label41"
-        Me.label41.Size = New System.Drawing.Size(306, 13)
+        Me.label41.Size = New System.Drawing.Size(294, 13)
         Me.label41.TabIndex = 301
-        Me.label41.Text = "8. Write Version (0-65535), reboot required, may take some time"
+        Me.label41.Text = "Write Version (0-65535), reboot required, may take some time"
         '
         'LblVersion
         '
@@ -790,22 +790,22 @@ Partial Class Form1
         'label24
         '
         Me.label24.AutoSize = True
-        Me.label24.Location = New System.Drawing.Point(469, 202)
+        Me.label24.Location = New System.Drawing.Point(469, 208)
         Me.label24.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label24.Name = "label24"
-        Me.label24.Size = New System.Drawing.Size(103, 13)
+        Me.label24.Size = New System.Drawing.Size(85, 13)
         Me.label24.TabIndex = 302
-        Me.label24.Text = "11. Mouse Reflector"
+        Me.label24.Text = "Mouse Reflector"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(469, 68)
+        Me.Label4.Location = New System.Drawing.Point(469, 77)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(211, 13)
+        Me.Label4.Size = New System.Drawing.Size(193, 13)
         Me.Label4.TabIndex = 304
-        Me.Label4.Text = "10. Joystick Reflector (PID #1 and #3 only)"
+        Me.Label4.Text = "Joystick Reflector (PID #1 and #3 only)"
         '
         'label7
         '
@@ -813,14 +813,14 @@ Partial Class Form1
         Me.label7.Location = New System.Drawing.Point(463, 2)
         Me.label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label7.Name = "label7"
-        Me.label7.Size = New System.Drawing.Size(219, 13)
+        Me.label7.Size = New System.Drawing.Size(207, 13)
         Me.label7.TabIndex = 305
-        Me.label7.Text = "9. Keyboard Reflector (PIDs #2 and #4 Only)"
+        Me.label7.Text = "Keyboard Reflector (PIDs #2 and #4 Only)"
         '
         'label35
         '
         Me.label35.AutoSize = True
-        Me.label35.Location = New System.Drawing.Point(541, 534)
+        Me.label35.Location = New System.Drawing.Point(542, 467)
         Me.label35.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label35.Name = "label35"
         Me.label35.Size = New System.Drawing.Size(290, 13)
@@ -829,7 +829,7 @@ Partial Class Form1
         '
         'BtnPID4
         '
-        Me.BtnPID4.Location = New System.Drawing.Point(471, 529)
+        Me.BtnPID4.Location = New System.Drawing.Point(472, 462)
         Me.BtnPID4.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnPID4.Name = "BtnPID4"
         Me.BtnPID4.Size = New System.Drawing.Size(66, 22)
@@ -840,7 +840,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(541, 503)
+        Me.Label6.Location = New System.Drawing.Point(542, 441)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(233, 13)
@@ -849,7 +849,7 @@ Partial Class Form1
         '
         'BtnPID3
         '
-        Me.BtnPID3.Location = New System.Drawing.Point(471, 498)
+        Me.BtnPID3.Location = New System.Drawing.Point(472, 436)
         Me.BtnPID3.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnPID3.Name = "BtnPID3"
         Me.BtnPID3.Size = New System.Drawing.Size(66, 22)
@@ -860,16 +860,16 @@ Partial Class Form1
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(469, 410)
+        Me.Label15.Location = New System.Drawing.Point(470, 370)
         Me.Label15.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(239, 13)
+        Me.Label15.Size = New System.Drawing.Size(221, 13)
         Me.Label15.TabIndex = 326
-        Me.Label15.Text = "13. Change PID (must Enumerate after changing)"
+        Me.Label15.Text = "Change PID (must Enumerate after changing)"
         '
         'BtnSleep
         '
-        Me.BtnSleep.Location = New System.Drawing.Point(700, 365)
+        Me.BtnSleep.Location = New System.Drawing.Point(793, 318)
         Me.BtnSleep.Name = "BtnSleep"
         Me.BtnSleep.Size = New System.Drawing.Size(80, 22)
         Me.BtnSleep.TabIndex = 321
@@ -878,7 +878,7 @@ Partial Class Form1
         '
         'BtnMyComputer
         '
-        Me.BtnMyComputer.Location = New System.Drawing.Point(700, 335)
+        Me.BtnMyComputer.Location = New System.Drawing.Point(708, 318)
         Me.BtnMyComputer.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnMyComputer.Name = "BtnMyComputer"
         Me.BtnMyComputer.Size = New System.Drawing.Size(80, 22)
@@ -889,7 +889,7 @@ Partial Class Form1
         'label39
         '
         Me.label39.AutoSize = True
-        Me.label39.Location = New System.Drawing.Point(581, 336)
+        Me.label39.Location = New System.Drawing.Point(581, 305)
         Me.label39.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label39.Name = "label39"
         Me.label39.Size = New System.Drawing.Size(55, 13)
@@ -899,7 +899,7 @@ Partial Class Form1
         'label40
         '
         Me.label40.AutoSize = True
-        Me.label40.Location = New System.Drawing.Point(642, 336)
+        Me.label40.Location = New System.Drawing.Point(642, 305)
         Me.label40.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label40.Name = "label40"
         Me.label40.Size = New System.Drawing.Size(45, 13)
@@ -908,7 +908,7 @@ Partial Class Form1
         '
         'TxtMMHigh
         '
-        Me.TxtMMHigh.Location = New System.Drawing.Point(584, 351)
+        Me.TxtMMHigh.Location = New System.Drawing.Point(584, 320)
         Me.TxtMMHigh.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtMMHigh.Name = "TxtMMHigh"
         Me.TxtMMHigh.Size = New System.Drawing.Size(30, 20)
@@ -917,7 +917,7 @@ Partial Class Form1
         '
         'TxtMMLow
         '
-        Me.TxtMMLow.Location = New System.Drawing.Point(645, 351)
+        Me.TxtMMLow.Location = New System.Drawing.Point(645, 320)
         Me.TxtMMLow.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtMMLow.Name = "TxtMMLow"
         Me.TxtMMLow.Size = New System.Drawing.Size(30, 20)
@@ -926,7 +926,7 @@ Partial Class Form1
         '
         'BtnMultiMedia
         '
-        Me.BtnMultiMedia.Location = New System.Drawing.Point(472, 349)
+        Me.BtnMultiMedia.Location = New System.Drawing.Point(472, 318)
         Me.BtnMultiMedia.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnMultiMedia.Name = "BtnMultiMedia"
         Me.BtnMultiMedia.Size = New System.Drawing.Size(86, 22)
@@ -937,17 +937,17 @@ Partial Class Form1
         'label38
         '
         Me.label38.AutoSize = True
-        Me.label38.Location = New System.Drawing.Point(469, 317)
+        Me.label38.Location = New System.Drawing.Point(469, 286)
         Me.label38.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label38.Name = "label38"
-        Me.label38.Size = New System.Drawing.Size(177, 13)
+        Me.label38.Size = New System.Drawing.Size(159, 13)
         Me.label38.TabIndex = 318
-        Me.label38.Text = "12. Multimedia (PID #2 and #3 only)"
+        Me.label38.Text = "Multimedia (PID #2 and #3 only)"
         '
         'label28
         '
         Me.label28.AutoSize = True
-        Me.label28.Location = New System.Drawing.Point(541, 445)
+        Me.label28.Location = New System.Drawing.Point(542, 390)
         Me.label28.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label28.Name = "label28"
         Me.label28.Size = New System.Drawing.Size(204, 13)
@@ -957,7 +957,7 @@ Partial Class Form1
         'label25
         '
         Me.label25.AutoSize = True
-        Me.label25.Location = New System.Drawing.Point(541, 474)
+        Me.label25.Location = New System.Drawing.Point(542, 415)
         Me.label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label25.Name = "label25"
         Me.label25.Size = New System.Drawing.Size(237, 13)
@@ -966,7 +966,7 @@ Partial Class Form1
         '
         'BtnPID2
         '
-        Me.BtnPID2.Location = New System.Drawing.Point(472, 469)
+        Me.BtnPID2.Location = New System.Drawing.Point(473, 410)
         Me.BtnPID2.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnPID2.Name = "BtnPID2"
         Me.BtnPID2.Size = New System.Drawing.Size(65, 22)
@@ -976,7 +976,7 @@ Partial Class Form1
         '
         'BtnPID1
         '
-        Me.BtnPID1.Location = New System.Drawing.Point(472, 440)
+        Me.BtnPID1.Location = New System.Drawing.Point(473, 385)
         Me.BtnPID1.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnPID1.Name = "BtnPID1"
         Me.BtnPID1.Size = New System.Drawing.Size(65, 22)
@@ -997,7 +997,7 @@ Partial Class Form1
         'LblPassFail
         '
         Me.LblPassFail.AutoSize = True
-        Me.LblPassFail.Location = New System.Drawing.Point(714, 589)
+        Me.LblPassFail.Location = New System.Drawing.Point(714, 527)
         Me.LblPassFail.Name = "LblPassFail"
         Me.LblPassFail.Size = New System.Drawing.Size(51, 13)
         Me.LblPassFail.TabIndex = 354
@@ -1005,7 +1005,7 @@ Partial Class Form1
         '
         'BtnCheckDongle
         '
-        Me.BtnCheckDongle.Location = New System.Drawing.Point(597, 584)
+        Me.BtnCheckDongle.Location = New System.Drawing.Point(597, 522)
         Me.BtnCheckDongle.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnCheckDongle.Name = "BtnCheckDongle"
         Me.BtnCheckDongle.Size = New System.Drawing.Size(112, 22)
@@ -1015,7 +1015,7 @@ Partial Class Form1
         '
         'BtnSetDongle
         '
-        Me.BtnSetDongle.Location = New System.Drawing.Point(471, 584)
+        Me.BtnSetDongle.Location = New System.Drawing.Point(471, 522)
         Me.BtnSetDongle.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnSetDongle.Name = "BtnSetDongle"
         Me.BtnSetDongle.Size = New System.Drawing.Size(112, 22)
@@ -1026,12 +1026,12 @@ Partial Class Form1
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(469, 566)
+        Me.Label29.Location = New System.Drawing.Point(469, 504)
         Me.Label29.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(59, 13)
+        Me.Label29.Size = New System.Drawing.Size(41, 13)
         Me.Label29.TabIndex = 351
-        Me.Label29.Text = "14. Dongle"
+        Me.Label29.Text = "Dongle"
         '
         'Form1
         '
