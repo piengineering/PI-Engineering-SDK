@@ -83,11 +83,11 @@ BEGIN
     PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,289,298,73,17
     LTEXT           "unit id",IDC_UNITID3,116,165,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,186,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,201,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,201,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,201,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,52,201,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,7,399,73,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,216,399,73,17
-    PUSHBUTTON      "Custom Data*",IDC_CUSTOM,87,266,73,17
+    PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,266,73,17
     EDITTEXT        IDC_EDIT2,383,174,92,14,ES_AUTOHSCROLL
     LTEXT           "Joystick Reflector (PID #2 and #3 only):",IDC_STATIC,289,194,146,9
     EDITTEXT        IDC_JoyX,392,219,24,14,ES_AUTOHSCROLL
@@ -111,7 +111,7 @@ BEGIN
     LTEXT           "0-255",IDC_STATIC,519,237,19,8
     LTEXT           "0-255",IDC_STATIC,499,252,19,8
     LTEXT           "0-8",IDC_STATIC,419,269,11,8
-    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate, v18+ firmware only):",IDC_STATIC,7,328,260,9
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate:",IDC_STATIC,7,328,260,9
     PUSHBUTTON      "Write Version",IDC_Version,7,341,73,17
     EDITTEXT        IDC_TxtVersion,83,341,40,14,ES_AUTOHSCROLL
     LTEXT           "Mouse Reflector (PID# 1, PID# 2, PID #4 only):",IDC_STATIC,289,283,158,8
@@ -124,7 +124,7 @@ BEGIN
     LTEXT           "dX:",IDC_STATIC,376,317,12,8
     LTEXT           "dY:",IDC_STATIC,425,317,12,8
     LTEXT           "Wheel Y:",IDC_STATIC,469,317,30,8
-    LTEXT           "Multimedia Relector (PID #4 only, v18+ firmware only):",IDC_STATIC,289,335,199,8
+    LTEXT           "Multimedia Relector (PID #4 only):",IDC_STATIC,289,335,199,8
     PUSHBUTTON      "To PID #1",IDC_TOPID1,7,378,73,17
     EDITTEXT        IDC_TxtMultiHi,420,350,24,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TxtMultiLo,484,350,24,14,ES_AUTOHSCROLL
@@ -132,12 +132,11 @@ BEGIN
     LTEXT           "Low (hex)",IDC_STATIC,449,353,32,8
     PUSHBUTTON      "My Computer",IDC_MyComputer,515,349,56,17
     LTEXT           "Keyboard, Joystick, Input, Output",IDC_STATIC,86,401,116,9
-    LTEXT           "Keyboard, Mouse, Multimedia, Output, v18+ firmware only",IDC_STATIC,293,402,194,9
+    LTEXT           "Keyboard, Mouse, Multimedia, Output",IDC_STATIC,293,402,194,9
     LTEXT           "Setup for Callback:",IDC_STATIC,7,55,61,8
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,67,66,14
     LTEXT           "-",IDC_LblVersion,128,343,39,8
     LTEXT           "Do this first",IDC_STATIC,60,6,36,8
-    LTEXT           "*v18+ firmware only",IDC_STATIC,165,269,62,8
     LISTBOX         IDC_LIST1,7,23,297,31,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 

@@ -241,7 +241,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -261,7 +261,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -798,8 +798,6 @@ void FindAndStart(HWND hDialog)
 		int version=info[i].Version;
 		int writelen=GetWriteLength(info[i].Handle);
 
-		result = SetupInterfaceEx(info[2].Handle);
-
 		if ((hidusagepage == 0xC && writelen==36))    
 		{	
 			hnd = info[i].Handle; //handle required for piehid.dll calls
@@ -968,15 +966,15 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 			int state=0; //0=was up and is up, 1=was up and is down, 2= was down and is down, 3=was down and is up 
 			if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)==0))
 			{
-			state=1;
+				state=1;
 			}
 			else if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)!=0))
 			{
-			state=2;
+				state=2;
 			}
 			else if (((pData[i+3] & temp1)==0) && ((lastpData[i+3] & temp1)!=0))
 			{
-			state=3;
+				state=3;
 			}
 			switch (keynum)
 			{
