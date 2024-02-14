@@ -262,18 +262,10 @@ int CALLBACK DialogProc(
 			}
 			buffer[1]=179; //0xb3
 			buffer[2]=6; //6=green, 7=red
-			buffer[3]=0; //state, 0=off, 1=on, 2=flash
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=1; //0=off, 1=on, 2=flash
-				//get flash state
-				hList = GetDlgItem(hDialog, IDC_FLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; //0=off, 1=on, 2=flash
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -290,18 +282,10 @@ int CALLBACK DialogProc(
 			}
 			buffer[1]=179; //0xb3
 			buffer[2]=7; //6=green, 7=red
-			buffer[3]=0; //state
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-					buffer[3]=1; //0=off, 1=on
-					//get flash state
-					hList = GetDlgItem(hDialog, IDC_FLASH);
-					if (hList == NULL) return TRUE;
-					if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; //0=off, 1=on, 2=flash
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -309,55 +293,7 @@ int CALLBACK DialogProc(
 				result = WriteData(hDevice, buffer);
 			}
 			return TRUE;
-		case IDC_FLASH:
-			
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			//green
-			buffer[1]=179; //0xb3
-			buffer[2]=6; //6=green, 7=red
-			buffer[3]=0; //state
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHECK1);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-					buffer[3]=1; //0=off, 1=on
-					//get flash state
-					hList = GetDlgItem(hDialog, IDC_FLASH);
-					if (hList == NULL) return TRUE;
-					if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; //0=off, 1=on, 2=flash
-			}
-			
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			//red
-			buffer[1]=179; //0xb3
-			buffer[2]=7; //6=green, 7=red
-			buffer[3]=0; //state
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHECK2);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-					buffer[3]=1; //0=off, 1=on
-					//get flash state
-					hList = GetDlgItem(hDialog, IDC_FLASH);
-					if (hList == NULL) return TRUE;
-					if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; //0=off, 1=on, 2=flash
-			}
-			
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			return TRUE;
+		
 		case IDC_CHKBLONOFF:
 			//Turn on/off the backlight of the entered key in IDC_EDIT2
 			//Use the Set Flash Freq to control frequency of blink
@@ -400,65 +336,15 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				 buffer[3]=1;
-				 //get flash state
-				hList = GetDlgItem(hDialog, IDC_BLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2;
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result=404;
 			while (result==404)
 			{
 				result = WriteData(hDevice, buffer);
 			}
 			return TRUE;
-		case IDC_BLFLASH:
-			//Turn on/off the backlight of the entered key in IDC_EDIT2
-			//Use the Set Flash Freq to control frequency of blink
-            //Key Index (in decimal)
-            //Bank 1
-			//Columns-->
-            //  0   1   2	3	4	5	6	7	8	9	10  11  12  13	14	15	16	17	18	19
-            //  20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39
-           
-
-			//Bank 2
-			//Columns-->
-            //  40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59
-            //  60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyid2[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyid2);
-			buffer[2]= atoi(keyid2);
-			buffer[3]=0;
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				 buffer[3]=1;
-				 //get flash state
-				hList = GetDlgItem(hDialog, IDC_BLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2;
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			return TRUE;
+		
 		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
@@ -1367,448 +1253,448 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 	int maxrows=8;
 	for (int i=0;i<maxcols;i++) //loop for each column of button data (Max Cols)
 	{
-	for (int j=0;j<maxrows;j++) //loop for each row of button data (Max Rows)
-	{
-	int temp1=pow(2.0,j);
-	int keynum=maxrows*i+j; //0 based index
+		for (int j=0;j<maxrows;j++) //loop for each row of button data (Max Rows)
+		{
+			int temp1=pow(2.0,j);
+			int keynum=maxrows*i+j; //0 based index
 
-	int state=0; //0=was up and is up, 1=was up and is down, 2= was down and is down, 3=was down and is up 
-	if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)==0))
-	state=1;
-	else if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)!=0))
-	state=2;
-	else if (((pData[i+3] & temp1)==0) && ((lastpData[i+3] & temp1)!=0))
-	state=3;
-	switch (keynum)
-                        {
-                            case 0: //button 0 (top left)
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 1: //button 1
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 2: //button 2
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 3: //button 3
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 4: //button 4
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 5: //button 5
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 6: //button 6
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 7: //button 7 
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 8: //button 8
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 9: //button 9
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 10: //button 10
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 11: //button 11
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 12: //button 12
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 13: //button 13
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 14: //button 14
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 15: //button 15
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 16: //button 16
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 17: //button 17
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 18: //button 18
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 19: //button 19
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 20: //button 20
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 21: //button 21
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 22: //button 22
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 23: //button 23
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 24: //button 24
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 25: //button 25
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons	
-                            case 26: //button 26
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 27: //button 27
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 28: //button 28
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 29: //button 29
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 30: //button 30
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 31: //button 31
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 32: //button 32
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 33: //button 33
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 34: //button 34
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 35: //button 35
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 36: //button 36
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 37: //button 37
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons
-                            case 38: //button 38
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 39: //button 39
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            //Next column of buttons			
+			int state=0; //0=was up and is up, 1=was up and is down, 2= was down and is down, 3=was down and is up 
+			if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)==0))
+			state=1;
+			else if (((pData[i+3] & temp1)!=0) && ((lastpData[i+3] & temp1)!=0))
+			state=2;
+			else if (((pData[i+3] & temp1)==0) && ((lastpData[i+3] & temp1)!=0))
+			state=3;
+			switch (keynum)
+            {
+                case 0: //button 0 (top left)
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 1: //button 1
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 2: //button 2
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 3: //button 3
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 4: //button 4
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 5: //button 5
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 6: //button 6
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 7: //button 7 
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 8: //button 8
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 9: //button 9
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 10: //button 10
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 11: //button 11
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 12: //button 12
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 13: //button 13
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 14: //button 14
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 15: //button 15
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 16: //button 16
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 17: //button 17
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 18: //button 18
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 19: //button 19
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 20: //button 20
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 21: //button 21
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 22: //button 22
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 23: //button 23
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 24: //button 24
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 25: //button 25
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons	
+                case 26: //button 26
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 27: //button 27
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 28: //button 28
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 29: //button 29
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 30: //button 30
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 31: //button 31
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 32: //button 32
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 33: //button 33
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 34: //button 34
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 35: //button 35
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 36: //button 36
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 37: //button 37
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons
+                case 38: //button 38
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                case 39: //button 39
+                    if (state == 1) //key was pressed
+                    {
+                        //do press actions
+                    }
+                    else if (state == 3) //key was released
+                    {
+                        //do release action
+                    }
+                    break;
+                //Next column of buttons			
 
-                        }
-	}
+            }
+		}
 	}
 
 	for (int i=0;i<readlength;i++)
 	{
-	lastpData[i]=pData[i];  //save it for comparison on next read
+		lastpData[i]=pData[i];  //save it for comparison on next read
 	}
 	//end Buttons
 	//error handling
