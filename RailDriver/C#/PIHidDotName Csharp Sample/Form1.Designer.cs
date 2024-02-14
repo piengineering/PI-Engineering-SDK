@@ -52,7 +52,7 @@
             // 
             // BtnEnumerate
             // 
-            this.BtnEnumerate.Location = new System.Drawing.Point(9, 17);
+            this.BtnEnumerate.Location = new System.Drawing.Point(8, 26);
             this.BtnEnumerate.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEnumerate.Name = "BtnEnumerate";
             this.BtnEnumerate.Size = new System.Drawing.Size(98, 20);
@@ -64,7 +64,7 @@
             // CboDevices
             // 
             this.CboDevices.FormattingEnabled = true;
-            this.CboDevices.Location = new System.Drawing.Point(134, 16);
+            this.CboDevices.Location = new System.Drawing.Point(133, 25);
             this.CboDevices.Margin = new System.Windows.Forms.Padding(2);
             this.CboDevices.Name = "CboDevices";
             this.CboDevices.Size = new System.Drawing.Size(230, 21);
@@ -74,7 +74,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 104);
+            this.listBox1.Location = new System.Drawing.Point(8, 113);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(492, 69);
@@ -99,7 +99,7 @@
             // 
             // BtnCallback
             // 
-            this.BtnCallback.Location = new System.Drawing.Point(9, 64);
+            this.BtnCallback.Location = new System.Drawing.Point(8, 73);
             this.BtnCallback.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCallback.Name = "BtnCallback";
             this.BtnCallback.Size = new System.Drawing.Size(131, 20);
@@ -111,36 +111,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 1);
+            this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "1. Do this first";
+            this.label1.Text = "Do this first";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 48);
+            this.label2.Location = new System.Drawing.Point(8, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 13);
+            this.label2.Size = new System.Drawing.Size(174, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "2. Set for data callback and read data";
+            this.label2.Text = "Set for data callback and read data";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 188);
+            this.label3.Location = new System.Drawing.Point(8, 197);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 18;
-            this.label3.Text = "3. Write to Display";
+            this.label3.Text = "Write to Display";
             // 
             // BtnClear
             // 
-            this.BtnClear.Location = new System.Drawing.Point(414, 76);
+            this.BtnClear.Location = new System.Drawing.Point(413, 85);
             this.BtnClear.Margin = new System.Windows.Forms.Padding(2);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(86, 24);
@@ -151,7 +151,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 204);
+            this.textBox1.Location = new System.Drawing.Point(111, 213);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(47, 20);
@@ -160,7 +160,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(62, 204);
+            this.textBox2.Location = new System.Drawing.Point(61, 213);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(47, 20);
@@ -169,7 +169,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 204);
+            this.textBox3.Location = new System.Drawing.Point(11, 213);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(47, 20);
@@ -178,7 +178,7 @@
             // 
             // BtnWriteDisplay
             // 
-            this.BtnWriteDisplay.Location = new System.Drawing.Point(163, 203);
+            this.BtnWriteDisplay.Location = new System.Drawing.Point(162, 212);
             this.BtnWriteDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.BtnWriteDisplay.Name = "BtnWriteDisplay";
             this.BtnWriteDisplay.Size = new System.Drawing.Size(103, 20);
@@ -189,7 +189,7 @@
             // 
             // BtnSpeakerOn
             // 
-            this.BtnSpeakerOn.Location = new System.Drawing.Point(12, 271);
+            this.BtnSpeakerOn.Location = new System.Drawing.Point(11, 280);
             this.BtnSpeakerOn.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSpeakerOn.Name = "BtnSpeakerOn";
             this.BtnSpeakerOn.Size = new System.Drawing.Size(103, 20);
@@ -200,7 +200,7 @@
             // 
             // BtnSpeakerOff
             // 
-            this.BtnSpeakerOff.Location = new System.Drawing.Point(119, 271);
+            this.BtnSpeakerOff.Location = new System.Drawing.Point(118, 280);
             this.BtnSpeakerOff.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSpeakerOff.Name = "BtnSpeakerOff";
             this.BtnSpeakerOff.Size = new System.Drawing.Size(103, 20);
@@ -212,12 +212,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 255);
+            this.label4.Location = new System.Drawing.Point(9, 264);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 13);
+            this.label4.Size = new System.Drawing.Size(118, 13);
             this.label4.TabIndex = 27;
-            this.label4.Text = "4. Turn Speaker On or Off";
+            this.label4.Text = "Turn Speaker On or Off";
             // 
             // timer1
             // 
@@ -249,8 +249,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "C# RailDriver Sample";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

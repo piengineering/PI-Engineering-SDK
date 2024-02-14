@@ -105,7 +105,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //setup callback if there are devices found for each device found
       
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 for (int i = 0; i < CboDevices.Items.Count; i++)
                 {
@@ -189,7 +189,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnWriteDisplay_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //write to the LED Segments
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -216,7 +216,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnSpeakerOn_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //turn speaker on
                 //the following will turn on the RailDriver speaker and
@@ -248,7 +248,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnSpeakerOff_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //turn speaker off
                 

@@ -239,7 +239,7 @@ void FindAndStart(HWND hDialog)
 		int hidusagepage=info[i].UP; //hid usage page
 		int version=info[i].Version;
 		int writelen=GetWriteLength(info[i].Handle);
-		if (hidusagepage == 0xC)     
+		if (hidusagepage == 0xC && writelen>10)     
 		{	
 			hnd = info[i].Handle; //handle required for piehid32.dll calls
 			result = SetupInterfaceEx(hnd);
@@ -253,6 +253,11 @@ void FindAndStart(HWND hDialog)
 				{
 					AddEventMsg(hDialog, "Found Device: RailDriver");
 					return;  //finds first device of any of the desired PIDs 
+				}
+				else
+				{
+					AddEventMsg(hDialog, "Unknown device found");
+					return;
 				}
 			}
 		
