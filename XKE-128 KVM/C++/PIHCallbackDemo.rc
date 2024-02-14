@@ -1,0 +1,164 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 611, 475
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++ X-keys XK-128"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Enumerate",IDSTART,7,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,6,50,14
+    LISTBOX         ID_EVENTS,7,71,533,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Halt",IDHALT,147,6,50,14
+    LTEXT           "Data (hex):",IDC_STATIC,7,58,77,9
+    PUSHBUTTON      "Set Unit ID",IDC_UNITID,6,138,57,17
+    EDITTEXT        IDC_EDIT1,66,141,37,14,ES_AUTOHSCROLL
+    LTEXT           "Write Unit ID:",IDC_STATIC,6,126,111,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,477,53,61,14
+    LTEXT           "PID Convert:",IDC_STATIC,288,366,156,9
+    PUSHBUTTON      "To PID #2",IDC_TOPID2,287,378,73,17
+    LTEXT           "Enable Time Stamp:",IDC_STATIC,6,294,91,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,6,308,73,17
+    PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,288,232,73,17
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,6,221,73,17
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,288,216,146,9
+    LTEXT           "Descriptor:",IDC_STATIC,6,210,63,9
+    PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,86,308,73,17
+    PUSHBUTTON      "Generate Data",IDC_GENERATE,6,263,73,17
+    LTEXT           "Stimulate a general incoming data report or a custom report:",IDC_STATIC,6,252,190,11
+    LTEXT           "Keyboard only, for use with KVM*",IDC_STATIC,371,382,113,9
+    PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,288,273,73,17
+    LTEXT           "NumLck",IDC_KEYSTATES,251,50,50,13
+    LTEXT           "CapsLck",IDC_KEYSTATES2,305,50,50,13
+    LTEXT           "ScrLck",IDC_KEYSTATES3,361,50,50,13
+    LTEXT           "unit id",IDC_UNITID3,108,144,30,12
+    LTEXT           "LEDs:",IDC_STATIC,162,126,30,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,144,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,204,144,29,10
+    PUSHBUTTON      "Custom Data",IDC_CUSTOM,86,263,73,17
+    EDITTEXT        IDC_EDIT2,366,234,92,14,ES_AUTOHSCROLL
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate):",IDC_STATIC,6,342,192,9
+    PUSHBUTTON      "Write Version",IDC_Version,6,354,73,17
+    EDITTEXT        IDC_TXTFREQ,408,141,24,14,ES_AUTOHSCROLL
+    LTEXT           "Mouse Reflector:",IDC_STATIC,288,258,60,8
+    EDITTEXT        IDC_MouseButtons,390,273,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseX,391,290,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseY,439,290,25,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MouseWheel,391,306,25,14,ES_AUTOHSCROLL
+    LTEXT           "Button:",IDC_STATIC,364,276,24,8
+    LTEXT           "1=left, 2=right, 4=center, 8=XButton1, 16=XButton2",IDC_STATIC,424,274,175,9
+    LTEXT           "dX:",IDC_STATIC,375,292,12,8
+    LTEXT           "dY:",IDC_STATIC,424,292,12,8
+    LTEXT           "Wheel Y:",IDC_STATIC,358,311,30,8
+    LTEXT           "Setup for Callback:",IDC_STATIC,7,27,61,8
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,38,66,14
+    LTEXT           "-",IDC_LblVersion,138,360,39,8
+    LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,6,168,192,9
+    EDITTEXT        IDC_TXTBL,6,182,40,14,ES_AUTOHSCROLL
+    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,186,38,10
+    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,186,33,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,186,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,204,186,72,10
+    PUSHBUTTON      "Toggle",IDC_BLToggle,276,180,50,17
+    PUSHBUTTON      "Set Intensity",IDC_BLIntensity,330,180,61,17
+    PUSHBUTTON      "Incremenat Intensity Bank1",IDC_BLIncInt,468,180,94,17
+    LTEXT           "Do this first",IDC_STATIC,63,11,36,8
+    PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,396,180,66,17
+    LTEXT           "Dongle",IDC_STATIC,6,384,24,8
+    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,6,396,68,17
+    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,78,396,68,17
+    LTEXT           "Pass/Fail",IDC_PASSFAIL,150,402,117,11
+    PUSHBUTTON      "Incremental Intensity Bank2",IDC_BLIncInt2,468,198,94,17
+    CONTROL         "Green Flash",IDC_CHECK4FLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,240,144,54,10
+    CONTROL         "Red Flash",IDC_CHECK4FLASH2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,300,144,48,10
+    PUSHBUTTON      "Set Freq",IDC_FREQ,354,138,50,17
+    EDITTEXT        IDC_TxtVersion2,90,357,40,14,ES_AUTOHSCROLL
+    LTEXT           "Reboot Mode:",IDC_STATIC,288,324,63,9
+    PUSHBUTTON      "Do not change PID #2 (KVM) on reboot",IDC_NOMODECHANGE,288,336,158,17
+    PUSHBUTTON      "Always change to PID #2 (KVM) on reboot",IDC_MODECHANGE,451,336,144,17
+    LTEXT           "*Once in this mode input and output reports are no longer available. To change back to PID #1 user must replug device and press the Scroll Lock key 10-15 times (until red led blinks) within 10 seconds of plugging in.",IDC_STATIC,289,400,306,37
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 604
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 468
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -5,7 +5,7 @@
     Dim selecteddevice As Integer
     Dim cbotodevice(127) As Integer 'max # of devices = 128 
     Dim wdata() As Byte = New Byte() {} 'write data buffer
-    Dim lastdata() As Byte = New Byte() {} 'write data buffer
+
     Dim saveabsolutetime As Long
     ' This delegate enables asynchronous calls for setting
     ' the text property on a TextBox control.
@@ -28,820 +28,6 @@
 
             'Use thread-safe calls to windows forms controls
             SetListBox(output)
-
-
-            If (data(2) < 2) Then
-
-                'Buttons
-                Dim maxcols As Integer = 16 'number of columns of Xkeys digital button data, labeled "Keys" in P.I. Engineering SDK - General Incoming Data Input Report
-                Dim maxrows As Integer = 8 'constant, 8 bits per byte
-                c = LblButtons
-                Dim buttonsdown As String = "Buttons: "
-                SetText(buttonsdown)
-                For i As Integer = 0 To maxcols - 1 'loop through digital button bytes 
-
-                    For j As Integer = 0 To maxrows - 1 'loop through each bit in the button byte
-                        Dim temp1 As Integer = CInt(Math.Pow(2, j)) '1, 2, 4, 8, 16, 32, 64, 128
-                        Dim keynum As Integer = 8 * i + j 'using key numbering in sdk; column 1 = 0,1,2... column 2 = 8,9,10... column 3 = 16,17,18... column 4 = 24,25,26... etc
-                        Dim temp2 As Byte = CByte((data(i + 3) And temp1)) 'check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
-                        Dim temp3 As Byte = CByte((lastdata(i + 3) And temp1)) 'check using bitwise AND the previous value of this bit
-                        Dim state As Integer = 0
-                        '0=was up, now up, 1=was up, now down, 2= was down, still down, 3= was down, now up
-                        If temp2 <> 0 AndAlso temp3 = 0 Then
-                            state = 1
-                        ElseIf temp2 <> 0 AndAlso temp3 <> 0 Then
-                            state = 2
-                        ElseIf temp2 = 0 AndAlso temp3 <> 0 Then
-                            state = 3
-                        End If
-
-                        Select Case state
-                            Case 1
-                                buttonsdown = buttonsdown & keynum.ToString() & " "
-                                SetText(buttonsdown)
-                            Case 2
-                                buttonsdown = buttonsdown & keynum.ToString() & " "
-                                SetText(buttonsdown)
-                            Case 3
-                        End Select
-                        'Perform action based on key number, consult P.I. Engineering SDK documentation for the key numbers
-                        Select Case keynum
-                            Case 0
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 1
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 2
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 3
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 4
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 5
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 6
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 7
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 8
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 9
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 10
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 11
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 12
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 13
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 14
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 15
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 16
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 17
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 18
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 19
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 20
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 21
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 22
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 23
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 24
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 25
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 26
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 27
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 28
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 29
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 30
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 31
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 32
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 33
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 34
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 35
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 36
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 37
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 38
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 39
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 40
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 41
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 42
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 43
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 44
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 45
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 46
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 47
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 48
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 49
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 50
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 51
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 52
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 53
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 54
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 55
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 56
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 57
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 58
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 59
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 60
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 61
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 62
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 63
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 64
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 65
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 66
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 67
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 68
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 69
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 70
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 71
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 72
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 73
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 74
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 75
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 76
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 77
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 78
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 79
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 80
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 81
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 82
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 83
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 84
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 85
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 86
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 87
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 88
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 89
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 90
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 91
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 92
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 93
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 94
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 95
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 96
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 97
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 98
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 99
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 100
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 101
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 102
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 103
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 104
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 105
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 106
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 107
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                            Case 108
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 109
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 110
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 111
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 112
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 113
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 114
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 115
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 116
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 117
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 118
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 119
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                            Case 120
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 121
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 122
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 123
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 124
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 125
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 126
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-
-                            Case 127
-
-                                If state = 1 Then
-                                ElseIf state = 3 Then
-                                End If
-                                'End of column
-                        End Select
-                    Next
-                Next
-
-                For i As Integer = 0 To sourceDevice.ReadLength - 1
-                    lastdata(i) = data(i)
-                Next
-                'end buttons
-            End If
 
             If data(19) And 1 Then
                 c = LblNumLk
@@ -934,22 +120,11 @@
                 If devices(i).HidUsagePage = 12 And devices(i).WriteLength = 36 Then
 
                     Select Case devices(i).Pid
-                        Case 1227
-                            CboDevices.Items.Add("XKE-128 (" + devices(i).Pid.ToString + "=PID #1)")
+                        Case 1290
+                            CboDevices.Items.Add("XKE-128 KVM (" + devices(i).Pid.ToString + "=PID #1)")
                             cbotodevice(cbocount) = i
                             cbocount = cbocount + 1
-                        Case 1228
-                            CboDevices.Items.Add("XKE-128 (" + devices(i).Pid.ToString + "=PID #2)")
-                            cbotodevice(cbocount) = i
-                            cbocount = cbocount + 1
-                        Case 1229
-                            CboDevices.Items.Add("XKE-128 (" + devices(i).Pid.ToString + "=PID #3)")
-                            cbotodevice(cbocount) = i
-                            cbocount = cbocount + 1
-                        Case 1230
-                            CboDevices.Items.Add("XKE-128 (" + devices(i).Pid.ToString + "=PID #4)")
-                            cbotodevice(cbocount) = i
-                            cbocount = cbocount + 1
+                       
                         Case Else
                             CboDevices.Items.Add("Unknown Device (" + devices(i).Pid.ToString + ")")
                             cbotodevice(cbocount) = i
@@ -963,8 +138,19 @@
                     Else
                         LblStatus.Text = "Success SetupInterface"
                     End If
+                    EnableAllControls()
+
+                Else
+                    If devices(i).Pid = 1291 Then
+                        CboDevices.Items.Add("XK-128 KVM (" + devices(i).Pid.ToString + "=PID #2)")
+                        cbotodevice(cbocount) = i
+                        cbocount = cbocount + 1
+                        DisableAllControls()
+                        MessageBox.Show("Device in PID #2 (KVM), no input or output reports are available. To exit KVM mode replug device into usb port and quickly press Scroll Lock 10-15 times.")
+                    End If
+
                 End If
-                'break()
+
             Next
         End If
 
@@ -972,12 +158,27 @@
             CboDevices.SelectedIndex = 0
             selecteddevice = cbotodevice(CboDevices.SelectedIndex)
             ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
-            ReDim lastdata(devices(selecteddevice).ReadLength - 1) 'initialize length of read buffer
             'fill in version
             LblVersion.Text = devices(selecteddevice).Version.ToString
             EnumerationSuccess = True
-            Me.Cursor = Cursors.Default
+
         End If
+    End Sub
+    Private Sub DisableAllControls()
+        For Each cl As Control In Controls
+            If cl.Name <> "BtnEnumerate" Then
+                cl.Enabled = False
+            End If
+        Next
+        
+    End Sub
+    Private Sub EnableAllControls()
+        For Each cl As Control In Controls
+
+            cl.Enabled = True
+
+        Next
+
     End Sub
     Private Sub Form1_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         'close devices
@@ -1028,10 +229,10 @@
         'update selecteddevice with that chosen and redim the write array
         selecteddevice = cbotodevice(CboDevices.SelectedIndex)
         ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
-        ReDim lastdata(devices(selecteddevice).ReadLength - 1)
+
     End Sub
 
-  
+   
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         ListBox1.Items.Clear()
@@ -1254,47 +455,8 @@
         End If
     End Sub
 
-    Private Sub BtnJoyreflect_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnJoyreflect.Click
-        'open up the game controller control panel to test these features, after clicking this button
-        'go and make active the control panel properties and change will be seen
-        If selecteddevice <> -1 Then
 
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 202
-            wdata(2) = System.Math.Abs((Convert.ToByte(TxtJoyX.Text) Xor 127) - 255) 'X, in raw form 0 to 127 from center to right, 255 to 128 from center to left but I like to use 0-255 where 0 is max left, 255 is max right
-            wdata(3) = (Convert.ToByte(TxtJoyY.Text) Xor 127) 'Y, raw data 0 to 127 from center down, 255 to 128 from center up, I convert so I can enter 0-255
-            wdata(4) = (Convert.ToByte(TxtJoyZr.Text) Xor 127) 'Z rot, raw data 0 to 127 from center down, 255 to 128 from center up, I convert so I can enter 0-255
-            wdata(5) = (Convert.ToByte(TxtJoyZ.Text) Xor 127) 'Z, raw data 0 to 127 from center down, 255 to 128 from center up, I convert so I can enter 0-255
-            wdata(6) = (Convert.ToByte(TxtJoySlider.Text) Xor 127) 'Slider, raw data 0 to 127 from center down, 255 to 128 from center up, I convert so I can enter 0-255
-
-            wdata(7) = Convert.ToByte(TxtJoyGame1.Text) 'buttons as a bitmap, 0-255, 1=button 1, 2=button 2, 4=button 3, etc.. ex:  3=button 1 and button 2 down
-            wdata(8) = Convert.ToByte(TxtJoyGame2.Text) 'buttons as a bitmap, 0-255, 1=button 9, 2=button 10, 4=button 11, etc..
-            wdata(9) = Convert.ToByte(TxtJoyGame3.Text) 'buttons as a bitmap, 0-255, 1=button 17, 2=button 18, 4=button 19, etc..
-            wdata(10) = Convert.ToByte(TxtJoyGame4.Text) 'buttons as a bitmap, 0-255, 1=button 25, 2=button 26, 4=button 27, etc..
-
-            wdata(11) = 0
-
-            wdata(12) = Convert.ToByte(TxtJoyHat.Text) 'hat, 0-8 where 8 is no hat
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - joystick reflect"
-            End If
-        End If
-    End Sub
-
-   
+ 
     Private Sub BtnCustom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCustom.Click
         'After sending this command a custom incoming data report will be given with
         'the 3rd byte (Data Type) set to 0xE0, the 4th byte set to the count given below when the command was sent
@@ -1397,177 +559,21 @@
 
    
 
-    Private Sub BtnMultiMedia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMultiMedia.Click
-        '   //Many multimedia commands require the app to have focus to work.  Some that don't are Mute (E2), Volume Increment (E9), Volume Decrement (EA)
-        '   //The Multimedia reflector is mainly designed to be used as hardware mode macros.
-        '   //Some common multimedia codes
-        '   //Scan Next Track	00B5
-        '   //Scan Previous Track	00B6
-        '   //Stop	00B7
-        '   //Play/Pause	00CD
-        '   //Mute	00E2
-        '   //Bass Boost	00E5
-        '   //Loudness	00E7
-        '   //Volume Up	00E9
-        '   //Volume Down	00EA
-        '   //Bass Up	0152
-        '   //Bass Down	0153
-        '   //Treble Up	0154
-        '   //Treble Down	0155
-        '   //Media Select	0183
-        '   //Mail	018A
-        '   //Calculator	0192
-        '   //My Computer	0194
-        '   //Search	0221
-        '   //Home	0223
-        '   //Back	0224
-        '   //Forward	0225
-        '   //Stop	0226
-        '   //Refresh	0227
-        '   //Favorites	022A
-        If selecteddevice <> -1 Then
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 225  'e1h
-            wdata(2) = HexToBin(TxtMMLow.Text) 'Usage ID lo byte see hut1_12.pdf, pages 75-85 Consumer Page
-            wdata(3) = HexToBin(TxtMMHigh.Text) 'Usage ID hi byte see hut1_12.pdf, pages 75-85 Consumer Page
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            wdata(0) = 0
-            wdata(1) = 225  'e1h
-            wdata(2) = 0 'terminate
-            wdata(3) = 0 'terminate
-
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-            '   //note that when the "terminate" command is sent can sometimes have an effect on the behavior of the command
-            '   //for example in volume decrement (EA=lo byte, 00=hi byte) if you send the terminate immediately after the e1 command it will
-            '   //decrement the volume one step, if you send the e1 on the press and the terminate on the release the volume will continuously
-            '   //decrement until the key is released.
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Multimedia"
-            End If
-        End If
-    End Sub
+    
     Public Shared Function HexToBin(ByVal value As [String]) As Byte
         value = value.Trim()
         Dim temp As Integer = Convert.ToInt32(value, 16)
         Return CByte(temp)
     End Function
 
-    Private Sub BtnMyComputer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMyComputer.Click
-        If selecteddevice <> -1 Then
+    Private Sub BtnPID1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 225  'e1h
-            wdata(2) = HexToBin("94") 'Usage ID lo byte see hut1_12.pdf, pages 75-85 Consumer Page
-            wdata(3) = HexToBin("01") 'Usage ID hi byte see hut1_12.pdf, pages 75-85 Consumer Page
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            wdata(0) = 0
-            wdata(1) = 225  'e1h
-            wdata(2) = 0 'terminate
-            wdata(3) = 0 'terminate
-
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-            '   //note that when the "terminate" command is sent can sometimes have an effect on the behavior of the command
-            '   //for example in volume decrement (EA=lo byte, 00=hi byte) if you send the terminate immediately after the e1 command it will
-            '   //decrement the volume one step, if you send the e1 on the press and the terminate on the release the volume will continuously
-            '   //decrement until the key is released.
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Multimedia"
-            End If
-        End If
-    End Sub
-
-    Private Sub BtnSleep_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSleep.Click
-        If selecteddevice <> -1 Then
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 226  'e2h
-            wdata(2) = 2 '1=power down, 2=sleep, 4=wake up
-            
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            wdata(0) = 0
-            wdata(1) = 226  'e2h
-            wdata(2) = 0 'terminate
-
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-           
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Multimedia"
-            End If
-        End If
-    End Sub
-
-    Private Sub BtnPID1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPID1.Click
-
-        If selecteddevice <> -1 Then
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 204 'cc
-            wdata(2) = 0  '0=pid1, 1=pid2, 2=pid3, 3=pid4
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - to PID #1"
-            End If
-        End If
     End Sub
 
     Private Sub BtnPID2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPID2.Click
+        'Note: once you are in this mode input and output reports are no longer available. To change back to PID #1 user must
+        'replug device and press the Scroll Lock key 10-15 times within 10 seconds of plugging in.
+
         If selecteddevice <> -1 Then
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
@@ -1575,7 +581,7 @@
 
             wdata(0) = 0
             wdata(1) = 204 'cc
-            wdata(2) = 1  '0=pid1, 1=pid2, 2=pid3, 3=pid4
+            wdata(2) = 1
 
             Dim result As Integer
             result = 404
@@ -1591,53 +597,7 @@
         End If
     End Sub
 
-    Private Sub BtnPID3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPID3.Click
-        If selecteddevice <> -1 Then
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 204 'cc
-            wdata(2) = 2  '0=pid1, 1=pid2, 2=pid3, 3=pid4
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - to PID #3"
-            End If
-        End If
-    End Sub
-
-    Private Sub BtnPID4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPID4.Click
-        If selecteddevice <> -1 Then
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-
-            wdata(0) = 0
-            wdata(1) = 204 'cc
-            wdata(2) = 3  '0=pid1, 1=pid2, 2=pid3, 3=pid4
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - to PID #4"
-            End If
-        End If
-    End Sub
+    
 
    
     Private Sub ChkSuppress_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkSuppress.CheckedChanged
@@ -1648,6 +608,8 @@
         End If
 
     End Sub
+
+   
 
     Private Sub ChkBlueOnOff_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkBlueOnOff.CheckedChanged
         'Turns on or off ALL bank 1 BLs using current intensity
@@ -2004,6 +966,54 @@
     End Sub
 
   
+    Private Sub BtnNoChange_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNoChange.Click
+        If selecteddevice <> -1 Then
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 196 'c4
+            wdata(2) = 0
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnChange_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnChange.Click
+        If selecteddevice <> -1 Then
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 196 'c4
+            wdata(2) = 1
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+        End If
+    End Sub
+
     Private Sub BtnMousereflect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMousereflect.Click
         If selecteddevice <> -1 Then
 
@@ -2043,6 +1053,7 @@
                 LblStatus.Text = "Write Success - Mouse Reflector"
             End If
         End If
+
     End Sub
 
     Private Sub ChkGreen_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckStateChanged, ChkRed.CheckStateChanged
@@ -2059,7 +1070,7 @@
             Next
             wdata(0) = 0
             wdata(1) = 179
-            wdata(2) = LED '6=green, 7=red
+            wdata(2) = LED '6=green, 7=red, 0=out1, 1=out2
             wdata(3) = state '0=off, 1=on, 2=flash
 
             Dim result As Integer
@@ -2100,6 +1111,7 @@
                 iindex = Convert.ToInt32(sindex) + 128 'add 128 to the bank 1 index to get the corresponding bank 2 index
             End If
 
+
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
             Next
@@ -2119,6 +1131,7 @@
             Else
                 LblStatus.Text = "Write Success - Backlight"
             End If
+
 
         End If
     End Sub

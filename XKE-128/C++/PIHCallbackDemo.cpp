@@ -248,7 +248,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -268,7 +268,7 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
 			result=404;
 			while (result==404)
@@ -318,77 +318,15 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result=404;
 			while (result==404)
 			{
 				result = WriteData(hDevice, buffer);
 			}
 			return TRUE;
-		case IDC_CHKBLFLASH:
-            //Turn on/off the backlight of the entered key in IDC_EDIT2
-			//Use the Set Flash Freq to control frequency of blink
-            //Key Index (in decimal)
-			//Bank 1
-            //Columns-->
-            //  0   8   16  24  32  40  48  56  64  72  80  88  96  104 112 120
-            //  1   9   17  25  33  41  49  57  65  73  81  89  97  105 113 121
-            //  2   10  18  26  34  42  50  58  66  74  82  90  98  106 114 122
-            //  3   11  19  27  35  43  51  59  67  75  83  91  99  107 115 123
-            //  4   12  20  28  36  44  52  60  68  76  84  92  100 108 116 124
-            //  5   13  21  29  37  45  53  61  69  77  85  93  101 109 117 125
-            //  6   14  22  30  38  46  54  62  70  78  86  94  102 110 118 126
-            //  7   15  23  31  39  47  55  63  71  79  87  95  103 111 119 127
-
-			//Bank 2
-			//Columns-->
-            //  128 136	144	152	160	168	176	184	192	200 208	216	224	232	240	248	
-            //  129	137	145	153	161	169	177	185	193	201	209	217	225	233	241	249
-            //  130	138	146	154	162	170	178	186	194	202	210	218	226	234	242	250
-            //  131	139	147	155	163	171	179	187	195	203	211	219	227	235	243	251
-            //  132	140	148	156	164	172	180	188	196	204	212	220	228	236	244	252
-            //  133	141	149	157	165	173	181	189	197	205	213	221	229	237	245	253
-			//	134	142	150	158	166	174	182	190	198	206	214	222	230	238	246	254
-			//  135 143 151 159	167	175	183	191	199	207	215	223	231	239	247	255
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			return TRUE;
+		
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)

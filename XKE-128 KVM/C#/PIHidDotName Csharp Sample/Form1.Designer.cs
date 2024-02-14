@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.BtnEnumerate = new System.Windows.Forms.Button();
             this.CboDevices = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -41,22 +42,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.BtnPID3 = new System.Windows.Forms.Button();
-            this.BtnPID1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnKBreflect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.BtnJoyreflect = new System.Windows.Forms.Button();
-            this.TxtJoyX = new System.Windows.Forms.TextBox();
-            this.TxtJoyY = new System.Windows.Forms.TextBox();
-            this.TxtJoyZ = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TxtJoyGame1 = new System.Windows.Forms.TextBox();
-            this.TxtJoyHat = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.BtnTimeStamp = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -67,19 +55,6 @@
             this.BtnTimeStampOn = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.BtnGetDataNow = new System.Windows.Forms.Button();
-            this.Label18 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.Label16 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.TxtJoySlider = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.TxtJoyZr = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.TxtJoyGame2 = new System.Windows.Forms.TextBox();
-            this.TxtJoyGame3 = new System.Windows.Forms.TextBox();
-            this.TxtJoyGame4 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.TxtMouseWheel = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
@@ -88,15 +63,11 @@
             this.LblNumLk = new System.Windows.Forms.Label();
             this.LblCapsLk = new System.Windows.Forms.Label();
             this.LblScrLk = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ChkGreen = new System.Windows.Forms.CheckBox();
             this.ChkRed = new System.Windows.Forms.CheckBox();
             this.BtnPID2 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.BtnPID4 = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -104,21 +75,12 @@
             this.TxtMouseY = new System.Windows.Forms.TextBox();
             this.TxtMouseX = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.BtnSleep = new System.Windows.Forms.Button();
-            this.BtnMyComputer = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.TxtMMHigh = new System.Windows.Forms.TextBox();
-            this.TxtMMLow = new System.Windows.Forms.TextBox();
-            this.BtnMultiMedia = new System.Windows.Forms.Button();
             this.BtnCustom = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.LblVersion = new System.Windows.Forms.Label();
             this.TxtVersion = new System.Windows.Forms.TextBox();
             this.BtnVersion = new System.Windows.Forms.Button();
-            this.ChkFlash = new System.Windows.Forms.CheckBox();
             this.ChkBLOnOff = new System.Windows.Forms.CheckBox();
             this.CboBL = new System.Windows.Forms.ComboBox();
             this.label42 = new System.Windows.Forms.Label();
@@ -141,8 +103,11 @@
             this.BtnCheckDongleKey = new System.Windows.Forms.Button();
             this.BtnSetDongleKey = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
-            this.LblSwitchPos = new System.Windows.Forms.Label();
-            this.LblButtons = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.BtnChange = new System.Windows.Forms.Button();
+            this.BtnNoChange = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,7 +144,7 @@
             // 
             // BtnUnitID
             // 
-            this.BtnUnitID.Location = new System.Drawing.Point(21, 249);
+            this.BtnUnitID.Location = new System.Drawing.Point(24, 223);
             this.BtnUnitID.Margin = new System.Windows.Forms.Padding(2);
             this.BtnUnitID.Name = "BtnUnitID";
             this.BtnUnitID.Size = new System.Drawing.Size(92, 22);
@@ -190,7 +155,7 @@
             // 
             // TxtSetUnitID
             // 
-            this.TxtSetUnitID.Location = new System.Drawing.Point(137, 249);
+            this.TxtSetUnitID.Location = new System.Drawing.Point(130, 223);
             this.TxtSetUnitID.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSetUnitID.Name = "TxtSetUnitID";
             this.TxtSetUnitID.Size = new System.Drawing.Size(30, 20);
@@ -204,7 +169,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 685);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1020, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1001, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -228,7 +193,7 @@
             // LblUnitID
             // 
             this.LblUnitID.AutoSize = true;
-            this.LblUnitID.Location = new System.Drawing.Point(180, 254);
+            this.LblUnitID.Location = new System.Drawing.Point(173, 227);
             this.LblUnitID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblUnitID.Name = "LblUnitID";
             this.LblUnitID.Size = new System.Drawing.Size(38, 13);
@@ -269,48 +234,26 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(510, 434);
+            this.label5.Location = new System.Drawing.Point(510, 350);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(221, 13);
+            this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Change PID (must Enumerate after changing)";
-            // 
-            // BtnPID3
-            // 
-            this.BtnPID3.Location = new System.Drawing.Point(524, 506);
-            this.BtnPID3.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnPID3.Name = "BtnPID3";
-            this.BtnPID3.Size = new System.Drawing.Size(91, 22);
-            this.BtnPID3.TabIndex = 24;
-            this.BtnPID3.Text = "To PID #3";
-            this.BtnPID3.UseVisualStyleBackColor = true;
-            this.BtnPID3.Click += new System.EventHandler(this.BtnPID3_Click);
-            // 
-            // BtnPID1
-            // 
-            this.BtnPID1.Location = new System.Drawing.Point(524, 455);
-            this.BtnPID1.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnPID1.Name = "BtnPID1";
-            this.BtnPID1.Size = new System.Drawing.Size(91, 22);
-            this.BtnPID1.TabIndex = 26;
-            this.BtnPID1.Text = "To PID #1";
-            this.BtnPID1.UseVisualStyleBackColor = true;
-            this.BtnPID1.Click += new System.EventHandler(this.BtnPID1_Click);
+            this.label5.Text = "Change PID";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(510, 9);
+            this.label7.Location = new System.Drawing.Point(509, 16);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(202, 13);
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 30;
-            this.label7.Text = "Keyboard Reflector (PID #2 and #4 Only)";
+            this.label7.Text = "Keyboard Reflector";
             // 
             // BtnKBreflect
             // 
-            this.BtnKBreflect.Location = new System.Drawing.Point(525, 33);
+            this.BtnKBreflect.Location = new System.Drawing.Point(524, 40);
             this.BtnKBreflect.Margin = new System.Windows.Forms.Padding(2);
             this.BtnKBreflect.Name = "BtnKBreflect";
             this.BtnKBreflect.Size = new System.Drawing.Size(122, 22);
@@ -321,117 +264,11 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(651, 34);
+            this.textBox1.Location = new System.Drawing.Point(650, 41);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(191, 20);
             this.textBox1.TabIndex = 32;
-            // 
-            // BtnJoyreflect
-            // 
-            this.BtnJoyreflect.Location = new System.Drawing.Point(525, 92);
-            this.BtnJoyreflect.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnJoyreflect.Name = "BtnJoyreflect";
-            this.BtnJoyreflect.Size = new System.Drawing.Size(122, 22);
-            this.BtnJoyreflect.TabIndex = 33;
-            this.BtnJoyreflect.Text = "Joystick Reflector";
-            this.BtnJoyreflect.UseVisualStyleBackColor = true;
-            this.BtnJoyreflect.Click += new System.EventHandler(this.BtnJoyreflect_Click);
-            // 
-            // TxtJoyX
-            // 
-            this.TxtJoyX.Location = new System.Drawing.Point(688, 91);
-            this.TxtJoyX.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyX.Name = "TxtJoyX";
-            this.TxtJoyX.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyX.TabIndex = 34;
-            this.TxtJoyX.Text = "0";
-            // 
-            // TxtJoyY
-            // 
-            this.TxtJoyY.Location = new System.Drawing.Point(752, 90);
-            this.TxtJoyY.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyY.Name = "TxtJoyY";
-            this.TxtJoyY.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyY.TabIndex = 35;
-            this.TxtJoyY.Text = "0";
-            // 
-            // TxtJoyZ
-            // 
-            this.TxtJoyZ.Location = new System.Drawing.Point(823, 90);
-            this.TxtJoyZ.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyZ.Name = "TxtJoyZ";
-            this.TxtJoyZ.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyZ.TabIndex = 36;
-            this.TxtJoyZ.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(671, 93);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 13);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "X:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(732, 93);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(17, 13);
-            this.label9.TabIndex = 38;
-            this.label9.Text = "Y:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(802, 93);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 13);
-            this.label10.TabIndex = 39;
-            this.label10.Text = "Z:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(638, 144);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(46, 13);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Buttons:";
-            // 
-            // TxtJoyGame1
-            // 
-            this.TxtJoyGame1.Location = new System.Drawing.Point(688, 139);
-            this.TxtJoyGame1.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyGame1.Name = "TxtJoyGame1";
-            this.TxtJoyGame1.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyGame1.TabIndex = 41;
-            this.TxtJoyGame1.Text = "0";
-            // 
-            // TxtJoyHat
-            // 
-            this.TxtJoyHat.Location = new System.Drawing.Point(688, 163);
-            this.TxtJoyHat.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyHat.Name = "TxtJoyHat";
-            this.TxtJoyHat.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyHat.TabIndex = 42;
-            this.TxtJoyHat.Text = "8";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(657, 165);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(27, 13);
-            this.label12.TabIndex = 43;
-            this.label12.Text = "Hat:";
             // 
             // BtnTimeStamp
             // 
@@ -467,7 +304,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(13, 333);
+            this.label21.Location = new System.Drawing.Point(11, 305);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(55, 13);
@@ -476,7 +313,7 @@
             // 
             // BtnDescriptor
             // 
-            this.BtnDescriptor.Location = new System.Drawing.Point(84, 328);
+            this.BtnDescriptor.Location = new System.Drawing.Point(82, 300);
             this.BtnDescriptor.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDescriptor.Name = "BtnDescriptor";
             this.BtnDescriptor.Size = new System.Drawing.Size(92, 22);
@@ -488,7 +325,7 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(193, 328);
+            this.listBox2.Location = new System.Drawing.Point(191, 300);
             this.listBox2.Margin = new System.Windows.Forms.Padding(2);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(232, 82);
@@ -497,7 +334,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(11, 480);
+            this.label23.Location = new System.Drawing.Point(11, 469);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(99, 13);
@@ -518,7 +355,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(18, 234);
+            this.label13.Location = new System.Drawing.Point(11, 199);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(68, 13);
@@ -527,7 +364,7 @@
             // 
             // BtnGetDataNow
             // 
-            this.BtnGetDataNow.Location = new System.Drawing.Point(21, 434);
+            this.BtnGetDataNow.Location = new System.Drawing.Point(21, 425);
             this.BtnGetDataNow.Margin = new System.Windows.Forms.Padding(2);
             this.BtnGetDataNow.Name = "BtnGetDataNow";
             this.BtnGetDataNow.Size = new System.Drawing.Size(92, 22);
@@ -536,135 +373,10 @@
             this.BtnGetDataNow.UseVisualStyleBackColor = true;
             this.BtnGetDataNow.Click += new System.EventHandler(this.BtnGetDataNow_Click);
             // 
-            // Label18
-            // 
-            this.Label18.AutoSize = true;
-            this.Label18.Location = new System.Drawing.Point(733, 166);
-            this.Label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(22, 13);
-            this.Label18.TabIndex = 128;
-            this.Label18.Text = "0-8";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(867, 92);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(34, 13);
-            this.label15.TabIndex = 127;
-            this.label15.Text = "0-255";
-            // 
-            // Label16
-            // 
-            this.Label16.AutoSize = true;
-            this.Label16.Location = new System.Drawing.Point(867, 144);
-            this.Label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Label16.Name = "Label16";
-            this.Label16.Size = new System.Drawing.Size(34, 13);
-            this.Label16.TabIndex = 126;
-            this.Label16.Text = "0-255";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(783, 118);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(36, 13);
-            this.label27.TabIndex = 132;
-            this.label27.Text = "Slider:";
-            // 
-            // TxtJoySlider
-            // 
-            this.TxtJoySlider.Location = new System.Drawing.Point(823, 114);
-            this.TxtJoySlider.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoySlider.Name = "TxtJoySlider";
-            this.TxtJoySlider.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoySlider.TabIndex = 131;
-            this.TxtJoySlider.Text = "0";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(652, 118);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(32, 13);
-            this.label26.TabIndex = 130;
-            this.label26.Text = "Z rot:";
-            // 
-            // TxtJoyZr
-            // 
-            this.TxtJoyZr.Location = new System.Drawing.Point(688, 115);
-            this.TxtJoyZr.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyZr.Name = "TxtJoyZr";
-            this.TxtJoyZr.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyZr.TabIndex = 129;
-            this.TxtJoyZr.Text = "0";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(867, 116);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(34, 13);
-            this.label22.TabIndex = 133;
-            this.label22.Text = "0-255";
-            // 
-            // TxtJoyGame2
-            // 
-            this.TxtJoyGame2.Location = new System.Drawing.Point(733, 139);
-            this.TxtJoyGame2.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyGame2.Name = "TxtJoyGame2";
-            this.TxtJoyGame2.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyGame2.TabIndex = 134;
-            this.TxtJoyGame2.Text = "0";
-            // 
-            // TxtJoyGame3
-            // 
-            this.TxtJoyGame3.Location = new System.Drawing.Point(778, 139);
-            this.TxtJoyGame3.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyGame3.Name = "TxtJoyGame3";
-            this.TxtJoyGame3.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyGame3.TabIndex = 135;
-            this.TxtJoyGame3.Text = "0";
-            // 
-            // TxtJoyGame4
-            // 
-            this.TxtJoyGame4.Location = new System.Drawing.Point(823, 139);
-            this.TxtJoyGame4.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtJoyGame4.Name = "TxtJoyGame4";
-            this.TxtJoyGame4.Size = new System.Drawing.Size(41, 20);
-            this.TxtJoyGame4.TabIndex = 136;
-            this.TxtJoyGame4.Text = "0";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(623, 511);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(251, 13);
-            this.label25.TabIndex = 138;
-            this.label25.Text = "Endpoints:  Mouse, Multimedia, Joystick and Output";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(623, 460);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(225, 13);
-            this.label28.TabIndex = 139;
-            this.label28.Text = "Endpoints:  Mouse, Joystick, Input and Output";
-            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(634, 308);
+            this.label30.Location = new System.Drawing.Point(633, 208);
             this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(51, 13);
@@ -673,7 +385,7 @@
             // 
             // TxtMouseWheel
             // 
-            this.TxtMouseWheel.Location = new System.Drawing.Point(689, 305);
+            this.TxtMouseWheel.Location = new System.Drawing.Point(688, 205);
             this.TxtMouseWheel.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseWheel.Name = "TxtMouseWheel";
             this.TxtMouseWheel.Size = new System.Drawing.Size(41, 20);
@@ -683,7 +395,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(646, 236);
+            this.label32.Location = new System.Drawing.Point(645, 136);
             this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(41, 13);
@@ -692,7 +404,7 @@
             // 
             // TxtMouseButton
             // 
-            this.TxtMouseButton.Location = new System.Drawing.Point(688, 233);
+            this.TxtMouseButton.Location = new System.Drawing.Point(687, 133);
             this.TxtMouseButton.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseButton.Name = "TxtMouseButton";
             this.TxtMouseButton.Size = new System.Drawing.Size(41, 20);
@@ -701,7 +413,7 @@
             // 
             // BtnMousereflect
             // 
-            this.BtnMousereflect.Location = new System.Drawing.Point(525, 238);
+            this.BtnMousereflect.Location = new System.Drawing.Point(524, 138);
             this.BtnMousereflect.Margin = new System.Windows.Forms.Padding(2);
             this.BtnMousereflect.Name = "BtnMousereflect";
             this.BtnMousereflect.Size = new System.Drawing.Size(122, 22);
@@ -713,7 +425,7 @@
             // LblNumLk
             // 
             this.LblNumLk.AutoSize = true;
-            this.LblNumLk.Location = new System.Drawing.Point(366, 190);
+            this.LblNumLk.Location = new System.Drawing.Point(382, 189);
             this.LblNumLk.Name = "LblNumLk";
             this.LblNumLk.Size = new System.Drawing.Size(59, 13);
             this.LblNumLk.TabIndex = 156;
@@ -722,7 +434,7 @@
             // LblCapsLk
             // 
             this.LblCapsLk.AutoSize = true;
-            this.LblCapsLk.Location = new System.Drawing.Point(366, 205);
+            this.LblCapsLk.Location = new System.Drawing.Point(382, 204);
             this.LblCapsLk.Name = "LblCapsLk";
             this.LblCapsLk.Size = new System.Drawing.Size(61, 13);
             this.LblCapsLk.TabIndex = 157;
@@ -731,26 +443,16 @@
             // LblScrLk
             // 
             this.LblScrLk.AutoSize = true;
-            this.LblScrLk.Location = new System.Drawing.Point(366, 219);
+            this.LblScrLk.Location = new System.Drawing.Point(382, 218);
             this.LblScrLk.Name = "LblScrLk";
             this.LblScrLk.Size = new System.Drawing.Size(53, 13);
             this.LblScrLk.TabIndex = 158;
             this.LblScrLk.Text = "ScrLock: ";
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(510, 69);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(193, 13);
-            this.label17.TabIndex = 204;
-            this.label17.Text = "Joystick Reflector (PID #1 and #3 only)";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(510, 219);
+            this.label24.Location = new System.Drawing.Point(509, 110);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(85, 13);
@@ -760,7 +462,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 288);
+            this.label3.Location = new System.Drawing.Point(11, 270);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
@@ -770,7 +472,7 @@
             // ChkGreen
             // 
             this.ChkGreen.AutoSize = true;
-            this.ChkGreen.Location = new System.Drawing.Point(93, 287);
+            this.ChkGreen.Location = new System.Drawing.Point(91, 269);
             this.ChkGreen.Name = "ChkGreen";
             this.ChkGreen.Size = new System.Drawing.Size(55, 17);
             this.ChkGreen.TabIndex = 207;
@@ -783,7 +485,7 @@
             // ChkRed
             // 
             this.ChkRed.AutoSize = true;
-            this.ChkRed.Location = new System.Drawing.Point(154, 287);
+            this.ChkRed.Location = new System.Drawing.Point(152, 269);
             this.ChkRed.Name = "ChkRed";
             this.ChkRed.Size = new System.Drawing.Size(46, 17);
             this.ChkRed.TabIndex = 208;
@@ -795,7 +497,7 @@
             // 
             // BtnPID2
             // 
-            this.BtnPID2.Location = new System.Drawing.Point(524, 481);
+            this.BtnPID2.Location = new System.Drawing.Point(524, 376);
             this.BtnPID2.Margin = new System.Windows.Forms.Padding(2);
             this.BtnPID2.Name = "BtnPID2";
             this.BtnPID2.Size = new System.Drawing.Size(91, 22);
@@ -804,41 +506,10 @@
             this.BtnPID2.UseVisualStyleBackColor = true;
             this.BtnPID2.Click += new System.EventHandler(this.BtnPID2_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(623, 486);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(258, 13);
-            this.label6.TabIndex = 212;
-            this.label6.Text = "Endpoints:  Mouse, Multimedia, Keyboard and Output";
-            // 
-            // BtnPID4
-            // 
-            this.BtnPID4.Location = new System.Drawing.Point(524, 532);
-            this.BtnPID4.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnPID4.Name = "BtnPID4";
-            this.BtnPID4.Size = new System.Drawing.Size(91, 22);
-            this.BtnPID4.TabIndex = 213;
-            this.BtnPID4.Text = "To PID #4";
-            this.BtnPID4.UseVisualStyleBackColor = true;
-            this.BtnPID4.Click += new System.EventHandler(this.BtnPID4_Click);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(623, 537);
-            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(279, 13);
-            this.label35.TabIndex = 214;
-            this.label35.Text = "Endpoints: Boot Mouse, Boot Keyboard, Input and Output";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(852, 236);
+            this.label4.Location = new System.Drawing.Point(851, 136);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 13);
@@ -847,7 +518,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(734, 236);
+            this.label36.Location = new System.Drawing.Point(733, 136);
             this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(249, 13);
@@ -857,7 +528,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(662, 284);
+            this.label29.Location = new System.Drawing.Point(661, 184);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(23, 13);
@@ -867,7 +538,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(662, 260);
+            this.label31.Location = new System.Drawing.Point(661, 160);
             this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(23, 13);
@@ -876,7 +547,7 @@
             // 
             // TxtMouseY
             // 
-            this.TxtMouseY.Location = new System.Drawing.Point(689, 281);
+            this.TxtMouseY.Location = new System.Drawing.Point(688, 181);
             this.TxtMouseY.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseY.Name = "TxtMouseY";
             this.TxtMouseY.Size = new System.Drawing.Size(41, 20);
@@ -885,7 +556,7 @@
             // 
             // TxtMouseX
             // 
-            this.TxtMouseX.Location = new System.Drawing.Point(689, 257);
+            this.TxtMouseX.Location = new System.Drawing.Point(688, 157);
             this.TxtMouseX.Margin = new System.Windows.Forms.Padding(2);
             this.TxtMouseX.Name = "TxtMouseX";
             this.TxtMouseX.Size = new System.Drawing.Size(41, 20);
@@ -895,96 +566,16 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(734, 271);
+            this.label37.Location = new System.Drawing.Point(733, 171);
             this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(61, 13);
             this.label37.TabIndex = 224;
             this.label37.Text = "1=finest inc";
             // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(510, 354);
-            this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(159, 13);
-            this.label38.TabIndex = 225;
-            this.label38.Text = "Multimedia (PID #2 and #3 only)";
-            // 
-            // BtnSleep
-            // 
-            this.BtnSleep.Location = new System.Drawing.Point(842, 388);
-            this.BtnSleep.Name = "BtnSleep";
-            this.BtnSleep.Size = new System.Drawing.Size(75, 22);
-            this.BtnSleep.TabIndex = 228;
-            this.BtnSleep.Text = "Sleep";
-            this.BtnSleep.UseVisualStyleBackColor = true;
-            this.BtnSleep.Click += new System.EventHandler(this.BtnSleep_Click);
-            // 
-            // BtnMyComputer
-            // 
-            this.BtnMyComputer.Location = new System.Drawing.Point(757, 388);
-            this.BtnMyComputer.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnMyComputer.Name = "BtnMyComputer";
-            this.BtnMyComputer.Size = new System.Drawing.Size(80, 22);
-            this.BtnMyComputer.TabIndex = 227;
-            this.BtnMyComputer.Text = "My Computer";
-            this.BtnMyComputer.UseVisualStyleBackColor = true;
-            this.BtnMyComputer.Click += new System.EventHandler(this.BtnMyComputer_Click);
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(619, 373);
-            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(55, 13);
-            this.label39.TabIndex = 232;
-            this.label39.Text = "High (hex)";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(680, 373);
-            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(45, 13);
-            this.label40.TabIndex = 231;
-            this.label40.Text = "Lo (hex)";
-            // 
-            // TxtMMHigh
-            // 
-            this.TxtMMHigh.Location = new System.Drawing.Point(622, 388);
-            this.TxtMMHigh.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtMMHigh.Name = "TxtMMHigh";
-            this.TxtMMHigh.Size = new System.Drawing.Size(30, 20);
-            this.TxtMMHigh.TabIndex = 230;
-            this.TxtMMHigh.Text = "00";
-            // 
-            // TxtMMLow
-            // 
-            this.TxtMMLow.Location = new System.Drawing.Point(683, 388);
-            this.TxtMMLow.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtMMLow.Name = "TxtMMLow";
-            this.TxtMMLow.Size = new System.Drawing.Size(30, 20);
-            this.TxtMMLow.TabIndex = 229;
-            this.TxtMMLow.Text = "E2";
-            // 
-            // BtnMultiMedia
-            // 
-            this.BtnMultiMedia.Location = new System.Drawing.Point(525, 388);
-            this.BtnMultiMedia.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnMultiMedia.Name = "BtnMultiMedia";
-            this.BtnMultiMedia.Size = new System.Drawing.Size(86, 22);
-            this.BtnMultiMedia.TabIndex = 226;
-            this.BtnMultiMedia.Text = "Multimedia";
-            this.BtnMultiMedia.UseVisualStyleBackColor = true;
-            this.BtnMultiMedia.Click += new System.EventHandler(this.BtnMultiMedia_Click);
-            // 
             // BtnCustom
             // 
-            this.BtnCustom.Location = new System.Drawing.Point(130, 434);
+            this.BtnCustom.Location = new System.Drawing.Point(130, 425);
             this.BtnCustom.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCustom.Name = "BtnCustom";
             this.BtnCustom.Size = new System.Drawing.Size(92, 22);
@@ -996,7 +587,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(11, 419);
+            this.label14.Location = new System.Drawing.Point(11, 397);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(313, 13);
@@ -1006,7 +597,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(510, 579);
+            this.label41.Location = new System.Drawing.Point(510, 484);
             this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(294, 13);
@@ -1016,7 +607,7 @@
             // LblVersion
             // 
             this.LblVersion.AutoSize = true;
-            this.LblVersion.Location = new System.Drawing.Point(680, 606);
+            this.LblVersion.Location = new System.Drawing.Point(680, 511);
             this.LblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblVersion.Name = "LblVersion";
             this.LblVersion.Size = new System.Drawing.Size(41, 13);
@@ -1025,7 +616,7 @@
             // 
             // TxtVersion
             // 
-            this.TxtVersion.Location = new System.Drawing.Point(626, 601);
+            this.TxtVersion.Location = new System.Drawing.Point(626, 506);
             this.TxtVersion.Margin = new System.Windows.Forms.Padding(2);
             this.TxtVersion.Name = "TxtVersion";
             this.TxtVersion.Size = new System.Drawing.Size(49, 20);
@@ -1034,7 +625,7 @@
             // 
             // BtnVersion
             // 
-            this.BtnVersion.Location = new System.Drawing.Point(524, 599);
+            this.BtnVersion.Location = new System.Drawing.Point(524, 504);
             this.BtnVersion.Margin = new System.Windows.Forms.Padding(2);
             this.BtnVersion.Name = "BtnVersion";
             this.BtnVersion.Size = new System.Drawing.Size(92, 22);
@@ -1043,29 +634,18 @@
             this.BtnVersion.UseVisualStyleBackColor = true;
             this.BtnVersion.Click += new System.EventHandler(this.BtnVersion_Click);
             // 
-            // ChkFlash
-            // 
-            this.ChkFlash.AutoSize = true;
-            this.ChkFlash.Location = new System.Drawing.Point(226, 557);
-            this.ChkFlash.Margin = new System.Windows.Forms.Padding(2);
-            this.ChkFlash.Name = "ChkFlash";
-            this.ChkFlash.Size = new System.Drawing.Size(51, 17);
-            this.ChkFlash.TabIndex = 273;
-            this.ChkFlash.Text = "Flash";
-            this.ChkFlash.UseVisualStyleBackColor = true;
-            this.ChkFlash.CheckedChanged += new System.EventHandler(this.ChkFlash_CheckedChanged);
-            // 
             // ChkBLOnOff
             // 
             this.ChkBLOnOff.AutoSize = true;
             this.ChkBLOnOff.Location = new System.Drawing.Point(163, 557);
             this.ChkBLOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkBLOnOff.Name = "ChkBLOnOff";
-            this.ChkBLOnOff.Size = new System.Drawing.Size(59, 17);
+            this.ChkBLOnOff.Size = new System.Drawing.Size(89, 17);
             this.ChkBLOnOff.TabIndex = 272;
-            this.ChkBLOnOff.Text = "On/Off";
+            this.ChkBLOnOff.Text = "On/Off/Flash";
+            this.ChkBLOnOff.ThreeState = true;
             this.ChkBLOnOff.UseVisualStyleBackColor = true;
-            this.ChkBLOnOff.CheckedChanged += new System.EventHandler(this.ChkBLOnOff_CheckedChanged);
+            this.ChkBLOnOff.CheckStateChanged += new System.EventHandler(this.ChkBLOnOff_CheckStateChanged);
             // 
             // CboBL
             // 
@@ -1203,7 +783,6 @@
             this.CboBL.Name = "CboBL";
             this.CboBL.Size = new System.Drawing.Size(68, 21);
             this.CboBL.TabIndex = 271;
-            this.CboBL.SelectedIndexChanged += new System.EventHandler(this.CboBL_SelectedIndexChanged);
             // 
             // label42
             // 
@@ -1218,7 +797,7 @@
             // ChkRedOnOff
             // 
             this.ChkRedOnOff.AutoSize = true;
-            this.ChkRedOnOff.Location = new System.Drawing.Point(397, 557);
+            this.ChkRedOnOff.Location = new System.Drawing.Point(369, 557);
             this.ChkRedOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkRedOnOff.Name = "ChkRedOnOff";
             this.ChkRedOnOff.Size = new System.Drawing.Size(110, 17);
@@ -1230,7 +809,7 @@
             // ChkBlueOnOff
             // 
             this.ChkBlueOnOff.AutoSize = true;
-            this.ChkBlueOnOff.Location = new System.Drawing.Point(283, 557);
+            this.ChkBlueOnOff.Location = new System.Drawing.Point(255, 557);
             this.ChkBlueOnOff.Margin = new System.Windows.Forms.Padding(2);
             this.ChkBlueOnOff.Name = "ChkBlueOnOff";
             this.ChkBlueOnOff.Size = new System.Drawing.Size(110, 17);
@@ -1371,7 +950,7 @@
             // LblPassFail
             // 
             this.LblPassFail.AutoSize = true;
-            this.LblPassFail.Location = new System.Drawing.Point(749, 653);
+            this.LblPassFail.Location = new System.Drawing.Point(749, 580);
             this.LblPassFail.Name = "LblPassFail";
             this.LblPassFail.Size = new System.Drawing.Size(51, 13);
             this.LblPassFail.TabIndex = 298;
@@ -1379,7 +958,7 @@
             // 
             // BtnCheckDongleKey
             // 
-            this.BtnCheckDongleKey.Location = new System.Drawing.Point(626, 648);
+            this.BtnCheckDongleKey.Location = new System.Drawing.Point(626, 575);
             this.BtnCheckDongleKey.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCheckDongleKey.Name = "BtnCheckDongleKey";
             this.BtnCheckDongleKey.Size = new System.Drawing.Size(112, 22);
@@ -1390,7 +969,7 @@
             // 
             // BtnSetDongleKey
             // 
-            this.BtnSetDongleKey.Location = new System.Drawing.Point(524, 648);
+            this.BtnSetDongleKey.Location = new System.Drawing.Point(524, 575);
             this.BtnSetDongleKey.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSetDongleKey.Name = "BtnSetDongleKey";
             this.BtnSetDongleKey.Size = new System.Drawing.Size(92, 22);
@@ -1402,40 +981,72 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(510, 627);
+            this.label34.Location = new System.Drawing.Point(510, 554);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 13);
             this.label34.TabIndex = 295;
             this.label34.Text = "Dongle";
             // 
-            // LblSwitchPos
+            // label25
             // 
-            this.LblSwitchPos.Location = new System.Drawing.Point(18, 189);
-            this.LblSwitchPos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblSwitchPos.Name = "LblSwitchPos";
-            this.LblSwitchPos.Size = new System.Drawing.Size(104, 17);
-            this.LblSwitchPos.TabIndex = 299;
-            this.LblSwitchPos.Text = "Switch Position";
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(623, 381);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(214, 13);
+            this.label25.TabIndex = 300;
+            this.label25.Text = "Endpoints: Keyboard only for use with KVM*";
             // 
-            // LblButtons
+            // BtnChange
             // 
-            this.LblButtons.AutoSize = true;
-            this.LblButtons.Location = new System.Drawing.Point(21, 204);
-            this.LblButtons.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblButtons.Name = "LblButtons";
-            this.LblButtons.Size = new System.Drawing.Size(46, 13);
-            this.LblButtons.TabIndex = 300;
-            this.LblButtons.Text = "Buttons:";
+            this.BtnChange.Location = new System.Drawing.Point(752, 277);
+            this.BtnChange.Name = "BtnChange";
+            this.BtnChange.Size = new System.Drawing.Size(220, 23);
+            this.BtnChange.TabIndex = 303;
+            this.BtnChange.Text = "Always change to PID #2 (KVM) on reboot";
+            this.BtnChange.UseVisualStyleBackColor = true;
+            this.BtnChange.Click += new System.EventHandler(this.BtnChange_Click);
+            // 
+            // BtnNoChange
+            // 
+            this.BtnNoChange.Location = new System.Drawing.Point(524, 277);
+            this.BtnNoChange.Name = "BtnNoChange";
+            this.BtnNoChange.Size = new System.Drawing.Size(220, 23);
+            this.BtnNoChange.TabIndex = 302;
+            this.BtnNoChange.Text = "Do not change PID #2 (KVM) on reboot";
+            this.BtnNoChange.UseVisualStyleBackColor = true;
+            this.BtnNoChange.Click += new System.EventHandler(this.BtnNoChange_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(510, 254);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 301;
+            this.label6.Text = "Reboot Mode";
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(524, 404);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(445, 67);
+            this.label8.TabIndex = 304;
+            this.label8.Text = resources.GetString("label8.Text");
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1020, 707);
-            this.Controls.Add(this.LblButtons);
-            this.Controls.Add(this.LblSwitchPos);
+            this.ClientSize = new System.Drawing.Size(1001, 707);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.BtnChange);
+            this.Controls.Add(this.BtnNoChange);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.LblPassFail);
             this.Controls.Add(this.BtnCheckDongleKey);
             this.Controls.Add(this.BtnSetDongleKey);
@@ -1452,7 +1063,6 @@
             this.Controls.Add(this.BtnBLToggle);
             this.Controls.Add(this.BtnSaveBL);
             this.Controls.Add(this.BtnBL);
-            this.Controls.Add(this.ChkFlash);
             this.Controls.Add(this.ChkBLOnOff);
             this.Controls.Add(this.CboBL);
             this.Controls.Add(this.label42);
@@ -1464,14 +1074,6 @@
             this.Controls.Add(this.BtnVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.BtnCustom);
-            this.Controls.Add(this.BtnSleep);
-            this.Controls.Add(this.BtnMyComputer);
-            this.Controls.Add(this.label39);
-            this.Controls.Add(this.label40);
-            this.Controls.Add(this.TxtMMHigh);
-            this.Controls.Add(this.TxtMMLow);
-            this.Controls.Add(this.BtnMultiMedia);
-            this.Controls.Add(this.label38);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label31);
@@ -1479,15 +1081,11 @@
             this.Controls.Add(this.TxtMouseX);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label35);
-            this.Controls.Add(this.BtnPID4);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.BtnPID2);
             this.Controls.Add(this.ChkRed);
             this.Controls.Add(this.ChkGreen);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.label17);
             this.Controls.Add(this.LblScrLk);
             this.Controls.Add(this.LblCapsLk);
             this.Controls.Add(this.LblNumLk);
@@ -1496,19 +1094,6 @@
             this.Controls.Add(this.label32);
             this.Controls.Add(this.TxtMouseButton);
             this.Controls.Add(this.BtnMousereflect);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.TxtJoyGame4);
-            this.Controls.Add(this.TxtJoyGame3);
-            this.Controls.Add(this.TxtJoyGame2);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.label27);
-            this.Controls.Add(this.TxtJoySlider);
-            this.Controls.Add(this.label26);
-            this.Controls.Add(this.TxtJoyZr);
-            this.Controls.Add(this.Label18);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.Label16);
             this.Controls.Add(this.BtnGetDataNow);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.BtnTimeStampOn);
@@ -1519,22 +1104,9 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.BtnTimeStamp);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.TxtJoyHat);
-            this.Controls.Add(this.TxtJoyGame1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.TxtJoyZ);
-            this.Controls.Add(this.TxtJoyY);
-            this.Controls.Add(this.TxtJoyX);
-            this.Controls.Add(this.BtnJoyreflect);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.BtnKBreflect);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.BtnPID1);
-            this.Controls.Add(this.BtnPID3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -1549,7 +1121,7 @@
             this.Controls.Add(this.BtnEnumerate);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "C# X-keys XKE-128";
+            this.Text = "C# X-keys XK-128 KVM";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -1574,22 +1146,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button BtnPID3;
-        private System.Windows.Forms.Button BtnPID1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button BtnKBreflect;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button BtnJoyreflect;
-        private System.Windows.Forms.TextBox TxtJoyX;
-        private System.Windows.Forms.TextBox TxtJoyY;
-        private System.Windows.Forms.TextBox TxtJoyZ;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox TxtJoyGame1;
-        private System.Windows.Forms.TextBox TxtJoyHat;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button BtnTimeStamp;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
@@ -1600,19 +1159,6 @@
         private System.Windows.Forms.Button BtnTimeStampOn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button BtnGetDataNow;
-        private System.Windows.Forms.Label Label18;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label Label16;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox TxtJoySlider;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox TxtJoyZr;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox TxtJoyGame2;
-        private System.Windows.Forms.TextBox TxtJoyGame3;
-        private System.Windows.Forms.TextBox TxtJoyGame4;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox TxtMouseWheel;
         private System.Windows.Forms.Label label32;
@@ -1621,15 +1167,11 @@
         private System.Windows.Forms.Label LblNumLk;
         private System.Windows.Forms.Label LblCapsLk;
         private System.Windows.Forms.Label LblScrLk;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox ChkGreen;
         private System.Windows.Forms.CheckBox ChkRed;
         private System.Windows.Forms.Button BtnPID2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button BtnPID4;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label29;
@@ -1637,21 +1179,12 @@
         private System.Windows.Forms.TextBox TxtMouseY;
         private System.Windows.Forms.TextBox TxtMouseX;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Button BtnSleep;
-        private System.Windows.Forms.Button BtnMyComputer;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox TxtMMHigh;
-        private System.Windows.Forms.TextBox TxtMMLow;
-        private System.Windows.Forms.Button BtnMultiMedia;
         private System.Windows.Forms.Button BtnCustom;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label LblVersion;
         private System.Windows.Forms.TextBox TxtVersion;
         private System.Windows.Forms.Button BtnVersion;
-        private System.Windows.Forms.CheckBox ChkFlash;
         private System.Windows.Forms.CheckBox ChkBLOnOff;
         private System.Windows.Forms.ComboBox CboBL;
         private System.Windows.Forms.Label label42;
@@ -1674,8 +1207,11 @@
         private System.Windows.Forms.Button BtnCheckDongleKey;
         private System.Windows.Forms.Button BtnSetDongleKey;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label LblSwitchPos;
-        private System.Windows.Forms.Label LblButtons;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button BtnChange;
+        private System.Windows.Forms.Button BtnNoChange;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
     }
 }
 
