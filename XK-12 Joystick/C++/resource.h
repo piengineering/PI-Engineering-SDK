@@ -40,6 +40,7 @@
 #define IDC_ENABLE                      1028
 #define IDC_CHKSCROLL                   1029
 #define IDC_CHKGREEN                    1030
+#define IDC_CHKBLUE                     1030
 #define IDC_CHKRED                      1031
 #define IDC_DISABLE                     1032
 #define IDC_VERSION                     1033

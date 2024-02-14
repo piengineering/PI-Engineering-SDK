@@ -56,44 +56,41 @@ CAPTION "C++  X-keys XK-12 Jog & Shuttle Demo"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "Enumerate",IDSTART,7,7,50,17
-    PUSHBUTTON      "Cancel",IDCANCEL,586,7,50,17
+    PUSHBUTTON      "Cancel",IDCANCEL,284,7,50,17
     LISTBOX         ID_EVENTS,7,128,629,60,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Halt",IDHALT,415,7,50,17
+    PUSHBUTTON      "Halt",IDHALT,229,7,50,17
     LTEXT           "Data (hex):",IDC_STATIC,7,116,77,9
     PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,208,57,17
     EDITTEXT        IDC_EDIT1,69,210,37,14,ES_AUTOHSCROLL
-    LTEXT           "LED Control:",IDC_STATIC,148,196,89,9
-    LTEXT           "Write Unit ID:",IDC_STATIC,7,196,111,10
+    LTEXT           "LED Control:",IDC_STATIC,145,196,89,9
+    LTEXT           "Write Unit ID:",IDC_STATIC,8,198,111,10
     PUSHBUTTON      "Clear Listbox",IDC_CLEAR,575,104,61,17
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,234,177,9
-    PUSHBUTTON      "Save BL State",IDC_SaveBL,442,244,59,17
-    PUSHBUTTON      "Set Intensity",IDC_BL2,379,244,54,17
+    PUSHBUTTON      "Save BL State",IDC_SaveBL,420,242,59,17
+    PUSHBUTTON      "Set Intensity",IDC_BL2,357,242,54,17
     PUSHBUTTON      "To PID #2",IDC_TOREFLECT,7,281,73,17
-    LTEXT           "PID Convert:",IDC_STATIC,7,267,89,9
+    LTEXT           "PID Convert:",IDC_STATIC,7,270,89,9
     PUSHBUTTON      "To PID #1",IDC_TOSPLAT,7,304,73,17
-    LTEXT           "Time Stamp:",IDC_STATIC,7,330,89,9
+    LTEXT           "Time Stamp:",IDC_STATIC,6,332,89,9
     PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,7,342,73,17
     PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,288,281,73,17
     PUSHBUTTON      "Joystick Reflector",IDC_JOYREFLECT,288,323,73,17
     PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,377,73,17
-    PUSHBUTTON      "Toggle",IDC_BLToggle,275,244,43,17
+    PUSHBUTTON      "Toggle",IDC_BLToggle,253,242,43,17
     PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,87,342,73,17
-    CONTROL         "Scroll Lock",IDC_CHKSCROLL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,325,247,51,10
-    CONTROL         "All Bank 1 On/Off",IDC_CHKGREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,246,68,11
-    CONTROL         "All Bank 2 On/Off",IDC_CHKRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,195,246,70,11
+    CONTROL         "Scroll Lock",IDC_CHKSCROLL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,303,244,51,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBLUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,101,246,68,11
+    CONTROL         "All Bank 2 On/Off",IDC_CHKRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,177,246,70,11
     EDITTEXT        IDC_EDIT2,7,245,26,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT3,386,207,26,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Set Freq",IDC_FREQ,338,205,43,17
-    CONTROL         "Green",IDC_CHKGREENLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,145,207,34,11
-    CONTROL         "Red",IDC_CHKREDLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,181,207,34,11
-    CONTROL         "Flash Green",IDC_CHKFGREENLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,221,207,54,11
-    CONTROL         "Flash Red",IDC_CHKFREDLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,277,207,54,11
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,246,39,11
-    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,82,246,33,11
+    EDITTEXT        IDC_EDIT3,263,205,26,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Set Freq",IDC_FREQ,215,203,43,17
+    CONTROL         "Green",IDC_CHKGREENLED,"Button",BS_AUTO3STATE | WS_TABSTOP,145,207,34,11
+    CONTROL         "Red",IDC_CHKREDLED,"Button",BS_AUTO3STATE | WS_TABSTOP,181,207,34,11
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,39,246,58,11
     PUSHBUTTON      "Generate Data Report",IDC_FORCEDATA,91,377,82,17
-    LTEXT           "Keyboard Reflector:",IDC_STATIC,288,267,89,9
-    LTEXT           "Descriptor:",IDC_STATIC,9,364,58,9
-    LTEXT           "Stimulate a general incoming data report or custom report:",IDC_STATIC,92,363,183,9
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,288,271,89,9
+    LTEXT           "Descriptor:",IDC_STATIC,7,367,58,9
+    LTEXT           "Stimulate a general incoming data report or custom report:",IDC_STATIC,89,367,183,9
     LTEXT           "Endpoints: Keyboard, Joystick, Input and Output",IDC_STATIC,85,286,170,9
     LTEXT           "Endpoints: Keyboard, Mouse, Input and Output (factory default)",IDC_STATIC,86,308,170,16
     PUSHBUTTON      "Mouse Reflector",IDC_BUTTON2,286,372,73,17
@@ -111,8 +108,8 @@ BEGIN
     LTEXT           "0-255",IDC_STATIC,557,327,19,8
     LTEXT           "0-255",IDC_STATIC,482,345,19,8
     EDITTEXT        IDC_EDIT4,366,283,40,14,ES_AUTOHSCROLL
-    LTEXT           "Joystick Reflector (PID #2 Only):",IDC_STATIC,288,310,104,8
-    LTEXT           "Mouse Reflector (PID #1 Only):",IDC_STATIC,287,361,100,8
+    LTEXT           "Joystick Reflector (PID #2 Only):",IDC_STATIC,288,314,104,8
+    LTEXT           "Mouse Reflector (PID #1 Only):",IDC_STATIC,286,362,100,8
     EDITTEXT        IDC_JoyX,375,325,22,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JoyY,408,325,22,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JoyZ,444,325,22,14,ES_AUTOHSCROLL
@@ -133,7 +130,7 @@ BEGIN
     LTEXT           "dY:",IDC_STATIC,418,391,12,8
     LTEXT           "Wheel Y:",IDC_STATIC,456,391,30,8
     LISTBOX         IDC_LIST1,7,30,292,40,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Custom Data Report",IDC_CUSTOM,179,378,82,17
+    PUSHBUTTON      "Custom Data Report",IDC_CUSTOM,179,377,82,17
 END
 
 

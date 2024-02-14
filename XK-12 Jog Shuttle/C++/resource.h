@@ -38,6 +38,7 @@
 #define IDC_FORCEDATA                   1027
 #define IDC_CHKSCROLL                   1029
 #define IDC_CHKGREEN                    1030
+#define IDC_CHKBLUE                     1030
 #define IDC_CHKRED                      1031
 #define IDC_EDIT2                       1034
 #define IDC_EDIT3                       1035

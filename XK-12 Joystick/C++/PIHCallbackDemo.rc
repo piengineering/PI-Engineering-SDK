@@ -62,47 +62,44 @@ BEGIN
     LTEXT           "Data (hex):",IDC_STATIC,7,76,77,9
     PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,170,57,17
     EDITTEXT        IDC_EDIT1,69,172,37,14,ES_AUTOHSCROLL
-    LTEXT           "LED Control:",IDC_STATIC,148,158,89,9
+    LTEXT           "LED Control:",IDC_STATIC,145,158,89,9
     LTEXT           "Write Unit ID:",IDC_STATIC,7,158,111,10
     PUSHBUTTON      "Clear Listbox",IDC_CLEAR,598,63,61,17
     LTEXT           "Backlighting (see code or help doc for index #s):",IDC_STATIC,7,196,177,9
-    PUSHBUTTON      "Save BL State",IDC_SaveBL,382,204,59,17
-    PUSHBUTTON      "Set Intensity",IDC_BL2,319,204,54,17
+    PUSHBUTTON      "Save BL State",IDC_SaveBL,366,204,59,17
+    PUSHBUTTON      "Set Intensity",IDC_BL2,303,204,54,17
     PUSHBUTTON      "To PID #2",IDC_TOREFLECT,7,271,73,17
     LTEXT           "PID Convert:",IDC_STATIC,7,236,89,9
     PUSHBUTTON      "To PID #1",IDC_TOSPLAT,7,247,73,17
-    LTEXT           "Time Stamp:",IDC_STATIC,7,295,89,9
+    LTEXT           "Time Stamp:",IDC_STATIC,7,299,89,9
     PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,7,308,73,17
     PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,285,247,73,17
     PUSHBUTTON      "Joystick Reflector",IDC_JOYREFLECT,284,288,73,17
-    PUSHBUTTON      "Toggle",IDC_BLToggle,269,204,43,17
+    PUSHBUTTON      "Toggle",IDC_BLToggle,253,204,43,17
     PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,87,308,73,17
-    CONTROL         "All Bank 1 On/Off",IDC_CHKGREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,208,67,11
-    CONTROL         "All Bank 2 On/Off",IDC_CHKRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,195,208,69,11
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBLUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,103,208,67,11
+    CONTROL         "All Bank 2 On/Off",IDC_CHKRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,179,208,69,11
     EDITTEXT        IDC_EDIT2,7,207,26,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JOYX,367,289,19,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Set Freq",IDC_FREQ,338,167,43,17
-    CONTROL         "Green",IDC_CHKGREENLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,145,169,34,11
-    CONTROL         "Red",IDC_CHKREDLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,181,169,34,11
-    CONTROL         "Flash Green",IDC_CHKFGREENLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,221,169,54,11
-    CONTROL         "Flash Red",IDC_CHKFREDLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,277,169,54,11
-    CONTROL         "On/Off",IDC_CHKBLONOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,208,39,11
-    CONTROL         "Flash",IDC_CHKBLFLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,82,208,33,11
+    PUSHBUTTON      "Set Freq",IDC_FREQ,217,165,43,17
+    CONTROL         "Green",IDC_CHKGREENLED,"Button",BS_AUTO3STATE | WS_TABSTOP,145,169,34,11
+    CONTROL         "Red",IDC_CHKREDLED,"Button",BS_AUTO3STATE | WS_TABSTOP,181,169,34,11
+    CONTROL         "On/Off/Flash",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,39,208,64,11
     PUSHBUTTON      "Generate Data Report",IDC_FORCEDATA,286,398,82,17
-    LTEXT           "Keyboard Reflector:",IDC_STATIC,285,233,89,9
-    LTEXT           "Descriptor:",IDC_STATIC,7,371,58,9
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,285,236,89,9
+    LTEXT           "Descriptor:",IDC_STATIC,7,375,58,9
     LTEXT           "Stimulate a general incoming data report or a custom data report:",IDC_STATIC,285,388,271,9
     LTEXT           "Endpoints: Keyboard, Joystick, Input and Output",IDC_STATIC,85,252,170,9
     LTEXT           "Endpoints: Keyboard, Mouse, Input and Output",IDC_STATIC,86,274,170,16
     PUSHBUTTON      "Mouse Reflector",IDC_MOUSEREFLECT3,285,329,73,17
-    LTEXT           "Enable/Disable Native Joystick:",IDC_STATIC,7,332,141,9
+    LTEXT           "Enable/Disable Native Joystick:",IDC_STATIC,7,337,141,9
     PUSHBUTTON      "Enable",IDC_ENABLE,7,348,73,17
     PUSHBUTTON      "Disable",IDC_DISABLE,85,348,73,17
     LTEXT           "Do this first",IDC_STATIC,60,14,36,8
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,47,78,17
     EDITTEXT        IDC_EDITKEY,368,249,85,14,ES_AUTOHSCROLL
     LTEXT           "Joystick Reflector:",IDC_STATIC,285,276,89,9
-    EDITTEXT        IDC_EDIT5,383,168,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,263,166,26,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JOYY,388,289,19,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JOYZ,411,289,19,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_JOYZR,433,289,19,14,ES_AUTOHSCROLL
@@ -125,10 +122,10 @@ BEGIN
     LTEXT           "Y",IDC_STATIC,420,353,9,9
     LTEXT           "Wheel",IDC_STATIC,453,353,27,9
     PUSHBUTTON      "Write Version",IDC_VERSION,286,434,82,17
-    LTEXT           "Write Version (0-65535), reboot required, v24+ firmware only:",IDC_STATIC,285,422,238,9
+    LTEXT           "Write Version (0-65535), reboot required:",IDC_STATIC,285,422,238,9
     PUSHBUTTON      "Custom Data Report",IDC_CUSTOMDATA2,375,398,82,17
     EDITTEXT        IDC_EDIT6,374,435,26,14,ES_AUTOHSCROLL
-    LTEXT           "Dongle, v24+ firmware only:",IDC_STATIC,7,414,106,9
+    LTEXT           "Dongle:",IDC_STATIC,7,414,106,9
     PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR2,7,386,73,17
     PUSHBUTTON      "Check Dongle",IDC_CHECKDONGLE2,86,426,73,17
     LTEXT           "Pass/Fail",IDC_PASSFAIL2,159,430,111,8

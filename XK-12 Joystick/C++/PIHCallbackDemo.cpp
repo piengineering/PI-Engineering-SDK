@@ -231,7 +231,8 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKGREENLED);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+			
 			result = WriteData(hDevice, buffer);
 			return TRUE;
 
@@ -247,54 +248,11 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKREDLED);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; ////0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result = WriteData(hDevice, buffer);
 			return TRUE;
 		
-		case IDC_CHKFGREENLED:
-			//Flash the green LED, set flash frequency with Set Freq
-
-			for ( i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=179; //0xb3
-			buffer[2]=6;  //6 for green, 7 for red
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKFGREENLED);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKGREENLED);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; ////0=off, 1=on, 2=flash
-			}
-			result = WriteData(hDevice, buffer);
-			return TRUE;
-
-		case IDC_CHKFREDLED:
-			//Flash the green LED, set flash frequency with Set Freq
-
-			for ( i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=179; //0xb3
-			buffer[2]=7;  //6 for green, 7 for red
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKFREDLED);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKREDLED);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; ////0=off, 1=on, 2=flash
-			}
-			result = WriteData(hDevice, buffer);
-			return TRUE;
-
         case IDC_CHKBLONOFF:
 			//Turn on/off the backlight of the entered key in IDC_EDIT2
 			//Use the Set Flash Freq to control frequency of blink
@@ -333,60 +291,12 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
-			}
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
 			result = WriteData(hDevice, buffer);
 			return TRUE;
 
-	    case IDC_CHKBLFLASH:
-			//Turn on/off the backlight of the entered key in IDC_EDIT2
-			//Use the Set Flash Freq to control frequency of blink
-            //Key Index for(in decimal)
-			//Bank 1
-            //Columns-->
-            //  0   8   16  24
-            //  1   9   17  25
-            //  2   10  18  26
-
-			//Bank 2
-			//Columns-->
-            //  32   40   48  56
-            //  33   41   49  57
-            //  34   42   50  58
-
-			for ( i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_EDIT2);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
-			result = WriteData(hDevice, buffer);
-			return TRUE;
+	    
 
 		case IDC_FREQ:
 			//Set the frequency of the flashing, same one for LEDs and backlights
@@ -431,9 +341,8 @@ int CALLBACK DialogProc(
 			result = WriteData(hDevice, buffer);
 			
 			return TRUE;
-		
 
-		case IDC_CHKGREEN:
+		case IDC_CHKBLUE:
 			//Turns on or off, depending on value of CHKGREEN, ALL bank 1 BLs using current intensity
 			for ( i=0;i<wlen;i++)
 			{

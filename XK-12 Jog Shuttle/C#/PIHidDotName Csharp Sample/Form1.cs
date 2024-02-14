@@ -30,9 +30,7 @@ namespace PIHidDotName_Csharp_Sample
 
         
         byte[] lastdata = null;
-        int jogcw = 0;
-        int jogccw = 0;
-       
+        
         public Form1()
         {
             InitializeComponent();
@@ -427,13 +425,14 @@ namespace PIHidDotName_Csharp_Sample
         {
             selecteddevice = cbotodevice[CboDevices.SelectedIndex];
             wData = new byte[devices[selecteddevice].WriteLength];//size write array 
+            lastdata = new byte[devices[selecteddevice].ReadLength];
         }
 
         private void BtnCallback_Click(object sender, EventArgs e)
         {
             //setup callback if there are devices found for each device found
 
-            if (CboDevices.SelectedIndex != -1)
+           if (selecteddevice != -1)
             {
                 for (int i = 0; i < CboDevices.Items.Count; i++)
                 {
@@ -473,25 +472,25 @@ namespace PIHidDotName_Csharp_Sample
                     //HID Version = devices[i].Version);
                     int hidusagepg = devices[i].HidUsagePage;
                     int hidusage = devices[i].HidUsage;
-                    if (devices[i].HidUsagePage == 0xc)
+                    if (devices[i].HidUsagePage == 0xc && devices[i].WriteLength>10)
                     {
                         switch (devices[i].Pid)
                         {
                             case 0x426:
                                 //Device 0 Keyboard, Mouse, Input and Output endpoints
-                                CboDevices.Items.Add("XK-12 Jog & Shuttle ("+devices[i].Pid+"=PID #1), ID: " + i);
+                                CboDevices.Items.Add("XK-12 Jog Shuttle ("+devices[i].Pid+"=PID #1), ID: " + i);
                                 cbotodevice[cbocount] = i;
                                 cbocount++;
                                 break;
                             case 0x427:
                                 //Device 1 Keyboard, Joystick, Mouse and Output endpoints
-                                CboDevices.Items.Add("XK-12 Jog & Shuttle (" + devices[i].Pid + "), ID: " + i);
+                                CboDevices.Items.Add("XK-12 Jog Shuttle (" + devices[i].Pid + "), ID: " + i);
                                 cbotodevice[cbocount] = i;
                                 cbocount++;
                                 break;
                             case 0x428:
                                 //Device 2 Keyboard, Joystick, Input and Output endpoints
-                                CboDevices.Items.Add("XK-12 Jog & Shuttle (" + devices[i].Pid + "=PID #2), ID: " + i);
+                                CboDevices.Items.Add("XK-12 Jog Shuttle (" + devices[i].Pid + "=PID #2), ID: " + i);
                                 cbotodevice[cbocount] = i;
                                 cbocount++;
                                 break;
@@ -520,7 +519,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnRed_Click(object sender, EventArgs e)
         {
             //Turn on the red LED
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte saveled = wData[2]; //save the current value of the LED byte
                 for (int j = 0; j <devices[selecteddevice].WriteLength; j++) 
@@ -545,12 +544,10 @@ namespace PIHidDotName_Csharp_Sample
 
         }
 
-        
-
         private void BtnUnitID_Click(object sender, EventArgs e)
         {
             //Write Unit ID to the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -580,7 +577,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnBL_Click(object sender, EventArgs e)
         {
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -610,7 +607,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnBLToggle_Click(object sender, EventArgs e)
         {
             //Sending this command toggles the backlights
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -637,7 +634,7 @@ namespace PIHidDotName_Csharp_Sample
         private void ChkScrollLock_CheckedChanged(object sender, EventArgs e)
         {
             //If checked then the Scroll Lock key on the main keyboard will toggle the backlights
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -663,14 +660,14 @@ namespace PIHidDotName_Csharp_Sample
             }
         }
 
-        private void ChkGreenOnOff_CheckedChanged(object sender, EventArgs e)
+        private void ChkBlueOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkGreenOnOff, ALL bank 1 BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
                 
-                if (ChkGreenOnOff.Checked == true) sl = 255;
+                if (ChkBlueOnOff.Checked == true) sl = 255;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
                     wData[j] = 0;
@@ -698,7 +695,7 @@ namespace PIHidDotName_Csharp_Sample
         private void ChkRedOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkRedOnOff, ALL bank 2 BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
               
@@ -730,7 +727,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnSetFlash_Click(object sender, EventArgs e)
         {
             //Sets the frequency of flashing for both the LEDs and backlighting
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 
@@ -763,7 +760,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Write current state of backlighting to EEPROM.  
             //NOTE: Is it not recommended to do this frequently as there are a finite number of writes to the EEPROM allowed
-            if (CboDevices.SelectedIndex != -1)
+           if (selecteddevice != -1)
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -790,7 +787,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnTimeStamp_Click(object sender, EventArgs e)
         {
             //Sending this command will turn off the 4 bytes of data which assembled give the time in ms from the start of the computer
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -818,7 +815,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             //Sending this command will turn on the 4 bytes of data which assembled give the time in ms from the start of the computer
             
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -847,7 +844,7 @@ namespace PIHidDotName_Csharp_Sample
             //Sends native keyboard messages
             //Write some keys to the textbox, should be Abcd
             //send some hid codes to the textbox, these will be coming in on the native keyboard endpoint
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 
                 textBox1.Focus();
@@ -904,7 +901,7 @@ namespace PIHidDotName_Csharp_Sample
             //Sends native joystick messages
             //Open up the game controller control panel to test these features, after clicking this button
             //go and make active the control panel properties and change will be seen
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -943,7 +940,7 @@ namespace PIHidDotName_Csharp_Sample
         private void BtnDescriptor_Click(object sender, EventArgs e)
         {
             //Sending the command will make the device return information about it
-            if (CboDevices.SelectedIndex != -1)
+           if (selecteddevice != -1)
             {
                 //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
                 devices[selecteddevice].callNever = true;
@@ -1005,298 +1002,13 @@ namespace PIHidDotName_Csharp_Sample
             }
         }
 
-        private void BtnSetKey_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BtnCheckKey_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-       
-
-        private void ChkGreenLED_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 6; //6 for green, 7 for red
-
-
-                if (ChkGreenLED.Checked == true)
-                {
-                    wData[3] = 1; //0=off, 1=on, 2=flash
-                    if (ChkFGreenLED.Checked == true) wData[3] = 2;
-                }
-                else
-                {
-                    wData[3] = 0; //0=off, 1=on, 2=flash
-                }
-
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set LED";
-                }
-            }
-        }
-
-        private void ChkRedLED_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 7; //6 for green, 7 for red
-
-
-                if (ChkRedLED.Checked == true)
-                {
-                    wData[3] = 1; //0=off, 1=on, 2=flash
-                    if (ChkFRedLED.Checked == true) wData[3] = 2;
-                }
-                else
-                {
-                    wData[3] = 0; //0=off, 1=on, 2=flash
-                }
-
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set LED";
-                }
-            }
-        }
-
-        private void ChkFGreenLED_CheckedChanged(object sender, EventArgs e)
-        {
-            //use the Set Flash Freq to control frequency of blink
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 6; //6 for green, 7 for red
-
-                if (ChkFGreenLED.Checked == true)
-                {
-                    wData[3] = 2; //0=off, 1=on, 2=flash
-                }
-                else
-                {
-                    if (ChkGreenLED.Checked == true)
-                    {
-                        wData[3] = 1; //0=off, 1=on, 2=flash
-                    }
-                    else
-                    {
-                        wData[3] = 0; //0=off, 1=on, 2=flash
-                    }
-                }
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash LEDs";
-                }
-            }
-        }
-
-        private void ChkFRedLED_CheckedChanged(object sender, EventArgs e)
-        {
-            //use the Set Flash Freq to control frequency of blink
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 7; //6 for green, 7 for red
-
-                if (ChkFRedLED.Checked == true)
-                {
-                    wData[3] = 2; //0=off, 1=on, 2=flash
-                }
-                else
-                {
-                    if (ChkRedLED.Checked == true)
-                    {
-                        wData[3] = 1; //0=off, 1=on, 2=flash
-                    }
-                    else
-                    {
-                        wData[3] = 0; //0=off, 1=on, 2=flash
-                    }
-                }
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash LEDs";
-                }
-            }
-        }
-
-        private void ChkBLOnOff_CheckedChanged(object sender, EventArgs e)
-        {
-            //Use the Set Flash Freq to control frequency of blink
-            //Key Index (in decimal)
-            //Columns-->
-            //  0   8   16  24
-            //  1   9   17  25
-            //  2   10  18  26
-
-            if (CboDevices.SelectedIndex != -1)
-            {
-                //first get selected index
-                string sindex = CboBL.Text;
-                int iindex;
-                if (sindex.IndexOf("-b1") != -1) //bank 1 backlights
-                {
-                    sindex = sindex.Remove(sindex.IndexOf("-b1"), 3);
-                    iindex = Convert.ToInt16(sindex);
-                }
-                else //bank 2 backlight
-                {
-                    sindex = sindex.Remove(sindex.IndexOf("-b2"), 3);
-                    iindex = Convert.ToInt16(sindex) + 32;  //Add 32 to get corresponding bank 2 index
-                }
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                //now get state
-                int state = 0;
-                if (ChkBLOnOff.Checked == true)
-                {
-                    if (ChkFlash.Checked == true) state = 2;
-                    else state = 1;
-                }
-
-                wData[1] = 181; //b5
-                wData[2] = (byte)(iindex); //Key Index
-                wData[3] = (byte)state; //0=off, 1=on, 2=flash
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash BL";
-                }
-            }
-        }
-
-        private void ChkFlash_CheckedChanged(object sender, EventArgs e)
-        {
-            //Use the Set Flash Freq to control frequency of blink
-            //Key Index (in decimal)
-            //Columns-->
-            //  0   8   16  24
-            //  1   9   17  25
-            //  2   10  18  26
-
-            if (CboDevices.SelectedIndex != -1)
-            {
-                //first get selected index
-                string sindex = CboBL.Text;
-                int iindex;
-                if (sindex.IndexOf("b1") != -1) //bank 1 backlight
-                {
-                    sindex = sindex.Remove(sindex.IndexOf("-b1"), 3);
-                    iindex = Convert.ToInt16(sindex);
-                }
-                else //bank 2 backlight
-                {
-                    sindex = sindex.Remove(sindex.IndexOf("-b2"), 3);
-                    iindex = Convert.ToInt16(sindex) + 32;  //Add 32 to get corresponding bank 2 backlight
-                }
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                //now get state
-                int state = 0;
-                if (ChkFlash.Checked == true)
-                {
-                    state = 2;
-                }
-                else
-                {
-                    if (ChkBLOnOff.Checked == true)
-                    {
-                        state = 1;
-                    }
-                }
-
-                wData[1] = 181; //b5
-                wData[2] = (byte)(iindex); //Key Index
-                wData[3] = (byte)state; //0=off, 1=on, 2=flash
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash BL";
-                }
-            }
-        }
-
         private void BtnGetDataNow_Click(object sender, EventArgs e)
         {
             //After sending this command a general incoming data report will be given with
             //the 3rd byte (Data Type) 2nd bit set.  If program switch is up byte 3 will be 2
             //and if it is pressed byte 3 will be 3.  This is useful for getting the initial state
             //or unit id of the device before it sends any data.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1323,7 +1035,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnMousereflect_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 wData[0] = 0;
@@ -1352,7 +1064,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnPID1_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1379,7 +1091,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void BtnPID2_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1414,7 +1126,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ChkSuppress_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 if (ChkSuppress.Checked == false)
                 {
@@ -1434,7 +1146,7 @@ namespace PIHidDotName_Csharp_Sample
             //the 3rd byte (Data Type) set to 0xE0, the 4th byte set to the count given below when the command was sent
             //and the following bytes whatever the user wishes.  In this example we are send 3 bytes; 1, 2, 3
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+           if (selecteddevice != -1) //do nothing if not enumerated
             {
                 devices[selecteddevice].callNever = false;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1458,6 +1170,108 @@ namespace PIHidDotName_Csharp_Sample
                 else
                 {
                     toolStripStatusLabel1.Text = "Write Success - Custom Data";
+                }
+            }
+        }
+
+        private void ChkRedLED_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1)
+            {
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[1] = 179; //0xb3
+                wData[2] = 7; //6 for green, 7 for red
+                wData[3] = (byte)ChkRedLED.CheckState; //0=off, 1=on, 2=flash
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set LED";
+                }
+            }
+        }
+
+        private void ChkGreenLED_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1)
+            {
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[1] = 179; //0xb3
+                wData[2] = 6; //6 for green, 7 for red
+                wData[3] = (byte)ChkGreenLED.CheckState; //0=off, 1=on, 2=flash
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set LED";
+                }
+            }
+        }
+
+        private void ChkBLOnOff_CheckStateChanged(object sender, EventArgs e)
+        {
+            //Use the Set Flash Freq to control frequency of blink
+            //Key Index (in decimal)
+            //Columns-->
+            //  0   8   16  24
+            //  1   9   17  25
+            //  2   10  18  26
+
+            if (selecteddevice != -1)
+            {
+                //first get selected index
+                string sindex = CboBL.Text;
+                int iindex;
+                if (sindex.IndexOf("-b1") != -1) //bank 1 backlights
+                {
+                    sindex = sindex.Remove(sindex.IndexOf("-b1"), 3);
+                    iindex = Convert.ToInt16(sindex);
+                }
+                else //bank 2 backlight
+                {
+                    sindex = sindex.Remove(sindex.IndexOf("-b2"), 3);
+                    iindex = Convert.ToInt16(sindex) + 32;  //Add 32 to get corresponding bank 2 index
+                }
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                byte state = (byte)ChkBLOnOff.CheckState;
+
+                wData[1] = 181; //b5
+                wData[2] = (byte)(iindex); //Key Index
+                wData[3] = (byte)state; //0=off, 1=on, 2=flash
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Flash BL";
                 }
             }
         }
