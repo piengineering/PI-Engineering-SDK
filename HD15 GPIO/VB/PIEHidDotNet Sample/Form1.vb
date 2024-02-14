@@ -471,54 +471,7 @@
 
    
 
-    Private Sub BtnPID1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-
-    End Sub
-
-    Private Sub BtnPID2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-
-    Private Sub ChkGreen_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckedChanged, ChkRed.CheckedChanged, ChkOut1.CheckedChanged, ChkOut2.CheckedChanged
-        'change the device's unit id
-        If selecteddevice <> -1 Then
-
-            Dim thisChk As CheckBox = DirectCast(sender, CheckBox)
-            Dim temp As String = thisChk.Tag.ToString()
-            Dim LED As Byte = Convert.ToByte(temp)
-            '6=green, 7=red, 0=out1, 1=out2
-            Dim state As Byte = 0
-            If thisChk.Checked = True Then
-                state = 1
-                If (chkFlashLED.Checked = True) Then
-                    state = 2
-                End If
-            End If
-            
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 179
-            wdata(2) = LED
-            wdata(3) = state '0=off, 1=on, 2=flash
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - LEDs and Output"
-            End If
-        End If
-    End Sub
+  
 
     Private Sub BtnCustom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCustom.Click
         'After sending this command a custom incoming data report will be given with
@@ -1708,35 +1661,6 @@
         End If
     End Sub
 
-    Private Sub checkBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkBox1.CheckedChanged, checkBox9.CheckedChanged, checkBox8.CheckedChanged, checkBox7.CheckedChanged, checkBox6.CheckedChanged, checkBox5.CheckedChanged, checkBox4.CheckedChanged, checkBox3.CheckedChanged, checkBox2.CheckedChanged, checkBox10.CheckedChanged
-        Dim thischeckbox As CheckBox = DirectCast(sender, CheckBox)
-        Dim tags As String = thischeckbox.Tag.ToString()
-        Dim s As Byte = 0
-        If thischeckbox.Checked = True Then
-            s = 1
-            If checkBox11.Checked = True Then
-                s = 2
-            End If
-        End If
-
-        For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
-            wdata(j) = 0
-        Next
-
-        wdata(0) = 0
-        wdata(1) = 181
-        '0xb5
-        wdata(2) = Convert.ToByte(thischeckbox.Tag)
-        '1=pin 1, 2=pin 2, 3=pin 3, 4=pin 4, 5=pin 5, 6=pin 6, 7=pin 7, 8=pin 8, 11=pin 11, 12=pin 12
-        wdata(3) = s
-        ' Convert.ToByte(thischeckbox.Checked); 
-        Dim result As Integer = 404
-
-        While result = 404
-            result = devices(selecteddevice).WriteData(wdata)
-        End While
-
-    End Sub
 
    
     Private Sub BtnSetFlash_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSetFlash.Click
@@ -1763,5 +1687,56 @@
             End If
         End If
 
+    End Sub
+
+    Private Sub ChkGreen_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckStateChanged, ChkRed.CheckStateChanged, ChkOut2.CheckStateChanged, ChkOut1.CheckStateChanged
+        'change the device's unit id
+        If selecteddevice <> -1 Then
+
+            Dim thisChk As CheckBox = DirectCast(sender, CheckBox)
+            Dim temp As String = thisChk.Tag.ToString()
+            Dim LED As Byte = Convert.ToByte(temp)
+            Dim state As Byte = thisChk.CheckState
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 179
+            wdata(2) = LED '6=green, 7=red, 0=out1, 1=out2
+            wdata(3) = state '0=off, 1=on, 2=flash
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - LEDs and Output"
+            End If
+        End If
+    End Sub
+
+    Private Sub checkBox1_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkBox1.CheckStateChanged, checkBox9.CheckStateChanged, checkBox8.CheckStateChanged, checkBox7.CheckStateChanged, checkBox6.CheckStateChanged, checkBox5.CheckStateChanged, checkBox4.CheckStateChanged, checkBox3.CheckStateChanged, checkBox2.CheckStateChanged, checkBox10.CheckStateChanged
+        Dim thischeckbox As CheckBox = DirectCast(sender, CheckBox)
+        Dim tags As String = thischeckbox.Tag.ToString()
+        Dim s As Byte = thischeckbox.CheckState
+
+        For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+            wdata(j) = 0
+        Next
+
+        wdata(0) = 0
+        wdata(1) = 181 'b5
+        wdata(2) = Convert.ToByte(thischeckbox.Tag)  '1=pin 1, 2=pin 2, 3=pin 3, 4=pin 4, 5=pin 5, 6=pin 6, 7=pin 7, 8=pin 8, 11=pin 11, 12=pin 12
+        wdata(3) = s '0=off, 1=on, 2=flash
+        Dim result As Integer = 404
+
+        While result = 404
+            result = devices(selecteddevice).WriteData(wdata)
+        End While
     End Sub
 End Class

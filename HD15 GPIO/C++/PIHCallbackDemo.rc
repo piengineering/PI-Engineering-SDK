@@ -86,8 +86,8 @@ BEGIN
     LTEXT           "ScrLck",IDC_KEYSTATES3,360,94,50,8
     LTEXT           "unit id",IDC_UNITID3,116,170,30,12
     LTEXT           "LEDs and Outputs:",IDC_STATIC,7,193,111,10
-    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,207,35,10
-    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,52,207,29,10
+    CONTROL         "Green",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,207,35,10
+    CONTROL         "Red",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,52,207,29,10
     PUSHBUTTON      "To PID #3",IDC_TOPID3,293,446,47,17
     PUSHBUTTON      "To PID #4",IDC_TOPID4,293,465,47,17
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,273,73,17
@@ -129,7 +129,7 @@ BEGIN
     LTEXT           "Wheel Y:",IDC_STATIC,361,334,30,8
     LTEXT           "Multimedia (PID #2 and #3 Only):",IDC_STATIC,291,351,111,8
     PUSHBUTTON      "To PID #1",IDC_TOPID1,293,406,47,17
-    EDITTEXT        IDC_TxtMultiHi,389,366,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TxtMultiHi,394,366,24,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TxtMultiLo,457,366,24,14,ES_AUTOHSCROLL
     LTEXT           "High (hex)",IDC_STATIC,357,369,33,8
     LTEXT           "Low (hex)",IDC_STATIC,421,369,32,8
@@ -139,8 +139,8 @@ BEGIN
     LTEXT           "Setup for Callback:",IDC_STATIC,7,63,61,8
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,74,66,14
     LTEXT           "-",IDC_LblVersion,128,354,39,8
-    CONTROL         "Pin 13 Out",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,207,49,10
-    CONTROL         "Pin 14 Out",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,147,207,49,10
+    CONTROL         "Pin 13 Out",IDC_CHECK5,"Button",BS_AUTO3STATE | WS_TABSTOP,96,207,49,10
+    CONTROL         "Pin 14 Out",IDC_CHECK6,"Button",BS_AUTO3STATE | WS_TABSTOP,147,207,49,10
     LTEXT           "Do this first",IDC_STATIC,67,6,36,8
     LTEXT           "Dongle:",IDC_STATIC,7,377,26,8
     PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,7,391,73,17
@@ -153,7 +153,7 @@ BEGIN
     PUSHBUTTON      "Get Configuration",IDC_GETCONFIG,89,427,73,17
     PUSHBUTTON      "Get Output States",IDC_GETSTATES,89,449,73,17
     LTEXT           "Set Outputs (valid for pins configured as outputs only) :",IDC_STATIC,7,472,172,8
-    PUSHBUTTON      "Set Output",IDC_SETOUT,119,484,53,17
+    PUSHBUTTON      "Set Outputs",IDC_SETOUT,113,484,53,17
 END
 
 

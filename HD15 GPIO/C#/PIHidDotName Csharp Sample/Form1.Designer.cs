@@ -142,8 +142,6 @@
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.chkFlashLED = new System.Windows.Forms.CheckBox();
             this.BtnSetFlash = new System.Windows.Forms.Button();
             this.TxtFlashFreq = new System.Windows.Forms.TextBox();
             this.btnGetStates = new System.Windows.Forms.Button();
@@ -302,9 +300,9 @@
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "1. Do this first";
+            this.label1.Text = "Do this first";
             // 
             // label2
             // 
@@ -312,9 +310,9 @@
             this.label2.Location = new System.Drawing.Point(11, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 13);
+            this.label2.Size = new System.Drawing.Size(174, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "2. Set for data callback and read data";
+            this.label2.Text = "Set for data callback and read data";
             // 
             // button1
             // 
@@ -333,9 +331,9 @@
             this.label5.Location = new System.Drawing.Point(8, 643);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 13);
+            this.label5.Size = new System.Drawing.Size(221, 13);
             this.label5.TabIndex = 23;
-            this.label5.Text = "13. Change PID (must Enumerate after changing)";
+            this.label5.Text = "Change PID (must Enumerate after changing)";
             // 
             // BtnPID3
             // 
@@ -365,9 +363,9 @@
             this.label7.Location = new System.Drawing.Point(510, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(214, 13);
+            this.label7.Size = new System.Drawing.Size(202, 13);
             this.label7.TabIndex = 30;
-            this.label7.Text = "9. Keyboard Reflector (PID #2 and #4 Only)";
+            this.label7.Text = "Keyboard Reflector (PID #2 and #4 Only)";
             // 
             // BtnKBreflect
             // 
@@ -531,9 +529,9 @@
             this.label21.Location = new System.Drawing.Point(11, 357);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(67, 13);
+            this.label21.Size = new System.Drawing.Size(55, 13);
             this.label21.TabIndex = 61;
-            this.label21.Text = "5. Descriptor";
+            this.label21.Text = "Descriptor";
             // 
             // BtnDescriptor
             // 
@@ -561,9 +559,9 @@
             this.label23.Location = new System.Drawing.Point(8, 521);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(111, 13);
+            this.label23.Size = new System.Drawing.Size(99, 13);
             this.label23.TabIndex = 67;
-            this.label23.Text = "7. Enable Time Stamp";
+            this.label23.Text = "Enable Time Stamp";
             // 
             // BtnTimeStampOn
             // 
@@ -582,9 +580,9 @@
             this.label13.Location = new System.Drawing.Point(11, 199);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 13);
+            this.label13.Size = new System.Drawing.Size(68, 13);
             this.label13.TabIndex = 87;
-            this.label13.Text = "3. Write Unit ID";
+            this.label13.Text = "Write Unit ID";
             // 
             // BtnGetDataNow
             // 
@@ -763,7 +761,7 @@
             // LblNumLk
             // 
             this.LblNumLk.AutoSize = true;
-            this.LblNumLk.Location = new System.Drawing.Point(366, 204);
+            this.LblNumLk.Location = new System.Drawing.Point(362, 189);
             this.LblNumLk.Name = "LblNumLk";
             this.LblNumLk.Size = new System.Drawing.Size(59, 13);
             this.LblNumLk.TabIndex = 156;
@@ -772,7 +770,7 @@
             // LblCapsLk
             // 
             this.LblCapsLk.AutoSize = true;
-            this.LblCapsLk.Location = new System.Drawing.Point(366, 219);
+            this.LblCapsLk.Location = new System.Drawing.Point(362, 204);
             this.LblCapsLk.Name = "LblCapsLk";
             this.LblCapsLk.Size = new System.Drawing.Size(61, 13);
             this.LblCapsLk.TabIndex = 157;
@@ -781,7 +779,7 @@
             // LblScrLk
             // 
             this.LblScrLk.AutoSize = true;
-            this.LblScrLk.Location = new System.Drawing.Point(366, 233);
+            this.LblScrLk.Location = new System.Drawing.Point(362, 218);
             this.LblScrLk.Name = "LblScrLk";
             this.LblScrLk.Size = new System.Drawing.Size(53, 13);
             this.LblScrLk.TabIndex = 158;
@@ -793,19 +791,19 @@
             this.label17.Location = new System.Drawing.Point(510, 69);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(211, 13);
+            this.label17.Size = new System.Drawing.Size(193, 13);
             this.label17.TabIndex = 204;
-            this.label17.Text = "10. Joystick Reflector (PID #1 and #3 only)";
+            this.label17.Text = "Joystick Reflector (PID #1 and #3 only)";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(510, 188);
+            this.label24.Location = new System.Drawing.Point(510, 204);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(103, 13);
+            this.label24.Size = new System.Drawing.Size(85, 13);
             this.label24.TabIndex = 205;
-            this.label24.Text = "11. Mouse Reflector";
+            this.label24.Text = "Mouse Reflector";
             // 
             // label3
             // 
@@ -813,9 +811,9 @@
             this.label3.Location = new System.Drawing.Point(11, 270);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 13);
+            this.label3.Size = new System.Drawing.Size(122, 13);
             this.label3.TabIndex = 206;
-            this.label3.Text = "4. Write LEDs and Outputs";
+            this.label3.Text = "Write LEDs and Outputs";
             // 
             // ChkGreen
             // 
@@ -826,8 +824,9 @@
             this.ChkGreen.TabIndex = 207;
             this.ChkGreen.Tag = "6";
             this.ChkGreen.Text = "Green";
+            this.ChkGreen.ThreeState = true;
             this.ChkGreen.UseVisualStyleBackColor = true;
-            this.ChkGreen.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkGreen.CheckStateChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // ChkRed
             // 
@@ -838,8 +837,9 @@
             this.ChkRed.TabIndex = 208;
             this.ChkRed.Tag = "7";
             this.ChkRed.Text = "Red";
+            this.ChkRed.ThreeState = true;
             this.ChkRed.UseVisualStyleBackColor = true;
-            this.ChkRed.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkRed.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // ChkOut1
             // 
@@ -850,8 +850,9 @@
             this.ChkOut1.TabIndex = 209;
             this.ChkOut1.Tag = "0";
             this.ChkOut1.Text = "Pin 13 Out";
+            this.ChkOut1.ThreeState = true;
             this.ChkOut1.UseVisualStyleBackColor = true;
-            this.ChkOut1.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkOut1.CheckStateChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // ChkOut2
             // 
@@ -862,8 +863,9 @@
             this.ChkOut2.TabIndex = 210;
             this.ChkOut2.Tag = "1";
             this.ChkOut2.Text = "Pin 14 Out";
+            this.ChkOut2.ThreeState = true;
             this.ChkOut2.UseVisualStyleBackColor = true;
-            this.ChkOut2.CheckedChanged += new System.EventHandler(this.ChkGreen_CheckedChanged);
+            this.ChkOut2.CheckStateChanged += new System.EventHandler(this.ChkGreen_CheckStateChanged);
             // 
             // BtnPID2
             // 
@@ -980,9 +982,9 @@
             this.label38.Location = new System.Drawing.Point(510, 318);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(177, 13);
+            this.label38.Size = new System.Drawing.Size(159, 13);
             this.label38.TabIndex = 225;
-            this.label38.Text = "12. Multimedia (PID #2 and #3 only)";
+            this.label38.Text = "Multimedia (PID #2 and #3 only)";
             // 
             // BtnSleep
             // 
@@ -1071,9 +1073,9 @@
             this.label14.Location = new System.Drawing.Point(8, 453);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(328, 13);
+            this.label14.Size = new System.Drawing.Size(313, 13);
             this.label14.TabIndex = 259;
-            this.label14.Text = "6.  Stimulate a general incoming data report or a custom input report.";
+            this.label14.Text = "Stimulate a general incoming data report or a custom input report.";
             // 
             // label41
             // 
@@ -1081,9 +1083,9 @@
             this.label41.Location = new System.Drawing.Point(8, 583);
             this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(306, 13);
+            this.label41.Size = new System.Drawing.Size(294, 13);
             this.label41.TabIndex = 263;
-            this.label41.Text = "8. Write Version (0-65535), reboot required, may take some time";
+            this.label41.Text = "Write Version (0-65535), reboot required, may take some time";
             // 
             // LblVersion
             // 
@@ -1174,9 +1176,9 @@
             this.label33.Location = new System.Drawing.Point(512, 397);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(59, 13);
+            this.label33.Size = new System.Drawing.Size(41, 13);
             this.label33.TabIndex = 290;
-            this.label33.Text = "14. Dongle";
+            this.label33.Text = "Dongle";
             // 
             // label34
             // 
@@ -1184,9 +1186,9 @@
             this.label34.Location = new System.Drawing.Point(510, 453);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(92, 13);
+            this.label34.Size = new System.Drawing.Size(74, 13);
             this.label34.TabIndex = 294;
-            this.label34.Text = "15. GPIO Settings";
+            this.label34.Text = "GPIO Settings";
             // 
             // btnSetInOut
             // 
@@ -1236,8 +1238,9 @@
             this.checkBox1.TabIndex = 299;
             this.checkBox1.Tag = "1";
             this.checkBox1.Text = "Pin 1";
+            this.checkBox1.ThreeState = true;
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // label42
             // 
@@ -1245,9 +1248,9 @@
             this.label42.Location = new System.Drawing.Point(511, 771);
             this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(281, 13);
+            this.label42.Size = new System.Drawing.Size(263, 13);
             this.label42.TabIndex = 300;
-            this.label42.Text = "16. Set Outputs (valid for pins configureds as outputs only)";
+            this.label42.Text = "Set Outputs (valid for pins configureds as outputs only)";
             // 
             // checkBox2
             // 
@@ -1258,8 +1261,9 @@
             this.checkBox2.TabIndex = 301;
             this.checkBox2.Tag = "2";
             this.checkBox2.Text = "Pin 2";
+            this.checkBox2.ThreeState = true;
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox2.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox3
             // 
@@ -1270,8 +1274,9 @@
             this.checkBox3.TabIndex = 302;
             this.checkBox3.Tag = "3";
             this.checkBox3.Text = "Pin 3";
+            this.checkBox3.ThreeState = true;
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox4
             // 
@@ -1282,8 +1287,9 @@
             this.checkBox4.TabIndex = 303;
             this.checkBox4.Tag = "4";
             this.checkBox4.Text = "Pin 4";
+            this.checkBox4.ThreeState = true;
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox4.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox5
             // 
@@ -1294,8 +1300,9 @@
             this.checkBox5.TabIndex = 304;
             this.checkBox5.Tag = "5";
             this.checkBox5.Text = "Pin 5";
+            this.checkBox5.ThreeState = true;
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox5.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox6
             // 
@@ -1306,8 +1313,9 @@
             this.checkBox6.TabIndex = 305;
             this.checkBox6.Tag = "6";
             this.checkBox6.Text = "Pin 6";
+            this.checkBox6.ThreeState = true;
             this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox6.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox7
             // 
@@ -1318,8 +1326,9 @@
             this.checkBox7.TabIndex = 306;
             this.checkBox7.Tag = "7";
             this.checkBox7.Text = "Pin 7";
+            this.checkBox7.ThreeState = true;
             this.checkBox7.UseVisualStyleBackColor = true;
-            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox7.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox8
             // 
@@ -1330,8 +1339,9 @@
             this.checkBox8.TabIndex = 307;
             this.checkBox8.Tag = "8";
             this.checkBox8.Text = "Pin 8";
+            this.checkBox8.ThreeState = true;
             this.checkBox8.UseVisualStyleBackColor = true;
-            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox8.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox9
             // 
@@ -1342,8 +1352,9 @@
             this.checkBox9.TabIndex = 308;
             this.checkBox9.Tag = "11";
             this.checkBox9.Text = "Pin 11";
+            this.checkBox9.ThreeState = true;
             this.checkBox9.UseVisualStyleBackColor = true;
-            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox9.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // checkBox10
             // 
@@ -1354,28 +1365,9 @@
             this.checkBox10.TabIndex = 309;
             this.checkBox10.Tag = "12";
             this.checkBox10.Text = "Pin 12";
+            this.checkBox10.ThreeState = true;
             this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(893, 824);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(51, 17);
-            this.checkBox11.TabIndex = 310;
-            this.checkBox11.Text = "Flash";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // chkFlashLED
-            // 
-            this.chkFlashLED.AutoSize = true;
-            this.chkFlashLED.Location = new System.Drawing.Point(445, 270);
-            this.chkFlashLED.Name = "chkFlashLED";
-            this.chkFlashLED.Size = new System.Drawing.Size(51, 17);
-            this.chkFlashLED.TabIndex = 311;
-            this.chkFlashLED.Text = "Flash";
-            this.chkFlashLED.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // BtnSetFlash
             // 
@@ -1949,8 +1941,6 @@
             this.Controls.Add(this.btnGetStates);
             this.Controls.Add(this.BtnSetFlash);
             this.Controls.Add(this.TxtFlashFreq);
-            this.Controls.Add(this.chkFlashLED);
-            this.Controls.Add(this.checkBox11);
             this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.checkBox9);
             this.Controls.Add(this.checkBox8);
@@ -2066,8 +2056,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "C# USB HD15 GPIO";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -2210,8 +2200,6 @@
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox chkFlashLED;
         private System.Windows.Forms.Button BtnSetFlash;
         private System.Windows.Forms.TextBox TxtFlashFreq;
         private System.Windows.Forms.Button btnGetStates;

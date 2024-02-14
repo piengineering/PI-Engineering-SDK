@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIHidDotName Csharp Sample", "PIHidDotName Csharp Sample\PIHidDotName Csharp Sample.csproj", "{FD2EC5EF-060C-4FC4-8C1A-2DA08768AF55}"
 EndProject
 Global
