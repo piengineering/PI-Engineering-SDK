@@ -308,7 +308,11 @@ int CALLBACK DialogProc(
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)UnitID);
 			buffer[2]= atoi(UnitID);
 			
-			result = WriteData(hDevice, buffer);
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 		case IDC_CHECK1:
@@ -322,9 +326,13 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK1);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			
-			result = WriteData(hDevice, buffer);
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 		case IDC_CHECK2:
@@ -338,9 +346,13 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHECK2);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
 			
-			result = WriteData(hDevice, buffer);
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_CHKBLONOFF:
 			//Turn on/off the backlight of the entered key in IDC_TXTBL
@@ -380,74 +392,23 @@ int CALLBACK DialogProc(
 			//get checked state
 			hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
 			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
+			buffer[3]=SendMessage(hList, BM_GETCHECK, 0, 0); //0=off, 1=on, 2=flash
+
+			result=404;
+			while (result==404)
 			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=2; ////0=off, 1=on, 2=flash
-				else buffer[3]=1;
+				result = WriteData(hDevice, buffer);
 			}
-			result = WriteData(hDevice, buffer);
 			if (result != 0)    {
 				AddEventMsg(hwndDlg, "Error:");
 				GetErrorString(result, errordescription, 100);
 				AddEventMsg(hwndDlg, errordescription);
 			}
 			return TRUE;
-		case IDC_CHKBLFLASH:
+		//case IDC_CHKBLFLASH:
 			
-            //Key Index for (in decimal)
-			//Bank 1
-            //Columns-->
-            //  0   8   16  24
-            //  1   9   17  25
-            //  2   10  18  26
-            //  3   11  19  27
-            //  4   12  20  28
-            //  5   13  21  29
-
-			//Bank 2
-			//Columns-->
-            //  32   40   48  56
-            //  33   41   49  57
-            //  34   42   50  58
-            //  35   43   51  59
-            //  36   44   52  60
-            //  37   45   53  61
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[1]=181; //0xb5
-			//get key index
-			//get text box text
-			hList = GetDlgItem(hDialog, IDC_TXTBL);
-			if (hList == NULL) return TRUE;
-			char keyidf[10];
-			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)keyidf);
-			buffer[2]= atoi(keyidf);
-			
-			//get checked state
-			hList = GetDlgItem(hDialog, IDC_CHKBLFLASH);
-			if (hList == NULL) return TRUE;
-			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) 
-			{
-				buffer[3]=2;
-			}
-			else
-			{
-				hList = GetDlgItem(hDialog, IDC_CHKBLONOFF);
-				if (hList == NULL) return TRUE;
-				if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=1; //0=off, 1=on, 2=flash
-			}
-			result = WriteData(hDevice, buffer);
-			if (result != 0)    {
-				AddEventMsg(hwndDlg, "Error:");
-				GetErrorString(result, errordescription, 100);
-				AddEventMsg(hwndDlg, errordescription);
-			}
-			return TRUE;
+            
+		//	return TRUE;
         case IDC_CHKBANK1:
 			//Turns on or off ALL bank 1 BLs using current intensity
 			for (int i=0;i<wlen;i++)
@@ -462,7 +423,12 @@ int CALLBACK DialogProc(
 			if (hList == NULL) return TRUE;
 			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=255;
 			else buffer[3]=0;  //0=off, 255=on OR use individual bits to turn on rows, bit 1=row 1, bit 2= row 2, etc
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			if (result != 0)    {
 				AddEventMsg(hwndDlg, "Error:");
 				GetErrorString(result, errordescription, 100);
@@ -484,7 +450,12 @@ int CALLBACK DialogProc(
 			if (hList == NULL) return TRUE;
 			if (SendMessage(hList, BM_GETCHECK, 0, 0)==BST_CHECKED) buffer[3]=255;
 			else buffer[3]=0;  //0=off, 255=on OR use individual bits to turn on rows, bit 1=row 1, bit 2= row 2, etc
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			if (result != 0)    {
 				AddEventMsg(hwndDlg, "Error:");
 				GetErrorString(result, errordescription, 100);
@@ -499,7 +470,12 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=184;
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			if (result != 0)    {
 				AddEventMsg(hwndDlg, "Error:");
 				GetErrorString(result, errordescription, 100);
@@ -518,7 +494,11 @@ int CALLBACK DialogProc(
 			buffer[2]=127; //0-255 bank 1 intensity
 			buffer[3]=64; //0-255 bank 2 intensity
 			
-			result = WriteData(hDevice, buffer);
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			if (result != 0)    {
 				AddEventMsg(hwndDlg, "Error:");
 				GetErrorString(result, errordescription, 100);
@@ -533,7 +513,12 @@ int CALLBACK DialogProc(
 			}
 			buffer[1]=199; //0xc7
 			buffer[2]=1; //anything other than 0 will save bl state to eeprom
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_TOPID1:
 			//Change to PID 1
@@ -543,8 +528,13 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
-			buffer[2]=2; //2=PID 1, 1=PID 2, 0=PID 3, 3=PID 4
-			result = WriteData(hDevice, buffer);
+			buffer[2]=0; //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 		case IDC_TOPID2:
@@ -554,8 +544,13 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
-			buffer[2]=1;   //2=PID 1, 1=PID 2, 0=PID 3, 3=PID 4
-			result = WriteData(hDevice, buffer);
+			buffer[2]=1;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_TOPID3:
 			for (int i=0;i<wlen;i++)
@@ -564,8 +559,13 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
-			buffer[2]=0;   //2=PID 1, 1=PID 2, 0=PID 3, 3=PID 4
-			result = WriteData(hDevice, buffer);
+			buffer[2]=2;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_TOPID4:
 			//This report available only on v30 firmware and above
@@ -575,8 +575,13 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=204; //0xcc
-			buffer[2]=3;   //2=PID 1, 1=PID 2, 0=PID 3, 3=PID 4
-			result = WriteData(hDevice, buffer);
+			buffer[2]=3;   //0=PID 1, 1=PID 2, 2=PID 3, 3=PID 4
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_Version:
 			//This report available only on v30 firmware and above
@@ -593,7 +598,12 @@ int CALLBACK DialogProc(
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)versionval);
 			buffer[2]=(BYTE)atoi(versionval);
 			buffer[3]=(BYTE)(atoi(versionval)>>8);
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			
 			Sleep(100);
 			//reboot device-must re-enumerate
@@ -601,7 +611,12 @@ int CALLBACK DialogProc(
 			buffer[1]=238; //0xee
 			buffer[2]=0;
 			buffer[3]=0;
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 
 			return TRUE;
 		case IDC_TIMESTAMP:
@@ -614,7 +629,12 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=210;
 			buffer[2]=0; //0 to turn off time stamp, 1 to turn on time stamp
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 		case IDC_TIMESTAMP2:
@@ -627,7 +647,12 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=210;
 			buffer[2]=1; //0 to turn off time stamp, 1 to turn on time stamp
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 		case IDC_KEYREFLECT:
@@ -736,7 +761,11 @@ int CALLBACK DialogProc(
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)joyval);
 			buffer[12]=atoi(joyval); //hat, where 0 is straight up, 1 is 45deg cw, etc and 8 is no hat
 			
-			result = WriteData(hDevice, buffer);
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 
 	    case IDC_MOUSEREFLECT3:
@@ -761,7 +790,12 @@ int CALLBACK DialogProc(
 			hList = GetDlgItem(hDialog, IDC_MouseWheel);
 			SendMessage(hList, WM_GETTEXT, 8, (LPARAM)val);
 			buffer[6]=atoi(val); //Wheel Y, 128=0 no motion, 1-127 is up, 255-129=down, finest inc (1 and 255) to coarsest (127 and 129).
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_Multimedia:
 			//This report available only on v30 firmware and above
@@ -812,7 +846,12 @@ int CALLBACK DialogProc(
 
 			buffer[2]=0; //terminate
 			buffer[3]=0; //terminate
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			//note when the "terminate" command is sent can sometimes have an effect on the behavior of the command
 			//for example in volume decrement (EA=lo byte, 00=hi byte) if you send the terminate immediately after the e1 command it will
 			//decrement the volume one step, if you send the e1 on the press and the terminate on the release the volume will continuously
@@ -828,11 +867,21 @@ int CALLBACK DialogProc(
 			buffer[1]=225; //0xe1
 			buffer[2]=strtol("94", &p, 16); //Usage ID lo byte see hut1_12.pdf, pages 75-85 Consumer Page
 			buffer[3]=strtol("01", &p, 16); //Usage ID hi byte see hut1_12.pdf, pages 75-85 Consumer Page
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 
 			buffer[2]=0; //terminate
 			buffer[3]=0; //terminate
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_GENERATE:
 			DisableDataCallback(hDevice, false); //turn on callback in the case it was turned off by some other command
@@ -843,7 +892,11 @@ int CALLBACK DialogProc(
 			buffer[0]=0;
 			buffer[1]=177;
 			
-			result = WriteData(hDevice, buffer);
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_CUSTOM:
 			//This report available only on v30 firmware and above
@@ -861,7 +914,12 @@ int CALLBACK DialogProc(
             buffer[3] = 1; //1st custom byte
             buffer[4] = 2; //2nd custom byte
             buffer[5] = 3; //3rd custom byte
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_SETKEY:
 			//for users of the dongle feature only, set the dongle key here REMEMBER there 4 numbers, they are needed to check the dongle key
@@ -882,93 +940,101 @@ int CALLBACK DialogProc(
 			buffer[3]=K1;
 			buffer[4]=K2;
 			buffer[5]=K3;
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			return TRUE;
 		case IDC_CHECKKEY:
 			{
-			//This is done within the developer's application to check for the correct
-            //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (hDevice == -1) return TRUE;
-			//check hardware
+				//This is done within the developer's application to check for the correct
+				//hardware.  The K0-K3 values must be the same as those entered in Set Key.
+				if (hDevice == -1) return TRUE;
+				//check hardware
 
-			//IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
-			DisableDataCallback(hDevice, true);
+				//IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
+				DisableDataCallback(hDevice, true);
 			
-            //randomn numbers
-            int N0 = 3;   //pick any number between 1 and 254
-            int N1 = 1;   //pick any number between 1 and 254
-            int N2 = 4;   //pick any number between 1 and 254
-            int N3 = 1;   //pick any number between 1 and 254
+				//randomn numbers
+				int N0 = 3;   //pick any number between 1 and 254
+				int N1 = 1;   //pick any number between 1 and 254
+				int N2 = 4;   //pick any number between 1 and 254
+				int N3 = 1;   //pick any number between 1 and 254
 
-            //this is the key from set key
-            K0 = 7;
-            K1 = 58;
-            K2 = 33;
-            K3 = 243;
+				//this is the key from set key
+				K0 = 7;
+				K1 = 58;
+				K2 = 33;
+				K3 = 243;
 			
-			//hash, will use these for comparison later
-            int R0;
-            int R1;
-            int R2;
-            int R3;
-			DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, R0, R1, R2, R3);
+				//hash, will use these for comparison later
+				int R0;
+				int R1;
+				int R2;
+				int R3;
+				DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, R0, R1, R2, R3);
 
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[0]=0;
-			buffer[1]=193;  //0xc1 check dongle key command
-			buffer[2]=N0;
-			buffer[3]=N1;
-			buffer[4]=N2;
-			buffer[5]=N3;
-			
-			
-			result = WriteData(hDevice, buffer);
-			//after this write the next read beginning with 3rd byte = 193 will give 4 values which are used below for comparison
-			for (int i=0;i<80;i++)
-			{buffer[i]=0;}
-			
-			int countout=0;
-			int result = BlockingReadData(hDevice, buffer, 100);
-			
-			while (result == 304 || (result == 0 && buffer[2] != 193))
-			{
-				if (result == 304)
+				for (int i=0;i<wlen;i++)
 				{
-					// No data received after 100ms, so increment countout extra
-					countout += 99;
+					buffer[i]=0;
 				}
-				countout++;
-				if (countout > 1000) //increase this if have to check more than once
-					break;
-				result = BlockingReadData(hDevice, buffer, 100);
-			}
+				buffer[0]=0;
+				buffer[1]=193;  //0xc1 check dongle key command
+				buffer[2]=N0;
+				buffer[3]=N1;
+				buffer[4]=N2;
+				buffer[5]=N3;
+			
+				result=404;
+				while (result==404)
+				{
+					result = WriteData(hDevice, buffer);
+				}
+				//after this write the next read beginning with 3rd byte = 193 will give 4 values which are used below for comparison
+				for (int i=0;i<80;i++)
+				{buffer[i]=0;}
+			
+				int countout=0;
+				int result = BlockingReadData(hDevice, buffer, 100);
+			
+				while (result == 304 || (result == 0 && buffer[2] != 193))
+				{
+					if (result == 304)
+					{
+						// No data received after 100ms, so increment countout extra
+						countout += 99;
+					}
+					countout++;
+					if (countout > 1000) //increase this if have to check more than once
+						break;
+					result = BlockingReadData(hDevice, buffer, 100);
+				}
 
-			if (result ==0 && buffer[2]==193)
-			{
-				bool fail=false;
-				if (R0!=buffer[3]) fail=true;
-				if (R1!=buffer[4]) fail=true;
-				if (R2!=buffer[5]) fail=true;
-				if (R3!=buffer[6]) fail=true;
-				hList = GetDlgItem(hDialog, IDC_PASSFAIL);
-				if (hList == NULL) return TRUE;
+				if (result ==0 && buffer[2]==193)
+				{
+					bool fail=false;
+					if (R0!=buffer[3]) fail=true;
+					if (R1!=buffer[4]) fail=true;
+					if (R2!=buffer[5]) fail=true;
+					if (R3!=buffer[6]) fail=true;
+					hList = GetDlgItem(hDialog, IDC_PASSFAIL);
+					if (hList == NULL) return TRUE;
 				
-				if (fail==false)
-				{
-					char msg[100]="Pass-Correct hardware found";
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-					//MessageBeep(MB_ICONHAND);
+					if (fail==false)
+					{
+						char msg[100]="Pass-Correct hardware found";
+						SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+						//MessageBeep(MB_ICONHAND);
+					}
+					else
+					{
+						char msg[100]="Fail-Correct not hardware found";
+						SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+						//MessageBeep(MB_ICONHAND);
+					}
 				}
-				else
-				{
-					char msg[100]="Fail-Correct not hardware found";
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-					//MessageBeep(MB_ICONHAND);
-				}
-			}
 			}
 
 			return TRUE;
@@ -983,11 +1049,15 @@ int CALLBACK DialogProc(
 			}
 			buffer[0]=0;
 			buffer[1]=214;
-			result = WriteData(hDevice, buffer);
+			
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
 			//after this write the next read 3rd byte=214 will give descriptor information
 			for (int i=0;i<80;i++)
 			{buffer[i]=0;}
-			
 			
 			result = BlockingReadData(hDevice, buffer, 100);
 			
@@ -1129,7 +1199,7 @@ void FindAndStart(HWND hDialog)
 			{
 				if (pid==1029)
 				{
-					AddDevices(hDialog, "Found Device: XK-24, PID=1029 (PID #1)");
+					AddDevices(hDialog, "Found Device: XK-24, PID=1029 (PID #3)");
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 				}
@@ -1141,7 +1211,7 @@ void FindAndStart(HWND hDialog)
 				}
 				else if (pid==1027)
 				{
-					AddDevices(hDialog, "Found Device: XK-24, PID=1027 (PID #3)");
+					AddDevices(hDialog, "Found Device: XK-24, PID=1027 (PID #1)");
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 				}

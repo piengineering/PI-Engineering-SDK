@@ -59,7 +59,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.BtnBLToggle = new System.Windows.Forms.Button();
             this.BtnSaveBL = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.ChkScrollLock = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.BtnTimeStamp = new System.Windows.Forms.Button();
@@ -82,27 +81,27 @@ namespace PIEHidNetCore_Csharp_Sample
             this.TxtMouseX = new System.Windows.Forms.TextBox();
             this.BtnMousereflect = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtJoyButton4 = new System.Windows.Forms.TextBox();
+            this.txtJoyButton3 = new System.Windows.Forms.TextBox();
+            this.txtJoyButton2 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtJoySlider = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtJoyZrot = new System.Windows.Forms.TextBox();
             this.Label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.Label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtJoyHat = new System.Windows.Forms.TextBox();
+            this.txtJoyButton1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtJoyZ = new System.Windows.Forms.TextBox();
+            this.txtJoyY = new System.Windows.Forms.TextBox();
+            this.txtJoyX = new System.Windows.Forms.TextBox();
             this.BtnJoyreflect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.BtnKBreflect = new System.Windows.Forms.Button();
@@ -127,7 +126,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.BtnPID1 = new System.Windows.Forms.Button();
             this.BtnPID3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.BtnCustom = new System.Windows.Forms.Button();
             this.BtnGetDataNow = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -257,7 +255,7 @@ namespace PIEHidNetCore_Csharp_Sample
             // 
             // TxtIntensity2
             // 
-            this.TxtIntensity2.Location = new System.Drawing.Point(425, 450);
+            this.TxtIntensity2.Location = new System.Drawing.Point(339, 450);
             this.TxtIntensity2.Margin = new System.Windows.Forms.Padding(2);
             this.TxtIntensity2.Name = "TxtIntensity2";
             this.TxtIntensity2.Size = new System.Drawing.Size(30, 20);
@@ -266,7 +264,7 @@ namespace PIEHidNetCore_Csharp_Sample
             // 
             // TxtIntensity
             // 
-            this.TxtIntensity.Location = new System.Drawing.Point(391, 450);
+            this.TxtIntensity.Location = new System.Drawing.Point(305, 450);
             this.TxtIntensity.Margin = new System.Windows.Forms.Padding(2);
             this.TxtIntensity.Name = "TxtIntensity";
             this.TxtIntensity.Size = new System.Drawing.Size(30, 20);
@@ -478,7 +476,7 @@ namespace PIEHidNetCore_Csharp_Sample
             // 
             // BtnSaveBL
             // 
-            this.BtnSaveBL.Location = new System.Drawing.Point(295, 474);
+            this.BtnSaveBL.Location = new System.Drawing.Point(209, 474);
             this.BtnSaveBL.Margin = new System.Windows.Forms.Padding(2);
             this.BtnSaveBL.Name = "BtnSaveBL";
             this.BtnSaveBL.Size = new System.Drawing.Size(92, 22);
@@ -496,18 +494,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label23.Size = new System.Drawing.Size(111, 13);
             this.label23.TabIndex = 311;
             this.label23.Text = "7. Enable Time Stamp";
-            // 
-            // ChkScrollLock
-            // 
-            this.ChkScrollLock.AutoSize = true;
-            this.ChkScrollLock.Location = new System.Drawing.Point(212, 452);
-            this.ChkScrollLock.Margin = new System.Windows.Forms.Padding(2);
-            this.ChkScrollLock.Name = "ChkScrollLock";
-            this.ChkScrollLock.Size = new System.Drawing.Size(79, 17);
-            this.ChkScrollLock.TabIndex = 310;
-            this.ChkScrollLock.Text = "Scroll Lock";
-            this.ChkScrollLock.UseVisualStyleBackColor = true;
-            this.ChkScrollLock.CheckedChanged += new System.EventHandler(this.ChkScrollLock_CheckedChanged);
             // 
             // label20
             // 
@@ -542,7 +528,7 @@ namespace PIEHidNetCore_Csharp_Sample
             // 
             // BtnBL
             // 
-            this.BtnBL.Location = new System.Drawing.Point(295, 448);
+            this.BtnBL.Location = new System.Drawing.Point(209, 448);
             this.BtnBL.Margin = new System.Windows.Forms.Padding(2);
             this.BtnBL.Name = "BtnBL";
             this.BtnBL.Size = new System.Drawing.Size(92, 22);
@@ -728,32 +714,32 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label24.TabIndex = 356;
             this.label24.Text = "10. Joystick Reflector (PID #2 and #3 only)";
             // 
-            // textBox9
+            // txtJoyButton4
             // 
-            this.textBox9.Location = new System.Drawing.Point(856, 139);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(41, 20);
-            this.textBox9.TabIndex = 355;
-            this.textBox9.Text = "0";
+            this.txtJoyButton4.Location = new System.Drawing.Point(856, 139);
+            this.txtJoyButton4.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyButton4.Name = "txtJoyButton4";
+            this.txtJoyButton4.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyButton4.TabIndex = 355;
+            this.txtJoyButton4.Text = "0";
             // 
-            // textBox8
+            // txtJoyButton3
             // 
-            this.textBox8.Location = new System.Drawing.Point(811, 139);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(41, 20);
-            this.textBox8.TabIndex = 354;
-            this.textBox8.Text = "0";
+            this.txtJoyButton3.Location = new System.Drawing.Point(811, 139);
+            this.txtJoyButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyButton3.Name = "txtJoyButton3";
+            this.txtJoyButton3.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyButton3.TabIndex = 354;
+            this.txtJoyButton3.Text = "0";
             // 
-            // textBox7
+            // txtJoyButton2
             // 
-            this.textBox7.Location = new System.Drawing.Point(766, 139);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(41, 20);
-            this.textBox7.TabIndex = 353;
-            this.textBox7.Text = "0";
+            this.txtJoyButton2.Location = new System.Drawing.Point(766, 139);
+            this.txtJoyButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyButton2.Name = "txtJoyButton2";
+            this.txtJoyButton2.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyButton2.TabIndex = 353;
+            this.txtJoyButton2.Text = "0";
             // 
             // label22
             // 
@@ -775,14 +761,14 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label27.TabIndex = 351;
             this.label27.Text = "Slider:";
             // 
-            // textBox13
+            // txtJoySlider
             // 
-            this.textBox13.Location = new System.Drawing.Point(856, 114);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(41, 20);
-            this.textBox13.TabIndex = 350;
-            this.textBox13.Text = "0";
+            this.txtJoySlider.Location = new System.Drawing.Point(856, 114);
+            this.txtJoySlider.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoySlider.Name = "txtJoySlider";
+            this.txtJoySlider.Size = new System.Drawing.Size(41, 20);
+            this.txtJoySlider.TabIndex = 350;
+            this.txtJoySlider.Text = "0";
             // 
             // label26
             // 
@@ -794,14 +780,14 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label26.TabIndex = 349;
             this.label26.Text = "Z rot:";
             // 
-            // textBox12
+            // txtJoyZrot
             // 
-            this.textBox12.Location = new System.Drawing.Point(721, 115);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(41, 20);
-            this.textBox12.TabIndex = 348;
-            this.textBox12.Text = "0";
+            this.txtJoyZrot.Location = new System.Drawing.Point(721, 115);
+            this.txtJoyZrot.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyZrot.Name = "txtJoyZrot";
+            this.txtJoyZrot.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyZrot.TabIndex = 348;
+            this.txtJoyZrot.Text = "0";
             // 
             // Label18
             // 
@@ -843,23 +829,23 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label12.TabIndex = 344;
             this.label12.Text = "Hat:";
             // 
-            // textBox6
+            // txtJoyHat
             // 
-            this.textBox6.Location = new System.Drawing.Point(721, 163);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(41, 20);
-            this.textBox6.TabIndex = 343;
-            this.textBox6.Text = "8";
+            this.txtJoyHat.Location = new System.Drawing.Point(721, 163);
+            this.txtJoyHat.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyHat.Name = "txtJoyHat";
+            this.txtJoyHat.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyHat.TabIndex = 343;
+            this.txtJoyHat.Text = "8";
             // 
-            // textBox5
+            // txtJoyButton1
             // 
-            this.textBox5.Location = new System.Drawing.Point(721, 139);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(41, 20);
-            this.textBox5.TabIndex = 342;
-            this.textBox5.Text = "0";
+            this.txtJoyButton1.Location = new System.Drawing.Point(721, 139);
+            this.txtJoyButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyButton1.Name = "txtJoyButton1";
+            this.txtJoyButton1.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyButton1.TabIndex = 342;
+            this.txtJoyButton1.Text = "0";
             // 
             // label11
             // 
@@ -901,32 +887,32 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label8.TabIndex = 338;
             this.label8.Text = "X:";
             // 
-            // textBox4
+            // txtJoyZ
             // 
-            this.textBox4.Location = new System.Drawing.Point(856, 90);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(41, 20);
-            this.textBox4.TabIndex = 337;
-            this.textBox4.Text = "0";
+            this.txtJoyZ.Location = new System.Drawing.Point(856, 90);
+            this.txtJoyZ.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyZ.Name = "txtJoyZ";
+            this.txtJoyZ.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyZ.TabIndex = 337;
+            this.txtJoyZ.Text = "0";
             // 
-            // textBox3
+            // txtJoyY
             // 
-            this.textBox3.Location = new System.Drawing.Point(785, 90);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(41, 20);
-            this.textBox3.TabIndex = 336;
-            this.textBox3.Text = "0";
+            this.txtJoyY.Location = new System.Drawing.Point(785, 90);
+            this.txtJoyY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyY.Name = "txtJoyY";
+            this.txtJoyY.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyY.TabIndex = 336;
+            this.txtJoyY.Text = "0";
             // 
-            // textBox2
+            // txtJoyX
             // 
-            this.textBox2.Location = new System.Drawing.Point(721, 91);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(41, 20);
-            this.textBox2.TabIndex = 335;
-            this.textBox2.Text = "0";
+            this.txtJoyX.Location = new System.Drawing.Point(721, 91);
+            this.txtJoyX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJoyX.Name = "txtJoyX";
+            this.txtJoyX.Size = new System.Drawing.Size(41, 20);
+            this.txtJoyX.TabIndex = 335;
+            this.txtJoyX.Text = "0";
             // 
             // BtnJoyreflect
             // 
@@ -1044,9 +1030,9 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label42.Location = new System.Drawing.Point(564, 306);
             this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(170, 13);
+            this.label42.Size = new System.Drawing.Size(140, 13);
             this.label42.TabIndex = 382;
-            this.label42.Text = "12. Multimedia (PID #4 only, v30+)";
+            this.label42.Text = "12. Multimedia (PID #4 only)";
             // 
             // label4
             // 
@@ -1054,9 +1040,9 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label4.Location = new System.Drawing.Point(677, 588);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(349, 13);
+            this.label4.Size = new System.Drawing.Size(255, 13);
             this.label4.TabIndex = 381;
-            this.label4.Text = "Endpoints: Keyboard, Mouse, Multimedia and Output, v30+ firmware only";
+            this.label4.Text = "Endpoints: Keyboard, Mouse, Multimedia and Output";
             // 
             // BtnPID4
             // 
@@ -1149,7 +1135,7 @@ namespace PIEHidNetCore_Csharp_Sample
             this.BtnPID1.Name = "BtnPID1";
             this.BtnPID1.Size = new System.Drawing.Size(91, 22);
             this.BtnPID1.TabIndex = 372;
-            this.BtnPID1.Tag = "0";
+            this.BtnPID1.Tag = "2";
             this.BtnPID1.Text = "To PID #3";
             this.BtnPID1.UseVisualStyleBackColor = true;
             this.BtnPID1.Click += new System.EventHandler(this.BtnPID1_Click);
@@ -1161,7 +1147,7 @@ namespace PIEHidNetCore_Csharp_Sample
             this.BtnPID3.Name = "BtnPID3";
             this.BtnPID3.Size = new System.Drawing.Size(91, 22);
             this.BtnPID3.TabIndex = 371;
-            this.BtnPID3.Tag = "2";
+            this.BtnPID3.Tag = "0";
             this.BtnPID3.Text = "To PID #1";
             this.BtnPID3.UseVisualStyleBackColor = true;
             this.BtnPID3.Click += new System.EventHandler(this.BtnPID1_Click);
@@ -1176,15 +1162,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label5.TabIndex = 370;
             this.label5.Text = "14. Change PID";
             // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(225, 591);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(99, 13);
-            this.label35.TabIndex = 393;
-            this.label35.Text = "*v30+ firmware only";
-            // 
             // BtnCustom
             // 
             this.BtnCustom.Location = new System.Drawing.Point(128, 586);
@@ -1192,7 +1169,7 @@ namespace PIEHidNetCore_Csharp_Sample
             this.BtnCustom.Name = "BtnCustom";
             this.BtnCustom.Size = new System.Drawing.Size(92, 22);
             this.BtnCustom.TabIndex = 392;
-            this.BtnCustom.Text = "Custom Data*";
+            this.BtnCustom.Text = "Custom Data";
             this.BtnCustom.UseVisualStyleBackColor = true;
             this.BtnCustom.Click += new System.EventHandler(this.BtnCustom_Click);
             // 
@@ -1223,9 +1200,9 @@ namespace PIEHidNetCore_Csharp_Sample
             this.label43.Location = new System.Drawing.Point(563, 624);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(307, 13);
+            this.label43.Size = new System.Drawing.Size(213, 13);
             this.label43.TabIndex = 401;
-            this.label43.Text = "15. Write Version (0-65535), reboot required, v30+ firmware only";
+            this.label43.Text = "15. Write Version (0-65535), reboot required";
             // 
             // LblVersion
             // 
@@ -1266,7 +1243,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.Controls.Add(this.LblVersion);
             this.Controls.Add(this.TxtVersion);
             this.Controls.Add(this.BtnVersion);
-            this.Controls.Add(this.label35);
             this.Controls.Add(this.BtnCustom);
             this.Controls.Add(this.BtnGetDataNow);
             this.Controls.Add(this.label14);
@@ -1304,27 +1280,27 @@ namespace PIEHidNetCore_Csharp_Sample
             this.Controls.Add(this.TxtMouseX);
             this.Controls.Add(this.BtnMousereflect);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtJoyButton4);
+            this.Controls.Add(this.txtJoyButton3);
+            this.Controls.Add(this.txtJoyButton2);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.txtJoySlider);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.txtJoyZrot);
             this.Controls.Add(this.Label18);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.Label16);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtJoyHat);
+            this.Controls.Add(this.txtJoyButton1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtJoyZ);
+            this.Controls.Add(this.txtJoyY);
+            this.Controls.Add(this.txtJoyX);
             this.Controls.Add(this.BtnJoyreflect);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.BtnKBreflect);
@@ -1347,7 +1323,6 @@ namespace PIEHidNetCore_Csharp_Sample
             this.Controls.Add(this.BtnBLToggle);
             this.Controls.Add(this.BtnSaveBL);
             this.Controls.Add(this.label23);
-            this.Controls.Add(this.ChkScrollLock);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.BtnTimeStamp);
@@ -1368,7 +1343,7 @@ namespace PIEHidNetCore_Csharp_Sample
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnEnumerate);
             this.Name = "Form1";
-            this.Text = "C# X-kesy XK-24 .NET Standard 2.0";
+            this.Text = "C# X-keys XK-24 .NET Standard 2.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -1410,7 +1385,6 @@ namespace PIEHidNetCore_Csharp_Sample
         private System.Windows.Forms.Button BtnBLToggle;
         private System.Windows.Forms.Button BtnSaveBL;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.CheckBox ChkScrollLock;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button BtnTimeStamp;
@@ -1433,27 +1407,27 @@ namespace PIEHidNetCore_Csharp_Sample
         private System.Windows.Forms.TextBox TxtMouseX;
         private System.Windows.Forms.Button BtnMousereflect;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtJoyButton4;
+        private System.Windows.Forms.TextBox txtJoyButton3;
+        private System.Windows.Forms.TextBox txtJoyButton2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtJoySlider;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtJoyZrot;
         private System.Windows.Forms.Label Label18;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label Label16;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtJoyHat;
+        private System.Windows.Forms.TextBox txtJoyButton1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtJoyZ;
+        private System.Windows.Forms.TextBox txtJoyY;
+        private System.Windows.Forms.TextBox txtJoyX;
         private System.Windows.Forms.Button BtnJoyreflect;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button BtnKBreflect;
@@ -1478,7 +1452,6 @@ namespace PIEHidNetCore_Csharp_Sample
         private System.Windows.Forms.Button BtnPID1;
         private System.Windows.Forms.Button BtnPID3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button BtnCustom;
         private System.Windows.Forms.Button BtnGetDataNow;
         private System.Windows.Forms.Label label14;

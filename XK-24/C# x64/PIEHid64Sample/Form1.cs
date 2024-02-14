@@ -8,6 +8,10 @@ using System.Text;
 using System.Windows.Forms;
 using PIEHid64Net;
 
+using System.Reflection; //dll load
+using Microsoft.Win32; //for registry
+using System.Runtime.InteropServices; //for user32.dll
+
 namespace PIEHid64Sample
 {
     public partial class Form1 : Form, PIEDataHandler, PIEErrorHandler
@@ -25,8 +29,8 @@ namespace PIEHid64Sample
         delegate void SetTextCallback(string text);
         Control c;
         //end thread-safe
-        byte[] lastdata = null;
-       
+
+      
         public Form1()
         {
             InitializeComponent();
@@ -67,299 +71,6 @@ namespace PIEHid64Sample
                 }
                 this.SetListBox(output);
 
-                //buttons
-                //this routine is for separating out the individual button presses/releases from the data byte array.
-                int maxcols = 4; //number of columns of Xkeys digital button data, labeled "Keys" in P.I. Engineering SDK - General Incoming Data Input Report
-                int maxrows = 8; //constant, 8 bits per byte
-                c = this.LblButtons;
-                string buttonsdown = "Buttons: "; //for demonstration, reset this every time a new input report received
-                this.SetText(buttonsdown);
-
-                for (int i = 0; i < maxcols; i++) //loop through digital button bytes 
-                {
-                    for (int j = 0; j < maxrows; j++) //loop through each bit in the button byte
-                    {
-                        int temp1 = (int)Math.Pow(2, j); //1, 2, 4, 8, 16, 32, 64, 128
-                        int keynum = 8 * i + j; //using key numbering in sdk; column 1 = 0,1,2... column 2 = 8,9,10... column 3 = 16,17,18... column 4 = 24,25,26... etc
-                        byte temp2 = (byte)(data[i + 3] & temp1); //check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
-                        byte temp3 = (byte)(lastdata[i + 3] & temp1); //check using bitwise AND the previous value of this bit
-                        int state = 0; //0=was up, now up, 1=was up, now down, 2= was down, still down, 3= was down, now up
-                        if (temp2 != 0 && temp3 == 0) state = 1; //press
-                        else if (temp2 != 0 && temp3 != 0) state = 2; //held down
-                        else if (temp2 == 0 && temp3 != 0) state = 3; //release
-                        switch (state)
-                        {
-                            case 1: //key was up and now is pressed
-                                buttonsdown = buttonsdown + keynum.ToString() + " ";
-                                c = this.LblButtons;
-                                SetText(buttonsdown);
-                                break;
-                            case 2: //key was pressed and still is pressed
-                                buttonsdown = buttonsdown + keynum.ToString() + " ";
-                                c = this.LblButtons;
-                                SetText(buttonsdown);
-                                break;
-                            case 3: //key was pressed and now released
-                                break;
-                        }
-                        //Perform action based on key number, consult P.I. Engineering SDK documentation for the key numbers
-                        switch (keynum)
-                        {
-                            case 0: //button 0 (top left)
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 1: //button 1
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 2: //button 2
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 3: //button 3
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 4: //button 4
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 5: //button 5
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-
-                            //Next column of buttons
-                            case 8: //button 8
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 9: //button 9
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 10: //button 10
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 11: //button 11
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 12: //button 12
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 13: //button 13
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-
-                            //Next column of buttons
-                            case 16: //button 16
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 17: //button 17
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 18: //button 18
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 19: //button 19
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 20: //button 20
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 21: //button 21
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-
-                            //Next column of buttons
-                            case 24: //button 24
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 25: //button 25
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 26: //button 26
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 27: //button 27
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 28: //button 28
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-                            case 29: //button 29
-                                if (state == 1) //key was pressed
-                                {
-                                    //do press actions
-                                }
-                                else if (state == 3) //key was released
-                                {
-                                    //do release action
-                                }
-                                break;
-
-                        }
-                    }
-                }
-                for (int i = 0; i < sourceDevice.ReadLength; i++)
-                {
-                    lastdata[i] = data[i];
-                }
-                //end buttons
 
                 //time stamp info 4 bytes
                 long absolutetime = 16777216 * data[13] + 65536 * data[14] + 256 * data[15] + data[16];  //ms
@@ -497,7 +208,7 @@ namespace PIEHid64Sample
                 CboDevices.SelectedIndex = 0;
                 selecteddevice = cbotodevice[CboDevices.SelectedIndex];
                 wData = new byte[devices[selecteddevice].WriteLength];//go ahead and setup for write
-                lastdata = new byte[devices[selecteddevice].ReadLength];
+                LblVersion.Text = devices[selecteddevice].Version.ToString();
             }
         }
 
@@ -512,20 +223,21 @@ namespace PIEHid64Sample
         {
             //setup callback if there are devices found for each device found
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 for (int i = 0; i < CboDevices.Items.Count; i++)
                 {
                     //use the cbotodevice array which contains the mapping of the devices in the CboDevices to the actual device IDs
                     devices[cbotodevice[i]].SetErrorCallback(this);
                     devices[cbotodevice[i]].SetDataCallback(this);
+                    devices[cbotodevice[i]].callNever = false;
                 }
             }
         }
 
         private void ChkSuppress_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 if (ChkSuppress.Checked == false)
                 {
@@ -541,6 +253,10 @@ namespace PIEHid64Sample
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
+
+           
+           
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -561,160 +277,10 @@ namespace PIEHid64Sample
             System.Environment.Exit(0);
         }
 
-        private void ChkGreenLED_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 6; //6 for green, 7 for red
-
-
-                if (ChkGreenLED.Checked == true)
-                {
-                    wData[3] = 1; //0=off, 1=on, 2=flash
-                    if (ChkFGreenLED.Checked == true) wData[3] = 2;
-                }
-                else
-                {
-                    wData[3] = 0; //0=off, 1=on, 2=flash
-                }
-
-                int result = devices[selecteddevice].WriteData(wData);
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set LED";
-                }
-            }
-        }
-
-        private void ChkRedLED_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 7; //6 for green, 7 for red
-
-
-                if (ChkRedLED.Checked == true)
-                {
-                    wData[3] = 1; //0=off, 1=on, 2=flash
-                    if (ChkFRedLED.Checked == true) wData[3] = 2;
-                }
-                else
-                {
-                    wData[3] = 0; //0=off, 1=on, 2=flash
-                }
-
-                int result = devices[selecteddevice].WriteData(wData);
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set LED";
-                }
-            }
-        }
-
-        private void ChkFGreenLED_CheckedChanged(object sender, EventArgs e)
-        {
-            //use the Set Flash Freq to control frequency of blink
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 6; //6 for green, 7 for red
-
-                if (ChkFGreenLED.Checked == true)
-                {
-                    wData[3] = 2; //0=off, 1=on, 2=flash
-                }
-                else
-                {
-                    if (ChkGreenLED.Checked == true)
-                    {
-                        wData[3] = 1; //0=off, 1=on, 2=flash
-                    }
-                    else
-                    {
-                        wData[3] = 0; //0=off, 1=on, 2=flash
-                    }
-                }
-                int result = devices[selecteddevice].WriteData(wData);
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash LEDs";
-                }
-            }
-        }
-
-        private void ChkFRedLED_CheckedChanged(object sender, EventArgs e)
-        {
-            //use the Set Flash Freq to control frequency of blink
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[1] = 179; //0xb3
-                wData[2] = 7; //6 for green, 7 for red
-
-                if (ChkFRedLED.Checked == true)
-                {
-                    wData[3] = 2; //0=off, 1=on, 2=flash
-                }
-                else
-                {
-                    if (ChkRedLED.Checked == true)
-                    {
-                        wData[3] = 1; //0=off, 1=on, 2=flash
-                    }
-                    else
-                    {
-                        wData[3] = 0; //0=off, 1=on, 2=flash
-                    }
-                }
-                int result = devices[selecteddevice].WriteData(wData);
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Flash LEDs";
-                }
-            }
-        }
-
         private void BtnUnitID_Click(object sender, EventArgs e)
         {
             //Write Unit ID to the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 //write Unit ID given in the TxtSetUnitID box
@@ -723,7 +289,7 @@ namespace PIEHid64Sample
                     wData[j] = 0;
                 }
 
-                wData[0] = 0;
+                wData[0] = 2;
                 wData[1] = 189;
                 wData[2] = (byte)(Convert.ToInt16(TxtSetUnitID.Text));
 
@@ -754,7 +320,7 @@ namespace PIEHid64Sample
             //  7   15  23  31 ...
 
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //first get selected index
                 string sindex = CboBL.Text;
@@ -811,7 +377,7 @@ namespace PIEHid64Sample
             //  6   14  22  30 ...
             //  7   15  23  31 ...
 
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //first get selected index
                 string sindex = CboBL.Text;
@@ -860,14 +426,14 @@ namespace PIEHid64Sample
             }
         }
 
-        private void ChkGreenOnOff_CheckedChanged(object sender, EventArgs e)
+        private void ChkBlueOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkGreenOnOff, ALL green BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
 
-                if (ChkGreenOnOff.Checked == true) sl = 255;
+                if (ChkBlueOnOff.Checked == true) sl = 255;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
                     wData[j] = 0;
@@ -893,7 +459,7 @@ namespace PIEHid64Sample
         private void ChkRedOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //Turns on or off, depending on value of ChkRedOnOff, ALL red BLs using current intensity
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 byte sl = 0;
 
@@ -923,7 +489,7 @@ namespace PIEHid64Sample
         private void BtnSetFlash_Click(object sender, EventArgs e)
         {
             //Sets the frequency of flashing for both the LEDs and backlighting
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
 
@@ -951,7 +517,7 @@ namespace PIEHid64Sample
         private void BtnBLToggle_Click(object sender, EventArgs e)
         {
             //Sending this command toggles the backlights
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -976,7 +542,7 @@ namespace PIEHid64Sample
         private void ChkScrollLock_CheckedChanged(object sender, EventArgs e)
         {
             //If checked then the Scroll Lock key on the main keyboard will toggle the backlights
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1002,7 +568,7 @@ namespace PIEHid64Sample
 
         private void BtnBL_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1032,7 +598,7 @@ namespace PIEHid64Sample
         {
             //Write current state of backlighting to EEPROM.  
             //NOTE: Is it not recommended to do this frequently as there are a finite number of writes to the EEPROM allowed
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1058,7 +624,7 @@ namespace PIEHid64Sample
         {
             //Sending this command will result in 4 bytes of data which assembled give the time in ms from the start of the computer
             //for XK-24 bytes 8th-11th give the time stamp data with 8th byte being the MSB and 11th the LSB. 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1084,7 +650,7 @@ namespace PIEHid64Sample
         {
             //Sending this command will result in 4 bytes of data which assembled give the time in ms from the start of the computer
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1111,7 +677,7 @@ namespace PIEHid64Sample
             //Sends native keyboard messages
             //Write some keys to the textbox, should be Abcd
             //send some hid codes to the textbox, these will be coming in on the native keyboard endpoint
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result;
                 textBox1.Focus();
@@ -1174,7 +740,7 @@ namespace PIEHid64Sample
             //Sends native joystick messages
             //Open up the game controller control panel to test these features, after clicking this button
             //go and make active the control panel properties and change will be seen
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1211,7 +777,7 @@ namespace PIEHid64Sample
 
         private void BtnMousereflect_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 wData[0] = 0;
                 wData[1] = 203;    //0xcb
@@ -1243,7 +809,7 @@ namespace PIEHid64Sample
         private void BtnDescriptor_Click(object sender, EventArgs e)
         {
             //Sending the command will make the device return information about it
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
                 devices[selecteddevice].callNever = true;
@@ -1319,7 +885,7 @@ namespace PIEHid64Sample
             //the 3rd byte (Data Type) 2nd bit set.  If program switch is up byte 3 will be 2
             //and if it is pressed byte 3 will be 3.  This is useful for getting the initial state
             //or unit id of the device before it sends any data.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 devices[selecteddevice].callNever = false; //turn on callback in case it was off (Descriptor)
                 //write Unit ID given in the TxtSetUnitID box
@@ -1345,7 +911,7 @@ namespace PIEHid64Sample
 
         private void BtnPID1_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1354,7 +920,7 @@ namespace PIEHid64Sample
                 }
                 wData[0] = 0;
                 wData[1] = 204;
-                wData[2] = 2;
+                wData[2] = 0; //0=PID #1, 1=PID #2, 2=PID #3, 3=PID #4
 
                 int result = devices[selecteddevice].WriteData(wData);
                 if (result != 0)
@@ -1370,7 +936,7 @@ namespace PIEHid64Sample
 
         private void BtnPID2_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1379,7 +945,7 @@ namespace PIEHid64Sample
                 }
                 wData[0] = 0;
                 wData[1] = 204;
-                wData[2] = 1;
+                wData[2] = 1; //0=PID #1, 1=PID #2, 2=PID #3, 3=PID #4
 
                 int result = devices[selecteddevice].WriteData(wData);
                 if (result != 0)
@@ -1401,7 +967,7 @@ namespace PIEHid64Sample
             //the 3rd byte (Data Type) set to 0xE0, the 4th byte set to the count given below when the command was sent
             //and the following bytes whatever the user wishes.  In this example we are sending 3 bytes; 1, 2, 3
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1432,7 +998,7 @@ namespace PIEHid64Sample
         private void BtnSetDongle_Click(object sender, EventArgs e)
         {
             //Use the Dongle feature to set a 4 byte code into the device
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 //This routine is done once per unit by the developer prior to sale.
                 //Pick 4 numbers between 1 and 254.
@@ -1473,7 +1039,7 @@ namespace PIEHid64Sample
             //Reads the secret key set in Set Key
             //This is done within the developer's application to check for the correct
             //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (CboDevices.SelectedIndex != -1)
+            if (selecteddevice != -1)
             {
                 //check hardware
 
@@ -1594,7 +1160,7 @@ namespace PIEHid64Sample
             //Favorites	022A
 
 
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 int result = 0;
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1644,7 +1210,7 @@ namespace PIEHid64Sample
         private void BtnMyComputer_Click(object sender, EventArgs e)
         {
             //Multimedia available on v30 firmware or above.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1688,7 +1254,7 @@ namespace PIEHid64Sample
         private void BtnSleep_Click(object sender, EventArgs e)
         {
             //Multimedia available on v30 firmware or above.
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1727,7 +1293,7 @@ namespace PIEHid64Sample
 
         private void BtnPID3_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
 
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
@@ -1736,7 +1302,7 @@ namespace PIEHid64Sample
                 }
                 wData[0] = 0;
                 wData[1] = 204;
-                wData[2] = 0;
+                wData[2] = 2; //0=PID #1, 1=PID #2, 2=PID #3, 3=PID #4
 
                 int result = 404;
                 while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
@@ -1755,7 +1321,7 @@ namespace PIEHid64Sample
 
         private void BtnPID4_Click(object sender, EventArgs e)
         {
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1763,7 +1329,7 @@ namespace PIEHid64Sample
                 }
                 wData[0] = 0;
                 wData[1] = 204;
-                wData[2] = 3;
+                wData[2] = 3; //0=PID #1, 1=PID #2, 2=PID #3, 3=PID #4
 
                 int result = 404;
                 while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
@@ -1785,7 +1351,7 @@ namespace PIEHid64Sample
             //This report available only on v30 firmware and above
             //Write version, this is a 2 byte number that is available on enumeration.  You must reboot the device to see the 
             //newly written version!
-            if (CboDevices.SelectedIndex != -1) //do nothing if not enumerated
+            if (selecteddevice != -1) //do nothing if not enumerated
             {
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
@@ -1809,6 +1375,54 @@ namespace PIEHid64Sample
                     toolStripStatusLabel1.Text = "Write Success - Write Version";
                 }
                 //reboot and re-enumerate
+            }
+        }
+
+        private void ChkGreenLED_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1)
+            {
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[1] = 179; //0xb3
+                wData[2] = 6; //6 for green, 7 for red
+                wData[3] = (byte)ChkGreenLED.CheckState; //0=off, 1=on, 2=flash
+
+                int result = devices[selecteddevice].WriteData(wData);
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set LED";
+                }
+            }
+        }
+
+        private void ChkRedLED_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1)
+            {
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[1] = 179; //0xb3
+                wData[2] = 7; //6 for green, 7 for red
+                wData[3] = (byte)ChkRedLED.CheckState; //0=off, 1=on, 2=flash
+
+                int result = devices[selecteddevice].WriteData(wData);
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set LED";
+                }
             }
         }
 
