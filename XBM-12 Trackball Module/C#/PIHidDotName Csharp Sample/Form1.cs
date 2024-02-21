@@ -516,6 +516,16 @@ namespace PIHidDotName_Csharp_Sample
                     
                     this.SetListBox("Flash frequency=" + (data[13]));
                 }
+                else if (data[2] == 162)//0xA2 ClickLock Delay
+                {
+                    c = lblActualClickLockDelay;
+                    SetText(((data[4] * 256) + data[3]).ToString());
+                    c = lblClickLockEngaged;
+                    if ((data[4] * 256) + data[3] > 0)
+                        SetText("ClickLock: On");
+                    else
+                        SetText("ClickLock: Off");
+                }
                 
             }
         }
@@ -1173,7 +1183,8 @@ namespace PIHidDotName_Csharp_Sample
                 listBox2.Items.Add(temp);
                 tbClickLock.Value = (data[34] * 256 + data[33]);
 
-                
+                listBox2.Items.Add("Polling Interval=" + (data[35]).ToString() + " ms");
+                txtPollingInt.Text = (data[35]).ToString();
 
 
                 devices[selecteddevice].callNever = savecallbackstate;
@@ -1920,7 +1931,7 @@ namespace PIHidDotName_Csharp_Sample
         {
             if (selecteddevice != -1)
             {
-                //ClickLock Delay is between 200 and 2200 ms, 1200 is factory default
+                //ClickLock Delay, 1200 is factory default
                 byte lo = (byte)tbClickLock.Value;
                 byte hi = (byte)(tbClickLock.Value >> 8);
                 
@@ -2744,6 +2755,33 @@ namespace PIHidDotName_Csharp_Sample
                 else
                 {
                     toolStripStatusLabel1.Text = "Write Success - Virtual Button";
+                }
+            }
+        }
+
+        private void btnPollingInt_Click(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1)
+            {
+                //factory default is 4 ms
+                int pollingint = Convert.ToInt16(txtPollingInt.Text); //2 byte value
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[1] = 175; //0xAF
+                wData[2] = (byte)pollingint;
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Polling Interval";
                 }
             }
         }

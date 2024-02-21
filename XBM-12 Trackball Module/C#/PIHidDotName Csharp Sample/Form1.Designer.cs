@@ -221,6 +221,11 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.txtBank2 = new System.Windows.Forms.TextBox();
+            this.lblClickLockEngaged = new System.Windows.Forms.Label();
+            this.lblActualClickLockDelay = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.btnPollingInt = new System.Windows.Forms.Button();
+            this.txtPollingInt = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -287,7 +292,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 892);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 902);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1453, 22);
@@ -1338,21 +1343,20 @@
             // 
             // tbClickLock
             // 
-            this.tbClickLock.LargeChange = 20;
+            this.tbClickLock.LargeChange = 10;
             this.tbClickLock.Location = new System.Drawing.Point(526, 811);
-            this.tbClickLock.Maximum = 2200;
-            this.tbClickLock.Minimum = 200;
+            this.tbClickLock.Maximum = 6000;
             this.tbClickLock.Name = "tbClickLock";
             this.tbClickLock.Size = new System.Drawing.Size(199, 45);
             this.tbClickLock.TabIndex = 448;
             this.tbClickLock.Tag = "0";
-            this.tbClickLock.TickFrequency = 100;
+            this.tbClickLock.TickFrequency = 200;
             this.tbClickLock.Value = 200;
             this.tbClickLock.ValueChanged += new System.EventHandler(this.tbClickLock_ValueChanged);
             // 
             // btnClickLockDelay
             // 
-            this.btnClickLockDelay.Location = new System.Drawing.Point(792, 815);
+            this.btnClickLockDelay.Location = new System.Drawing.Point(787, 815);
             this.btnClickLockDelay.Name = "btnClickLockDelay";
             this.btnClickLockDelay.Size = new System.Drawing.Size(120, 23);
             this.btnClickLockDelay.TabIndex = 449;
@@ -1879,16 +1883,16 @@
             "90 deg",
             "180 deg",
             "270 deg"});
-            this.cboRotate.Location = new System.Drawing.Point(589, 856);
+            this.cboRotate.Location = new System.Drawing.Point(526, 875);
             this.cboRotate.Name = "cboRotate";
             this.cboRotate.Size = new System.Drawing.Size(81, 21);
             this.cboRotate.TabIndex = 500;
             // 
             // btnRotate
             // 
-            this.btnRotate.Location = new System.Drawing.Point(686, 854);
+            this.btnRotate.Location = new System.Drawing.Point(613, 873);
             this.btnRotate.Name = "btnRotate";
-            this.btnRotate.Size = new System.Drawing.Size(120, 23);
+            this.btnRotate.Size = new System.Drawing.Size(78, 23);
             this.btnRotate.TabIndex = 501;
             this.btnRotate.Text = "Set Rotation";
             this.btnRotate.UseVisualStyleBackColor = true;
@@ -2262,12 +2266,64 @@
             this.txtBank2.TabIndex = 468;
             this.txtBank2.Text = "255";
             // 
+            // lblClickLockEngaged
+            // 
+            this.lblClickLockEngaged.AutoSize = true;
+            this.lblClickLockEngaged.Location = new System.Drawing.Point(912, 817);
+            this.lblClickLockEngaged.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblClickLockEngaged.Name = "lblClickLockEngaged";
+            this.lblClickLockEngaged.Size = new System.Drawing.Size(90, 13);
+            this.lblClickLockEngaged.TabIndex = 539;
+            this.lblClickLockEngaged.Text = "ClickLock On/Off";
+            // 
+            // lblActualClickLockDelay
+            // 
+            this.lblActualClickLockDelay.AutoSize = true;
+            this.lblActualClickLockDelay.Location = new System.Drawing.Point(912, 834);
+            this.lblActualClickLockDelay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblActualClickLockDelay.Name = "lblActualClickLockDelay";
+            this.lblActualClickLockDelay.Size = new System.Drawing.Size(20, 13);
+            this.lblActualClickLockDelay.TabIndex = 538;
+            this.lblActualClickLockDelay.Text = "ms";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(713, 859);
+            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(98, 13);
+            this.label45.TabIndex = 542;
+            this.label45.Text = "Polling Interval (ms)";
+            // 
+            // btnPollingInt
+            // 
+            this.btnPollingInt.Location = new System.Drawing.Point(821, 872);
+            this.btnPollingInt.Name = "btnPollingInt";
+            this.btnPollingInt.Size = new System.Drawing.Size(104, 23);
+            this.btnPollingInt.TabIndex = 541;
+            this.btnPollingInt.Text = "Set Polling Interval";
+            this.btnPollingInt.UseVisualStyleBackColor = true;
+            this.btnPollingInt.Click += new System.EventHandler(this.btnPollingInt_Click);
+            // 
+            // txtPollingInt
+            // 
+            this.txtPollingInt.Location = new System.Drawing.Point(715, 875);
+            this.txtPollingInt.Name = "txtPollingInt";
+            this.txtPollingInt.Size = new System.Drawing.Size(100, 20);
+            this.txtPollingInt.TabIndex = 540;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1453, 914);
+            this.ClientSize = new System.Drawing.Size(1453, 924);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.btnPollingInt);
+            this.Controls.Add(this.txtPollingInt);
+            this.Controls.Add(this.lblClickLockEngaged);
+            this.Controls.Add(this.lblActualClickLockDelay);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.rbRelease);
@@ -2664,6 +2720,11 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtBank2;
+        private System.Windows.Forms.Label lblClickLockEngaged;
+        private System.Windows.Forms.Label lblActualClickLockDelay;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Button btnPollingInt;
+        private System.Windows.Forms.TextBox txtPollingInt;
     }
 }
 

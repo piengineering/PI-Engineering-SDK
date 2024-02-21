@@ -256,6 +256,15 @@ Public Class Form1
                 End If
 
                 SetListBox("Flash Frequency=" + data(13).ToString)
+            ElseIf (data(2) = 162) Then 'clicklock
+                c = lblActualClickLockDelay
+                SetText(((data(4) * 256) + data(3)).ToString())
+                c = lblClickLockEngaged
+                If ((data(4) * 256) + data(3) > 0) Then
+                    SetText("ClickLock: On")
+                Else
+                    SetText("ClickLock: Off")
+                End If
             End If
 
             
@@ -722,7 +731,7 @@ Public Class Form1
             End If
 
             dontchange = True
-            If (ddata(21) = 1) Then
+            If (ddata(27) = 1) Then
                 temp = "Native mouse on"
                 rbNativeMouseOn.Checked = True
             Else
@@ -732,7 +741,7 @@ Public Class Form1
             listBox2.Items.Add(temp)
 
             dontchange = True
-            If (ddata(22) = 1) Then
+            If (ddata(28) = 1) Then
                 temp = "Mouse message report on"
                 rbMouseMessageOn.Checked = True
             Else
@@ -742,7 +751,7 @@ Public Class Form1
             listBox2.Items.Add(temp)
 
             dontchange = True
-            If (ddata(24) = 1) Then
+            If (ddata(30) = 1) Then
                 temp = "General Incoming data report on"
                 rbGIOn.Checked = True
             Else
@@ -751,11 +760,11 @@ Public Class Form1
             End If
             listBox2.Items.Add(temp)
 
-            cboResolution.SelectedIndex = ddata(25) - 1
+            cboResolution.SelectedIndex = ddata(31) - 1
             listBox2.Items.Add("Resolution=" + cboResolution.Text)
 
             Dim rotation As String = "0deg"
-            Select Case ddata(26)
+            Select Case ddata(32)
                 Case 0
                     rotation = "0deg"
                 Case 1
@@ -766,10 +775,15 @@ Public Class Form1
                     rotation = "270deg"
             End Select
             listBox2.Items.Add(rotation)
-            cboRotate.SelectedIndex = ddata(26)
+            cboRotate.SelectedIndex = ddata(32)
 
-            temp = "ClickLock Delay=" + (ddata(28) * 256 + ddata(27)).ToString
+            temp = "ClickLock Delay=" + (ddata(34) * 256 + ddata(33)).ToString
             listBox2.Items.Add(temp)
+            tbClickLock.Value = (ddata(34) * 256 + ddata(33))
+
+            temp = "Polling Interval=" + (ddata(35)).ToString
+            listBox2.Items.Add(temp)
+            txtPollingInt.Text = ddata(35).ToString
             
 
             devices(selecteddevice).callNever = savecallbackstate
@@ -2007,7 +2021,7 @@ Public Class Form1
     Private Sub btnClickLockDelay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClickLockDelay.Click
         If selecteddevice <> -1 Then 'do nothing if not enumerated
 
-            'ClickLock Delay is between 200 and 2200 ms
+            'ClickLock Delay
             Dim result As Integer = 0
             Dim lo As Byte = tbClickLock.Value
             Dim hi As Byte = (tbClickLock.Value >> 8)
@@ -2253,5 +2267,30 @@ Public Class Form1
             End If
         End If
 
+    End Sub
+
+    Private Sub btnPollingInt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPollingInt.Click
+        If selecteddevice <> -1 Then
+            'factory default is 4 ms
+            Dim pollingint As Integer = Convert.ToInt16(txtPollingInt.Text) '2 byte value
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+            wdata(1) = 175 '0xAF
+            wdata(2) = CType(pollingint, Byte)
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " & result
+            Else
+                LblStatus.Text = "Write Success - Polling Interval"
+            End If
+        End If
+    End Sub
+
+    Private Sub tbClickLock_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbClickLock.ValueChanged
+        lblCLDelay.Text = tbClickLock.Value.ToString + " ms"
     End Sub
 End Class

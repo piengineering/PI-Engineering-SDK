@@ -1642,33 +1642,38 @@ int CALLBACK DialogProc(
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s(buffer[21],dataStr,10);
+				_itoa_s(buffer[27],dataStr,10);
 				strcpy_s (str,"Native mouse on/off (1=on, 0=off)=");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s(buffer[22],dataStr,10);
+				_itoa_s(buffer[28],dataStr,10);
 				strcpy_s (str,"Mouse message report on/off (1=on, 0=off)=");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s(buffer[24],dataStr,10);
+				_itoa_s(buffer[30],dataStr,10);
 				strcpy_s (str,"General Incoming Data report on/off (1=on, 0=off)=");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s(buffer[25],dataStr,10);
+				_itoa_s(buffer[31],dataStr,10);
 				strcpy_s (str,"Resolution (1=400, 2=600, 3=800, 4=1000, 5=1100 (factory default), 6=1200, 7=1300, 8=1400, 9=1500, 10=1600)=");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s(buffer[26],dataStr,10);
+				_itoa_s(buffer[32],dataStr,10);
 				strcpy_s (str,"Rotation (0=0deg, 1=90deg, 2=180deg, 3=270deg)=");
 				strcat_s (str,dataStr);
 				AddEventMsg(hDialog, str);
 
-				_itoa_s((buffer[28]*256+buffer[27]),dataStr,10);
+				_itoa_s((buffer[34]*256+buffer[33]),dataStr,10);
 				strcpy_s (str, "ClickLock Delay=");
+				strcat_s(str, dataStr);
+				AddEventMsg(hDialog, str);
+
+				_itoa_s((buffer[35]),dataStr,10);
+				strcpy_s (str, "Polling Interval=");
 				strcat_s(str, dataStr);
 				AddEventMsg(hDialog, str);
 				

@@ -215,6 +215,11 @@ Partial Class Form1
         Me.rbPress = New System.Windows.Forms.RadioButton()
         Me.txtVirtualButton = New System.Windows.Forms.TextBox()
         Me.btnVirtualButton = New System.Windows.Forms.Button()
+        Me.lblClickLockEngaged = New System.Windows.Forms.Label()
+        Me.lblActualClickLockDelay = New System.Windows.Forms.Label()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.btnPollingInt = New System.Windows.Forms.Button()
+        Me.txtPollingInt = New System.Windows.Forms.TextBox()
         Me.groupBox3.SuspendLayout()
         Me.groupBox4.SuspendLayout()
         CType(Me.tbClickLock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1627,9 +1632,9 @@ Partial Class Form1
         '
         'btnRotate
         '
-        Me.btnRotate.Location = New System.Drawing.Point(686, 862)
+        Me.btnRotate.Location = New System.Drawing.Point(617, 876)
         Me.btnRotate.Name = "btnRotate"
-        Me.btnRotate.Size = New System.Drawing.Size(120, 23)
+        Me.btnRotate.Size = New System.Drawing.Size(90, 23)
         Me.btnRotate.TabIndex = 521
         Me.btnRotate.Text = "Set Rotation"
         Me.btnRotate.UseVisualStyleBackColor = True
@@ -1638,7 +1643,7 @@ Partial Class Form1
         '
         Me.cboRotate.FormattingEnabled = True
         Me.cboRotate.Items.AddRange(New Object() {"0 deg", "90 deg", "180 deg", "270 deg"})
-        Me.cboRotate.Location = New System.Drawing.Point(589, 864)
+        Me.cboRotate.Location = New System.Drawing.Point(526, 878)
         Me.cboRotate.Name = "cboRotate"
         Me.cboRotate.Size = New System.Drawing.Size(81, 21)
         Me.cboRotate.TabIndex = 520
@@ -1646,7 +1651,7 @@ Partial Class Form1
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(523, 867)
+        Me.Label35.Location = New System.Drawing.Point(523, 862)
         Me.Label35.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(61, 13)
@@ -1700,9 +1705,9 @@ Partial Class Form1
         Me.Label44.Location = New System.Drawing.Point(523, 802)
         Me.Label44.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(264, 13)
+        Me.Label44.Size = New System.Drawing.Size(200, 13)
         Me.Label44.TabIndex = 517
-        Me.Label44.Text = "ClickLock Delay (200-2200ms, 1200ms factory default)"
+        Me.Label44.Text = "ClickLock Delay (1200ms factory default)"
         '
         'btnClickLockDelay
         '
@@ -1715,15 +1720,14 @@ Partial Class Form1
         '
         'tbClickLock
         '
-        Me.tbClickLock.LargeChange = 20
+        Me.tbClickLock.LargeChange = 10
         Me.tbClickLock.Location = New System.Drawing.Point(526, 819)
-        Me.tbClickLock.Maximum = 2200
-        Me.tbClickLock.Minimum = 200
+        Me.tbClickLock.Maximum = 6000
         Me.tbClickLock.Name = "tbClickLock"
         Me.tbClickLock.Size = New System.Drawing.Size(199, 45)
         Me.tbClickLock.TabIndex = 515
         Me.tbClickLock.Tag = "0"
-        Me.tbClickLock.TickFrequency = 100
+        Me.tbClickLock.TickFrequency = 200
         Me.tbClickLock.Value = 200
         '
         'btnSetResolution
@@ -2118,12 +2122,63 @@ Partial Class Form1
         Me.btnVirtualButton.Text = "Virtual Button"
         Me.btnVirtualButton.UseVisualStyleBackColor = True
         '
+        'lblClickLockEngaged
+        '
+        Me.lblClickLockEngaged.AutoSize = True
+        Me.lblClickLockEngaged.Location = New System.Drawing.Point(917, 822)
+        Me.lblClickLockEngaged.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblClickLockEngaged.Name = "lblClickLockEngaged"
+        Me.lblClickLockEngaged.Size = New System.Drawing.Size(90, 13)
+        Me.lblClickLockEngaged.TabIndex = 542
+        Me.lblClickLockEngaged.Text = "ClickLock On/Off"
+        '
+        'lblActualClickLockDelay
+        '
+        Me.lblActualClickLockDelay.AutoSize = True
+        Me.lblActualClickLockDelay.Location = New System.Drawing.Point(917, 835)
+        Me.lblActualClickLockDelay.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblActualClickLockDelay.Name = "lblActualClickLockDelay"
+        Me.lblActualClickLockDelay.Size = New System.Drawing.Size(20, 13)
+        Me.lblActualClickLockDelay.TabIndex = 541
+        Me.lblActualClickLockDelay.Text = "ms"
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(716, 863)
+        Me.Label60.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(98, 13)
+        Me.Label60.TabIndex = 545
+        Me.Label60.Text = "Polling Interval (ms)"
+        '
+        'btnPollingInt
+        '
+        Me.btnPollingInt.Location = New System.Drawing.Point(824, 876)
+        Me.btnPollingInt.Name = "btnPollingInt"
+        Me.btnPollingInt.Size = New System.Drawing.Size(104, 23)
+        Me.btnPollingInt.TabIndex = 544
+        Me.btnPollingInt.Text = "Set Polling Interval"
+        Me.btnPollingInt.UseVisualStyleBackColor = True
+        '
+        'txtPollingInt
+        '
+        Me.txtPollingInt.Location = New System.Drawing.Point(718, 879)
+        Me.txtPollingInt.Name = "txtPollingInt"
+        Me.txtPollingInt.Size = New System.Drawing.Size(100, 20)
+        Me.txtPollingInt.TabIndex = 543
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1424, 929)
+        Me.Controls.Add(Me.Label60)
+        Me.Controls.Add(Me.btnPollingInt)
+        Me.Controls.Add(Me.txtPollingInt)
+        Me.Controls.Add(Me.lblClickLockEngaged)
+        Me.Controls.Add(Me.lblActualClickLockDelay)
         Me.Controls.Add(Me.rbRelease)
         Me.Controls.Add(Me.rbPress)
         Me.Controls.Add(Me.txtVirtualButton)
@@ -2512,5 +2567,10 @@ Partial Class Form1
     Private WithEvents rbPress As System.Windows.Forms.RadioButton
     Private WithEvents txtVirtualButton As System.Windows.Forms.TextBox
     Private WithEvents btnVirtualButton As System.Windows.Forms.Button
+    Private WithEvents lblClickLockEngaged As System.Windows.Forms.Label
+    Private WithEvents lblActualClickLockDelay As System.Windows.Forms.Label
+    Private WithEvents Label60 As System.Windows.Forms.Label
+    Private WithEvents btnPollingInt As System.Windows.Forms.Button
+    Private WithEvents txtPollingInt As System.Windows.Forms.TextBox
 
 End Class
