@@ -563,7 +563,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -604,7 +604,7 @@
         <td> 
           <div align="center"><span class="style6">10</span></div>
         </td>
-        <td><span class="style6">0, 181, Index, State, 0...</span></td>
+        <td><span class="style6">0, 181, BacklightIndex, State, 0...</span></td>
         <td><span class="style6">Index Based Set Backlights (Flash)</span></td>
       </tr>
       <tr> 
@@ -831,8 +831,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1085,7 +1085,7 @@
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
-        <td>Key Index</td>
+        <td>Backlight Index</td>
         <td>State</td>
         <td>Constant</td>
       </tr>
@@ -1097,7 +1097,7 @@
           <div align="center">181</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Index</b></div>
+          <div align="center"><b>BacklightIndex</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>State</b></div>
@@ -1107,8 +1107,8 @@
         </td>
       </tr>
     </table>
-    <p><b>Index:</b> For bank 1 the index is 0-31 same as the key index, see Figure 
-      1. For bank 2, add 32 to the bank 1 indices.<br>
+    <p><b>BacklightIndex:</b> For bank 1 (upper), the index is 0-31 same as the 
+      key index, see Figure 1. For bank 2 (lower), add 32 to the bank 1 indices.<br>
       <b>State:</b> 0 = off, 1 = on and 2 = flash. Set the frequency of the flash 
       with output report: Set Frequency of Flash.</p>
     <p><strong>11. <span class="style6">Incremental Change of Backlight Intensity</span></strong></p>
@@ -1260,8 +1260,7 @@
       backlighting. Note because there is a limited number of times the EEProm 
       can be written to, it is not a good idea to do this often.</p>
     <p><strong>14. Change PID</strong></p>
-    <p>Send this output report to change between the two PIDs. This needs to be 
-      done only if the user wishes to have the joystick endpoint.</p>
+    <p>Send this output report to change between PIDs.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 

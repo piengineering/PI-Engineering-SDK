@@ -123,23 +123,27 @@
         </td>
       </tr>
     </table>
-    <p>PID #1 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
-      Hid Usage 1), Mouse (Hid Usage Page 1, Hid Usage 2), Joystick (Hid Usage 
+    <p>PID #1 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 
+      12, Hid Usage 1), Mouse (Hid Usage Page 1, Hid Usage 2), Joystick (Hid Usage 
       Page 1, Hid Usage 4).<br>
       PID #2 Endpoints: Consumer Usage Page Output (Hid Usage Page 12, Hid Usage 
       1), Mouse (Hid Usage Page 1, Hid Usage 2), Keyboard (Hid Usage Page 1, Hid 
       Usage 6) and Multimedia (Hid Usage Page 12 and 1, Hid Usage 1 and 128). 
       The use of this PID is mainly for Hardware Mode. Hardware Mode allows users 
-      to store macros to the device itself using the MacroWorks 3.1 programming 
-      utility or the X-keys Android app. Once the macros are stored they will 
-      work on any computer or OS that supports HID.<br>
+      to store macros to the device itself using the <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, and <a href="https://xkeys.com/software/softwarexkeysandroid.html" target="_blank">X-keys 
+      Android</a>. Once the macros are stored they will work on any computer or 
+      OS that supports HID.<br>
       PID #3 Endpoints: Consumer Usage Page Output (Hid Usage Page 12, Hid Usage 
       1), Mouse (Hid Usage Page 1, Hid Usage 2), Joystick (Hid Usage Page 1, Hid 
       Usage 4) and Multimedia (Hid Usage Page 12 and 1, Hid Usage 1 and 128). 
       The use of this PID is mainly for Hardware Mode. Hardware Mode allows users 
-      to store macros to the device itself using the MacroWorks 3.1 programming 
-      utility or the X-keys Android app. Once the macros are stored they will 
-      work on any computer or OS that supports HID.<br>
+      to store macros to the device itself using the <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, and <a href="https://xkeys.com/software/softwarexkeysandroid.html" target="_blank">X-keys 
+      Android</a>. Once the macros are stored they will work on any computer or 
+      OS that supports HID.<br>
       PID #4 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
       Hid Usage 1), Boot Mouse (Hid Usage Page 1, Hid Usage 2), Boot Keyboard 
       (Hid Usage Page 1, Hid Usage 6). </p>
@@ -151,14 +155,11 @@
       only a hardware keyboard/mouse, you will not be able to get a handle to 
       it but it will work as a keyboard/mouse assuming there are hardware macros 
       recorded on the keys. </p>
-    <p>XK-80/60 Android is supported by P.I. Engineering <a href="http://www.piengineering.com/PISupport/SoftwareMacroWorks.php" target="_blank">Macroworks 
-      3.1</a>, <a href="http://xkeys.com/PISupport/SoftwareMacroWorksHW.php">X-keys 
-      Basic Setup</a> for PC users, <a href="http://www.piengineering.com/PISupport/SoftwareXkeysAndroid.php" target="_blank">X-keys 
-      Android</a> for Android users, our <a href="http://www.piengineering.com/PISupport/DeveloperWindowsSDK.php" target="_blank">P.I. 
-      Engineering SDK </a> for C# .NET, VB .NET, C++, and Eclipse, our <a href="http://www.piengineering.com/PISupport/DeveloperAndroidSamples.php" target="_blank"> 
-      Eclipse SDK</a>, our <a href="http://www.piengineering.com/PISupport/DeveloperLinuxSDK.php" target="_blank">Linux 
-      SDK</a>, and our <a href="http://xkeys.com/PISupport/DeveloperMacSDK.php">Mac 
-      OS X SDK</a>. </p>
+    <p>XK-80/60 Android is a standard USB HID device and is supported by P.I. 
+      Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, <a href="https://xkeys.com/software/softwarexkeysandroid.html" target="_blank">X-keys 
+      Android</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
     <h3>X-keys XK-80/60 Android Input Report</h3>
     <h3><img src="images/XK80.jpg" width="500" height="437"></h3>
     <p><i>Figure 1</i>: X-keys XK-80/60 Android key reference.</p>
@@ -592,7 +593,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -631,7 +632,7 @@
         <td> 
           <div align="center"><span class="style6">10</span></div>
         </td>
-        <td><span class="style6">0, 181, Index, State, 0...</span></td>
+        <td><span class="style6">0, 181, BacklightIndex, State, 0...</span></td>
         <td><span class="style6">Index Based Set Backlights (Flash)</span></td>
       </tr>
       <tr> 
@@ -853,8 +854,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1107,7 +1108,7 @@
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
-        <td>Key Index</td>
+        <td>Backlight Index</td>
         <td>State</td>
         <td>Constant</td>
       </tr>
@@ -1119,7 +1120,7 @@
           <div align="center">181</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Index</b></div>
+          <div align="center"><b>BacklightIndex</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>State</b></div>
@@ -1129,10 +1130,10 @@
         </td>
       </tr>
     </table>
-    <p><b>Index:</b> For bank 1 the index is 0-79 as shown in Figure 1, where 
-      0-7 is 1st column, 8-15 is 2nd column, etc. For bank 2 add 80 to the bank 
-      1 indices. For example to control the lowest left key bank 1 index=7, the 
-      corresponding bank 2 is index=87.<br>
+    <p><b>BacklightIndex:</b> For bank 1 (upper), value is 0-79 as shown in Figure 
+      1, where 0-7 is 1st column, 8-15 is 2nd column, etc. For bank 2, (lower), 
+      add 80 to the bank 1 indices. For example to control the lowest left key 
+      bank 1 index=7, the corresponding bank 2 is index=87.<br>
       <b>State:</b> 0 = off, 1 = on and 2 = flash. Set the frequency of the flash 
       with output report: Set Frequency of Flash.</p>
     <p><strong>11. <span class="style6">Incremental Change of Backlight Intensity</span></strong></p>
@@ -1872,7 +1873,7 @@
         <p><a class="backtotop" href="#top">Back to top</a>
       </p></div><!-- end of "main" -->
       <div id="footer">
-        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+        <p>&copy; Copyright 2022&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->
     </div><!-- end of "page" -->

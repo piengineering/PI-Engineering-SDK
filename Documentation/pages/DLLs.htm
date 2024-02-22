@@ -29,150 +29,181 @@
       for new products but allows for use of previously unavailable features. 
       Samples are not provided for every dll on every product. Users of PIEHidNetCore.dll, 
       PIEHid64Net.dll, or PIEHid64.dll can find samples in the XK-24 folder. Use 
-      of the &quot;PIEHid&quot; dlls are identical for all products.</p>
+      of the &quot;PIEHid&quot; dlls are identical for all products. While P.I. 
+      Engineering maintains our own set of dlls, use of them is not mandatory. 
+      All P.I. Engineering products are standard USB Human Interface Devics (HID) 
+      and follow the USB HID specification and thus can be read from and written 
+      to using other HID tools. Many of our customers have reported having success 
+      with HIDSharp (<a href="https://github.com/IntergatedCircuits/HidSharp">https://github.com/IntergatedCircuits/HidSharp</a>, 
+      <a href="http://www.zer7.com/software/hidsharp">http://www.zer7.com/software/hidsharp</a> 
+      ), an open source multiplatform C# library for USB HID devices by James 
+      F. Bellinger. Some samples are provided in this SDK.</p>
     <p>Table of dlls</p>
     <table width="98%" border="1">
       <tr> 
-        <td><b>Name</b></td>
-        <td><b>Version</b></td>
-        <td><b>Date</b></td>
-        <td><b>Target Framework</b></td>
-        <td><b>SDK Sample(s)</b></td>
+        <td width="10%"><b>Name</b></td>
+        <td width="5%"><b>Version</b></td>
+        <td width="8%"><b>Date</b></td>
+        <td width="15%"><b>Target Framework</b></td>
+        <td width="62%"><b>SDK Sample(s)</b></td>
       </tr>
       <tr> 
-        <td> 
-          <div align="left">PIEHidNetCore.dll </div>
+        <td width="10%"> 
+          <div align="left">PIEHid32Net.dll</div>
         </td>
-        <td> 
-          <div align="left">v1.0.0.1 </div>
+        <td width="5%"> 
+          <div align="left">v2.0.0.1</div>
         </td>
-        <td> 
-          <div align="left">Jul 2, 2021</div>
+        <td width="8%"> 
+          <div align="left">Sep 20, 2023</div>
         </td>
-        <td> 
-          <div align="left">netstandard2.0</div>
+        <td width="15%"> 
+          <div align="left">.NET Framework 2.0</div>
         </td>
-        <td> 
-          <div align="left">..\PI Engineering SDK\XK-24\C# .NET Standard 2.0</div>
-        </td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="left">PIEHid64.dll</div>
-        </td>
-        <td> 
-          <div align="left">v2.0.0.0</div>
-        </td>
-        <td> 
-          <div align="left">Mar 28, 2016 </div>
-        </td>
-        <td> 
-          <div align="left">unmanaged</div>
-        </td>
-        <td> 
-          <div align="left">..\PI Engineering SDK\XK-24\C++ x64</div>
+        <td width="62%"> 
+          <div align="left">..\PI Engineering SDK\<i>product</i>\C#, ..\PI Engineering 
+            SDK\<i>product</i>\VB</div>
         </td>
       </tr>
       <tr> 
-        <td> 
+        <td width="10%"> 
           <div align="left">PIEHid64Net.dll</div>
         </td>
-        <td> 
-          <div align="left">v2.1.0.0</div>
+        <td width="5%"> 
+          <div align="left">v2.3.0.0</div>
         </td>
-        <td> 
-          <div align="left">Apr 21, 2015</div>
+        <td width="8%"> 
+          <div align="left">Sep 21, 2023</div>
         </td>
-        <td> 
+        <td width="15%"> 
           <div align="left">.NET Framework 4</div>
         </td>
-        <td> 
-          <div align="left">..\PI Engineering SDK\XK-24\C# x64</div>
+        <td width="62%"> 
+          <div align="left">..\PI Engineering SDK\XK-24\C# x64, ..\PI Engineering 
+            SDK\XBM-24 Module\C# x64</div>
         </td>
       </tr>
       <tr> 
-        <td> 
+        <td width="10%"> 
           <div align="left">PIEHid32.dll</div>
         </td>
-        <td> 
-          <div align="left">v2.0.0.0</div>
+        <td width="5%"> 
+          <div align="left">v2.0.0.1</div>
         </td>
-        <td> 
-          <div align="left">May 12, 2011</div>
+        <td width="8%"> 
+          <div align="left">Dec 7, 2023</div>
         </td>
-        <td> 
+        <td width="15%"> 
           <div align="left">unmanaged</div>
         </td>
-        <td> 
+        <td width="62%"> 
           <div align="left">..\PI Engineering SDK\<i>product</i>\C++</div>
         </td>
       </tr>
       <tr> 
-        <td> 
-          <div align="left">PIEHid32Net.dll</div>
+        <td width="10%"> 
+          <div align="left">PIEHid64.dll</div>
         </td>
-        <td> 
-          <div align="left">v2.0.0.0</div>
+        <td width="5%"> 
+          <div align="left">v2.0.0.1</div>
         </td>
-        <td> 
-          <div align="left">Apr 15, 2011</div>
+        <td width="8%"> 
+          <div align="left">Dec 8, 2023 </div>
         </td>
-        <td> 
-          <div align="left">.NET Framework 2.0</div>
-        </td>
-        <td> 
-          <div align="left">..\PI Engineering SDK\<i>product</i>\C#, ..\PI Engineering 
-            SDK\<i>product</i>\VB, and ..\PI Engineering SDK\.Net Components</div>
-        </td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="left">PIEHidDotNet.dll</div>
-        </td>
-        <td> 
-          <div align="left">v1.0.0.4</div>
-        </td>
-        <td> 
-          <div align="left">Jan 11, 2010</div>
-        </td>
-        <td> 
-          <div align="left">.NET Framework 2.0</div>
-        </td>
-        <td> 
-          <div align="left">Legacy only <a href="https://xkeys.com/software/legacysdk.html">https://xkeys.com/software/legacysdk.html</a></div>
-        </td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="left">PIEHidDotNet_s.dll</div>
-        </td>
-        <td> 
-          <div align="left">v1.0.0.4</div>
-        </td>
-        <td> 
-          <div align="left">Jan 11, 2010</div>
-        </td>
-        <td> 
-          <div align="left">.NET Framework 2.0</div>
-        </td>
-        <td> 
-          <div align="left">Legacy only <a href="https://xkeys.com/software/legacysdk.html">https://xkeys.com/software/legacysdk.html</a></div>
-        </td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="left">PIEHid.dll</div>
-        </td>
-        <td> 
-          <div align="left">v1.5.2.2</div>
-        </td>
-        <td> 
-          <div align="left">Sep 10, 2009</div>
-        </td>
-        <td> 
+        <td width="15%"> 
           <div align="left">unmanaged</div>
         </td>
-        <td> 
+        <td width="62%"> 
+          <div align="left">..\PI Engineering SDK\XK-24\C++ x64, ..\PI Engineering 
+            SDK\XBM-24 Module\C++ x64</div>
+        </td>
+      </tr>
+      <tr> 
+        <td width="10%"> 
+          <div align="left">PIEHidNetCore.dll </div>
+        </td>
+        <td width="5%"> 
+          <div align="left">v1.0.0.2 </div>
+        </td>
+        <td width="8%"> 
+          <div align="left">Sep 25, 2023</div>
+        </td>
+        <td width="15%"> 
+          <div align="left">.NET Standard 2.0</div>
+        </td>
+        <td width="62%"> 
+          <div align="left">..\PI Engineering SDK\XK-24\C# .NET Standard 2.0, 
+            ..\PI Engineering SDK\XBM-24 Module\C# .NET Standard 2.0, ..\PI Engineering 
+            SDK\XK-24\C# .NET 7.0, ..\PI Engineering SDK\XBM-24 Module\C# .NET 
+            7.0, ..\PI Engineering SDK\PIEHidNetCore Console</div>
+        </td>
+      </tr>
+      <tr> 
+        <td width="10%"> 
+          <div align="left"><a href="https://github.com/IntergatedCircuits/HidSharp">HidSharp</a>.dll</div>
+        </td>
+        <td width="5%"> 
+          <div align="left"></div>
+        </td>
+        <td width="8%"> 
+          <div align="left"></div>
+        </td>
+        <td width="15%"> 
+          <div align="left">various</div>
+        </td>
+        <td width="62%"> 
+          <div align="left">..\PI Engineering SDK\HidSharp, ..\PI Engineering 
+            SDK\XK-24\C# HidSharp .NET4.8</div>
+        </td>
+      </tr>
+      <tr> 
+        <td width="10%"> 
+          <div align="left">PIEHidDotNet.dll</div>
+        </td>
+        <td width="5%"> 
+          <div align="left">v1.0.0.4</div>
+        </td>
+        <td width="8%"> 
+          <div align="left">Jan 11, 2010</div>
+        </td>
+        <td width="15%"> 
+          <div align="left">.NET Framework 2.0</div>
+        </td>
+        <td width="62%"> 
+          <div align="left">Legacy only <a href="https://xkeys.com/software/legacysdk.html">https://xkeys.com/software/legacysdk.html</a></div>
+        </td>
+      </tr>
+      <tr> 
+        <td width="10%"> 
+          <div align="left">PIEHidDotNet_s.dll</div>
+        </td>
+        <td width="5%"> 
+          <div align="left">v1.0.0.4</div>
+        </td>
+        <td width="8%"> 
+          <div align="left">Jan 11, 2010</div>
+        </td>
+        <td width="15%"> 
+          <div align="left">.NET Framework 2.0</div>
+        </td>
+        <td width="62%"> 
+          <div align="left">Legacy only <a href="https://xkeys.com/software/legacysdk.html">https://xkeys.com/software/legacysdk.html</a></div>
+        </td>
+      </tr>
+      <tr> 
+        <td width="10%"> 
+          <div align="left">PIEHid.dll</div>
+        </td>
+        <td width="5%"> 
+          <div align="left">v1.5.2.2</div>
+        </td>
+        <td width="8%"> 
+          <div align="left">Sep 10, 2009</div>
+        </td>
+        <td width="15%"> 
+          <div align="left">unmanaged</div>
+        </td>
+        <td width="62%"> 
           <div align="left">Legacy only <a href="https://xkeys.com/software/legacysdk.html">https://xkeys.com/software/legacysdk.html</a></div>
         </td>
       </tr>
@@ -247,11 +278,9 @@
       names.</p>
     <h3>Note on our DLLs</h3>
         
-    <p>You can find <em>PIEHidNetCore.dll, PIEHid32Net.dll</em>, <em>PIEHid64Net.dll</em><em>, 
-      <i>PIEHid</i></em><i>32.dll,</i> <em>PIEHid64.dll</em> and the older <em>PIEHidDotNet.dll</em>, 
-      <em>PIEHidDotNet_s.dll</em>, and <i>PIEHid.dll</i> in the DLLs folder of 
-      the P.I. Engineering SDK installation folder. <br />
-      (e.g. C:\Program Files\PI Engineering\P.I. Engineering SDK\DLLs)</p>
+    <p>You can find all of the DLLs in the DLLs folder of the P.I. Engineering 
+      SDK installation, e.g. C:\Program Files\PI Engineering\P.I. Engineering 
+      SDK\DLLs</p>
     <h3>Note for 64 bit Users</h3>
     <p> PIEHid32Net.dll and PIEHidDotNet.dll are currently compiled with a target 
       platform of x86 thus in order for applications running on 64 bit systems 

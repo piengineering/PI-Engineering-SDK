@@ -243,7 +243,16 @@
           <div align="center"><span class="style3"> Byte 17</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 18-37</span></div>
+          <div align="center"><span class="style3"> Byte 18</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 19</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 20</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 21-37</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
@@ -257,13 +266,16 @@
         <td>Constant</td>
         <td>Max Columns</td>
         <td>Max Rows</td>
-        <td>LED State</td>
+        <td>LED States</td>
         <td>Version</td>
         <td>PID Low</td>
         <td>PID Hi</td>
         <td>Key mapstart hi</td>
         <td>Max Address lo</td>
         <td>Max Address hi</td>
+        <td>Digital Output States</td>
+        <td>DMX Mode</td>
+        <td>Default DMX Mode</td>
         <td>Reserved</td>
       </tr>
       <tr class="style6"> 
@@ -319,14 +331,32 @@
           <div align="center">value</div>
         </td>
         <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DO</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DMX1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DMX2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
           <div align="center">value</div>
         </td>
       </tr>
     </table>
-    <p><b>LEDs: </b>Device has 2 LEDs, this byte tells the current state of the 
-      outputs. Bit 7 set means Green LED is on, bit 8 set means Red LED is on.<br>
+    <p><b>LEDs: </b>Current on/off states of the 2 indicator LEDs . Bits 1 ,2 
+      3, 4, 5=na, bit 7=Green LED, and bit 8=Red LED.<br>
       <b>PIDL:</b> LSB of the Product Identification number or PID.<br>
       <b>PIDH:</b> MSB of the Product Identification number or PID.<br>
+      <b>DO: </b>Current on/off states of the 4 digital outputs. Bit 1=Digital 
+      Output 1, bit 2=Digital Output 2, bit 3=Digital Output 3, and bit 4=Digital 
+      Output 4, bits 5, 6, 7, 8=na.<br>
+      <b>DMX1: </b>Current DMX mode of the device, 0=transmit, 1=receive, factory 
+      default is transmit. This mode can be changed by sending a Set Mode output 
+      report.<br>
+      <b>DMX2: </b>Default DMX mode, ie DMX mode when device is plugged in, 0=transmit, 
+      1=receive, factory default is transmit. The default mode can be changed 
+      by sending a Save Mode output report.<br>
     </p>
     <p><b>3. Custom Data</b></p>
     <p>This data is returned after an output report: Generate Custom Data is sent. 
@@ -355,7 +385,7 @@
           <div align="center"><span class="style3">Byte 7 </span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes Count+5 to 37</span></div>
+          <div align="center"><span class="style3">Byte 37</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
@@ -395,7 +425,7 @@
         </td>
       </tr>
     </table>
-    <p> <b>Count</b>: Number of custom bytes to follow.<br>
+    <p> <b>Count</b>: Number of custom bytes to follow, maximum value 32.<br>
       <b>B1: </b>1st custom byte.<br>
       <b>B2:</b> 2nd custom byte.<br>
       <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b>.</p>
@@ -584,7 +614,7 @@
     <p><b>7. Read DMX Data Manually</b></p>
     <p>This data is returned after an output report: Read DMX Data Manually is 
       sent. After sending the output report with the desired start address, 20 
-      bytes with the current values are returned. In this documentation &quot;address&quot; 
+      bytes with their current values are returned. In this documentation &quot;address&quot; 
       has the same meaning as &quot;slot&quot;.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -664,9 +694,9 @@
         </td>
       </tr>
     </table>
-    <p> <b>Count:</b> The number of values (bytes) to follow. This will be 20 
-      unless the Start Address is greater than 491, then Count will be 512-Start 
-      Address. <b><br>
+    <p> <b>Count:</b> The number of values (bytes) to follow. This is 20 unless 
+      the Start Address is greater than 491, then Count will be 512-Start Address. 
+      <b><br>
       AddLo:</b> Least significant byte of the Start Address=256*AddHi+AddLo. 
       This is the same address entered in the Read DMX Data Manually command.<br>
       <b>AddHi: </b>Most significant byte of the Start Address=256*AddHi+AddLo.<br>
@@ -821,7 +851,7 @@
           <div align="center"><span class="style6">3</span></div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -877,7 +907,7 @@
         <td> 
           <div align="center"><span class="style6">11</span></div>
         </td>
-        <td><span class="style6">0, 161, Add LSB, Add MSB, Span, D1, D2,...</span></td>
+        <td><span class="style6">0, 161, Add LSB, Add MSB, Span, B1, B2,...</span></td>
         <td><span class="style6">Load DMX Write Buffer</span></td>
       </tr>
       <tr> 
@@ -906,7 +936,7 @@
           <div align="center"><span class="style6">15</span></div>
         </td>
         <td><span class="style6">0, 169, Mode, 0...</span></td>
-        <td><span class="style6">Configure Mode (transmit or receive)</span></td>
+        <td><span class="style6">Set Mode (transmit or receive)</span></td>
       </tr>
       <tr> 
         <td> 
@@ -1040,8 +1070,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>3. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>3. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1498,15 +1528,16 @@
       transmitted by the XC-DMX512T as long as the DMX Write Length (last address 
       to transmit + 1) is greater than 0. This output report is used to load values 
       into the array in user defined chunks. When the XC-DMX512T is plugged in 
-      the values in this array and the DMX Length are 0. When this output report 
-      is sent it checks the current DMX Length and if it is too small, increases 
-      it automatically to Start Address+Span then it transmits the buffer from 
-      address 1 to the DMX Length. If the Start Address+Span is greather than 
-      512, it sets DMX Write Length to 0, stopping transmission. This output report 
-      will not ever decrease the DMX Write Length so if devices on upper addresses 
-      are removed or no longer needed and the user wishes to shorten the DMX Write 
-      Length, the output report Set DMX Write Length can be used to manually set 
-      it. In this documentation &quot;address&quot; has the same meaning as &quot;slot&quot;.</p>
+      the values in this array and the DMX Write Length are 0. When this output 
+      report is sent it checks the current DMX Write Length and if it is too small, 
+      increases it automatically to Start Address+ByteCount then it transmits 
+      the buffer from address 1 to the DMX Write Length. If the Start Address+ByteCount 
+      is greather than 512, it sets DMX Write Length to 512, truncating the bytes 
+      over 512. This output report will never decrease the DMX Write Length so 
+      if devices on upper addresses are removed or no longer needed and the user 
+      wishes to shorten the DMX Write Length, the output report Set DMX Write 
+      Length can be used to manually set it. In this documentation &quot;address&quot; 
+      has the same meaning as &quot;slot&quot;.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1562,7 +1593,7 @@
           <div align="center"><b>AddHi</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Span</b></div>
+          <div align="center"><b>ByteCount</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>B1</b></div>
@@ -1582,7 +1613,7 @@
       the address to begin loading the DMX Write Buffer.<br>
       <b>AddHi:</b> The most significant byte of the Start Address which is the 
       address to begin loading the DMX Write Buffer.<br>
-      <b>Span:</b> Number of addresses to load, maximum value is 31 as output 
+      <b>ByteCount:</b> Number of addresses to load, maximum value is 31 as output 
       report length is 36.<br>
       <b>B1: </b>DMX value for address Start Address, 0-255.<br>
       <b>B2:</b> DMX value for address (Start Address + 1), 0-255.<br>
@@ -1591,7 +1622,8 @@
       then fill remaining bytes with 0.</p>
     <p>Example:</p>
     <p>Below is the DMX Write Buffer on startup or hotplug of the XC-DMX512T, 
-      all addresses 0 to 511 are set to 0. The DMX Length is 0. Nothing transmitted.</p>
+      all addresses 0 to 511 are set to 0. The DMX Write Length is 0. Nothing 
+      transmitted.</p>
     <table width="686" border="1" cellspacing="1" cellpadding="1">
       <tr> 
         <td width="119" height="26"> 
@@ -1645,11 +1677,11 @@
       </tr>
     </table>
     <p>Next a Load DMX Write Buffer output report is sent with Start Address = 
-      3, Span = 3, and 255 for values corresponding to addresses 3, 4, and 5 (0, 
-      161, 3, 0, 3, 255, 255, 255, 0...) which results in the DMX Write Buffer 
-      shown below and DMX Write Length = Start Address + Span = 6. Continuous 
-      tranmission of 6 bytes corresponding to addresses 0 to 5. Only the 3 addresses 
-      were modified, all other addresses remain untouched.</p>
+      3, ByteCount = 3, and 255 for values corresponding to addresses 3, 4, and 
+      5 (0, 161, 3, 0, 3, 255, 255, 255, 0...) which results in the DMX Write 
+      Buffer shown below and DMX Write Length = Start Address + ByteCount = 6. 
+      Continuous tranmission of 6 bytes corresponding to addresses 0 to 5. Only 
+      the 3 addresses were modified, all other addresses remain untouched.</p>
     <table width="686" border="1" cellspacing="1" cellpadding="1">
       <tr> 
         <td width="119" height="26"> 
@@ -1703,11 +1735,11 @@
       </tr>
     </table>
     <p>Next a Load DMX Write Buffer output report is sent with Start Address = 
-      12, Span = 4, and 255 for values corresponding to addresses 12, 13, 14, 
-      15 (0, 161, 12, 0, 4, 255, 255, 255, 255, 0..) which results in the DMX 
-      WriteBuffer shown below. Since the current DMX Write Length of 6 is less 
-      than the new Start Address + Span = 16, it is set to 16 and continuous transmission 
-      of 16 bytes corresponding addresses 0 to 15.</p>
+      12, ByteCount = 4, and 255 for values corresponding to addresses 12, 13, 
+      14, 15 (0, 161, 12, 0, 4, 255, 255, 255, 255, 0..) which results in the 
+      DMX WriteBuffer shown below. Since the current DMX Write Length of 6 is 
+      less than the new Start Address + ByteCount = 16, it is set to 16 and continuous 
+      transmission of 16 bytes corresponding addresses 0 to 15.</p>
     <table width="686" border="1" cellspacing="1" cellpadding="1">
       <tr> 
         <td width="119" height="26"> 
@@ -1761,11 +1793,11 @@
       </tr>
     </table>
     <p>Finally a Load DMX Write Buffer output report is sent with Start Address=8, 
-      Span=2, and values 128 for values corresponding to addresses 8 and 9 (0, 
-      161, 8, 0, 2, 128, 128, 0...) which results in the DMX Write Buffer shown 
-      below. Since the current DMX Write Length of 16 is greater than this Start 
-      Address + Span = 10, it remains at 16. Continuous transmission of 16 bytes 
-      corresponding addresses 0 to 15.</p>
+      ByteCount=2, and values 128 for values corresponding to addresses 8 and 
+      9 (0, 161, 8, 0, 2, 128, 128, 0...) which results in the DMX Write Buffer 
+      shown below. Since the current DMX Write Length of 16 is greater than this 
+      Start Address + ByteCount = 10, it remains at 16. Continuous transmission 
+      of 16 bytes corresponding addresses 0 to 15.</p>
     <table width="686" border="1" cellspacing="1" cellpadding="1">
       <tr> 
         <td width="119" height="26"> 
@@ -1819,7 +1851,7 @@
       </tr>
     </table>
     <p><br>
-      <strong>12. Set DMX Write Length</strong></p>
+      <strong>12. Set DMX WriteLength</strong></p>
     <p>Normally the DMX Write Length is automatically determined as the DMX Write 
       Buffer is loaded up using the Load Write DMX Buffer output report. However 
       a user may wish to manually set the DMX Write Length. One reason for this 
@@ -1939,12 +1971,12 @@
         </td>
       </tr>
     </table>
-    <p><strong>15. Configure Mode </strong></p>
-    <p>Send this output report to configure the XC-DMX512T in either transmit 
-      mode (factory default) or receive mode. Sending this output report will 
-      not save the mode to the eeprom, ie on reboot of the XC-DMX512T it will 
-      be in the mode that was saved to the eeprom. To change the mode saved in 
-      the eeprom send the Save Mode output report.</p>
+    <p><strong>15. Set Mode </strong></p>
+    <p>Send this output report to set the XC-DMX512T to either transmit mode (factory 
+      default) or receive mode. Sending this output report will not save the mode 
+      to the eeprom, ie on reboot of the XC-DMX512T it will be in the mode that 
+      was saved to the eeprom. To change the mode saved in the eeprom send the 
+      Save Mode output report.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1987,8 +2019,8 @@
     <p>Send this output report to save the desired mode to the eeprom so that 
       when the device is rebooted it will automatically be in the desired mode. 
       Sending this output report does not change the mode the device is currently 
-      in. To change the mode the device is currently in, send the Configure Mode 
-      output report.</p>
+      in. To change the mode the device is currently in, send the Set Mode output 
+      report.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2118,7 +2150,7 @@
       = 0x012C (300 decimal) so AddHi = 0x01 (1 decimal) and AddLo = 0x2C (44 
       decimal). </p>
     <p><strong>19. Enable Read DMX Data by Notification</strong></p>
-    <p>Send the output report to enable notification when changes in DMX values 
+    <p>Send this output report to enable notification when changes in DMX values 
       occur in the desired address range of Start Address to End Address. If a 
       DMX value changes within the range, including Start Address and End Address, 
       then a Read DMX Data by Notification input report will be generated for 

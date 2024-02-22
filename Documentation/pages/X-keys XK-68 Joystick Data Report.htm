@@ -291,7 +291,7 @@
       in ms starting from when the device was plugged into a port in 4 bytes where 
       byte 20 is the MSB or high byte and byte 23 is the LSB or low byte. </p>
     <p><b>2. Descriptor Data</b></p>
-    <p>This data is returned after a Request for Descriptor output report is sent.</p>
+    <p>This data is returned after a Get Descriptor output report is sent.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -609,7 +609,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -650,7 +650,7 @@
         <td> 
           <div align="center"><span class="style6">10</span></div>
         </td>
-        <td><span class="style6">0, 181, Index, State, 0...</span></td>
+        <td><span class="style6">0, 181, BacklightIndex, State, 0...</span></td>
         <td><span class="style6">Index Based Set Backlights (Flash)</span></td>
       </tr>
       <tr> 
@@ -888,8 +888,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1142,7 +1142,7 @@
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
-        <td>Key Index</td>
+        <td>Backlight Index</td>
         <td>State</td>
         <td>Constant</td>
       </tr>
@@ -1154,7 +1154,7 @@
           <div align="center">181</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Index</b></div>
+          <div align="center"><b>BacklightIndex</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>State</b></div>
@@ -1164,9 +1164,10 @@
         </td>
       </tr>
     </table>
-    <p><b>Index:</b> For bank 1 equals the index given in Figure 1. For bank 2 
-      add 80 to the index given in Figure 1. For example to control the lower 
-      left key bank 1 index=7, the corresponding bank 2 is index=87.<br>
+    <p><b>BacklightIndex:</b> For bank 1 (upper), value is shown on key in Figure 
+      1. For bank 2 (lower), add 80 to the value shown on key in Figure 1. For 
+      example to control the lower left key bank 1 index=7, the corresponding 
+      bank 2 is index=87.<br>
       <b>State:</b> 0 = off, 1 = on and 2 = flash. Set the frequency of the flash 
       with output report 12. Set Frequency of Flash.</p>
     <p><strong>11. <span class="style6">Incremental Change of Backlight Intensity</span></strong></p>
@@ -1318,8 +1319,7 @@
       backlighting. Note because there is a limited number of times the EEProm 
       can be written to, it is not a good idea to do this often.</p>
     <p><strong>14. Enable/Disable Native Joystick</strong></p>
-    <p>Send this output report to change between the two PIDs. This needs to be 
-      done only if the user wishes to have the joystick endpoint.</p>
+    <p>Send this output report to change between PIDs.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1360,8 +1360,7 @@
       joystick. If enabled the joystick behaves as a true game controller joystick. 
       Open the Game Controllers panel to test.</p>
     <p><strong>15. Change PID</strong></p>
-    <p>Send this output report to change between the two PIDs. This needs to be 
-      done only if the user wishes to have the joystick endpoint.</p>
+    <p>Send this output report to change between PIDs.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 

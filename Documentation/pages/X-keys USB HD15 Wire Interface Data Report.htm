@@ -239,7 +239,7 @@
       <strong>Reboot</strong>: This is a number that indicates how many times 
       the device has been rebooted by the USB.</p>
     <p><b>2. Descriptor Data</b></p>
-    <p>This data is returned after a Request for Descriptor output report is sent. 
+    <p>This data is returned after a Get Descriptor output report is sent. 
       This report is available only in PID #1 and PID #4. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -597,7 +597,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -823,8 +823,8 @@
     </table>
     <p><b>Freq:</b> 1-255 where 1 is the fastest flash and 255 is the slowest. 
       255 is approximately 4 seconds between flashes.</p>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 

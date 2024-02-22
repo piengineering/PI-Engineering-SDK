@@ -30,7 +30,7 @@
       </div><!-- end of "banner" -->
       
   <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
-    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XK-16 KVM Data Report<b> 
+    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XK-16 Stick KVM Data Report<b> 
       | <a href="../index.htm">Main Page</a></b></h2>
     <h3>General Information</h3>
     <table width="276" border="1" cellspacing="1" cellpadding="1">
@@ -52,7 +52,7 @@
       </tr>
       <tr class="style6"> 
         <th> 
-          <div align="left">PID #2</div>
+          <div align="left">PID #2 (KVM)</div>
         </th>
         <td bgcolor="#CCCCCC"> 
           <div align="left"><span class="style8">04F6h or 1270</span></div>
@@ -75,33 +75,31 @@
         </td>
       </tr>
     </table>
-    <p>The XK-16 KVM is a special X-keys device designed to work specifically 
-      with KVMs. In PID #2 the XK-16 KVM is only a keyboard, no input or output 
-      reports are available. <b>The information below is relevant only to PID 
-      #1</b> which does contain an input and output endpoint. <b>Please note that 
-      the XKR-32 Rack Mounted KVM in PID #1 will NOT be compatible with most KVMs, 
-      it must operate in PID #2 to be compatible</b>. To convert the device to 
-      PID #1 when it is currently in PID #2 slide the programming switch located 
-      on the left side of the device up or toward the usb cord and then replug 
-      the device. Note the position of this switch is irrelevant once the device 
-      is booted, it looks at the switch position to determine which PID to boot 
-      to only on startup.</p>
-    <p>XK-16 KVM is supported by P.I. Engineering <a href="http://www.piengineering.com/PISupport/SoftwareMacroWorks.php" target="_blank">Macroworks 
-      3.1</a>, <a href="http://xkeys.com/PISupport/SoftwareMacroWorksHW.php">X-keys 
-      Basic Setup</a>, <a href="http://www.piengineering.com/PISupport/DeveloperWindowsSDK.php" target="_blank">P.I. 
-      Engineering SDK </a> for C# .NET, VB .NET, C++, our <a href="http://www.piengineering.com/PISupport/DeveloperAndroidSamples.php" target="_blank"> 
-      Eclipse SDK</a>, our <a href="http://www.piengineering.com/PISupport/DeveloperLinuxSDK.php" target="_blank">Linux 
-      SDK</a>, and our <a href="http://xkeys.com/PISupport/DeveloperMacSDK.php">Mac 
-      OS X SDK</a>. </p>
-    <h3>X-keys XK-16 KVM Input Report</h3>
-    <img src="images/xk-16.jpg" alt="X-keys XK24" name="boxImage" width="944" height="71" border="0" id="boxImage" /> 
-    <p><em>Figure 1</em>: X-keys XK-16 KVM key reference.</p>
-    <p>Endpoint: 3, Consumer Usage Page.</p>
     <p>PID #1 Additional Endpoints: 1, Keyboard (Hid Usage Page 1, Hid Usage 6) 
-      and 2, Joystick (Hid Usage Page 1, Hid Usage 4). <br>
+      and 2, Mouse (Hid Usage Page 1, Hid Usage 2). <br>
       PID #2 Additional Endpoints: 1, Keyboard (Hid Usage Page 1, Hid Usage 6) 
       only for use with KVM. <b>In this PID the only way to return to PID #1 is 
       to slide the programming switch up then replug the device into the usb port.</b></p>
+    <p>The XK-16 Stick KVM is a special X-keys device designed to work specifically 
+      with KVMs. In PID #2 the XK-16 Stick KVM is only a keyboard, no input or output 
+      reports are available. <b>The information below is relevant only to PID 
+      #1</b> which does contain an input and output endpoint. <b>Please note that 
+      the XK-16 Stick KVM in PID #1 will NOT be compatible with most KVMs, it must operate 
+      in PID #2 to be compatible</b>. To convert the device to PID #1 when it 
+      is currently in PID #2 slide the programming switch located on the left 
+      side of the device up or toward the usb cord and then replug the device. 
+      Note the position of this switch is irrelevant once the device is booted, 
+      it looks at the switch position to determine which PID to boot to only on 
+      startup.</p>
+    <p>XK-16 Stick KVM is a standard USB HID device and is supported by P.I. Engineering's 
+      <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
+      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+    <h3>X-keys XK-16 Stick KVM Input Report</h3>
+    <img src="images/xk-16.jpg" alt="X-keys XK24" name="boxImage" width="944" height="71" border="0" id="boxImage" /> 
+    <p><em>Figure 1</em>: X-keys XK-16 Stick KVM key reference</p>
+    <p>&nbsp;</p>
 
     <p>Report Length: 33 bytes.</p>
 
@@ -198,7 +196,7 @@
       in ms from start of computer in 4 bytes where byte 8 is the MSB and byte 
       11 is the LSB. </p>
     <p><b>2. Descriptor Data</b></p>
-    <p>This data is returned after a Request for Descriptor output report is sent.</p>
+    <p>This data is returned after a Get Descriptor output report is sent.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -390,7 +388,7 @@
     <p><b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b><br />
     </p>
-    <h3>X-keys XK-16 KVM Output Report</h3>
+    <h3>X-keys XK-16 Stick KVM Output Report</h3>
     <p>The following types of output reports are shown in the summary below. These 
       reports on only applicable when the device is in PID #1. Please be aware 
       that several of these commands result in writing to the device's eeprom 
@@ -444,7 +442,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -492,7 +490,7 @@
         <td> 
           <div align="center"><span class="style6">11</span></div>
         </td>
-        <td><span class="style6">0, 181, Index, State, 0...</span></td>
+        <td><span class="style6">0, 181, BacklightIndex, State, 0...</span></td>
         <td><span class="style6">Index Based Set Backlights (Flash)</span></td>
       </tr>
       <tr> 
@@ -697,8 +695,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -996,7 +994,7 @@
           <div align="center">181</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Index</b></div>
+          <div align="center"><b>BacklightIndex</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>State</b></div>
@@ -1006,9 +1004,9 @@
         </td>
       </tr>
     </table>
-    <p><b>Index:</b> Key numbers are referenced from Figure 1. Key 0 = 0, Key 
-      1 = 1, Key 2 = 2, Key 3 = 3, Key 4 = 4, Key 5 = 5, Key 6 = 8, Key 7 = 9, 
-      Key 8 = 10, Key 9 = 11, Key 10 = 12, Key 11 = 13, <br>
+    <p><b>BacklightIndex:</b> Key numbers are referenced from Figure 1. Key 0 
+      = 0, Key 1 = 1, Key 2 = 2, Key 3 = 3, Key 4 = 4, Key 5 = 5, Key 6 = 8, Key 
+      7 = 9, Key 8 = 10, Key 9 = 11, Key 10 = 12, Key 11 = 13, <br>
       Key 12 = 16, Key 13 = 17, Key 14 = 18, Key 15 = 19.<br>
       <b>State:</b> 0 = off, 1 = on and 2 = flash. Set the frequency of the flash 
       with output report 12. Set Frequency of Flash.</p>
@@ -1565,7 +1563,7 @@
   </div>
   <!-- end of "main" -->
       <div id="footer">
-        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+        <p>&copy; Copyright 2022&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->
     </div><!-- end of "page" -->

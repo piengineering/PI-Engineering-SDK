@@ -249,7 +249,7 @@
       <strong>Reboot</strong>: This is a number that indicates how many times 
       the device has been rebooted by the USB.</p>
     <p><b>2. Descriptor Data</b></p>
-    <p>This data is returned after a Request for Descriptor output report is sent. 
+    <p>This data is returned after a Get Descriptor output report is sent. 
       This report is available only in PID #1 and PID #4. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -548,7 +548,7 @@
       <b>R1</b>: Value need for comparison to check for correct dongle key. <br>
       <b>R2</b>: Value need for comparison to check for correct dongle key. <br>
       <b>R3</b>: Value need for comparison to check for correct dongle key.</p>
-    <p><b>5. Get Configuration. </b></p>
+    <p><b>5. GPIO Configuration Data. </b></p>
     <p>This is received immediately following a Get Inputs/Outputs output report 
       is sent.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
@@ -646,9 +646,9 @@
       <b>IC2</b>: For all bits 0=resistive pull up (short to ground), 1=resistive 
       pull down (drive high). Bit 1=pin 5, bit 2=pin 6, bit 3=pin 7, bit 4=pin 
       8, bit 5=pin 11, bit 6=pin 12. </p>
-    <p><b>6. Output On/Off State Data</b></p>
-    <p>This data is returned after an output report: Request Output On/Off State 
-      is sent. </p>
+    <p><b>6. GPIO Output On/Off State Data</b></p>
+    <p>This data is returned after an output report: Get Output On/Off State is 
+      sent. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -726,9 +726,9 @@
       3, bit 4=pin 4.<br>
       <b>B3</b>: For all bits 0=off, 1=on, Bit 1=pin 5, bit 2=pin 6, bit 3=pin 
       7, bit 4=pin 8, bit 5=pin 11, bit 6=pin 12. </p>
-    <p><b>7. Output Flash State Data</b></p>
-    <p>This data is returned after an output report: Request Output Flash State 
-      is sent. </p>
+    <p><b>7. GPIO Output Flash State Data</b></p>
+    <p>This data is returned after an output report: Get Output Flash State is 
+      sent. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -866,7 +866,7 @@
           </div>
         </td>
         <td><span class="style6">0, 214, 0...</span></td>
-        <td><span class="style6">Request Descriptor</span></td>
+        <td><span class="style6">Get Descriptor</span></td>
       </tr>
       <tr> 
         <td> 
@@ -960,14 +960,14 @@
           <div align="center"><span class="style6">17</span></div>
         </td>
         <td><span class="style6">0, 160, IO1, IO2, IC1, IC2, 0...</span></td>
-        <td><span class="style6">Set Configuration</span></td>
+        <td><span class="style6">Set GPIO Configuration</span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">18</span></div>
         </td>
         <td><span class="style6">0, 161, 0...</span></td>
-        <td><span class="style6">Get Configuration</span></td>
+        <td><span class="style6">Get GPIO Configuration</span></td>
       </tr>
       <tr> 
         <td height="24"> 
@@ -976,7 +976,7 @@
           </div>
         </td>
         <td height="24"><span class="style6">0, 162, 0...</span></td>
-        <td height="24"><span class="style6">Save Configuration<sup>e</sup></span></td>
+        <td height="24"><span class="style6">Save GPIO Configuration<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td height="24"> 
@@ -985,21 +985,21 @@
           </div>
         </td>
         <td height="24"><span class="style6">0, 181, PinIndex, State, 0...</span></td>
-        <td height="24"><span class="style6">Control Outputs</span></td>
+        <td height="24"><span class="style6">Set GPIO Outputs</span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">21</span></div>
         </td>
         <td><span class="style6">0, 174, 0...</span></td>
-        <td><span class="style6">Request Output On/Off State</span></td>
+        <td><span class="style6">Get GPIO Output On/Off State</span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">22</span></div>
         </td>
         <td><span class="style6">0, 175, 0...</span></td>
-        <td><span class="style6">Request Output Flash State</span></td>
+        <td><span class="style6">Get GPIO Output Flash State</span></td>
       </tr>
     </table>
     <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
@@ -1138,8 +1138,8 @@
     </table>
     <p><b>Freq:</b> 1-255 where 1 is the fastest flash and 255 is the slowest. 
       255 is approximately 4 seconds between flashes.</p>
-    <p><strong>4. Request Descriptor</strong></p>
-    <p>After sending this output report a Descriptor input report will be generated.</p>
+    <p><strong>4. Get Descriptor</strong></p>
+    <p>After sending this output report a Descriptor Data input report will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1944,11 +1944,11 @@
       1-254.<br>
       <b>K3:</b> 4th byte of a random number that was used in the hash, any number 
       1-254.</p>
-    <p><strong>17. Set Configuration</strong></p>
-    <p>Use this to configure whether a pin is an input or an output. This is for 
-      pins 1-8 and 11 and 12, pins 13 and 14 are always outputs. To save this 
-      configuration to the eeprom so the device boots up with the desired inputs 
-      and outputs use Save Input/Output Settings.</p>
+    <p><strong>17. Set GPIO Configuration</strong></p>
+    <p>Use this to configure whether a GPIO pin is an input or an output. This 
+      is for pins 1-8 and 11 and 12, pins 13 and 14 are always outputs. To save 
+      this configuration to the eeprom so the device boots up with the desired 
+      inputs and outputs use Save Input/Output Settings.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2017,10 +2017,10 @@
       <b>IC2</b>:Bitmap setting for pins 5, 6, 7, 8, 11, and 12 where 0=resistive 
       pull up (short to ground), 1=resistive pull down (drive high). Bit 1=pin 
       5, bit 2=pin 6, bit 3=pin 7, bit 4=pin 8, bit 5=pin 11, bit 6=pin 12. </p>
-    <p><strong>18. Get Configuration</strong></p>
-    <p>After sending this output report a Get Configuration input report will 
-      be generated. This is used to read back the current configuration of pins 
-      1-8, 11, and 12.</p>
+    <p><strong>18. Get GPIO Configuration</strong></p>
+    <p>After sending this output report a GPIO Configuration Data input report 
+      will be generated. This is used to read back the current configuration of 
+      pins 1-8, 11, and 12.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2050,9 +2050,9 @@
         </td>
       </tr>
     </table>
-    <p><strong>19. Save Configuration</strong></p>
-    <p>This will save the current Input and Output configurations that were selected 
-      in Set Configuration to the eeprom.</p>
+    <p><strong>19. Save GPIO Configuration</strong></p>
+    <p>This will save the current GPIO Input and Output configurations that were 
+      selected in Set GPIO Configuration to the eeprom.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2082,10 +2082,10 @@
         </td>
       </tr>
     </table>
-    <p><strong>20. Set Outputs</strong></p>
-    <p>Send this output report to set the output high or low on pins that have 
-      been configured as outputs. To set pins 13 and 14 use the Index Based Set 
-      LED command.</p>
+    <p><strong>20. Set GPIO Outputs</strong></p>
+    <p>Send this output report to set the output high or low on GPIO pins that 
+      have been configured as outputs. To set pins 13 and 14 use the Index Based 
+      Set LED command.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2132,8 +2132,8 @@
     <p><b>PinIndex: </b>1=Pin 1, 2=Pin 2, 3=Pin 3, 4=Pin 4, 5=Pin 5, 6=Pin 6, 
       7=Pin 7, 8=Pin 8, 11=Pin 11, 12=Pin 12.<br>
       <b>State: </b>0 = off, 1 = on. </p>
-    <p><strong>21. Request Output On/Off State</strong></p>
-    <p>After sending a Request Output On/Off State output report an Output On/Off 
+    <p><strong>21. Get GPIO Output On/Off State</strong></p>
+    <p>After sending a Get Output On/Off State output report a GPIO Output On/Off 
       State Data input report will be returned giving the state of the all of 
       the digital outputs as a bitmap.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -2165,8 +2165,8 @@
         </td>
       </tr>
     </table>
-    <p><strong>22. Request Output Flash State</strong></p>
-    <p>After sending a Request Output Flash State output report an Output Flash 
+    <p><strong>22. Get GPIO Output Flash State</strong></p>
+    <p>After sending a Get Output Flash State output report a GPIO Output Flash 
       State Data input report will be returned giving the flash state of the all 
       of the digital outputs as a bitmap.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -2206,7 +2206,7 @@
   <!-- end of "main" -->
       <div id="footer">
         
-    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+    <p>&copy; Copyright 2024&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
       Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->

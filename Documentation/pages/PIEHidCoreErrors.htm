@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>Errors</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Documentation</h1>
+      </div><!-- end of "banner" -->
+      
+  <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
+    <h2>PIEHidCore Errors | <a href="../index.htm">Main Page</a></h2>
+        
+    <ul class="nobullets">
+      <li>0 = Success<br>
+      </li>
+    </ul>
+        
+    <h3>SetupInterface() errors</h3>
+    <ul class="nobullets">
+      <li>203 = Already Connected</li>
+      <li>207 = Cannot open read handle, handle invalid</li>
+      <li>208 = Cannot open write handle, handle invalid</li>
+      <li>209 = Cannot open both read and write handles, both handles invalid</li>
+    </ul>
+    <h3>ReadData() errors</h3>
+    <ul class="nobullets">
+      <li>302 = Read length is zero</li>
+      <li>303 = Interface not valid</li>
+      <li>304 = Ring buffer empty</li>
+      <li>308 = Handle Invalid or Device_Not_Found</li>
+      <li>309 = Read error (unplugged)</li>
+      <li>310 = Bytes read not equal readSize</li>
+      <li>311 = BlockingReadData timed out/dest.Length&lt;ReportSize. This can 
+        occur if the user is trying to use BlockingReadData but did not turn off 
+        the callback first.</li>
+      <li>320 = Cannot open read handle, handle invalid</li>
+      <li>321 = Cannot open read handle, handle invalid</li>
+    </ul>
+       
+    <h3>Write() errors</h3>
+    <ul class="nobullets">
+      <li>402 = Write length is zero</li>
+      <li>403 = wData.Length&lt;ReportSize</li>
+      <li>404 = Write buffer full</li>
+      <li>405 = No write buffer</li>
+      <li>406 = Interface not valid</li>
+      <li>407 = No writeBuffer</li>
+      <li>408 = Bytes written not equal writeSize/Device Disconnected</li>
+      <li>409 = Unknown write error</li>
+      <li>410 = byteCount!=writeSize</li>
+      <li>411 = Timed out in write</li>
+      <li>412 = ReportID error</li>
+    </ul>
+    <h3>ReadLast() errors</h3>
+    <ul class="nobullets">
+      <li>502 = Read length is zero</li>
+      <li>503 = Read length &gt; data length</li>
+      <li>504 = Insufficient data</li>
+      <li>507 = Interface not valid</li>
+    </ul>
+        
+    <h3>SetDataCallback() errors</h3>
+    <ul class="nobullets">
+      <li>702 = Interface not valid</li>
+      <li>703 = Input ReportSize zero</li>
+      <li>704 = Data Handler Already Exists</li>
+    </ul>
+    <h3>SetErrorCallback() errors</h3>
+    <ul class="nobullets">
+      <li>802 = Interface not valid</li>
+      <li>804 = Error Handler Already Exists</li>
+    </ul>
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a><a href="index.htm"> 
+    </a> </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>
