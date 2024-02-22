@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<TITLE>P.I. Engineering SDK HID Reports</TITLE>
+<TITLE>P.I. Engineering SDK Documentation</TITLE>
 <link href="pages/help.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 <!--
@@ -12,80 +12,143 @@
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
-
-
-  
-
-  <div id="banner"> 
-  <h1>P.I. Engineering HID Reports</h1>
+<div id="banner"> 
+  <h1>P.I. Engineering SDK Documentation</h1>
 </div>
 <div style="margin:0px 400px 0px 400px;">
 <div id="sidebar1"><!-- end of "banner" --> <a name="top"></a> </div>
+  <ul>
+    <li> 
+      <div id="sidebar1"><a href="#introduction"><font size="3">Introduction</font></a></div>
+    </li>
+    <li> 
+      <div id="sidebar1"><a href="#samples"><font size="3">Sample Programs</font></a></div>
+    </li>
+    <li> 
+      <div id="sidebar1"><a href="#reports"><font size="3">Data Reports</font></a></div>
+    </li>
+    <li> 
+      <div id="sidebar1"><a href="#piehid"><font size="3">PIEHid32Net/PIEHid64Net/PIEHidCore/PIEHid32/PIEHid64 
+        Documentation</font></a></div>
+    </li>
+    <li> 
+      <div id="sidebar1"><a href="#help"><font size="3">Getting Help</font></a></div>
+    </li>
+  </ul>
 
 
-
-<h3><span class="style9">Data Reports </span></h3>
-<P><a href="pages/splatoverview.htm">Data Report Description Overview</a></P>
-<P><a href="pages/X-keys%20XK-24%20Data%20Report.htm">X-keys XK-24 Data Report</a></P>
-<P><a href="pages/X-keys%20XK-3%20Foot%20Pedal%20Data%20Report.htm">X-keys XK-3 Footpedal 
-  Data Report</a></P>
-<P><a href="pages/X-keys%20XK-16%20XK-8%20XK-4%20Stick%20Data%20Report.htm">X-keys XK-16 Stick Data Report</a></P>
-<P><a href="pages/X-keys%20XK-80%20XK-60%20Data%20Report.htm">X-keys XK-80/60 Data Report</a></P>
-<P><a href="pages/X-keys%20XK-12%20XK-3%20Switch%20Interface%20Data%20Report.htm">X-keys XK-12/XK-3 
-  Switch Interface Data Report</a></P>
-<p><a href="pages/X-keys%20XKE-128%20Data%20Report.htm">X-keys XKE-128 Data Report</a></p>
-<p><a href="pages/X-keys%20XK-16%20LCD%20Data%20Report.htm">X-keys XK-16 LCD Data Report</a></p>
-  <p><a href="pages/X-keys%20XKE-124%20T-bar%20Data%20Report.htm">X-keys XKE-124 
+<h3><span class="style9"><a name="introduction"></a>Introduction </span></h3>
+<p><a href="pages/Introduction.htm">Introduction</a></p>
+<p><a href="pages/DLLs.htm">DLL Versions, 64 Bit Users</a></p>
+<p><a href="pages/Install.htm">Installing/Uninstalling</a></p>
+  <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top</a></p>
+  <h3><span class="style9"><a name="samples"></a>Sample Programs</span></h3>
+  <a href="pages/VCSharpSample.htm">C# Sample</a> 
+  <p><a href="pages/VBSample.htm">Visual Basic Sample</a></p>
+  <p><a href="pages/VC++Sample.htm">Visual C++ Sample</a></p>
+  <p><a href="pages/AdditionalSamples.htm">Additional Samples</a></p>
+  <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top</a></p>
+  <h3><span class="style9"><a name="reports"></a>Data Reports</span></h3>
+<p><a href="pages/Data%20Report%20Description%20Overview.htm">Data Report Description 
+  Overview</a></p>
+<p><a href="pages/X-keys%20XK-24%20Data%20Report.htm">X-keys XK-24 Data Report</a></p>
+<p><a href="pages/X-keys%20XK-3%20Foot%20Pedal%20Data%20Report.htm">X-keys XK-3 Footpedal 
+  Data Report</a></p>
+<p><a href="pages/X-keys%20XK-16%20XK-8%20XK-4%20Stick%20Data%20Report.htm">X-keys XK-16/XK-8/XK-4 
+  Stick Data Report</a></p>
+<p><a href="pages/X-keys%20XK-80%20XK-60%20Data%20Report.htm">X-keys XK-80/60 Data Report</a></p>
+  <p><a href="pages/X-keys%20XK-12%20XK-3%20Switch%20Interface%20Data%20Report.htm">X-keys 
+    XK-12/XK-3 Switch Interface Data Report</a></p>
+  <p><a href="pages/X-keys%20XKE-128%20Data%20Report.htm">X-keys XKE-128 Data Report</a></p>
+<p><a href="pages/X-keys%20XKE-124%20T-bar%20Data%20Report.htm">X-keys XKE-124 
     T-bar Data Report</a></p>
-  <p><a href="pages/X-blox%20XBA-T-bar%20Module%20Data%20Report.htm">X-keys XKE-14 
-    T-bar Data Report</a></p>
-<p><a href="pages/X-keys%20XKE-64%20Jog%20T-bar%20Data%20Report.htm">X-keys XKE-64 Jog T-bar Data Report</a></p>
+  <p><a href="pages/X-keys%20XKE-64%20Jog%20T-bar%20Data%20Report.htm">X-keys XKE-64 Jog 
+  T-bar Data Report</a></p>
 <p><a href="pages/X-keys%20XKE-40%20Data%20Report.htm">X-keys XKE-40 Data Report</a></p>
-<P><a href="pages/X-keys%20XK-12%20Jog%20&amp;%20Shuttle%20Data%20Report.htm">X-keys XK-12 Jog &amp; Shuttle Data Report</a></P>
-<p><a href="pages/X-Keys%20XK-12%20Joystick%20Data%20Report.htm">X-keys XK-12 Joystick Data Report</a></p>
-<p><a href="pages/X-keys%20XK-68%20Jog%20&amp;%20Shuttle%20Data%20Report.htm">X-keys XK-68 Jog &amp; Shuttle Data Report</a></p>
-<p><a href="pages/X-keys%20XK-68%20Joystick%20Data%20Report.htm">X-keys XK-68 Joystick Data Report</a></p>
-<p><a href="pages/X-keys%20Matrix%20Encoder%20Board%20Data%20Report.htm">X-keys Matrix Encoder 
-  Board Data Report</a></p>
-<p><a href="pages/X-keys%20XKR-32%20Rack%20Mounted%20Data%20Report.htm">X-keys XKR-32 Rack Mounted 
+  <p><a href="pages/X-keys%20XK-12%20Jog%20Shuttle%20Data%20Report.htm">X-keys 
+    XK-12 Jog Shuttle Data Report</a></p>
+<p><a href="pages/X-Keys%20XK-12%20Joystick%20Data%20Report.htm">X-keys XK-12 Joystick 
   Data Report</a></p>
-<p><a href="pages/X-blox%20XBK-4x6%20Module%20Data%20Report.htm">X-blox XBK-4x6 Module 
+  <p><a href="pages/X-keys%20XK-68%20Jog%20Shuttle%20Data%20Report.htm">X-keys 
+    XK-68 Jog Shuttle Data Report</a></p>
+<p><a href="pages/X-keys%20XK-68%20Joystick%20Data%20Report.htm">X-keys XK-68 Joystick 
   Data Report</a></p>
-<p><a href="pages/X-blox%20XBK-3x6%20Module%20Data%20Report.htm">X-blox XBK-3x6 Module 
+  <p><a href="pages/X-keys%20Matrix%20Encoder%20Board%20Data%20Report.htm">X-keys 
+    Matrix Encoder Board Data Report</a></p>
+  <p><a href="pages/X-keys%20XKR-32%20Rack%20Mounted%20Data%20Report.htm">X-keys 
+    XKR-32 Rack Mounted Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-18%20Module%20Data%20Report.htm">X-blox XBM-18 
+    Module/XBE-18 Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-24%20Module%20Data%20Report.htm">X-blox XBM-24 
+    Module/XBE-24 Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-96%20Module%20Data%20Report.htm">X-blox XBM-96 
+    Module/XBE-96 Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-14%20T-bar%20Module%20Data%20Report.htm">X-blox XBM-14-T-bar 
+    Module/XBE-14 T-bar Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-12%20Jog%20Shuttle%20Module%20Data%20Report.htm">X-blox 
+    XBM-12 Jog Shuttle Module/XBE-12 Jog Shuttle Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-12%20Handwheel%20Module%20Data%20Report.htm">X-blox 
+    XBM-12 Handwheel Module/XBE-12 Handwheel Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-12%20Trackball%20Module%20Data%20Report.htm">X-blox 
+    XBM-12 Trackball Module/XBE-12 Trackball Data Report</a></p>
+  <p><a href="pages/X-blox%20XBM-4%20Fader%20Module%20Data%20Report.htm">X-blox 
+    XBM-4 Fader Module/XBE-4 Fader Data Report</a></p>
+  <p><a href="pages/X-keys%20USB%20HD15%20Wire%20Interface%20Data%20Report.htm">X-keys 
+  USB HD15 Wire Interface Data Report</a></p>
+<p><a href="pages/X-keys%20USB%20HD15%20GPIO%20Data%20Report.htm">X-keys USB HD15 
+  GPIO Data Report</a></p>
+<p><a href="pages/X-keys%20XC-RS232-DB9%20Data%20Report.htm">X-keys XC-RS232-DB9 Data 
+  Report</a></p>
+  <p><a href="pages/X-keys%20XC-DMX512T%20Data%20Report.htm">X-keys XC-DMX512T 
+    Data Report</a></p>
+  <p><a href="pages/X-keys%20XK-24%20KVM%20Data%20Report.htm">X-keys XK-24 KVM Data Report</a></p>
+<p><a href="pages/X-keys%20XK-16%20KVM%20Data%20Report.htm">X-keys XK-16 Stick KVM Data Report</a></p>
+<p><a href="pages/X-keys%20XK-80%20XK-60%20KVM%20Data%20Report.htm">X-keys XK-80/XK-60 
+  KVM Data Report</a></p>
+<p><a href="pages/X-keys%20XKR-32%20Rack%20Mounted%20KVM%20Data%20Report.htm">X-keys 
+  XKR-32 Rack Mounted KVM Data Report</a></p>
+<p><a href="pages/X-keys%20XKE-128%20KVM%20Data%20Report.htm">X-keys XKE-128 KVM Data 
+  Report</a></p>
+<p><a href="pages/X-keys%20XK-12%20XK-3%20Switch%20Interface%20KVM%20Data%20Report.htm">X-keys 
+  XK-3 Switch Interface KVM Data Report</a></p>
+<p><a href="pages/X-keys%20XK-24%20Android%20Data%20Report.htm">X-keys XK-24 Android 
   Data Report</a></p>
-<p><a href="pages/X-blox%20XBA-T-bar%20Module%20Data%20Report.htm">X-blox XBA-T-bar 
-  Module Data Report</a></p>
-<p><a href="pages/X-blox%20XBA-Jog%20Shuttle%20Module%20Data%20Report.htm">X-blox XBA-Jog 
-  Shuttle Module Data Report</a></p>
-<p><a href="pages/X-blox%20XBA-Handwheel%20Module%20Data%20Report.htm">X-blox XBA-Handwheel 
-  Module Data Report</a></p>
-<p><a href="pages/X-blox%20XBA-Fader%20Module%20Data%20Report.htm">X-blox XBA-Fader 
-  Module Data Report</a></p>
-<p><a href="pages/X-blox%20XBA-Trackball%20Module%20Data%20Report.htm">X-blox XBA-Trackball 
-  Module Data Report</a></p>
-<p><a href="pages/X-blox%20XBK-QWERTY%20Module%20Data%20Report.htm">X-blox XBK-QWERTY 
-  Module Data Report</a></p>
-<p><a href="pages/X-keys%20USB%20HD15%20Wire%20Interface%20Data%20Report.htm">X-keys USB HD15 Wire Interface Data Report</a></p>
-<p><a href="pages/X-keys%20USB%20HD15%20GPIO%20Data%20Report.htm">X-keys USB HD15 GPIO Data Report</a></p>
-<p><a href="pages/X-keys%20XC-RS232-DB9%20Data%20Report.htm">X-keys XC-RS232-DB9 Data Report</a></p>
-<p><a href="pages/X-keys%20XC-DMX512T%20Data%20Report.htm">X-keys XC-DMX512T Data Report</a></p>
-<p><a href="pages/X-keys%20XK-24%20KVM%20Data%20Report.htm">X-keys XK-24 KVM Data Report</a></p>
-<p><a href="pages/X-keys%20XK-16%20KVM%20Data%20Report.htm">X-keys XK-16 KVM Data Report</a></p>
-<p><a href="pages/X-keys%20XK-80%20XK-60%20KVM%20Data%20Report.htm">X-keys XK-80/XK-60 KVM Data Report</a></p>
-<p><a href="pages/X-keys%20XKR-32%20Rack%20Mounted%20KVM%20Data%20Report.htm">X-keys XKR-32 Rack Mounted KVM Data Report</a></p>
-<p><a href="pages/X-keys%20XKE-128%20KVM%20Data%20Report.htm">X-keys XKE-128 KVM Data Report</a></p>
-<p><a href="pages/X-keys%20XK-12%20XK-3%20Switch%20Interface%20KVM%20Data%20Report.htm">X-keys XK-3 Switch Interface KVM 
-  Data Report</a></p>
-<P><a href="pages/X-keys%20XK-24%20Android%20Data%20Report.htm">X-keys XK-24 Android Data Report</a></P>
-<P><a href="pages/X-keys%20XK-3%20Foot%20Pedal%20AndroidMatrix%20Encoder%20Board%20Android%20Data%20Report.htm">X-keys XK-3 Foot Pedal Plus/Matrix 
-  Encoder Board Android Data Report</a></P>
-<P><a href="pages/X-keys%20XK-16%20Stick%20Android%20Data%20Report.htm">X-keys XK-16 Stick Android Data Report</a></P>
-<P><a href="pages/X-keys%20XK-80%20XK-60%20Android%20Data%20Report.htm">X-keys XK-80/60 Android Data Report</a></P>
-<P><a href="pages/rdreport.htm">RailDriver Data Report</a></P>
-<h3><span class="style9"><a name="help"></a>Getting Help</span></h3>
+<p><a href="pages/X-keys%20XK-3%20Foot%20Pedal%20AndroidMatrix%20Encoder%20Board%20Android%20Data%20Report.htm">X-keys 
+  XK-3 Foot Pedal Plus/Matrix Encoder Board Android Data Report</a></p>
+<p><a href="pages/X-keys%20XK-16%20Stick%20Android%20Data%20Report.htm">X-keys XK-16 
+  Stick Android Data Report</a></p>
+<p><a href="pages/X-keys%20XK-80%20XK-60%20Android%20Data%20Report.htm">X-keys XK-80/60 
+  Android Data Report</a></p>
+  <p><a href="pages/RailDriver%20Desktop%20Train%20Cab%20Controller%20Data%20Report.htm">RailDriver 
+    Data Report</a></p>
+  <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top</a></p>
+  <h3><span class="style9"><a name="piehid"></a>PIEHid32Net/PIEHid64Net/PIEHidCore/PIEHid32/PIEHid64 
+    Documentation</span></h3>
+<p><a href="pages/BlockingReadData.htm">BlockingReadData</a></p>
+<p><a href="pages/CleanupInterface.htm">CleanupInterface</a></p>
+<p><a href="pages/ClearBuffer.htm">ClearBuffer</a></p>
+<p><a href="pages/CloseInterface.htm">CloseInterface</a></p>
+<p><a href="pages/DongleCheck2.htm">DongleCheck</a></p>
+<p><a href="pages/EnumeratePIE.htm">EnumeratePIE</a></p>
+<p><a href="pages/ReadData.htm">ReadData</a></p>
+<p><a href="pages/ReadLast.htm">ReadLast</a></p>
+<p><a href="pages/GetReadLength.htm">ReadLength/GetReadLength</a></p>
+<p><a href="pages/SetDataCallback.htm">SetDataCallback</a></p>
+<p><a href="pages/SetErrorCallback.htm">SetErrorCallback</a></p>
+<p><a href="pages/SetupInterface.htm">SetupInterface</a></p>
+<p><a href="pages/SetupInterfaceEx.htm">SetupInterfaceEx</a></p>
+<p><a href="pages/SuppressDuplicateReports.htm">SuppressDuplicateReports</a></p>
+<p><a href="pages/WriteData.htm">WriteData</a></p>
+<p><a href="pages/GetWriteLength.htm">WriteLength/GetWriteLength</a></p>
+  <p><a href="pages/PIEHidErrors.htm">PIEHid32Net/PIEHid64Net/PIEHid32/PIEHid64 
+    Errors</a></p>
+  <p><a href="pages/PIEHidCoreErrors.htm">PIEHidCore Errors</a></p>
+  <p><a href="pages/dongle.htm">Dongle Implementation</a></p>
+  <p class="backtotop" style="margin-bottom: 0;"><a href="#top">Back to top</a></p>
+  <h3><span class="style9"><a name="help"></a>Getting Help</span></h3>
 <p><a href="pages/TechSupp.htm">Technical Support</a></p>
-<P>&nbsp;</P>
-<P>&nbsp;</P>
+
 <P>&nbsp;  </P>
-</div></BODY>
+</div>
+</BODY>
 </HTML>
