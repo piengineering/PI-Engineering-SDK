@@ -521,10 +521,10 @@
         <td>GPIO Configuration</td>
         <td>GPIO Input </td>
         <td width="3%"> 
-          <div align="center">UART PI Base64 Input Report Message enabled</div>
+          <div align="center">UART Settings</div>
         </td>
         <td width="3%"> 
-          <div align="center">UART echo enabled</div>
+          <div align="center">Reserved</div>
         </td>
         <td width="4%"> 
           <div align="center">Start byte for Output Report Received Message</div>
@@ -605,10 +605,10 @@
           <div align="center"><b>InputConfig</b></div>
         </td>
         <td bgcolor="#CCCCCC" width="3%"> 
-          <div align="center"><b>PIEnabled</b></div>
+          <div align="center"><b>UART</b></div>
         </td>
         <td bgcolor="#CCCCCC" width="3%"> 
-          <div align="center"><b>EchoEnabled</b></div>
+          <div align="center">value</div>
         </td>
         <td bgcolor="#CCCCCC" width="4%"> 
           <div align="center">4</div>
@@ -652,15 +652,20 @@
       then the corresponding bit in this byte will determine the type of input, 
       0=Short to Ground (resistive pull up or triggers with ground), 1=Drive High 
       (resistive pull down or triggers with +3V to +5V)<br>
-      <b>PIEnabled: </b>Users of UART port features only. 0=no UART PI Base64 
-      Input Report Transmit Messages sent, 1=UART PI Base64 Input Report Transmit 
-      Message sent for selected input reports. See the Enable UART PI Base64 Input 
-      Report Transmit Messages output report for details<br>
-      <b>EchoEnabled:</b> Users of UART port features only. 0=no Incoming UART 
-      Data - Echo of <span class="style6">UART Output Report Received Message</span> 
-      input report generated, 1=Incoming UART Data - Echo of <span class="style6">UART Output Report Received Message</span> input report are generated when 
-      a UART Output Report Receive Message received. See the Enable UART Echo 
-      output report </p>
+      <b>UART:</b> Users of UART port features only. Bit 1: 0=no UART PI Base64 
+      Input Report Transmit Messages sent (factory default), 1=UART PI Base64 
+      Input Report Transmit Message sent for selected input reports. See the Enable 
+      UART PI Base64 Input Report Transmit Messages output report for details. 
+      Bit 2: 0=no Incoming UART Data - Echo of <span class="style6">UART Output 
+      Report Received Message</span> input report generated (factory default), 
+      1=Incoming UART Data - Echo of <span class="style6">UART Output Report Received 
+      Message</span> input report are generated when a UART Output Report Receive 
+      Message received. See the Enable UART Echo output report for details. Bit 
+      3: 0=Sleep of USB enabled (factory default), 1=Sleep of USB disabled. See 
+      Disable Sleep of USB output report for details. Bit 4: 0=USB check enabled 
+      (factory default), 1=USB check disabled. See Disable USB Check output report 
+      for details.<br>
+    </p>
     <p><b>3. Custom Data</b></p>
     <p>This data is returned after an output report: Generate Custom Data is sent. 
     </p>
@@ -2629,8 +2634,21 @@
           <div align="center"><span class="style6">34</span></div>
         </td>
         <td><span class="style6">0, 217, Enable, 0...</span></td>
-        <td><span class="style6">Enable Echo of UART Output Report Received 
-          Messagee</span></td>
+        <td><span class="style6">Enable Echo of UART Output Report Received Messagee</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">35</span></div>
+        </td>
+        <td><span class="style6">0, 218, SleepDisable, 0...</span></td>
+        <td><span class="style6">Disable Sleep of USBe</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">36</span></div>
+        </td>
+        <td><span class="style6">0, 143, USBCheckDisable, 0...</span></td>
+        <td><span class="style6">Disable USB Check</span></td>
       </tr>
     </table>
     <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
@@ -3595,13 +3613,7 @@
       will return to the factory default PID #1. Now it is important to send the 
       Reboot Mode command with Change=0. The device will now be back to factory 
       default. User may or may not wish to clear the hardware keyboard macros 
-      at this point.</p>
-    <p>To modify the hardware macros on a device setup for KVM use, press and 
-      hold the program switch at the top of the device while plugging in the device. 
-      The device will be return to the factory default PID #1. Make the desired 
-      macro modifications using either P.I. Engineering <a href="http://xkeys.com/PISupport/Software.php">Macroworks 
-      3.1</a> or <a href="http://xkeys.com/PISupport/Software.php">X-keys Basic 
-      Setup</a>. Replug the device and it will be in the KVM mode again.<br>
+      at this point.<br>
     </p>
     <p><strong>20. Keyboard Reflector</strong></p>
     <p>Sends native keyboard messages. Must have the device set to a PID with 
@@ -4567,6 +4579,107 @@
       </tr>
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
+    <p><strong>35. <span class="style6">Disable Sleep of USB</span></strong></p>
+    <p>By factory default the X-keys device is designed to turn off its LEDs and 
+      any GPIO pins configured as outputs when a USB suspend condition occurs. 
+      To override this behavior send this report with SleepDisable=1.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td> 
+          <div align="center">Constant</div>
+        </td>
+        <td> 
+          <div align="center">Command</div>
+        </td>
+        <td> 
+          <div align="center">Sleep Disable</div>
+        </td>
+        <td> 
+          <div align="center">Constant</div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">218</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>SleepDisable</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>SleepDisable: </b> 0=enabled (factory default), 1=disabled </p>
+    <p><strong>36. <span class="style6">Disable Check of USB</span></strong></p>
+    <p>For users of UART port only operating without USB connection. X-keys devices 
+      with UART capability are designed to operate without a USB connection. In 
+      this configuration the USB cord is used for power only. When no USB is detected 
+      and USBCheckDisable=0, the X-keys device will check for the presence of 
+      a USB connection periodically. Normally this presents no problems but to 
+      suppress this periodic check send this report with a value of 1.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td> 
+          <div align="center">Constant</div>
+        </td>
+        <td> 
+          <div align="center">Command</div>
+        </td>
+        <td> 
+          <div align="center">USB Check Disable</div>
+        </td>
+        <td> 
+          <div align="center">Constant</div>
+        </td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">143</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>USBCheckDisable</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>USBCheckDisable: </b> 0=enabled (factory default), 1=disabled </p>
     <p><b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b></p>
     <h3>X-blox UART Port Information</h3>
