@@ -148,11 +148,13 @@
       Page 1, Hid Usage 2), Multimedia (Hid Usage Page 12 and 1, Hid Usage 1 and 
       128), Joystick (Hid Usage Page 1, Hid Usage 4). <br>
       PID #8 Endpoints: Keyboard boot (Hid Usage Page 1, Hid Usage 6) for use 
-      with KVMs.</p>
-    <p>The XBM-14 T-bar Module is a standard USB HID device and is supported by P.I. 
-      Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      with KVMs. To exit KVM mode unplug the device then immediately after re-plugging 
+      the device in, toggle the Scroll Lock key on the keyboard 10-15 times.</p>
+    <p>The XBM-14 T-bar Module is a standard USB HID device and is supported by 
+      P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
       3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
-      Basic Setup</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
+      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
     <p>The XBM-14 T-bar Module has four GPIO pins which can be user configured for 
       output (factory default), short to ground input, or drive high input. Table 
       1 shows the pins assignments for the GPIO port.</p>
@@ -205,6 +207,10 @@
       </tr>
     </table>
     <p><i>Table 1</i>: Pin assignments for the GPIO port</p>
+    <p>The XBM-14 T-bar Module has a UART port for serial communication. All features 
+      are accessible through the port. Input reports can be read and output reports 
+      can be written through the UART port. See the X-blox UART Port Information 
+      section below for details on this specialized feature. </p>
     <h3>X-blox XBM-14 T-bar Module Input Report</h3>
     <img src="images/XBATbar.png" alt="X-blox XBM-14 T-bar Module" name="boxImage" border="0" id="boxImage" /> 
     <p><em>Figure 1</em>: X-blox XBM-14 T-bar Module key reference.</p>
@@ -895,8 +901,8 @@
       <b>Dim2:</b> Dim factor for bank 2 (lower), 0-255 where 255 is no dimming 
       and 0 is 100% dim or LEDs off, factory default is 255 </p>
     <p><b>6. Unique ID Data </b></p>
-    <p>This data is returned after an output report: Request Unique ID is sent. 
-      It returns 8 bytes<a href="dongle.htm"> </a>of the silicon generated unique 
+    <p>This data is returned after an output report: Get Unique ID is sent. It 
+      returns 8 bytes<a href="dongle.htm"> </a>of the silicon generated unique 
       ID of the device. This value is available also in the HID device descriptor 
       as the string iSerialNumber.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
@@ -996,7 +1002,79 @@
       of the hex values returned, for example if the 8 bytes returned were <b>B1</b>=70, 
       <b>B2</b>=21, <b>B3</b>=48, <b>B4</b>=23, <b>B5</b>=22, <b>B6</b>=6, <b>B7</b>=43, 
       and <b>B8</b>=0, the string for this would be 4615301716062B00</p>
-    <p><b>7. Incoming UART Data - Echo of UART Output Report Received Message</b></p>
+    <p><b>7. RS232 Settings Data</b></p>
+    <p>For users of the UART port only. This report is generated after an output 
+      report: Get RS232 Settings is sent. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 8-37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Baud Rate Index</td>
+        <td id="bt5">Parity</td>
+        <td>Data Bits</td>
+        <td  id="bt7">Stop Bits</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">141</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>BaudRateIndex</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Parity</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DataBits</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>StopBits</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>BaudRateIndex</b>: Baud Rate Index: 0=300, 1=1200, 2=2400, 3=4800, 4=9600, 
+      5=19200, 6=38400, 7=57600, 8=115200, 9=230400 (factory default)<br>
+      <b>Parity</b>: Parity: 0=even, 1=odd, 2=none (factory default)<br>
+      <b>DataBits</b>: Data Bits: 5, 6, 7, or 8 (factory default)<br>
+      <b>StopBits</b>: Stop Bits: 2=1 bit (factory default), 3=1.5 bits, 4=2 bits</p>
+    <p><b>8. Incoming UART Data - Echo of UART Output Report Received Message</b></p>
     <p>For users of the UART port only. If UART Echo is enabled, this report is 
       generated when a UART Output Report Received Message is received on the 
       module's UART RX. The module recognizes a UART Output Report Received Message 
@@ -1092,7 +1170,7 @@
       <b>Bytes</b>: Additional bytes added until the required number of bytes 
       is reached. In the Index Based Set RGB Backlights example there would be 
       additionally B3=Red, B4=Green, B5=Blue, and B6= Flash and thus <b>Count</b>=7</p>
-    <p><b>8. Incoming UART Data - UART Custom Message</b></p>
+    <p><b>9. Incoming UART Data - UART Custom Message</b></p>
     <p>For users of the UART port only. This report is generated for messages 
       received on the module's UART RX that have a start byte of 2 and a stop 
       byte of 3. A single message may generate several of these reports. No decoding 
@@ -2563,7 +2641,7 @@
           <div align="center"><span class="style6">32</span></div>
         </td>
         <td><span class="style6">0, 157, 0...</span></td>
-        <td><span class="style6">Request Unique ID</span></td>
+        <td><span class="style6">Get Unique ID</span></td>
       </tr>
       <tr> 
         <td> 
@@ -2571,39 +2649,54 @@
         </td>
         <td><span class="style6">0, 220, KeyIndex or Virtual Button ID, State, 
           0...</span></td>
-        <td><span class="style6">Control Digital Input</span></td>
+        <td><span class="style6">Control Virtual Digital Input</span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">34</span></div>
+        </td>
+        <td><span class="style6">0, 141, 0...</span></td>
+        <td><span class="style6">Get RS232 Settings</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">35</span></div>
+        </td>
+        <td><span class="style6">0, 142, BaudRateIndex, Parity, DataBits, StopBits, 
+          0...</span></td>
+        <td><span class="style6">Change RS232 Settings</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">36</span></div>
         </td>
         <td><span class="style6">0, 215, Enable, 0...</span></td>
         <td><span class="style6">Enable UART PI Base64 Input Report Transmit Messages<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">35</span></div>
+          <div align="center"><span class="style6">37</span></div>
         </td>
         <td><span class="style6">0, 216, Count, B1, B2, B3..., 0...</span></td>
         <td><span class="style6">Transmit to UART</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">36</span></div>
+          <div align="center"><span class="style6">38</span></div>
         </td>
         <td><span class="style6">0, 217, Enable, 0...</span></td>
         <td><span class="style6">Enable Echo of UART Output Report Received Messagee</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">37</span></div>
+          <div align="center"><span class="style6">39</span></div>
         </td>
         <td><span class="style6">0, 218, SleepDisable, 0...</span></td>
         <td><span class="style6">Disable Sleep of USBe</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">38</span></div>
+          <div align="center"><span class="style6">40</span></div>
         </td>
         <td><span class="style6">0, 143, USBCheckDisable, 0...</span></td>
         <td><span class="style6">Disable USB Check</span></td>
@@ -3512,10 +3605,10 @@
     <p><b>Mode:</b> 0 for PID #1, 1 for PID #2, 2 for PID #3 and 3 for PID #4, 
       4 for PID #5, 5 for PID #6, 6 for PID #7, and 7 for PID #8 (KVM). Note if 
       change to PID #8 (KVM) input and output reports will not be available and 
-      thus the T-bar will not function. To convert back to PID #1 from PID #8, 
-      immediately after plugging the device in, toggle the Scroll Lock key on 
-      the keyboard 5-10 times. Use the Reboot Mode command to either have the 
-      unit always revert to PID #8 (KVM) on reboot or not.</p>
+      thus the T-bar will not function. To exit KVM mode unplug the device then 
+      immediately after re-plugging the device in, toggle the Scroll Lock key 
+      on the keyboard 10-15 times. Use the Reboot Mode command to either have 
+      the unit always revert to PID #8 (KVM) on reboot or not.</p>
     <p><strong>19. Reboot Mode</strong></p>
     <p>Send this output report to determine if the device will automatically return 
       to PID #8 (KVM) on each reboot or if it will remain in the current PID between 
@@ -4318,11 +4411,11 @@
         </td>
       </tr>
     </table>
-    <p><strong>32. Request Unique ID</strong></p>
-    <p>After sending a Request Unique ID output report, a Request Unique ID Data 
-      input report will be generated with the 8 bytes<a href="dongle.htm"> </a>of 
-      the silicon generated unique ID of the device. This value is available also 
-      in the HID device descriptor as the string iSerialNumber.</p>
+    <p><strong>32. Get Unique ID</strong></p>
+    <p>After sending a Get Unique ID output report, a Unique ID Data input report 
+      will be generated with the 8 bytes<a href="dongle.htm"> </a>of the silicon 
+      generated unique ID of the device. This value is available also in the HID 
+      device descriptor as the string iSerialNumber.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -4352,7 +4445,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>33. Control Digital Input</strong></p>
+    <p><strong>33. Control Virtual Digital Input</strong></p>
     <p>Use this output report to virtually press or release a physical button 
       or to press or release a Virtual Button. </p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -4416,7 +4509,103 @@
       to 111 correspond to the lowest to highest bit. A special ID=255 is provided 
       to clear all buttons pressed virtually.<br>
       <b>State: </b>2=press, 1=release</p>
-    <p><strong>34. Enable UART PI Base64 Input Report Transmit Messages</strong></p>
+    <p><strong>34. Get RS232 Settings</strong></p>
+    <p>After sending a Request RS232 Settings output report, a RS232 Settings 
+      Data input report will be generated providing the settings.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">141</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>35. Change RS232 Settings</strong></p>
+    <p>Send this output report to change the X-keys RS232 settings.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Baud Rate Index</td>
+        <td>Parity</td>
+        <td>Data Bits</td>
+        <td>Stop Bits</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">142</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>BaudRateIndex</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Parity</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>DataBits</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>StopBits</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>BaudRateIndex</b>: Baud Rate Index: 0=300, 1=1200, 2=2400, 3=4800, 4=9600, 
+      5=19200, 6=38400, 7=57600, 8=115200, 9=230400 (factory default)<br>
+      <b>Parity</b>: Parity: 0=even, 1=odd, 2=none (factory default)<br>
+      <b>DataBits</b>: Data Bits: 5, 6, 7, or 8 (factory default)<br>
+      <b>StopBits</b>: Stop Bits: 2=1 bit (factory default), 3=1.5 bits, 4=2 bits</p>
+    <p><strong>36. Enable UART PI Base64 Input Report Transmit Messages</strong></p>
     <p>For users of the UART port only. Send this output report to disable or 
       enable the UART PI Base64 Input Report Transmit Messages. If enabled, a 
       UART PI Base64 Input Report Transmit Message will be transmitted via the 
@@ -4468,7 +4657,7 @@
       </tr>
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
-    <p><strong>35. Transmit to UART</strong></p>
+    <p><strong>37. Transmit to UART</strong></p>
     <p>For users of the UART port only. Puts bytes on the module's UART TX for 
       transmission. The number of bytes sent at one time is limited by the output 
       report length and is 33.</p>
@@ -4547,7 +4736,8 @@
       <b>B1: </b>1st byte<br>
       <b>B2:</b> 2nd byte<br>
       <b>B3:</b> 3rd byte and so on for as many bytes as specified in <b>Count</b></p>
-    <p><strong>36. <span class="style6">Enable Echo of UART Output Report Received Message</span></strong></p>
+    <p><strong>38. <span class="style6">Enable Echo of UART Output Report Received 
+      Message</span></strong></p>
     <p>For users of the UART port only. Send this output report to disable or 
       enable the Incoming UART Data - Echo of <span class="style6">UART Output Report Received Message</span> input reports generated when UART Output 
       Report Received Messages are received via the module's UART RX. Current 
@@ -4599,7 +4789,7 @@
       </tr>
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
-    <p><strong>37. <span class="style6">Disable Sleep of USB</span></strong></p>
+    <p><strong>39. <span class="style6">Disable Sleep of USB</span></strong></p>
     <p>By factory default the X-keys device is designed to turn off its LEDs and 
       any GPIO pins configured as outputs when a USB suspend condition occurs. 
       To override this behavior send this report with SleepDisable=1.</p>
@@ -4648,7 +4838,7 @@
       </tr>
     </table>
     <p><b>SleepDisable: </b> 0=enabled (factory default), 1=disabled </p>
-    <p><strong>38. <span class="style6">Disable Check of USB</span></strong></p>
+    <p><strong>40. <span class="style6">Disable Check of USB</span></strong></p>
     <p>For users of UART port only operating without USB connection. X-keys devices 
       with UART capability are designed to operate without a USB connection. In 
       this configuration the USB cord is used for power only. When no USB is detected 
@@ -4918,7 +5108,7 @@
         <a class="backtotop" href="#top">Back to top</a>
       </div><!-- end of "main" -->
       <div id="footer">
-        <p>&copy; Copyright 2022&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+        <p>&copy; Copyright 2024&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->
     </div><!-- end of "page" -->
