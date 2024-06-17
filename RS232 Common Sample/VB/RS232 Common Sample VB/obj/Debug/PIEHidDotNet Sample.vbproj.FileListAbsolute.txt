@@ -1,0 +1,24 @@
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.exe
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.pdb
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.xml
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\bin\Debug\PIEHid32Net.dll
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet_Sample.Form1.resources
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet_Sample.Resources.resources
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.vbproj.GenerateResource.Cache
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.exe
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.xml
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XK-16 LCD\PIEHidDotNet Sample\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.pdb
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.exe
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.xml
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.pdb
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.exe
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.pdb
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\bin\Debug\PIEHidDotNet Sample.xml
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\bin\Debug\PIEHid32Net.dll
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.vbprojResolveAssemblyReference.cache
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet_Sample.Form1.resources
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet_Sample.Resources.resources
+C:\Users\Michael Hetherington\Documents\Visual Studio 2010\Projects\XKE-40\VB\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.vbproj.GenerateResource.Cache
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XKE-40\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.exe
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XKE-40\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.xml
+C:\Patti\Visual Studio 2010\Projects\Visual Basic\XKE-40\PIEHidDotNet Sample\obj\Debug\PIEHidDotNet Sample.pdb

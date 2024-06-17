@@ -1,0 +1,145 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 937, 424
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++  RS232 Common Sample"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Start",IDSTART,7,6,74,17
+    PUSHBUTTON      "Quit",IDCANCEL,293,6,74,17
+    LISTBOX         IDC_LIST1,7,44,359,23,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "USB Data (hex):",IDC_STATIC,7,73,77,9
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,369,113,61,14
+    LTEXT           "Backlighting:",IDC_STATIC,7,132,89,9
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,178,73,17
+    PUSHBUTTON      "BL Toggle",IDC_BLToggle,7,142,73,17
+    LTEXT           "Request Descriptor:",IDC_STATIC,7,166,68,9
+    EDITTEXT        IDC_EDIT4,542,57,34,14,ES_AUTOHSCROLL
+    LTEXT           "Enter COM port:",IDC_STATIC,484,60,53,10
+    LTEXT           "Baud Rate:",IDC_STATIC,483,128,51,10
+    LTEXT           "Parity:",IDC_STATIC,600,128,42,10
+    LTEXT           "Select X-keys device then lick Setup Callback:",IDC_STATIC,7,33,169,9
+    LISTBOX         ID_EVENTS,7,84,359,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,369,86,61,14
+    LISTBOX         ID_EVENTS2,481,179,374,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Read RS232 Settings",IDC_READRS232,103,343,84,17
+    PUSHBUTTON      "Change RS232 Settings",IDC_CHANGERS232,103,364,84,17
+    LTEXT           "Baud Rate:",IDC_STATIC,197,347,40,9
+    LTEXT           "Parity:",IDC_STATIC,320,347,40,9
+    PUSHBUTTON      "Write to X-keys TX",IDC_WRITETX,103,392,84,17
+    LTEXT           "Serial Data:",IDC_STATIC,483,169,52,10
+    LTEXT           "Xkeys UART Settings:",IDC_STATIC,94,133,89,9
+    PUSHBUTTON      "Echo On",IDC_ECHOON,103,170,84,17
+    PUSHBUTTON      "Echo Off",IDC_ECHOOFF,193,170,84,17
+    PUSHBUTTON      "Input Reports On",IDC_JSONON,103,223,84,17
+    PUSHBUTTON      "Input Reports Off",IDC_JSONOFF,193,223,84,17
+    LTEXT           "Echo UART messages - If on then when a UART Output Report Received Message (start byte 4, stop byte 5) is received an Incoming UART Data - Echo of UART Output Report Received Message input report will be generated",IDC_STATIC,105,148,365,20
+    LTEXT           "UART PI Base64 Input Report Transmit Messages - If on then any standard input report will be accompanied by a corresponding UART PI Base64 Input Report Transmit Message sent out on the X-keys TX",IDC_STATIC,105,194,305,24
+    PUSHBUTTON      "Sleep Enabled",IDC_SLEEPEN,104,274,84,17
+    PUSHBUTTON      "Sleep Disabled",IDC_SLEEPDIS,194,273,84,17
+    LTEXT           "USB Sleep - If sleep enabled  the X-keys will turn off its LEDs and any GPIO output pins when a USB suspend condition occurs. To override this behavior set sleep disable. Read state in Descriptor.",IDC_STATIC,105,244,288,26
+    PUSHBUTTON      "Check Enabled",IDC_USBCHECKEN,103,316,84,17
+    PUSHBUTTON      "Check Disabled",IDC_USBCHECKDIS,193,316,84,17
+    LTEXT           "USB Check - set check disable if using the USB connection for power only. Read state in Descriptor.",IDC_STATIC,105,297,288,16
+    LTEXT           "Windows 8/8.1/10 are NOT supported in PL-2303HXA and PL-2303X EOL chip versions. Run PL2303 CheckChipVersion tool program in Windows XP/Vista/7 to check chip version. Windows Vista, XP, 2000, 98 and Windows ME driver technical support are discontinued.",IDC_STATIC,483,354,436,17
+    LTEXT           "USB COM Port Adapter",IDC_STATIC,476,34,89,9
+    LTEXT           "The following is for directly communicating with the serial port via a  serial to USB converter*",IDC_STATIC,483,81,247,22
+    LTEXT           "Match COM Port settings to those of the X-keys",IDC_STATIC,483,113,190,10
+    LTEXT           "Read UART RX",IDC_STATIC,483,156,52,10
+    LTEXT           "Write a message to be received by X-keys as a UART Output Report Received Message",IDC_STATIC,483,270,304,10
+    LTEXT           "* Note about serial to USB adpters: ",IDC_STATIC,483,314,304,10
+    LTEXT           "Write a message to be received by X-keys as a UART Custom Received Message",IDC_STATIC,483,233,304,10
+    LTEXT           "If using a Prolific Serial to USB Adapter PL2303 please be aware that older models of these do not function properly on Window 7 or newer machines. According to the Prolific website (http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&pcid=41):",IDC_STATIC,483,325,380,23
+    LTEXT           "P.I. Engineering tests have found the PL-2303HXA chip does not function reliably on Windows 7 even though it is not listed. We strongly suggest users of an adapter run the PL2303 CheckChipVersion to verify the chip.",IDC_STATIC,483,387,392,20
+    PUSHBUTTON      "Write",IDC_WRITECOMTX,483,247,84,17
+    PUSHBUTTON      "Write",IDC_WRITECOMTX2,483,284,84,17
+    LTEXT           "Prolific recommends to use PL-2303HXD (HX Rev D) or PL2303TA chip",IDC_STATIC,483,372,304,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR2,859,206,61,14
+    PUSHBUTTON      "Change settings",IDC_CHANGECOMRS232,737,133,84,17
+    PUSHBUTTON      "Open COM Port",IDC_OPENCOMPORT,585,56,84,17
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 930
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 417
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
