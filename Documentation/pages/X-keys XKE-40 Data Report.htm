@@ -145,16 +145,14 @@
       Page 1, Hid Usage 2), Multimedia (Hid Usage Page 12 and 1, Hid Usage 1 and 
       128), Joystick (Hid Usage Page 1, Hid Usage 4). <br>
       PID #8 Endpoints: Keyboard boot (Hid Usage Page 1, Hid Usage 6) for use 
-      with KVMs. Note T-bar will not work in this PID.</p>
-    <p>The XKE-40 is an Android enabled device in PIDs #1, #3, #4, #6, and #7 
-      (pids with no Keyboard boot endpoint). This means the device can be enumerated, 
-      read (if input report available), and written to on Android OS that support 
-      host USB, generally 3.1 or higher. Android OS is not able to enumerate a 
-      device with a Keyboard boot endpoint and thus if the device is in PID #2, 
-      5, or 8 it will appear to the Android OS as only a hardware keyboard, you 
-      will not be able to get a handle to it however it will work as a keyboard 
-      assuming there are hardware macros recorded on the keys.</p>
-    <p>The XKE-40 is a standard USB HID device and is supported by P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys Basic Setup</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>. </p>
+      with KVMs. To exit KVM mode unplug the device, locate the small hole on 
+      the right end of the device and using a paper clip or similar item depress 
+      the program switch while simultaneously replugging the device.</p>
+    <p>The XKE-40 is a standard USB HID device and is supported by 
+      P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
+      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>. </p>
     <h3>X-keys XKE-40 Input Report</h3>
     <h3><img src="images/XKE-40.png" width="1000" height="100"></h3>
     <p><i>Figure 1</i>: X-keys XKE-40 key reference.</p>
@@ -1179,19 +1177,26 @@
         <td> 
           <div align="center"><span class="style6">22</span></div>
         </td>
+        <td><span class="style6">0, 157, 0...</span></td>
+        <td><span class="style6">Request Unique ID</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">23</span></div>
+        </td>
         <td><span class="style6">0, 174, 0...</span></td>
         <td><span class="style6">Request Backlight On/Off State</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">23</span></div>
+          <div align="center"><span class="style6">24</span></div>
         </td>
         <td><span class="style6">0, 175, 0...</span></td>
         <td><span class="style6">Request Backlight Flash State</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">24</span></div>
+          <div align="center"><span class="style6">25</span></div>
         </td>
         <td><span class="style6">0, 224, Count, B1, B2, B3..., 0...</span></td>
         <td><span class="style6">Generate Custom Data</span></td>
@@ -1708,9 +1713,10 @@
     <p><b>Mode:</b> 0 for PID #1, 1 for PID #2, 2 for PID #3 and 3 for PID #4, 
       4 for PID #5, 5 for PID #6, 6 for PID #7, and 7 for PID #8 (KVM). Note if 
       change to PID #8 (KVM) input and output reports will not be available. To 
-      convert back to PID #1 from PID #8 hold down the programming switch while 
-      plugging the device in. Use the Reboot Mode command to either have the unit 
-      always revert to PID #8 (KVM) on reboot or not</p>
+      exit KVM mode unplug the device, locate the small hole on the right end 
+      of the device and using a paper clip or similar item depress the program 
+      switch while simultaneously replugging the device. Use the Reboot Mode command 
+      to either have the unit always revert to PID #8 (KVM) on reboot or not.</p>
     <p><strong>13. Reboot Mode</strong></p>
     <p>Send this output report to determine if the device will automatically return 
       to PID #8 (KVM) on each reboot or if it will remain in the current PID between 
@@ -1752,26 +1758,7 @@
       </tr>
     </table>
     <p><b>Change:</b> Enter 0 to have the device not return to PID #8 (KVM) on 
-      reboot and 7 to have it always return to PID #8 (KVM) on reboot</p>
-    <p>To setup a device for KVM use first program the hardware keyboard macros 
-      into it using either P.I. Engineering <a href="http://xkeys.com/PISupport/Software.php">Macroworks 
-      3.1</a> or <a href="http://xkeys.com/PISupport/Software.php">X-keys Basic 
-      Setup</a> while it is in the factory default PID #1. Test the macros to 
-      make sure they are as desired. After programming send the Reboot Mode command 
-      with Change=7, then either reboot device or send the Change PID command 
-      with Mode=7.</p>
-    <p>To return a device previously setup for KVM use press and hold the programming 
-      switch at the top of the device while plugging in the device. The device 
-      will return to the factory default PID #1. Now it is important to send the 
-      Reboot Mode command with Change=0. The device will now be back to factory 
-      default. User may or may not wish to clear the hardware keyboard macros 
-      at this point.</p>
-    <p>To modify the hardware macros on a device setup for KVM use, press and 
-      hold the program switch at the top of the device while plugging in the device. 
-      The device will be return to the factory default PID #1. Make the desired 
-      macro modifications using either P.I. Engineering <a href="http://xkeys.com/PISupport/Software.php">Macroworks 
-      3.1</a> or <a href="http://xkeys.com/PISupport/Software.php">X-keys Basic 
-      Setup</a>. Replug the device and it will be in the KVM mode again.<br>
+      reboot or 7 to have it always return to PID #8 (KVM) on reboot<br>
     </p>
     <p><strong>14. Keyboard Reflector</strong></p>
     <p>Sends native keyboard messages.</p>
@@ -2368,7 +2355,41 @@
       1-254<br>
       <b>K3:</b> 4th byte of a random number that was used in the hash, any number 
       1-254</p>
-    <p><strong>22. Request Backlight On/Off State</strong></p>
+    <p><strong>22. Request Unique ID</strong></p>
+    <p>After sending a Request Unique ID output report, a Request Unique ID Data 
+      input report will be generated with the 8 bytes<a href="dongle.htm"> </a>of 
+      the silicon generated unique ID of the device. This value is available also 
+      in the HID device descriptor as the string iSerialNumber.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 3-36 </span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">157</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><strong>23. Request Backlight On/Off State</strong></p>
     <p>After sending a Request Backlight On/Off State output report a Backlight 
       On/Off State Data input report will be returned giving the value of the 
       bank 1 and bank 2 intensities and the on/off state for each backlight as 
@@ -2402,7 +2423,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>23. Request Backlight Flash State</strong></p>
+    <p><strong>24. Request Backlight Flash State</strong></p>
     <p>After sending a Request Backlight Flash State output report a Backlight 
       Flash State Data input report will be returned giving the flash state of 
       the green and red indicator LEDs, the current flash frequency, and the flash 
@@ -2436,7 +2457,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>24. Generate Custom Data</strong></p>
+    <p><strong>25. Generate Custom Data</strong></p>
     <p>After sending this output report a Custom Data input report will be generated 
       with Byte 3 set to 224 and the count and custom bytes following. Note input 
       reports are available in PID #1 and PID #3 only. </p>

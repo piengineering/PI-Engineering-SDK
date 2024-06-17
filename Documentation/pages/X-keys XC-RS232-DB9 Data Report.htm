@@ -107,8 +107,8 @@
         </td>
       </tr>
     </table>
-    <p>PID #1 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
-      Hid Usage 1), Mouse (Hid Usage Page 1, Hid Usage 2), Joystick (Hid Usage 
+    <p>PID #1 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 
+      12, Hid Usage 1), Mouse (Hid Usage Page 1, Hid Usage 2), Joystick (Hid Usage 
       Page 1, Hid Usage 4).<br>
       PID #2 Endpoints: Consumer Usage Page Output (Hid Usage Page 12, Hid Usage 
       1), Mouse (Hid Usage Page 1, Hid Usage 2), Keyboard (Hid Usage Page 1, Hid 
@@ -127,14 +127,6 @@
       PID #4 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
       Hid Usage 1), Boot Mouse (Hid Usage Page 1, Hid Usage 2), Boot Keyboard 
       (Hid Usage Page 1, Hid Usage 6). </p>
-    <p>The IAB-RS232 is an Android enabled device in PIDs #1, #2 or #3. This means 
-      the device can be enumerated, read (if input report available), and written 
-      to on Android OS that support host USB, generally 3.1 or higher. Android 
-      OS is not able to enumerate a device with a boot keyboard and thus if the 
-      IAB-RS232 is in PID #4 it will appear to the Android OS as only a hardware 
-      keyboard/mouse, you will not be able to get a handle to it but it will work 
-      as a keyboard/mouse assuming there are hardware macros recorded on the keys. 
-    </p>
     <p>IAB-RS232 is a standard USB HID device and is supported by P.I. Engineering's 
       <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
       3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 

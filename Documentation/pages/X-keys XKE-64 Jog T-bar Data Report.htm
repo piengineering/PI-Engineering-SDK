@@ -145,16 +145,14 @@
       Page 1, Hid Usage 2), Multimedia (Hid Usage Page 12 and 1, Hid Usage 1 and 
       128), Joystick (Hid Usage Page 1, Hid Usage 4). <br>
       PID #8 Endpoints: Keyboard boot (Hid Usage Page 1, Hid Usage 6) for use 
-      with KVMs. Note T-bar will not work in this PID.</p>
-    <p>The XKE-64 Jog T-bar is an is an Android enabled device in PIDs #1, #3, 
-      #4, #6, and #7 (pids with no Keyboard boot endpoint). This means the device 
-      can be enumerated, read (if input report available), and written to on Android 
-      OS that support host USB, generally 3.1 or higher. Android OS is not able 
-      to enumerate a device with a Keyboard boot endpoint and thus if the device 
-      is in PID #2, 5, or 8 it will appear to the Android OS as only a hardware 
-      keyboard, you will not be able to get a handle to it however it will work 
-      as a keyboard assuming there are hardware macros recorded on the keys. </p>
-    <p>The XKE-64 Jog T-bar is a standard USB HID device and is supported by P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys Basic Setup</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+      with KVMs. Note T-bar will not work in this PID. To exit KVM mode first 
+      unplug the device and while holding down the program switch located on the 
+      top of the device replug the device.</p>
+    <p>The XKE-64 Jog T-bar is a standard USB HID device and is supported by 
+      P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
+      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
+      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
+      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
     <h3>X-keys XKE-64 Jog T-bar Input Report</h3>
     <h3><img src="images/XKE-64%20Jog%20T-bar.png" width="500" height="403"></h3>
     <p><i>Figure 1</i>: X-keys XKE-64 Jog T-bar key reference.</p>
