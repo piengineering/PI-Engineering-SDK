@@ -30,6 +30,8 @@ namespace PIHidDotName_Csharp_Sample
         ListBox thisListBox;
         //end thread-safe
         byte[] lastdata = null;
+        string printthis = "";
+        string lastprintthis = "";
        
         public Form1()
         {
@@ -433,9 +435,40 @@ namespace PIHidDotName_Csharp_Sample
                     //end virtual buttons
 
                     //Shuttle Digital
-                    for (int i = 0; i < 2; i++)
+
+
+                    //Jog Digital, Shuttle At Rest Digital
+                    byte val = (byte)(data[12] & 0x80);
+                    if (val != 0)
                     {
-                        for (int j = 0; j < 7; j++) //the digital shuttle
+                        c = LblJogD;
+                        SetText("Jog Digital: CW");
+                    }
+                    val = (byte)(data[11] & 0x80);
+                    if (val != 0)
+                    {
+                        c = LblJogD;
+                        SetText("Jog Digital: CCW");
+                    }
+
+                    //Shuttle 0 (At Rest) Digital
+                    val = (byte)(data[9] & 0x80);
+                    if (val != 0)
+                    {
+                        c = LblShuttleD;
+                        SetText("Shuttle Digital: 0 CW");
+                    }
+
+                    val = (byte)(data[10] & 0x80);
+                    if (val != 0)
+                    {
+                        c = LblShuttleD;
+                        SetText("Shuttle Digital: 0 CCW");
+                    }
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 8; j++) //the digital shuttle and digital jog
                         {
                             int temp1 = (int)Math.Pow(2, j);
                             int keynum = 8 * i + j;
@@ -445,98 +478,123 @@ namespace PIHidDotName_Csharp_Sample
                             if (temp2 != 0 && temp3 == 0) state = 1; //press
                             else if (temp2 != 0 && temp3 != 0) state = 2; //held down
                             else if (temp2 == 0 && temp3 != 0) state = 3; //release
-                            string printthis = "";
-                           
-                            switch (keynum)
+
+                            if (state == 1) //enter
                             {
-                                case 0: //shuttle +1
-                                    printthis = "Shuttle Digital: +1";
-                                    break;
-                                case 1: //shuttl +2
-                                    printthis = "Shuttle Digital: +2";
-                                    break;
-                                case 2: //shuttle +3
-                                    printthis = "Shuttle Digital: +3";
-                                    break;
-                                case 3: //shuttle +4
-                                    printthis = "Shuttle Digital: +4";
-                                    break;
-                                case 4: //shuttle +5
-                                    printthis = "Shuttle Digital: +5";
-                                    break;
-                                case 5: //shuttle +6
-                                    printthis = "Shuttle Digital: +6";
-                                    break;
-                                case 6: //shuttle +7
-                                    printthis = "Shuttle Digital: +7";
-                                    break;
-                                case 8: //shuttle -1
-                                    printthis = "Shuttle Digital: -1";
-                                    break;
-                                case 9: //shuttl -2
-                                    printthis = "Shuttle Digital: -2";
-                                    break;
-                                case 10: //shuttle -3
-                                    printthis = "Shuttle Digital: -3";
-                                    break;
-                                case 11: //shuttle -4
-                                    printthis = "Shuttle Digital: -4";
-                                    break;
-                                case 12: //shuttle -5
-                                    printthis = "Shuttle Digital: -5";
-                                    break;
-                                case 13: //shuttle -6
-                                    printthis = "Shuttle Digital: -6";
-                                    break;
-                                case 14: //shuttle -7
-                                    printthis = "Shuttle Digital: -7";
-                                    break;
+                                switch (keynum)
+                                {
+                                    case 0: //shuttle 1 cw from 0
+                                        printthis = "Shuttle Digital: 1 CW";
+                                        break;
+                                    case 1: //shuttl 2 cw from 1
+                                        printthis = "Shuttle Digital: 2 CW";
+                                        break;
+                                    case 2: //shuttle 3 cw from 2
+                                        printthis = "Shuttle Digital: 3 CW";
+                                        break;
+                                    case 3: //shuttle 4 cw from 3
+                                        printthis = "Shuttle Digital: 4 CW";
+                                        break;
+                                    case 4: //shuttle 5 cw from 4
+                                        printthis = "Shuttle Digital: 5 CW";
+                                        break;
+                                    case 5: //shuttle 6 cw from 5
+                                        printthis = "Shuttle Digital: 6 CW";
+                                        break;
+                                    case 6: //shuttle 7 cw from 6
+                                        printthis = "Shuttle Digital: 7 CW";
+                                        break;
+                                    
+                                    case 8: //shuttle 1 ccw from 2
+                                        printthis = "Shuttle Digital: 1 CCW";
+                                        break;
+                                    case 9: //shuttl 2 ccw from 3
+                                        printthis = "Shuttle Digital: 2 CCW";
+                                        break;
+                                    case 10: //shuttle 3 ccw from 4
+                                        printthis = "Shuttle Digital: 3 CCW";
+                                        break;
+                                    case 11: //shuttle 4 ccw from 5
+                                        printthis = "Shuttle Digital: 4 CCW";
+                                        break;
+                                    case 12: //shuttle 5 ccw from 6
+                                        printthis = "Shuttle Digital: 5 CCW";
+                                        break;
+                                    case 13: //shuttle 6 ccw from 7
+                                        printthis = "Shuttle Digital: 6 CCW";
+                                        break;
+                                    
+                                    case 16: //shuttle -1 ccw from 0
+                                        printthis = "Shuttle Digital: -1 CCW";
+                                        break;
+                                    case 17: //shuttl -2 ccw from -1
+                                        printthis = "Shuttle Digital: -2 CCW";
+                                        break;
+                                    case 18: //shuttle -3 ccw from -2
+                                        printthis = "Shuttle Digital: -3 CCW";
+                                        break;
+                                    case 19: //shuttle -4 ccw from -3
+                                        printthis = "Shuttle Digital: -4 CCW";
+                                        break;
+                                    case 20: //shuttle -5 ccw from -4
+                                        printthis = "Shuttle Digital: -5 CCW";
+                                        break;
+                                    case 21: //shuttle -6 ccw from -5
+                                        printthis = "Shuttle Digital: -6 CCW";
+                                        break;
+                                    case 22: //shuttle -7 ccw from -6
+                                        printthis = "Shuttle Digital: -7 CCW";
+                                        break;
+                                    
+                                    case 24: //shuttle -1 cw from -2
+                                        printthis = "Shuttle Digital: -1 CW";
+                                        break;
+                                    case 25: //shuttl -2 cw from -3
+                                        printthis = "Shuttle Digital: -2 CW";
+                                        break;
+                                    case 26: //shuttle -3 cw from -4
+                                        printthis = "Shuttle Digital: -3 CW";
+                                        break;
+                                    case 27: //shuttle -4 cw from -5
+                                        printthis = "Shuttle Digital: -4 CW";
+                                        break;
+                                    case 28: //shuttle -5 cw from -6
+                                        printthis = "Shuttle Digital: -5 CW";
+                                        break;
+                                    case 29: //shuttle -6 cw from -7
+                                        printthis = "Shuttle Digital: -6 CW";
+                                        break;
+                                }
                             }
-                            
+
+                            if (printthis != lastprintthis)
+                            {
+                                c = LblShuttleD;
+                                SetText(printthis);
+                                lastprintthis = printthis;
+                            }
                             if (state == 1)
                             {
-                                c = this.LblShuttleD;
-                                SetText(printthis + " enter");
+                               //enter of region
                             }
                             else if (state == 3)
                             {
-                                c = this.LblShuttleD;
-                                SetText(printthis + " exit");
-                                //note the -1 exit and +1 exit will be overwritten by the At Rest below
+                               //exit of region
                             }
+                            
                         }
-                    }
-
-                    //Jog Digital, Shuttle At Rest Digital
-                    byte val = (byte)(data[11] & 0x40);
-                    if (val != 0)
-                    {
-                        c = LblJogD;
-                        SetText("Jog Digital: Clockwise");
-                    }
-                    val = (byte)(data[11] & 0x80);
-                    if (val != 0)
-                    {
-                        c = LblJogD;
-                        SetText("Jog Digital: Counterclockwise");
-                    }
-                    val = (byte)(data[11] & 0x20);
-                    if (val != 0)
-                    {
-                        c = LblShuttleD;
-                        SetText("Shuttle Digital: At Rest");
                     }
 
                     //Jog Analog
                     if (data[13] == 1) //cw
                     {
                         c = this.LblJog;
-                        this.SetText("Jog Analog: Clockwise");
+                        this.SetText("Jog Analog: CW");
                     }
                     else if (data[13] == 255)
                     {
                         c = this.LblJog;
-                        this.SetText("Jog Analog: Counterclockwise");
+                        this.SetText("Jog Analog: CCW");
                     }
 
                     //Shuttle Analog

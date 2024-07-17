@@ -1378,7 +1378,7 @@
             // LblJogD
             // 
             this.LblJogD.AutoSize = true;
-            this.LblJogD.Location = new System.Drawing.Point(113, 223);
+            this.LblJogD.Location = new System.Drawing.Point(96, 223);
             this.LblJogD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblJogD.Name = "LblJogD";
             this.LblJogD.Size = new System.Drawing.Size(59, 13);
@@ -1398,7 +1398,7 @@
             // LblJog
             // 
             this.LblJog.AutoSize = true;
-            this.LblJog.Location = new System.Drawing.Point(113, 209);
+            this.LblJog.Location = new System.Drawing.Point(96, 209);
             this.LblJog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblJog.Name = "LblJog";
             this.LblJog.Size = new System.Drawing.Size(63, 13);
@@ -1408,7 +1408,7 @@
             // lblJogRaw
             // 
             this.lblJogRaw.AutoSize = true;
-            this.lblJogRaw.Location = new System.Drawing.Point(113, 237);
+            this.lblJogRaw.Location = new System.Drawing.Point(96, 237);
             this.lblJogRaw.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblJogRaw.Name = "lblJogRaw";
             this.lblJogRaw.Size = new System.Drawing.Size(83, 13);
@@ -1715,7 +1715,7 @@
             this.LblButtons.Location = new System.Drawing.Point(24, 209);
             this.LblButtons.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblButtons.Name = "LblButtons";
-            this.LblButtons.Size = new System.Drawing.Size(85, 41);
+            this.LblButtons.Size = new System.Drawing.Size(65, 41);
             this.LblButtons.TabIndex = 468;
             this.LblButtons.Text = "Buttons:";
             // 
