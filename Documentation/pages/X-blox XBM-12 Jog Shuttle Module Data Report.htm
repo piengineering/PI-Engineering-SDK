@@ -300,10 +300,10 @@
         <td id="bt4"> 
           <div align="center">Virtual Digital Inputs</div>
         </td>
-        <td id="bt5" width="5%">Shuttle Digital- CW</td>
-        <td width="5%">Shuttle Digital-CCW</td>
-        <td id="bt5" width="5%">Shuttle At Rest Digital, Jog Digital</td>
-        <td id="bt5" width="5%">Reserved</td>
+        <td id="bt5" width="5%">Shuttle Digital/At Rest</td>
+        <td width="5%">Shuttle Digital/At Rest</td>
+        <td id="bt5" width="5%">Shuttle Digital/Jog Digital</td>
+        <td id="bt5" width="5%">Shuttle Digital/Jog Digital</td>
         <td width="5%">Jog Analog</td>
         <td  id="bt7" width="5%">Shuttle Analog</td>
         <td width="5%">Jog Analog Raw Count </td>
@@ -350,7 +350,7 @@
           <div align="center"><b>SD3</b></div>
         </td>
         <td bgcolor="#CCCCCC" width="5%"> 
-          <div align="center">value</div>
+          <div align="center"><b>SD4</b></div>
         </td>
         <td bgcolor="#CCCCCC" width="5%"> 
           <div align="center"><b>JA</b></div>
@@ -396,17 +396,24 @@
       6=Virtual Digital Input 6 (Virtual Button ID = 109), bit 7=Virtual Digital 
       Input 7 (Virtual Button ID = 110), bit 8=Virtual Digital Input 8 (Virtual 
       Button ID = 111) <br>
-      <b>SD1</b>: Shuttle digital clockwise, bit 1=position 1, bit 2=position 
-      2, bit 3=position 3, bit 4=position 4, bit 5=postion 5, bit 6=position 6, 
-      bit 7=position 7, bit 8=0<br>
-      <b>SD2</b>: Shuttle digital counterclockwise, bit 1=position 1, bit 2=position 
-      2, bit 3=position 3, bit 4=position 4, bit 5=postion 5, bit 6=position 6, 
-      bit 7=position 7, bit 8=0<br>
-      <b>SD3</b>: Shuttle digital at rest and jog digital, bits 1-5=0, bit 6=Shuttle 
-      At Rest (bit set if shuttle is in the at rest position, clears it when not), 
-      bit 7=Jog clockwise, bit 8=Jog counterclockwise. When the jog is moved 2 
-      General Incoming Data reports are sent, the first with the bit set immediately 
-      followed by one with the bit unset.<br>
+      <b>SD1</b>: Shuttle digital bit 1=position 1 cw from position 0, bit 2=position 
+      2 cw from position 1, bit 3=position 3 cw from position 2, bit 4=position 
+      4 cw from position 3, bit 5=postion 5 cw from position 4, bit 6=position 
+      6 cw from position 5, bit 7=position 7 cw from position 6, bit 8=position 
+      0 cw from position -1.<br>
+      <b>SD2</b>: Shuttle digital, bit 1=position 1 ccw from position 2, bit 2=position 
+      2 ccw from position 3, bit 3=position 3 ccw from position 4, bit 4=position 
+      4 ccw from position 5, bit 5=postion 5 ccw from position 6, bit 6=position 
+      6 ccw from position 7, bit 7=0, bit 8=position 0 ccw from position 1.<br>
+      <b>SD3</b>: Shuttle digital, bit 1=position -1 ccw from position 0, bit 
+      2=position -2 ccw from position -1, bit 3=position -3 ccw from position 
+      -2, bit 4=position -4 ccw from position -3, bit 5=postion -5 ccw from position 
+      -4, bit 6=position -6 ccw from position -5, bit 7=position -7 ccw from position 
+      -6, bit 8=jog ccw. <br>
+      <b>SD4</b>: Shuttle digital bit 1=position -1 cw from position -2, bit 2=position 
+      -2 cw from position -3, bit 3=position -3 cw from position -4, bit 4=position 
+      -4 cw from position -5, bit 5=postion -5 cw from position -6, bit 6=position 
+      -6 cw from position -7, bit 7=0, bit 8=jog cw.<br>
       <b>JA</b>: Jog knob analog data; 1 for clockwise, 255 for counterclockwise<br>
       <b>SA</b>: Shuttle analog data; 1, 2, 3, 4, 5, 6, 7 for clockwise segments 
       and 255, 254, 253, 252, 251, 250, 249 for counterclockwise segments<br>
