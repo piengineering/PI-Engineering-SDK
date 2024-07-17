@@ -21,6 +21,8 @@ Public Class Form1
     Dim EnumerationSuccess As Boolean
 
     Dim lastdata() As Byte = New Byte() {}
+    Dim printthis As String = ""
+    Dim lastprintthis As String = ""
 
     Public Sub HandlePIEHidData(ByVal data() As Byte, ByVal sourceDevice As PIEHid32Net.PIEDevice, ByVal perror As Integer) Implements PIEHid32Net.PIEDataHandler.HandlePIEHidData
         'data callback
@@ -162,13 +164,38 @@ Public Class Form1
                 Next
                 'end Buttons
 
+                'Jog Digital, Shuttle AT REST digital
+                Dim val As Byte = CByte((data(12) And &H80))
+                If val <> 0 Then
+                    c = Me.LblJogD
+                    SetText("Jog Digital: CW")
+                End If
+
+                val = CByte((data(11) And &H80))
+                If val <> 0 Then
+                    c = Me.LblJogD
+                    SetText("Jog Digital: CCW")
+                End If
+
+                val = CByte((data(9) And &H80))
+                If val <> 0 Then
+                    c = Me.LblShuttleD
+                    SetText("Shuttle Digital: 0 CW")
+                End If
+
+                val = CByte((data(10) And &H80))
+                If val <> 0 Then
+                    c = Me.LblShuttleD
+                    SetText("Shuttle Digital: 0 CCW")
+                End If
+
                 'Shuttle Digital
-                For i As Integer = 0 To 2 - 1
-                    For j As Integer = 0 To 7 - 1
+                For i As Integer = 0 To 3
+                    For j As Integer = 0 To 7
                         Dim temp1 As Integer = CInt(Math.Pow(2, j))
                         Dim keynum As Integer = 8 * i + j
-                        Dim temp2 As Byte = CByte((data(i + 8) And temp1))
-                        Dim temp3 As Byte = CByte((lastdata(i + 8) And temp1))
+                        Dim temp2 As Byte = CByte((data(i + 9) And temp1))
+                        Dim temp3 As Byte = CByte((lastdata(i + 9) And temp1))
                         Dim state As Integer = 0
 
                         If temp2 <> 0 AndAlso temp3 = 0 Then
@@ -179,73 +206,84 @@ Public Class Form1
                             state = 3
                         End If
 
-                        Dim printthis As String = ""
+                        If (state = 1) Then
+                            Select Case keynum
+                                Case 0
+                                    printthis = "Shuttle Digital: 1 CW"
+                                Case 1
+                                    printthis = "Shuttle Digital: 2 CW"
+                                Case 2
+                                    printthis = "Shuttle Digital: 3 CW"
+                                Case 3
+                                    printthis = "Shuttle Digital: 4 CW"
+                                Case 4
+                                    printthis = "Shuttle Digital: 5 CW"
+                                Case 5
+                                    printthis = "Shuttle Digital: 6 CW"
+                                Case 6
+                                    printthis = "Shuttle Digital: 7 CW"
+                                Case 8
+                                    printthis = "Shuttle Digital: 1 CCW"
+                                Case 9
+                                    printthis = "Shuttle Digital: 2 CCW"
+                                Case 10
+                                    printthis = "Shuttle Digital: 3 CCW"
+                                Case 11
+                                    printthis = "Shuttle Digital: 4 CCW"
+                                Case 12
+                                    printthis = "Shuttle Digital: 5 CCW"
+                                Case 13
+                                    printthis = "Shuttle Digital: 6 CCW"
+                                Case 16
+                                    printthis = "Shuttle Digital: -1 CCW"
+                                Case 17
+                                    printthis = "Shuttle Digital: -2 CCW"
+                                Case 18
+                                    printthis = "Shuttle Digital: -3 CCW"
+                                Case 19
+                                    printthis = "Shuttle Digital: -4 CCW"
+                                Case 20
+                                    printthis = "Shuttle Digital: -5 CCW"
+                                Case 21
+                                    printthis = "Shuttle Digital: -6 CCW"
+                                Case 22
+                                    printthis = "Shuttle Digital: -7 CCW"
+                                Case 24
+                                    printthis = "Shuttle Digital: -1 CW"
+                                Case 25
+                                    printthis = "Shuttle Digital: -2 CW"
+                                Case 26
+                                    printthis = "Shuttle Digital: -3 CW"
+                                Case 27
+                                    printthis = "Shuttle Digital: -4 CW"
+                                Case 28
+                                    printthis = "Shuttle Digital: -5 CW"
+                                Case 29
+                                    printthis = "Shuttle Digital: -6 CW"
 
-                        Select Case keynum
-                            Case 0
-                                printthis = "Shuttle Digital: +1"
-                            Case 1
-                                printthis = "Shuttle Digital: +2"
-                            Case 2
-                                printthis = "Shuttle Digital: +3"
-                            Case 3
-                                printthis = "Shuttle Digital: +4"
-                            Case 4
-                                printthis = "Shuttle Digital: +5"
-                            Case 5
-                                printthis = "Shuttle Digital: +6"
-                            Case 6
-                                printthis = "Shuttle Digital: +7"
-                            Case 8
-                                printthis = "Shuttle Digital: -1"
-                            Case 9
-                                printthis = "Shuttle Digital: -2"
-                            Case 10
-                                printthis = "Shuttle Digital: -3"
-                            Case 11
-                                printthis = "Shuttle Digital: -4"
-                            Case 12
-                                printthis = "Shuttle Digital: -5"
-                            Case 13
-                                printthis = "Shuttle Digital: -6"
-                            Case 14
-                                printthis = "Shuttle Digital: -7"
-                        End Select
+                            End Select
+                        End If
+                        If (printthis <> lastprintthis) Then
+                            c = LblShuttleD
+                            SetText(printthis)
+                            lastprintthis = printthis
+                        End If
                         If state = 1 Then
-                            c = Me.LblShuttleD
-                            SetText(printthis + " enter")
+                            'enter of region
                         ElseIf state = 3 Then
-                            c = Me.LblShuttleD
-                            SetText(printthis + " exit")
+                            'exit of region
                         End If
                     Next
                 Next
-                'Jog Digital, shuttle AT REST digital
-                Dim val As Byte = CByte((data(7) And &H40))
-                If val <> 0 Then
-                    c = Me.LblJogD
-                    SetText("Jog Digital: Clockwise")
-                End If
-
-                val = CByte((data(7) And &H80))
-                If val <> 0 Then
-                    c = Me.LblJogD
-                    SetText("Jog Digital: Counterclockwise")
-                End If
-
-                val = CByte((data(7) And &H20))
-                If val <> 0 Then
-                    c = Me.LblShuttleD
-                    SetText("Shuttle Digital: At Rest")
-                End If
+                
 
                 'Jog Analog
                 If data(13) = 1 Then
                     c = Me.LblJog
-                    Me.SetText("Jog Analog: Clockwise")
+                    Me.SetText("Jog Analog: CW")
                 ElseIf data(13) = 255 Then
                     c = Me.LblJog
-                    Me.SetText("Jog Analog: Counterclockwise")
+                    Me.SetText("Jog Analog: CCW")
                 End If
 
                 'Shuttle Analog
