@@ -37,6 +37,8 @@ HWND Pid_Combo;
 HWND Color_Combo;
 HWND Bank_Combo;
 long saveabsolutetime;  //for timestamp demo
+std::string printthis;
+std::string lastprintthis;
 //---------------------------------------------------------------------
 
 int APIENTRY WinMain(HINSTANCE hInstance,
@@ -1795,139 +1797,208 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
 		}
 
+		//Shuttle At Rest Digital
+		hList = GetDlgItem(hDialog, IDC_ShuttleD);
+		if ((pData[9] & 0x80)!=0)
+		{
+			char msg[100]="Shuttle Digital: 0 CW";
+			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+		}
+		hList = GetDlgItem(hDialog, IDC_ShuttleD);
+		if ((pData[10] & 0x80)!=0)
+		{
+			char msg[100]="Shuttle Digital: 0 CCW";
+			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+		}
+
+		//Jog Digital
+		hList = GetDlgItem(hDialog, IDC_JogD);
+		if ((pData[12] & 0x80)!=0)
+		{
+			char msg[100]="Jog Digital: CW";
+			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+		}
+		if ((pData[11] & 0x80)!=0)
+		{
+			char msg[100]="Jog Digital: CCW";
+			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+		}
+
 		//Shuttle Digital
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 7; j++) //the digital shuttle
+            for (int j = 0; j < 8; j++) //the digital shuttle
             {
                 int temp1=pow(2.0,j);
 				int keynum=8*i+j; //0 based index
-				BYTE temp2=(pData[i + 8] & temp1); //check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
-				BYTE temp3 = (lastpData[i + 8] & temp1); //check using bitwise AND the previous value of this bit
+				BYTE temp2=(pData[i + 9] & temp1); //check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
+				BYTE temp3 = (lastpData[i + 9] & temp1); //check using bitwise AND the previous value of this bit
 				int state=0; //0=was up and is up, 1=was up and is down, 2= was down and is down, 3=was down and is up 
 				if (temp2 != 0 && temp3 == 0) state = 1; //press
 				else if (temp2 != 0 && temp3 != 0) state = 2; //held down
 				else if (temp2 == 0 && temp3 != 0) state = 3; //release
 				char msg[100];
 
-				std::string printthis;
-                switch (keynum)
-                {
-                    case 0: //shuttle +1
-						strcpy_s (msg,"Shuttle Digital: +1");
-						printthis="Shuttle Digital: +1";
-                        break;
-                    case 1: //shuttl +2
-                        strcpy_s (msg,"Shuttle Digital: +2");
-						printthis="Shuttle Digital: +2";
-                        break;
-                    case 2: //shuttle +3
-                        strcpy_s (msg,"Shuttle Digital: +3");
-						printthis="Shuttle Digital: +3";
-                        break;
-                    case 3: //shuttle +4
-                        strcpy_s (msg,"Shuttle Digital: +4");
-						printthis="Shuttle Digital: +4";
-                        break;
-                    case 4: //shuttle +5
-                        strcpy_s (msg,"Shuttle Digital: +5");
-						printthis="Shuttle Digital: +5";
-                        break;
-                    case 5: //shuttle +6
-                        strcpy_s (msg,"Shuttle Digital: +6");
-						printthis="Shuttle Digital: +6";
-                        break;
-                    case 6: //shuttle +7
-                        strcpy_s (msg,"Shuttle Digital: +7");
-						printthis="Shuttle Digital: +7";
-                        break;
-                    case 8: //shuttle -1
-                        strcpy_s (msg,"Shuttle Digital: -1");
-						printthis="Shuttle Digital: -1";
-                        break;
-                    case 9: //shuttl -2
-                        strcpy_s (msg,"Shuttle Digital: -2");
-						printthis="Shuttle Digital: -2";
-                        break;
-                    case 10: //shuttle -3
-                        strcpy_s (msg,"Shuttle Digital: -3");
-						printthis="Shuttle Digital: -3";
-                        break;
-                    case 11: //shuttle -4
-                        strcpy_s (msg,"Shuttle Digital: -4");
-						printthis="Shuttle Digital: -4";
-                        break;
-                    case 12: //shuttle -5
-                        strcpy_s (msg,"Shuttle Digital: -5");
-						printthis="Shuttle Digital: -5";
-                        break;
-                    case 13: //shuttle -6
-                        strcpy_s (msg,"Shuttle Digital: -6");
-						printthis="Shuttle Digital: -6";
-                        break;
-                    case 14: //shuttle -7
-                        strcpy_s (msg,"Shuttle Digital: -7");
-						printthis="Shuttle Digital: -7";
-                        break;
-                }
-				
+				//std::string printthis;
+				if (state == 1)
+				{
+					switch (keynum)
+					{
+						case 0: //shuttle 1 cw from 0
+							strcpy_s (msg,"Shuttle Digital: 1 CW");
+							printthis="Shuttle Digital: 1 CW";
+							break;
+						case 1: //shuttl 2 cw from 1
+							strcpy_s (msg,"Shuttle Digital: 2 CW");
+							printthis="Shuttle Digital: 2 CW";
+							break;
+						case 2: //shuttle 3 cw from 2
+							strcpy_s (msg,"Shuttle Digital: 3 CW");
+							printthis="Shuttle Digital: 3 CW";
+							break;
+						case 3: //shuttle 4 cw from 3
+							strcpy_s (msg,"Shuttle Digital: 4 CW");
+							printthis="Shuttle Digital: 4 CW";
+							break;
+						case 4: //shuttle 5 cw from 4
+							strcpy_s (msg,"Shuttle Digital: 5 CW");
+							printthis="Shuttle Digital: 5 CW";
+							break;
+						case 5: //shuttle 6 cw from 5
+							strcpy_s (msg,"Shuttle Digital: 6 CW");
+							printthis="Shuttle Digital: 6 CW";
+							break;
+						case 6: //shuttle 7 cw from 6
+							strcpy_s (msg,"Shuttle Digital: 7 CW");
+							printthis="Shuttle Digital: 7 CW";
+							break;
+
+						case 8: //shuttle 1 ccw from 2
+							strcpy_s (msg,"Shuttle Digital: 1 CCW");
+							printthis="Shuttle Digital: 1 CCW";
+							break;
+						case 9: //shuttl 2 ccw from 3
+							strcpy_s (msg,"Shuttle Digital: 2 CCW");
+							printthis="Shuttle Digital: 2 CCW";
+							break;
+						case 10: //shuttle 3 ccw from 4
+							strcpy_s (msg,"Shuttle Digital: 3 CCW");
+							printthis="Shuttle Digital: 3 CCW";
+							break;
+						case 11: //shuttle 4 ccw from 5
+							strcpy_s (msg,"Shuttle Digital: 4 CCW");
+							printthis="Shuttle Digital: 4 CCW";
+							break;
+						case 12: //shuttle 5 ccw from 6
+							strcpy_s (msg,"Shuttle Digital: 5 CCW");
+							printthis="Shuttle Digital: 5 CCW";
+							break;
+						case 13: //shuttle 6 ccw from 7
+							strcpy_s (msg,"Shuttle Digital: 6 CCW");
+							printthis="Shuttle Digital: 6 CCW";
+							break;
+
+						case 16: //shuttle -1 ccw from 0
+							strcpy_s (msg,"Shuttle Digital: -1 CCW");
+							printthis="Shuttle Digital: -1 CCW";
+							break;
+						case 17: //shuttl -2 ccw from -1
+							strcpy_s (msg,"Shuttle Digital: -2 CCW");
+							printthis="Shuttle Digital: -2 CCW";
+							break;
+						case 18: //shuttle -3 ccw from -2
+							strcpy_s (msg,"Shuttle Digital: -3 CCW");
+							printthis="Shuttle Digital: -3 CCW";
+							break;
+						case 19: //shuttle -4 ccw from -3
+							strcpy_s (msg,"Shuttle Digital: -4 CCW");
+							printthis="Shuttle Digital: -4 CCW";
+							break;
+						case 20: //shuttle -5 ccw from -4
+							strcpy_s (msg,"Shuttle Digital: -5 CCW");
+							printthis="Shuttle Digital: -5 CCW";
+							break;
+						case 21: //shuttle -6 ccw from -5
+							strcpy_s (msg,"Shuttle Digital: -6 CCW");
+							printthis="Shuttle Digital: -6 CCW";
+							break;
+						case 22: //shuttle -7 ccw from -6
+							strcpy_s (msg,"Shuttle Digital: -7 CCW");
+							printthis="Shuttle Digital: -7 CCW";
+							break;
+
+						case 24: //shuttle -1 cw from -2
+							strcpy_s (msg,"Shuttle Digital: -1 CW");
+							printthis="Shuttle Digital: -1 CW";
+							break;
+						case 25: //shuttl -2 cw from -3
+							strcpy_s (msg,"Shuttle Digital: -2 CW");
+							printthis="Shuttle Digital: -2 CW";
+							break;
+						case 26: //shuttle -3 cw from -4
+							strcpy_s (msg,"Shuttle Digital: -3 CW");
+							printthis="Shuttle Digital: -3 CW";
+							break;
+						case 27: //shuttle -4 cw from -5
+							strcpy_s (msg,"Shuttle Digital: -4 CW");
+							printthis="Shuttle Digital: -4 CW";
+							break;
+						case 28: //shuttle -5 cw from -6
+							strcpy_s (msg,"Shuttle Digital: -5 CW");
+							printthis="Shuttle Digital: -5 CW";
+							break;
+						case 29: //shuttle -6 cw from -7
+							strcpy_s (msg,"Shuttle Digital: -6 CW");
+							printthis="Shuttle Digital: -6 CW";
+							break;
+						
+					}
+				}
+
+				if (printthis!=lastprintthis)
+				{
+					hList = GetDlgItem(hDialog, IDC_ShuttleD);
+					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
+					lastprintthis=printthis;
+				}
 				//char str[80];
 				std::string enterexit;
                 if (state == 1)
                 {
                     enterexit=" enter";
-					printthis=printthis+enterexit;
+					/*printthis=printthis+enterexit;
 					char *cstr = new char[printthis.length()+1];
 					strcpy(cstr, printthis.c_str());
 				
 					hList = GetDlgItem(hDialog, IDC_ShuttleD);
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)cstr);
+					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)cstr);*/
                 }
                 else if (state == 3)
                 {
                     enterexit=" exit";
-					printthis=printthis+enterexit;
+					/*printthis=printthis+enterexit;
 					char *cstr = new char[printthis.length()+1];
 					strcpy(cstr, printthis.c_str());
 				
 					hList = GetDlgItem(hDialog, IDC_ShuttleD);
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)cstr);
+					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)cstr);*/
                 }
 				
             }
         }
 
-		//Shuttle At Rest Digital
-		hList = GetDlgItem(hDialog, IDC_ShuttleD);
-		if ((pData[11] & 0x20)!=0)
-		{
-			char msg[100]="Shuttle Digital: At Rest";
-			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-		}
-
-		//Jog Digital
-		hList = GetDlgItem(hDialog, IDC_JogD);
-		if ((pData[11] & 0x40)!=0)
-		{
-			char msg[100]="Jog Digital: Clockwise";
-			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-		}
-		if ((pData[11] & 0x80)!=0)
-		{
-			char msg[100]="Jog Digital: Counterclockwise";
-			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-		}
+		
 
 		//Jog Analog
 		hList = GetDlgItem(hDialog, IDC_JogA);
 		if (pData[13] == 1) //cw
         {
-            char msg[100]="Jog Analog: Clockwise";
+            char msg[100]="Jog Analog: CW";
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
         }
         else if (pData[13] == 255)
         {
-            char msg[100]="Jog Analog: Counterclockwise";
+            char msg[100]="Jog Analog: CCW";
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
         }
 
