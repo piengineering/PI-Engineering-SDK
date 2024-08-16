@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PIEHid32Net;
+using System.Security.Cryptography; //AES https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0
+using System.IO; //AES
 
 
 namespace PIHidDotName_Csharp_Sample
@@ -29,12 +31,26 @@ namespace PIHidDotName_Csharp_Sample
         ListBox thisListBox;
         //end thread-safe
         byte[] lastdata = null;
+
+        //AES
+        Aes myAes;
+        byte[] myKey;
+        byte[] myIV;
         
        
         public Form1()
         {
             InitializeComponent();
             //BtnEnumerate_Click(this, null);
+
+            //AES
+            myAes = Aes.Create(); //creates object with Key and IV
+            myAes.Mode = CipherMode.CBC; //Must match X-keys mode which is CBC
+            myAes.Padding = PaddingMode.Zeros; //Must match X-keys which is Zeros
+            myAes.KeySize = 128; //Must match X-keys which is 16 byte AES key
+
+            myKey = new byte[16];
+            myIV = new byte[16];
         }
 
         //data callback    
@@ -593,7 +609,29 @@ namespace PIHidDotName_Csharp_Sample
                     else this.SetListBox("Flash Bank 2 = not flashing"); 
                     this.SetListBox("Flash frequency=" + (data[13]));
                 }
-                
+                else if (data[2] == 0x8B) //encrypt results
+                {
+                    c = lblXkeysEncrypt;
+                    string encryptedbytes = "";
+                    for (int j = 0; j < 32; j++)
+                    {
+                        encryptedbytes = encryptedbytes + BinToHex(data[3 + j]) + ", ";
+                    }
+                    SetText(encryptedbytes);
+                }
+                else if (data[2] == 0x8C) //decrypt results
+                {
+                    c = lblXkeysDecrypt;
+                    string decryptedbytes = "";
+                    for (int j = 0; j < 32; j++)
+                    {
+                        if (data[3 + j] != 0)
+                        {
+                            decryptedbytes = decryptedbytes + (char)(data[3 + j]);
+                        }
+                    }
+                    SetText(decryptedbytes);
+                }
             }
         }
         //error callback
@@ -715,7 +753,9 @@ namespace PIHidDotName_Csharp_Sample
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            
+
+           
+           
         }
 
         private void BtnEnumerate_Click(object sender, EventArgs e)
@@ -1693,139 +1733,7 @@ namespace PIHidDotName_Csharp_Sample
             }
         }
 
-        private void BtnSetDongle_Click(object sender, EventArgs e)
-        {
-            //Use the Dongle feature to set a 4 byte code into the device
-            if (selecteddevice != -1) //do nothing if not enumerated
-            {
-                //This routine is done once per unit by the developer prior to sale.
-                //Pick 4 numbers between 1 and 254.
-                int K0 = 7;    //pick any number between 1 and 254, 0 and 255 not allowed
-                int K1 = 58;   //pick any number between 1 and 254, 0 and 255 not allowed
-                int K2 = 33;   //pick any number between 1 and 254, 0 and 255 not allowed
-                int K3 = 243;  //pick any number between 1 and 254, 0 and 255 not allowed
-                //Save these numbers, they are needed to check the key!
-
-                //Write these to the device
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[0] = 0;
-                wData[1] = 192;
-                wData[2] = (byte)K0;
-                wData[3] = (byte)K1;
-                wData[4] = (byte)K2;
-                wData[5] = (byte)K3;
-
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set Dongle Key";
-                }
-            }
-        }
-
-        private void BtnCheckDongle_Click(object sender, EventArgs e)
-        {
-            //Reads the secret key set in Set Key
-            //This is done within the developer's application to check for the correct
-            //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (selecteddevice != -1)
-            {
-                //check hardware
-
-                //IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
-                devices[selecteddevice].callNever = true;
-
-                //these will be returned from the hash
-                int R0 = 0;
-                int R1 = 0;
-                int R2 = 0;
-                int R3 = 0;
-
-                //this is the key from set key
-                int K0 = 7;
-                int K1 = 58;
-                int K2 = 33;
-                int K3 = 243;
-
-                //randomn numbers, use different numbers every check, we use the time to generate some random numbers below
-                Random rnd = new Random();
-                int N0 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
-                int N1 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
-                int N2 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
-                int N3 = rnd.Next(1, 254); //pick any number between 1 and 254, 0 and 255 not allowed
-               
-                PIEDevice.DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, out R0, out R1, out R2, out R3);
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                wData[0] = 0;
-                wData[1] = 193;  //c1  
-                wData[2] = (byte)N0;
-                wData[3] = (byte)N1;
-                wData[4] = (byte)N2;
-                wData[5] = (byte)N3;
-
-                int result=404;
-				
-				while(result==404){result = devices[selecteddevice].WriteData(wData);}
-
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Check Dongle Key";
-                }
-                
-
-                //after this write the next read with the 3rd byte=193 will give 4 values which are used below for comparison
-                byte[] data = new byte[100];
-                int countout = 0;
-                int ret = devices[selecteddevice].BlockingReadData(ref data, 100);
-                while ((ret == 0 && data[2] != 193) || ret == 304)
-                {
-                    if (ret == 304)
-                    {
-                        // Didn't get any data for 100ms, increment the countout extra
-                        countout += 99;
-                    }
-                    countout++;
-                    if (countout > 1000) //increase this if have to check more than once
-                        break;
-                    ret = devices[selecteddevice].BlockingReadData(ref data, 100);
-                }
-
-                if (ret == 0 && data[2] == 193)
-                {
-                    bool fail = false;
-                    if (R0 != data[3]) fail = true;
-                    if (R1 != data[4]) fail = true;
-                    if (R2 != data[5]) fail = true;
-                    if (R3 != data[6]) fail = true;
-
-                    if (fail == false)
-                    {
-                        LblPassFail.Text = "Pass-Correct Hardware Found";
-                    }
-                    else
-                    {
-                        LblPassFail.Text = "Fail-Correct Hardward Not Found";
-                    }
-                }
-            }
-        }
+        
 
 
         private void BtnNoChange_Click(object sender, EventArgs e)
@@ -2421,10 +2329,416 @@ namespace PIHidDotName_Csharp_Sample
                 }
             }
         }
-        
 
-       
-        
+        private void BtnSetDongle_Click(object sender, EventArgs e)
+        {
+            //Sets the 16 byte AES key in the X-keys, keep track of this key, it is are required for decryption
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                //pick a secret 16 byte key and save this Key!!
+                myKey[0] = 7;
+                myKey[1] = 58;
+                myKey[2] = 33;
+                myKey[3] = 243;
+                myKey[4] = 7;
+                myKey[5] = 58;
+                myKey[6] = 33;
+                myKey[7] = 243;
+                myKey[8] = 7;
+                myKey[9] = 58;
+                myKey[10] = 33;
+                myKey[11] = 243;
+                myKey[12] = 7;
+                myKey[13] = 58;
+                myKey[14] = 33;
+                myKey[15] = 243;
+
+                //Write AES key to X-keys, this key is stored in eeprom
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 137; //0x89 Set AES Key
+                for (int i = 0; i < 16; i++)
+                {
+                    wData[2 + i] = myKey[i];
+                }
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set AES Dongle";
+                }
+            }
+        }
+
+        private void BtnCheckDongle_Click(object sender, EventArgs e)
+        {
+            //Check dongle by encrypting a phrase and checking with C# decryption
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                //Before each encryption MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.   
+                Random rnd = new Random();
+                for (int i = 0; i < 16; i++)
+                {
+                    myIV[i] = (byte)rnd.Next(0, 254); //valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+                }
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 138; //0x8A Set AES IV
+                for (int i = 0; i < 16; i++)
+                {
+                    wData[2 + i] = myIV[i];
+                }
+
+                int result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+
+                //Encrypt
+                bool savecallbackstate = devices[selecteddevice].callNever;
+                devices[selecteddevice].callNever = true;
+
+                string mymessage = "Enter any phrase";
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 139; //0x8B AES Encrypt
+                for (int i = 0; i < mymessage.Length; i++)
+                {
+                    wData[2 + i] = (byte)mymessage[i];
+                }
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Check AES Dongle";
+                }
+                //read back the encrypted data
+                byte[] encrypteddata = new byte[32];
+                byte[] data = null;
+                int countout = 0;
+                data = new byte[80];
+
+                int ret = devices[selecteddevice].BlockingReadData(ref data, 100);
+                while ((ret == 0 && data[2] != 139) || ret == 304)
+                {
+                    if (ret == 304)
+                    {
+                        // Didn't get any data for 100ms, increment the countout extra
+                        countout += 99;
+                    }
+                    countout++;
+                    if (countout > 1000) //increase this if have to check more than once
+                        break;
+                    ret = devices[selecteddevice].BlockingReadData(ref data, 100);
+                }
+                for (int i = 0; i < 32; i++)
+                {
+                    encrypteddata[i] = data[i + 3];
+                }
+
+                devices[selecteddevice].callNever = savecallbackstate;
+
+                //Decrypt
+                //use the same secret 16 byte key that was used in Set Dongle and the same IV as used above to encrypt
+                myKey[0] = 7;
+                myKey[1] = 58;
+                myKey[2] = 33;
+                myKey[3] = 243;
+                myKey[4] = 7;
+                myKey[5] = 58;
+                myKey[6] = 33;
+                myKey[7] = 243;
+                myKey[8] = 7;
+                myKey[9] = 58;
+                myKey[10] = 33;
+                myKey[11] = 243;
+                myKey[12] = 7;
+                myKey[13] = 58;
+                myKey[14] = 33;
+                myKey[15] = 243;
+
+                string decryptresults = DecryptStringFromBytes_Aes(encrypteddata, myKey, myIV, CipherMode.CBC, PaddingMode.Zeros);
+                //remove padded 0s
+                decryptresults = decryptresults.Replace("\0", string.Empty);
+                if (mymessage == decryptresults)
+                {
+                    lblAESPassFail.Text = "Pass";
+                    lblAESPassFail.BackColor = Color.Lime;
+                }
+                else
+                {
+                    lblAESPassFail.Text = "Fail";
+                    lblAESPassFail.BackColor = Color.Red;
+                }
+            }
+        }
+
+        static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV, CipherMode thismode, PaddingMode thispadding)
+        {
+            // Check arguments.
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+
+            // Create an Aes object
+            // with the specified key and IV.
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+                aesAlg.Mode = thismode; // CipherMode.CBC; 
+                aesAlg.Padding = thispadding; // PaddingMode.Zeros;
+
+                // Create an encryptor to perform the stream transform.
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                // Create the streams used for encryption.
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            //Write all data to the stream.
+                            swEncrypt.Write(plainText);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+
+            // Return the encrypted bytes from the memory stream.
+
+            return encrypted;
+        }
+
+        static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV, CipherMode thismode, PaddingMode thispadding)
+        {
+            // Check arguments.
+            if (cipherText == null || cipherText.Length <= 0)
+                throw new ArgumentNullException("cipherText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            // Declare the string used to hold
+            // the decrypted text.
+            string plaintext = null;
+
+            // Create an Aes object
+            // with the specified key and IV.
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV; //IV not needed for ECB mode
+                aesAlg.Mode = thismode; // CipherMode.CBC; 
+                aesAlg.Padding = thispadding; // PaddingMode.Zeros; 
+
+                // Create a decryptor to perform the stream transform.
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting stream
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+
+            return plaintext;
+        }
+
+        private void btnRawAESSetKey_Click(object sender, EventArgs e)
+        {
+            //Sets the 16 byte AES key in the X-keys, keep track of this key, it is are required for decryption
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                myAes.GenerateKey(); //securely generated random key
+                //save this Key!!
+                for (int i = 0; i < 16; i++)
+                {
+                    myKey[i] = myAes.Key[i];
+                }
+                //Write Key to X-keys, this key is stored in eeprom
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 137; //0x89 Set AES Key
+                for (int i = 0; i < 16; i++)
+                {
+                    wData[2 + i] = myKey[i];
+                }
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set AES key";
+                }
+            }
+        }
+
+        private void btnAESEncrypt_Click(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                //input data (up to 32 bytes), outputs encryption
+                //AES Key should have been previously set and recorded (if decrypting)
+
+                //Before each encryption MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.   
+                Random rnd = new Random();
+                for (int i = 0; i < 16; i++)
+                {
+                    myIV[i] = (byte)rnd.Next(0, 254); //valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+                }
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 138; //0x8A Set AES IV
+                for (int i = 0; i < 16; i++)
+                {
+                    wData[2 + i] = myIV[i];
+                }
+
+                int result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+                string mymessage = txtXkeysEncrypt.Text;
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 139; //0x8B AES Encrypt
+                for (int i = 0; i < mymessage.Length; i++)
+                {
+                    wData[2 + i] = (byte)mymessage[i];
+                }
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - AES encrypt";
+                }
+                //results in callback
+            }
+        }
+
+        private void btnXkeysDecrypt_Click(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                //input encrypted data (up to 32 bytes), outputs decryption
+                //AES Key and IV should have been previously set and recorded
+
+                //Before each decryption MUST set the initialization vector with that used for the encryption.
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 138; //0x8A Set AES IV
+                for (int i = 0; i < 16; i++)
+                {
+                    wData[2 + i] = myIV[i];
+                }
+                int result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+                //Decrypt
+                string decryptthis = lblXkeysEncrypt.Text;
+                byte[] encryptedbytes = new byte[32];
+                int count = 0;
+                while (decryptthis.Length > 0)
+                {
+                    int pos = decryptthis.IndexOf(",");
+                    if (pos != -1)
+                    {
+                        encryptedbytes[count] = HexToBin(decryptthis.Substring(0, 2));
+                        decryptthis = decryptthis.Remove(0, pos + 1).Trim();
+                        count++;
+                    }
+                }
+
+                //input encrypted data (up to 32 bytes), outputs decryption
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 140; //0x8C
+
+                for (int i = 0; i < 32; i++)
+                {
+                    wData[2 + i] = encryptedbytes[i];
+                }
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - AES decrypt";
+                }
+                //results in callback
+            }
+        }
 
         
 
