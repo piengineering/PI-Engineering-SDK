@@ -1,0 +1,145 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 704, 457
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "C++ X-keys Control Room Keyboard"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Enumerate",IDSTART,7,40,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,640,25,50,14
+    LISTBOX         ID_EVENTS,7,158,533,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Halt",IDHALT,584,25,50,14
+    LTEXT           "Data (hex):",IDC_STATIC,7,145,77,9
+    PUSHBUTTON      "Set Unit ID",IDC_UNITID,7,220,57,17
+    EDITTEXT        IDC_EDIT1,69,221,37,14,ES_AUTOHSCROLL
+    LTEXT           "Write Unit ID:",IDC_STATIC,7,207,111,10
+    PUSHBUTTON      "Clear Listbox",IDC_CLEAR,477,140,61,14
+    LTEXT           "PID Convert (must re-enumerate after changing):",IDC_STATIC,288,283,156,9
+    PUSHBUTTON      "To PID #2",IDC_TOPID2,288,319,73,17
+    LTEXT           "Enable Time Stamp:",IDC_STATIC,7,359,91,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMP,7,373,73,17
+    PUSHBUTTON      "Keyboard Reflector",IDC_KEYREFLECT,289,223,73,17
+    PUSHBUTTON      "Descriptor",IDC_DESCRIPTOR,7,295,73,17
+    PUSHBUTTON      "Multimedia",IDC_Multimedia,288,260,56,17
+    LTEXT           "Keyboard Reflector:",IDC_STATIC,289,207,146,9
+    LTEXT           "Descriptor:",IDC_STATIC,7,284,63,9
+    PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMP2,87,373,73,17
+    PUSHBUTTON      "Generate Data",IDC_GENERATE,7,332,73,17
+    LTEXT           "Stimulate a general incoming data report or a custom report:",IDC_STATIC,7,321,190,11
+    LTEXT           "Boot Keyboard, Multimedia, Input, Output",IDC_STATIC,365,299,157,9
+    LTEXT           "Boot Keyboard",IDC_STATIC,365,323,129,9
+    LTEXT           "NumLck",IDC_KEYSTATES,251,137,50,13
+    LTEXT           "CapsLck",IDC_KEYSTATES2,305,137,50,13
+    LTEXT           "ScrLck",IDC_KEYSTATES3,361,137,50,13
+    LTEXT           "unit id",IDC_UNITID3,116,223,30,12
+    LTEXT           "Indicator LEDs:",IDC_STATIC,7,252,111,10
+    CONTROL         "Green (top)",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,268,51,10
+    CONTROL         "Red (top)",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,66,268,45,10
+    PUSHBUTTON      "Custom Data",IDC_CUSTOM,87,332,73,17
+    EDITTEXT        IDC_EDIT2,383,223,92,14,ES_AUTOHSCROLL
+    LTEXT           "Write Version (requires reboot of x-keys and re-enumerate):",IDC_STATIC,7,398,192,9
+    PUSHBUTTON      "Write Version",IDC_Version,7,411,73,17
+    EDITTEXT        IDC_TxtVersion,83,411,40,14,ES_AUTOHSCROLL
+    LTEXT           "Multimedia:",IDC_STATIC,288,246,111,8
+    PUSHBUTTON      "To PID #1",IDC_TOPID1,288,295,73,17
+    EDITTEXT        IDC_TxtMultiHi,386,261,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TxtMultiLo,453,261,24,14,ES_AUTOHSCROLL
+    LTEXT           "High (hex)",IDC_STATIC,347,264,33,8
+    LTEXT           "Low (hex)",IDC_STATIC,418,264,32,8
+    PUSHBUTTON      "My Computer",IDC_MyComputer,484,260,56,17
+    LTEXT           "Setup for Callback:",IDC_STATIC,7,111,61,8
+    PUSHBUTTON      "Setup Callback",IDC_CALLBACK,7,125,66,14
+    LTEXT           "-",IDC_LblVersion,128,413,39,8
+    LTEXT           "Do this first",IDC_STATIC,7,25,36,8
+    LISTBOX         IDC_LIST1,7,61,246,32,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "KVM Reboot Mode (for users of KVM Pid only)",IDC_STATIC,288,345,156,9
+    PUSHBUTTON      "Do not change Pid on reboot",IDC_NOCHANGEPID,289,359,142,17
+    PUSHBUTTON      "Always change to Pid #2 (KVM) on reboot",IDC_CHANGEPID,437,359,142,17
+    CONTROL         "Red (middle)",IDC_CHECK4,"Button",BS_AUTO3STATE | WS_TABSTOP,116,268,55,10
+    CONTROL         "Red (bottom)",IDC_CHECK5,"Button",BS_AUTO3STATE | WS_TABSTOP,173,268,57,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 697
+        TOPMARGIN, 25
+        BOTTOMMARGIN, 450
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
