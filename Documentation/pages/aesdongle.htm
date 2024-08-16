@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+    <title>AES Dongle Implementation</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+    <link href="help.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="page">
+      <a class="anchor" name="top"></a>
+      <div id="banner">
+        <h1>P.I. Engineering SDK Help</h1>
+      </div><!-- end of "banner" -->
+      <div id="main">
+<!-- InstanceBeginEditable name="MainContent" -->
+        
+    <h1><a name="idh_enumerate" id="idh_enumerate"></a>AES Dongle Implementation 
+    </h1>
+        <h2>Overview</h2>
+        
+    <p>The XBE and XBM series of devices include Advanced Encryption Standard 
+      (AES) features for encryption and decryption. The mode used is CBC with 
+      padded zeros and a keysize of 128. This page shows how to use the AES features 
+      as a software dongle for piracy prevention of developer's applications. 
+      The main use of the dongle feature is to prevent people from using the developer's 
+      software without purchasing a P.I. Engineering Product from that developer. 
+      The developer must &quot;initialize&quot; each X-keys unit with a &quot;key&quot;. 
+      Sample code for setting up a unit for dongle protection is shown in the 
+      samples under AES Dongle section Set AES Key. Sample code for checking the 
+      unit's key is shown in the samples under AES Dongle section Check AES Key. 
+      Below are the steps needed to implement this feature. Note: This feature 
+      is available regardless of operating system or if using our PIEHid* dlls.</p>
+    <h3>Set AES Key</h3>
+        
+    <p>This one step procedure is done once per device by the developer prior 
+      to sale.</p>
+        
+    <p>The developer must choose 16 arbitrary values between 0 and 255, but not 
+      all 0's and write them to the device using the Set AES Key output report 
+      format. See the Set AES Key example code included in each sample for specific 
+      details. The 16 bytes must be recorded for later in order to check the key. 
+      This key is written to an unreadable section of the device's eeprom. </p>
+    <p>This process is demonstrated in the Set AES Key code below.</p>
+    <h3>Check AES Key</h3>
+        <p>This is done within the developer application to determine if the proper hardware &quot;dongle&quot; is connected.</p>
+        
+    <p>Checking the key is done by first encrypting a user defined phrase using 
+      X-keys encryption then feeding these results along with the known user's 
+      AES key into a decryption function of the user's choice. In the sample provided, 
+      we use Microsoft's Aes Class <a href="https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0">https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0</a>. 
+      The decryption will produce the equivalent phrase if the key is matched.</p>
+    <p>In order to encrypt the phrase, the AES initialization vector must be set. 
+    </p>
+    <p>This process is demonstrated in the Check AES Key in the code below.</p>
+        <h3>Sample [C#]</h3>
+    <pre>.......
+
+<span class="cs_comment">//Set AES Key</span>
+<span class="cs_system">if</span> (selecteddevice != -1) <span class="cs_comment">//do nothing if not enumerated</span>
+{
+<span class="cs_comment">	//Pick a secret 16 byte key and save this Key!! Valid values are 0 to 255 but not all 0's</span>
+	myKey[0] = 7;
+	myKey[1] = 58;
+	myKey[2] = 33;
+	myKey[3] = 243;
+	myKey[4] = 7;
+	myKey[5] = 58;
+	myKey[6] = 33;
+	myKey[7] = 243;
+	myKey[8] = 7;
+	myKey[9] = 58;
+	myKey[10] = 33;
+	myKey[11] = 243;
+	myKey[12] = 7;
+	myKey[13] = 58;
+	myKey[14] = 33;
+	myKey[15] = 243;
+<span class="cs_comment">	//Save these numbers, they are needed to check the key</span>
+
+<span class="cs_comment">	//Write the AES key to the device</span>
+<font color="#0000FF">	for</font> (<font color="#0000FF">int</font> j = 0; j < devices[selecteddevice].WriteLength; j++)
+	{
+		wData[j] = 0;
+	}
+	wData[0] = 0;
+	wData[1] = 137; <span class="cs_comment">//0x89 Set AES Key</span>
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> i = 0; i < 16; i++)
+	{
+		wData[2 + i] = myKey[i];
+	}
+
+<font color="#0000FF">	int</font> result = 404;
+<font color="#0000FF">	while</font> (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+	<span class="cs_system">if</span> (result != 0)
+	{
+		<span class="cs_comment">//"Write Fail: " + result;</span>
+	}
+<font color="#0000FF">	else</font>
+	{
+		<span class="cs_comment">//"Write Success - Set AES Dongle";</span>
+	}
+}
+<span class="cs_comment">//----------------------------------------------</span>
+<span class="cs_comment">//Check AES Key</span>
+<font color="#008000">//Check dongle by encrypting a phrase and checking with C# decryption
+
+</font><span class="cs_system">if</span> (selecteddevice != -1) <span class="cs_comment">//do nothing if not enumerated</span>
+{
+	<span class="cs_comment">//Before each encryption MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.</span>   
+	<font color="#3692C9">Random</font> rnd = <span class="cs_system">new</span> <font color="#3692C9">Random</font>();
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> i = 0; i < 16; i++)
+	{
+		myIV[i] = (<span class="cs_system">byte</span>)rnd.Next(0, 254); <span class="cs_comment">//valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV</span>
+	}
+
+	for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+	{
+		wData[j] = 0;
+	}
+	wData[0] = 0;
+	wData[1] = 138; <span class="cs_comment">//0x8A Set AES IV</span>
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> i = 0; i < 16; i++)
+	{
+		wData[2 + i] = myIV[i];
+	}
+
+	<span class="cs_system">int</span> result = 404;
+	<span class="cs_system">while</span> (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+	<span class="cs_comment">//Encrypt</span>
+	<span class="cs_system">bool</span> savecallbackstate = devices[selecteddevice].callNever; <span class="cs_comment">//Turn off callback to avoid capturing data there</span>
+	devices[selecteddevice].callNever = <span class="cs_system">true</span>;
+
+	<span class="cs_system">string</span> mymessage = "Enter any phrase";
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> j = 0; j < devices[selecteddevice].WriteLength; j++)
+	{
+		wData[j] = 0;
+	}
+	wData[0] = 0;
+	wData[1] = 139; <span class="cs_comment">//0x8B AES Encrypt</span>
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> i = 0; i < mymessage.Length; i++)
+	{
+		wData[2 + i] = (<span class="cs_system">byte</span>)mymessage[i];
+	}
+
+	result = 404;
+	<span class="cs_system">while</span> (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+	<span class="cs_system">if</span> (result != 0)
+	{
+		<span class="cs_comment">//"Write Fail: " + result;</span>
+	}
+	<span class="cs_system">else</span>
+	{
+		<span class="cs_comment">//"Write Success - AES Encrypt";</span>
+	}
+	<span class="cs_comment">//read back the encrypted data</span>
+	<span class="cs_system">byte</span>[] encrypteddata = new byte[32];
+	<span class="cs_system">byte</span>[] data = null;
+	<span class="cs_system">int</span> countout = 0;
+	data = <span class="cs_system">new byte</span>[80];
+	<span class="cs_system">int</span> ret = devices[selecteddevice].BlockingReadData(ref data, 100);
+	<span class="cs_system">while</span> ((ret == 0 && data[2] != 151) || ret == 304)
+	{
+		<span class="cs_system">if</span> (ret == 304)
+		{
+			<span class="cs_comment">// Didn't get any data for 100ms, increment the countout extra</span>
+			countout += 99;
+		}
+		countout++;
+		<span class="cs_system">if</span> (countout > 1000) //increase this if have to check more than once
+			<span class="cs_system">break</span>;
+		ret = devices[selecteddevice].BlockingReadData(<span class="cs_system">ref</span> data, 100);
+	}
+	<span class="cs_system">for</span> (<span class="cs_system">int</span> i = 0; i < 32; i++)
+	{
+		encrypteddata[i] = data[i + 3];
+	}
+
+	devices[selecteddevice].callNever = savecallbackstate; <span class="cs_comment">//return callback to previous state</span>
+
+	<span class="cs_comment">//Decrypt</span>
+	<span class="cs_comment">//use the same secret 16 byte key that was used in Set AES Key and the same IV as used above to encrypt</span>
+	myKey[0] = 7;
+	myKey[1] = 58;
+	myKey[2] = 33;
+	myKey[3] = 243;
+	myKey[4] = 7;
+	myKey[5] = 58;
+	myKey[6] = 33;
+	myKey[7] = 243;
+	myKey[8] = 7;
+	myKey[9] = 58;
+	myKey[10] = 33;
+	myKey[11] = 243;
+	myKey[12] = 7;
+	myKey[13] = 58;
+	myKey[14] = 33;
+	myKey[15] = 243;
+
+	<span class="cs_system">string</span> decryptresults = DecryptStringFromBytes_Aes(encrypteddata, myKey, myIV, <font color="#3692C9">CipherMode</font>.CBC, <font color="#3692C9">PaddingMode</font>.Zeros);
+	<span class="cs_comment">//remove padded 0s</span>
+	decryptresults = decryptresults.Replace("\0", string.Empty);
+	<span class="cs_system">if</span> (mymessage == decryptresults)
+	{
+		<span class="cs_comment">//"Pass"</span>
+	}
+	<span class="cs_system">else</span>
+	{
+    	<span class="cs_comment">//"Fail"</span> 
+	}
+}
+//--------------------------------------------------------
+<span class="cs_system">using</span> System.Security.Cryptography; <span class="cs_comment">//AES https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0</span>
+<span class="cs_system">using</span> System.IO;<span class="cs_comment"> //AES</span>
+
+<span class="cs_system">static string</span> DecryptStringFromBytes_Aes(<span class="cs_system">byte</span>[] cipherText, <span class="cs_system">byte</span>[] Key, <span class="cs_system">byte</span>[] IV, <font color="#3692C9">CipherMode</font> thismode, <font color="#3692C9">PaddingMode</font> thispadding)
+{
+            <span class="cs_comment">// Check arguments.</span>
+            <span class="cs_system">if</span> (cipherText == <span class="cs_system">null</span> || cipherText.Length <= 0)
+                <span class="cs_system">throw new</span> <font color="#3692C9">ArgumentNullException</font>("cipherText");
+            <span class="cs_system">if</span> (Key == <span class="cs_system">null</span> || Key.Length <= 0)
+                <span class="cs_system">throw new</span> <font color="#3692C9">ArgumentNullException</font>("Key");
+            <span class="cs_system">if</span> (IV == <span class="cs_system">null</span> || IV.Length <= 0)
+                <span class="cs_system">throw new</span> <font color="#3692C9">ArgumentNullException</font>("IV");
+
+            <span class="cs_comment">// Declare the string used to hold
+            // the decrypted text.</span>
+            <span class="cs_system">string</span> plaintext = <span class="cs_system">null</span>;
+
+           <span class="cs_comment"> // Create an Aes object
+            // with the specified key and IV.</span>
+            <span class="cs_system">using</span> (<font color="#3692C9">Aes</font> aesAlg = <font color="#3692C9">Aes</font>.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV; 
+                aesAlg.Mode = thismode; // CipherMode.CBC; 
+                aesAlg.Padding = thispadding; // PaddingMode.Zeros; 
+
+                // Create a decryptor to perform the stream transform.
+                <font color="#3692C9">ICryptoTransform</font> decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+
+                // Create the streams used for decryption.
+                <span class="cs_system">using</span> (MemoryStream msDecrypt = <span class="cs_comment">new</span> <font color="#3692C9">MemoryStream</font>(cipherText))
+                {
+                    <span class="cs_system">using</span> (CryptoStream csDecrypt = <span class="cs_system">new</span> <font color="#3692C9">CryptoStream</font>(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        <span class="cs_system">using</span> (StreamReader srDecrypt = <span class="cs_system">new</span> <font color="#3692C9">StreamReader</font>(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting stream
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+
+            return plaintext;
+}
+........</pre>
+    <h3>&nbsp;</h3>
+    <!-- InstanceEndEditable --> <a class="backtotop" href="#top">Back to top</a> 
+  </div>
+  <!-- end of "main" -->
+      <div id="footer">
+        
+    <p>&copy; Copyright 2021&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+      Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
+      </div>
+      <!-- end of "footer" -->
+    </div><!-- end of "page" -->
+  </body>
+<!-- InstanceEnd --></html>
