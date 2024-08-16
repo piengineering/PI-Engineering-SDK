@@ -112,7 +112,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.TextBox();
             this.btnVersion = new System.Windows.Forms.Button();
-            this.lblPassFail = new System.Windows.Forms.Label();
+            this.lblAESPassFail = new System.Windows.Forms.Label();
             this.btnCheckDongle = new System.Windows.Forms.Button();
             this.btnSetDongle = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
@@ -209,6 +209,16 @@
             this.rbPress = new System.Windows.Forms.RadioButton();
             this.label55 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
+            this.btnZSliderOn = new System.Windows.Forms.Button();
+            this.label60 = new System.Windows.Forms.Label();
+            this.btnZSliderOff = new System.Windows.Forms.Button();
+            this.lblXkeysDecrypt = new System.Windows.Forms.Label();
+            this.btnXkeysDecrypt = new System.Windows.Forms.Button();
+            this.lblXkeysEncrypt = new System.Windows.Forms.Label();
+            this.txtXkeysEncrypt = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.btnAESEncrypt = new System.Windows.Forms.Button();
+            this.btnRawAESSetKey = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -494,7 +504,7 @@
             // 
             // btnTimeStamp
             // 
-            this.btnTimeStamp.Location = new System.Drawing.Point(1020, 161);
+            this.btnTimeStamp.Location = new System.Drawing.Point(1020, 203);
             this.btnTimeStamp.Margin = new System.Windows.Forms.Padding(2);
             this.btnTimeStamp.Name = "btnTimeStamp";
             this.btnTimeStamp.Size = new System.Drawing.Size(92, 22);
@@ -506,7 +516,7 @@
             // lblAbsTime
             // 
             this.lblAbsTime.AutoSize = true;
-            this.lblAbsTime.Location = new System.Drawing.Point(1239, 161);
+            this.lblAbsTime.Location = new System.Drawing.Point(1239, 203);
             this.lblAbsTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAbsTime.Name = "lblAbsTime";
             this.lblAbsTime.Size = new System.Drawing.Size(69, 13);
@@ -516,7 +526,7 @@
             // lblDeltaTime
             // 
             this.lblDeltaTime.AutoSize = true;
-            this.lblDeltaTime.Location = new System.Drawing.Point(1239, 180);
+            this.lblDeltaTime.Location = new System.Drawing.Point(1239, 222);
             this.lblDeltaTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDeltaTime.Name = "lblDeltaTime";
             this.lblDeltaTime.Size = new System.Drawing.Size(52, 13);
@@ -556,7 +566,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(1010, 136);
+            this.label23.Location = new System.Drawing.Point(1010, 178);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(139, 13);
@@ -587,7 +597,7 @@
             // 
             // btnTimeStampOn
             // 
-            this.btnTimeStampOn.Location = new System.Drawing.Point(1127, 161);
+            this.btnTimeStampOn.Location = new System.Drawing.Point(1127, 203);
             this.btnTimeStampOn.Margin = new System.Windows.Forms.Padding(2);
             this.btnTimeStampOn.Name = "btnTimeStampOn";
             this.btnTimeStampOn.Size = new System.Drawing.Size(92, 22);
@@ -1052,46 +1062,46 @@
             this.btnVersion.UseVisualStyleBackColor = true;
             this.btnVersion.Click += new System.EventHandler(this.btnVersion_Click);
             // 
-            // lblPassFail
+            // lblAESPassFail
             // 
-            this.lblPassFail.AutoSize = true;
-            this.lblPassFail.Location = new System.Drawing.Point(1244, 227);
-            this.lblPassFail.Name = "lblPassFail";
-            this.lblPassFail.Size = new System.Drawing.Size(51, 13);
-            this.lblPassFail.TabIndex = 297;
-            this.lblPassFail.Text = "Pass/Fail";
+            this.lblAESPassFail.AutoSize = true;
+            this.lblAESPassFail.Location = new System.Drawing.Point(1298, 525);
+            this.lblAESPassFail.Name = "lblAESPassFail";
+            this.lblAESPassFail.Size = new System.Drawing.Size(51, 13);
+            this.lblAESPassFail.TabIndex = 297;
+            this.lblAESPassFail.Text = "Pass/Fail";
             // 
             // btnCheckDongle
             // 
-            this.btnCheckDongle.Location = new System.Drawing.Point(1127, 222);
+            this.btnCheckDongle.Location = new System.Drawing.Point(1159, 520);
             this.btnCheckDongle.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckDongle.Name = "btnCheckDongle";
-            this.btnCheckDongle.Size = new System.Drawing.Size(112, 22);
+            this.btnCheckDongle.Size = new System.Drawing.Size(132, 23);
             this.btnCheckDongle.TabIndex = 296;
-            this.btnCheckDongle.Text = "Check Dongle Key";
+            this.btnCheckDongle.Text = "Check AES Key";
             this.btnCheckDongle.UseVisualStyleBackColor = true;
             this.btnCheckDongle.Click += new System.EventHandler(this.btnCheckDongle_Click);
             // 
             // btnSetDongle
             // 
-            this.btnSetDongle.Location = new System.Drawing.Point(1022, 222);
+            this.btnSetDongle.Location = new System.Drawing.Point(1020, 521);
             this.btnSetDongle.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetDongle.Name = "btnSetDongle";
-            this.btnSetDongle.Size = new System.Drawing.Size(98, 22);
+            this.btnSetDongle.Size = new System.Drawing.Size(132, 23);
             this.btnSetDongle.TabIndex = 295;
-            this.btnSetDongle.Text = "Set Dongle Key";
+            this.btnSetDongle.Text = "Set AES Key";
             this.btnSetDongle.UseVisualStyleBackColor = true;
             this.btnSetDongle.Click += new System.EventHandler(this.btnSetDongle_Click);
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(1010, 201);
+            this.label44.Location = new System.Drawing.Point(1008, 500);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(41, 13);
+            this.label44.Size = new System.Drawing.Size(65, 13);
             this.label44.TabIndex = 294;
-            this.label44.Text = "Dongle";
+            this.label44.Text = "AES Dongle";
             // 
             // cboPIDs
             // 
@@ -1792,7 +1802,7 @@
             // 
             // btnSaveInOut
             // 
-            this.btnSaveInOut.Location = new System.Drawing.Point(1161, 420);
+            this.btnSaveInOut.Location = new System.Drawing.Point(1159, 393);
             this.btnSaveInOut.Name = "btnSaveInOut";
             this.btnSaveInOut.Size = new System.Drawing.Size(132, 23);
             this.btnSaveInOut.TabIndex = 510;
@@ -1802,7 +1812,7 @@
             // 
             // btnSetInOut
             // 
-            this.btnSetInOut.Location = new System.Drawing.Point(1022, 420);
+            this.btnSetInOut.Location = new System.Drawing.Point(1020, 393);
             this.btnSetInOut.Name = "btnSetInOut";
             this.btnSetInOut.Size = new System.Drawing.Size(132, 23);
             this.btnSetInOut.TabIndex = 509;
@@ -1815,7 +1825,7 @@
             this.groupBox3.Controls.Add(this.rb3ID);
             this.groupBox3.Controls.Add(this.rb3O);
             this.groupBox3.Controls.Add(this.rb3I);
-            this.groupBox3.Location = new System.Drawing.Point(1217, 339);
+            this.groupBox3.Location = new System.Drawing.Point(1215, 312);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(89, 73);
             this.groupBox3.TabIndex = 506;
@@ -1860,7 +1870,7 @@
             this.groupBox2.Controls.Add(this.rb2ID);
             this.groupBox2.Controls.Add(this.rb2O);
             this.groupBox2.Controls.Add(this.rb2I);
-            this.groupBox2.Location = new System.Drawing.Point(1122, 339);
+            this.groupBox2.Location = new System.Drawing.Point(1120, 312);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(89, 73);
             this.groupBox2.TabIndex = 505;
@@ -1903,7 +1913,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1010, 267);
+            this.label20.Location = new System.Drawing.Point(1008, 240);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(98, 13);
@@ -1915,7 +1925,7 @@
             this.groupBox4.Controls.Add(this.rb4ID);
             this.groupBox4.Controls.Add(this.rb4O);
             this.groupBox4.Controls.Add(this.rb4I);
-            this.groupBox4.Location = new System.Drawing.Point(1314, 339);
+            this.groupBox4.Location = new System.Drawing.Point(1312, 312);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(89, 73);
             this.groupBox4.TabIndex = 507;
@@ -1960,7 +1970,7 @@
             this.groupBox1.Controls.Add(this.rb1ID);
             this.groupBox1.Controls.Add(this.rb1O);
             this.groupBox1.Controls.Add(this.rb1I);
-            this.groupBox1.Location = new System.Drawing.Point(1025, 339);
+            this.groupBox1.Location = new System.Drawing.Point(1023, 312);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(89, 73);
             this.groupBox1.TabIndex = 504;
@@ -2002,7 +2012,7 @@
             // 
             // label48
             // 
-            this.label48.Location = new System.Drawing.Point(1022, 288);
+            this.label48.Location = new System.Drawing.Point(1020, 261);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(377, 48);
@@ -2014,7 +2024,7 @@
             // lblSiliconGeneratedID
             // 
             this.lblSiliconGeneratedID.AutoSize = true;
-            this.lblSiliconGeneratedID.Location = new System.Drawing.Point(1102, 488);
+            this.lblSiliconGeneratedID.Location = new System.Drawing.Point(1100, 461);
             this.lblSiliconGeneratedID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSiliconGeneratedID.Name = "lblSiliconGeneratedID";
             this.lblSiliconGeneratedID.Size = new System.Drawing.Size(99, 13);
@@ -2024,7 +2034,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(1013, 465);
+            this.label49.Location = new System.Drawing.Point(1008, 438);
             this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(128, 13);
@@ -2033,7 +2043,7 @@
             // 
             // btnSiliconGeneratedID
             // 
-            this.btnSiliconGeneratedID.Location = new System.Drawing.Point(1022, 483);
+            this.btnSiliconGeneratedID.Location = new System.Drawing.Point(1020, 456);
             this.btnSiliconGeneratedID.Name = "btnSiliconGeneratedID";
             this.btnSiliconGeneratedID.Size = new System.Drawing.Size(75, 23);
             this.btnSiliconGeneratedID.TabIndex = 511;
@@ -2113,12 +2123,123 @@
             this.label59.TabIndex = 532;
             this.label59.Text = "Bank 1:";
             // 
+            // btnZSliderOn
+            // 
+            this.btnZSliderOn.Location = new System.Drawing.Point(1127, 144);
+            this.btnZSliderOn.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZSliderOn.Name = "btnZSliderOn";
+            this.btnZSliderOn.Size = new System.Drawing.Size(92, 22);
+            this.btnZSliderOn.TabIndex = 536;
+            this.btnZSliderOn.Text = "Z Slider On";
+            this.btnZSliderOn.UseVisualStyleBackColor = true;
+            this.btnZSliderOn.Click += new System.EventHandler(this.btnZSliderOn_Click);
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(1010, 119);
+            this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(162, 13);
+            this.label60.TabIndex = 535;
+            this.label60.Text = "Enable/Disable Z Slider on T-bar";
+            // 
+            // btnZSliderOff
+            // 
+            this.btnZSliderOff.Location = new System.Drawing.Point(1020, 144);
+            this.btnZSliderOff.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZSliderOff.Name = "btnZSliderOff";
+            this.btnZSliderOff.Size = new System.Drawing.Size(92, 22);
+            this.btnZSliderOff.TabIndex = 534;
+            this.btnZSliderOff.Text = "Z Slider Off";
+            this.btnZSliderOff.UseVisualStyleBackColor = true;
+            this.btnZSliderOff.Click += new System.EventHandler(this.btnZSliderOff_Click);
+            // 
+            // lblXkeysDecrypt
+            // 
+            this.lblXkeysDecrypt.AutoSize = true;
+            this.lblXkeysDecrypt.Location = new System.Drawing.Point(1157, 638);
+            this.lblXkeysDecrypt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblXkeysDecrypt.Name = "lblXkeysDecrypt";
+            this.lblXkeysDecrypt.Size = new System.Drawing.Size(70, 13);
+            this.lblXkeysDecrypt.TabIndex = 578;
+            this.lblXkeysDecrypt.Text = "decrypt result";
+            // 
+            // btnXkeysDecrypt
+            // 
+            this.btnXkeysDecrypt.Location = new System.Drawing.Point(1020, 633);
+            this.btnXkeysDecrypt.Name = "btnXkeysDecrypt";
+            this.btnXkeysDecrypt.Size = new System.Drawing.Size(132, 23);
+            this.btnXkeysDecrypt.TabIndex = 577;
+            this.btnXkeysDecrypt.Text = "AES Decrypt";
+            this.btnXkeysDecrypt.UseVisualStyleBackColor = true;
+            this.btnXkeysDecrypt.Click += new System.EventHandler(this.btnXkeysDecrypt_Click);
+            // 
+            // lblXkeysEncrypt
+            // 
+            this.lblXkeysEncrypt.Location = new System.Drawing.Point(1250, 609);
+            this.lblXkeysEncrypt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblXkeysEncrypt.Name = "lblXkeysEncrypt";
+            this.lblXkeysEncrypt.Size = new System.Drawing.Size(150, 47);
+            this.lblXkeysEncrypt.TabIndex = 576;
+            this.lblXkeysEncrypt.Text = "encrypt result";
+            // 
+            // txtXkeysEncrypt
+            // 
+            this.txtXkeysEncrypt.Location = new System.Drawing.Point(1155, 606);
+            this.txtXkeysEncrypt.Name = "txtXkeysEncrypt";
+            this.txtXkeysEncrypt.Size = new System.Drawing.Size(83, 20);
+            this.txtXkeysEncrypt.TabIndex = 575;
+            this.txtXkeysEncrypt.Text = "Encrypt Me";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(1008, 559);
+            this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(109, 13);
+            this.label62.TabIndex = 574;
+            this.label62.Text = "AES Encrypt/Decrypt";
+            // 
+            // btnAESEncrypt
+            // 
+            this.btnAESEncrypt.Location = new System.Drawing.Point(1020, 604);
+            this.btnAESEncrypt.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAESEncrypt.Name = "btnAESEncrypt";
+            this.btnAESEncrypt.Size = new System.Drawing.Size(132, 23);
+            this.btnAESEncrypt.TabIndex = 573;
+            this.btnAESEncrypt.Text = "AES Encrypt";
+            this.btnAESEncrypt.UseVisualStyleBackColor = true;
+            this.btnAESEncrypt.Click += new System.EventHandler(this.btnAESEncrypt_Click);
+            // 
+            // btnRawAESSetKey
+            // 
+            this.btnRawAESSetKey.Location = new System.Drawing.Point(1020, 576);
+            this.btnRawAESSetKey.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRawAESSetKey.Name = "btnRawAESSetKey";
+            this.btnRawAESSetKey.Size = new System.Drawing.Size(132, 23);
+            this.btnRawAESSetKey.TabIndex = 572;
+            this.btnRawAESSetKey.Text = "Set AES Key";
+            this.btnRawAESSetKey.UseVisualStyleBackColor = true;
+            this.btnRawAESSetKey.Click += new System.EventHandler(this.btnRawAESSetKey_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1428, 853);
+            this.Controls.Add(this.lblXkeysDecrypt);
+            this.Controls.Add(this.btnXkeysDecrypt);
+            this.Controls.Add(this.lblXkeysEncrypt);
+            this.Controls.Add(this.txtXkeysEncrypt);
+            this.Controls.Add(this.label62);
+            this.Controls.Add(this.btnAESEncrypt);
+            this.Controls.Add(this.btnRawAESSetKey);
+            this.Controls.Add(this.btnZSliderOn);
+            this.Controls.Add(this.label60);
+            this.Controls.Add(this.btnZSliderOff);
             this.Controls.Add(this.label55);
             this.Controls.Add(this.label59);
             this.Controls.Add(this.rbRelease);
@@ -2201,7 +2322,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.cboPIDs);
-            this.Controls.Add(this.lblPassFail);
+            this.Controls.Add(this.lblAESPassFail);
             this.Controls.Add(this.btnCheckDongle);
             this.Controls.Add(this.btnSetDongle);
             this.Controls.Add(this.label44);
@@ -2393,7 +2514,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.TextBox txtVersion;
         private System.Windows.Forms.Button btnVersion;
-        private System.Windows.Forms.Label lblPassFail;
+        private System.Windows.Forms.Label lblAESPassFail;
         private System.Windows.Forms.Button btnCheckDongle;
         private System.Windows.Forms.Button btnSetDongle;
         private System.Windows.Forms.Label label44;
@@ -2490,6 +2611,16 @@
         private System.Windows.Forms.RadioButton rbPress;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Button btnZSliderOn;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Button btnZSliderOff;
+        private System.Windows.Forms.Label lblXkeysDecrypt;
+        private System.Windows.Forms.Button btnXkeysDecrypt;
+        private System.Windows.Forms.Label lblXkeysEncrypt;
+        private System.Windows.Forms.TextBox txtXkeysEncrypt;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Button btnAESEncrypt;
+        private System.Windows.Forms.Button btnRawAESSetKey;
     }
 }
 
