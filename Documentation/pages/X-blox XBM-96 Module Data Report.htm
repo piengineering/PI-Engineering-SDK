@@ -752,79 +752,7 @@
       <b>B1: </b>1st custom byte<br>
       <b>B2:</b> 2nd custom byte<br>
       <b>B3:</b> 3rd custom byte and so on for as many bytes as specified in <b>Count</b></p>
-    <p><b>4. Check Dongle Key </b></p>
-    <p>This is received immediately following a Check Dongle Key output report 
-      is sent. The four values R0-R3 are required to continue the check. See <a href="dongle.htm">Dongle 
-      Implementation</a> for further details. </p>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 6 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 7 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 8 to 37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt4">1st byte returned from hash</td>
-        <td id="bt5">2nd byte returned from hash</td>
-        <td>3rd byte returned from hash</td>
-        <td  id="bt7">4th byte returned from hash</td>
-        <td>Reserved</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">193</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><strong>R0</strong></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>R1</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>R2</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>R3</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">value</div>
-        </td>
-      </tr>
-    </table>
-    <p><b>R0</b>: Value need for comparison to check for correct dongle key<br>
-      <b>R1</b>: Value need for comparison to check for correct dongle key<br>
-      <b>R2</b>: Value need for comparison to check for correct dongle key<br>
-      <b>R3</b>: Value need for comparison to check for correct dongle key</p>
-    <p><b>5. RGB Backlight Values Data</b></p>
+    <p><b>4. RGB Backlight Values Data</b></p>
     <p>This data is returned after an output report: Get RGB Backlight Values 
       is sent. It returns the current state, R, G, and B, and flash state for 
       both upper and lower LEDs of the requested key. It also returns the current 
@@ -968,7 +896,7 @@
       and 0 is 100% dim or LEDs off, factory default is 255 <br>
       <b>Dim2:</b> Dim Factor for bank 2 (lower), 0-255 where 255 is no dimming 
       and 0 is 100% dim or LEDs off, factory default is 255 </p>
-    <p><b>6. RGB Backlight Power Data</b></p>
+    <p><b>5. RGB Backlight Power Data</b></p>
     <p>This data is returned after an output report: Request RGB Backlight Power 
       Data is sent. It returns the 3 byte current power, the 3 byte maximum power, 
       the 3 byte sum of RGB values for bank 1, the 3 byte sum of RGB values for 
@@ -1132,7 +1060,7 @@
       and 0 is 100% dim or LEDs off, factory default is 255, used for power calculations<br>
       <b>Dim2:</b> Dim Factor for bank 2 (lower), 0-255 where 255 is no dimming 
       and 0 is 100% dim or LEDs off, factory default is 255, used for power calculations</p>
-    <p><b>7. Power Overload from Set Single LED Data</b></p>
+    <p><b>6. Power Overload from Set Single LED Data</b></p>
     <p>This data is returned after an <span class="style6">Index Based Set RGB 
       Backlights (165)</span> or <span class="style6">Legacy Index Based Set Backlights 
       (181) </span> output was sent which resulted in a power overload, ie desired 
@@ -1235,7 +1163,7 @@
       <b>Dim2: </b> The new adjusted dim factor for bank 2<b> <br>
       PDim1: </b> The dim factor for bank 1 before this power overload<br>
       <b>PDim2: </b> The dim factor for bank 2 before this power overload</p>
-    <p><b>8. Power Overload from Set Entire Bank of LED Data</b></p>
+    <p><b>7. Power Overload from Set Entire Bank of LED Data</b></p>
     <p>This data is returned after an <span class="style6">Set Entire Bank of 
       RGB Backlights (166)</span> or <span class="style6">Legacy Turn On/Off Rows 
       of Backlights (182) </span> output was sent which resulted in a power overload, 
@@ -1336,7 +1264,7 @@
       <b>Dim2: </b> The new adjusted dim factor for bank 2<b> <br>
       PDim1: </b> The dim factor for bank 1 before this power overload<br>
       <b>PDim2: </b> The dim factor for bank 2 before this power overload</p>
-    <p><b>9. Unique ID Data </b></p>
+    <p><b>8. Unique ID Data </b></p>
     <p>This data is returned after an output report: Get Unique ID is sent. It 
       returns 8 bytes<a href="dongle.htm"> </a>of the silicon generated unique 
       ID of the device. This value is available also in the HID device descriptor 
@@ -1438,7 +1366,7 @@
       of the hex values returned, for example if the 8 bytes returned were <b>B1</b>=70, 
       <b>B2</b>=21, <b>B3</b>=48, <b>B4</b>=23, <b>B5</b>=22, <b>B6</b>=6, <b>B7</b>=43, 
       and <b>B8</b>=0, the string for this would be 4615301716062B00 </p>
-    <p><b>10. RS232 Settings Data</b></p>
+    <p><b>9. RS232 Settings Data</b></p>
     <p>For users of the UART port only. This report is generated after an output 
       report: Get RS232 Settings is sent. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
@@ -1510,7 +1438,7 @@
       <b>Parity</b>: Parity: 0=even, 1=odd, 2=none (factory default)<br>
       <b>DataBits</b>: Data Bits: 5, 6, 7, or 8 (factory default)<br>
       <b>StopBits</b>: Stop Bits: 2=1 bit (factory default), 3=1.5 bits, 4=2 bits</p>
-    <p><b>11. Incoming UART Data - Echo of UART Output Report Received Message</b></p>
+    <p><b>10. Incoming UART Data - Echo of UART Output Report Received Message</b></p>
     <p>For users of the UART port only. If UART Echo is enabled, this report is 
       generated when a UART Output Report Received Message is received on the 
       module's UART RX. The module recognizes a UART Output Report Received Message 
@@ -1606,7 +1534,7 @@
       <b>Bytes</b>: Additional bytes added until the required number of bytes 
       is reached. In the Index Based Set RGB Backlights example there would be 
       additionally B3=Red, B4=Green, B5=Blue, and B6= Flash and thus <b>Count</b>=7</p>
-    <p><b>12. Incoming UART Data - UART Custom Message</b></p>
+    <p><b>11. Incoming UART Data - UART Custom Received Message</b></p>
     <p>For users of the UART port only. This report is generated for messages 
       received on the module's UART RX that have a start byte of 2 and a stop 
       byte of 3. A single message may generate several of these reports. No decoding 
@@ -1694,7 +1622,8 @@
       - On module A, enabled the <span class="style6">Enable UART PI Base64 Input 
       Report Transmit Messages using the Enable UART PI Base64 Input Report Transmit 
       Messages output report<br>
-      - Prepare module B for reading input reports<br>
+      - Prepare module B for reading input reports via the USB (enumerate, SetupInterface, 
+      and SetDataCallback)<br>
       - Press a button on module A thus generating a General Incoming Data input 
       report on module A, simultaneously a UART PI Base64 Input Report Transmit 
       Messages is sent on module A's TX<br>
@@ -2816,6 +2745,130 @@
       Number&quot; <b><br>
       Base64 1-Base64 48:</b> Base64 encoded bytes of the input report, excluding 
       the leading 0</p>
+    <p><b>12. AES Encrypted Data </b></p>
+    <p>This is received immediately following an AES Encrypt output report is 
+      sent. See <a href="aesdongle.htm">AES Dongle Implementation</a> for further 
+      details. </p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte x</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes x+1 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Encryptd byte1 </td>
+        <td id="bt5">Encrypted byte 2...</td>
+        <td>Encrypted byte x</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">139</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>E1</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>E2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Ex</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>E1, E2,..., Ex</b>: Encrypted data results, up to 32 bytes</p>
+    <p><b>13. AES Decrypted Data </b></p>
+    <p>This is received immediately following an AES Decrypt output report is 
+      sent. AES key and AES initialization vector must be the same as those used 
+      in AES Encrypt command in order to successfully decrypt the results.</p>
+    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte x</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes x+1 to 37</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF0" class="style6"> 
+        <td>Constant</td>
+        <td id="bt2">Unit ID</td>
+        <td id="bt3">Data Type</td>
+        <td id="bt4">Decryptd byte1 </td>
+        <td id="bt5">Decrypted byte 2...</td>
+        <td>Decrypted byte x</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"> 0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">&lt;data&gt;</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">140</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><strong>D1</strong></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>D2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Dx</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>D1, D2,..., Dx</b>: Decrypted data results, up to 32 bytes</p>
     <p><br>
       <b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b><br>
@@ -3048,40 +3101,26 @@
         <td> 
           <div align="center"><span class="style6">28</span></div>
         </td>
-        <td><span class="style6">0, 192, K0, K1, K2, K3, 0...</span></td>
-        <td><span class="style6">Set Dongle Key<sup>e</sup></span></td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="center"><span class="style6">29</span></div>
-        </td>
-        <td><span class="style6">0, 193, N0, N1, N2, N3, 0...</span></td>
-        <td><span class="style6">Check Dongle Key</span></td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="center"><span class="style6">30</span></div>
-        </td>
         <td><span class="style6">0, 145, MaxPwr1, MaxPwr2, MaxPwr3, 0...</span></td>
         <td><span class="style6">Set Maximum RGB Backlight<sup> Powere</sup></span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">31</span></div>
+          <div align="center"><span class="style6">29</span></div>
         </td>
         <td><span class="style6">0, 146, 0...</span></td>
         <td><span class="style6">Get RGB Backlight Power Levels</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">32</span></div>
+          <div align="center"><span class="style6">30</span></div>
         </td>
         <td><span class="style6">0, 157, 0...</span></td>
         <td><span class="style6">Get Unique ID</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">33</span></div>
+          <div align="center"><span class="style6">31</span></div>
         </td>
         <td><span class="style6">0, 220, KeyIndex or Virtual Button ID, State, 
           0...</span></td>
@@ -3089,14 +3128,14 @@
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">34</span></div>
+          <div align="center"><span class="style6">32</span></div>
         </td>
         <td><span class="style6">0, 141, 0...</span></td>
         <td><span class="style6">Get RS232 Settings</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">35</span></div>
+          <div align="center"><span class="style6">33</span></div>
         </td>
         <td><span class="style6">0, 142, BaudRateIndex, Parity, DataBits, StopBits, 
           0...</span></td>
@@ -3104,38 +3143,66 @@
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">36</span></div>
+          <div align="center"><span class="style6">34</span></div>
         </td>
         <td><span class="style6">0, 215, Enable, 0...</span></td>
         <td><span class="style6">Enable UART PI Base64 Input Report Transmit Messages<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">37</span></div>
+          <div align="center"><span class="style6">35</span></div>
         </td>
         <td><span class="style6">0, 216, Count, B1, B2, B3..., 0...</span></td>
         <td><span class="style6">Transmit to UART</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">38</span></div>
+          <div align="center"><span class="style6">36</span></div>
         </td>
         <td><span class="style6">0, 217, Enable, 0...</span></td>
         <td><span class="style6">Enable Echo of UART Output Report Received Messagee</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">39</span></div>
+          <div align="center"><span class="style6">37</span></div>
         </td>
         <td><span class="style6">0, 218, SleepDisable, 0...</span></td>
         <td><span class="style6">Disable Sleep of USBe</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">40</span></div>
+          <div align="center"><span class="style6">35</span></div>
         </td>
-        <td><span class="style6">0, 143, USBCheckDisable, 0...</span></td>
-        <td><span class="style6">Disable USB Check</span></td>
+        <td><span class="style6">0, 216, Count, B1, B2, B3..., 0...</span></td>
+        <td><span class="style6">Transmit to UART</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">36</span></div>
+        </td>
+        <td><span class="style6">0, 137, K1, K2,..., K16, 0...</span></td>
+        <td><span class="style6">Set AES Keye</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">37</span></div>
+        </td>
+        <td><span class="style6">0, 138, IV1, IV2, ..., IV16, 0...</span></td>
+        <td><span class="style6">Set AES Initialization Vector</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">38</span></div>
+        </td>
+        <td><span class="style6">0, 139, M1, M2, ..., Mx, 0...</span></td>
+        <td><span class="style6">AES Encrypt</span></td>
+      </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">39</span></div>
+        </td>
+        <td><span class="style6">0, 140, E1, E2,...Ex, 0...</span></td>
+        <td><span class="style6">AES Decrypt</span></td>
       </tr>
     </table>
     <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
@@ -4654,147 +4721,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>28. Set Dongle Key</strong></p>
-    <p>Sets the user entered key. Remember these numbers as they are required 
-      to check for the key. This is intented to be done once by the developer 
-      prior to sale. See <a href="dongle.htm">Dongle Implemenation</a> for more 
-      details.</p>
-    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 6</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 7-36</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF00" class="style6"> 
-        <td>Constant</td>
-        <td>Command</td>
-        <td>1st byte of key</td>
-        <td>2nd byte of key</td>
-        <td>3rd byte of key</td>
-        <td>4th byte of key</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">192</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>K0</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>K1</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>K2</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>K3</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <p><b>K0:</b> 1st byte of user determined dongle key, any number 1-254<br>
-      <b>K1: </b>2nd byte of user determined dongle key, any number 1-254<br>
-      <b>K2:</b> 3rd byte of user determined dongle key, any number 1-254<br>
-      <b>K3:</b> 4th byte of user determined dongle key, any number 1-254</p>
-    <p><strong>29. Check Dongle Key</strong></p>
-    <p>Checks the key that was entered in Set Dongle Key. This is intented to 
-      be done by the developer within their own software to determine if the connected 
-      X-keys device is the one they sold to the customer. 4 random bytes along 
-      with the actual key are entered into the DongleCheck2() hash function of 
-      the Piehid32.dll/PieHid32Net.dll which returns 4 bytes. Then after sending 
-      this output report a Check Dongle Key input report will be received containing 
-      the same 4 bytes returned from the hash if the key matches. See <a href="dongle.htm">Dongle 
-      Implemenation</a> for more details.</p>
-    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 6</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 7-36</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF00" class="style6"> 
-        <td>Constant</td>
-        <td>Command</td>
-        <td>Random number</td>
-        <td>Random number</td>
-        <td>Random number</td>
-        <td>Random number</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">193</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>N0</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>N1</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>N2</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>N3</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <p><b>K0:</b> 1st byte of a random number that was used in the hash, any number 
-      1-254<br>
-      <b>K1: </b>2nd byte of a random number that was used in the hash, any number 
-      1-254<br>
-      <b>K2:</b> 3rd byte of a random number that was used in the hash, any number 
-      1-254<br>
-      <b>K3:</b> 4th byte of a random number that was used in the hash, any number 
-      1-254</p>
-    <p><strong>30. Set Maximum RGB Backlight Power</strong></p>
+    <p><strong>28. Set Maximum RGB Backlight Power</strong></p>
     <p>Sets the 3 byte maximum RGB backligh power level. Factory default is 36,864 
       (0x9000). This value is dependent on USB hub used to power unit. The factory 
       default is considered conservative.</p>
@@ -4852,7 +4779,7 @@
       <b>MaxPwr2: </b>Middle byte of the maximum power level, factory default 
       is 144<br>
       <b>MaxPwr3:</b> LSB of maximum power level, factor default is 0.</p>
-    <p><strong>31. Get Power Levels</strong></p>
+    <p><strong>29. Get Power Levels</strong></p>
     <p>After sending this output report an RGB Backlight Power Data input report 
       will be generated.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -4884,7 +4811,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>32. Get Unique ID</strong></p>
+    <p><strong>30. Get Unique ID</strong></p>
     <p>After sending a Get Unique ID output report, a Unique ID Data input report 
       will be generated with the 8 bytes<a href="dongle.htm"> </a>of the silicon 
       generated unique ID of the device. This value is available also in the HID 
@@ -4918,7 +4845,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>33. Control Virtual Digital Input</strong></p>
+    <p><strong>31. Control Virtual Digital Input</strong></p>
     <p>Use this output report to virtually press or release a physical button 
       or to press or release a Virtual Button. </p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -4982,7 +4909,7 @@
       to 111 correspond to the lowest to highest bit. A special ID=255 is provided 
       to clear all buttons pressed virtually.<br>
       <b>State: </b>2=press, 1=release</p>
-    <p><strong>34. Get RS232 Settings</strong></p>
+    <p><strong>32. Get RS232 Settings</strong></p>
     <p>After sending a Get RS232 Settings output report, a RS232 Settings Data 
       input report will be generated providing the settings.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -5014,7 +4941,7 @@
         </td>
       </tr>
     </table>
-    <p><strong>35. Change RS232 Settings</strong></p>
+    <p><strong>33. Change RS232 Settings</strong></p>
     <p>Send this output report to change the X-keys RS232 settings.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -5078,7 +5005,7 @@
       <b>Parity</b>: Parity: 0=even, 1=odd, 2=none (factory default)<br>
       <b>DataBits</b>: Data Bits: 5, 6, 7, or 8 (factory default)<br>
       <b>StopBits</b>: Stop Bits: 2=1 bit (factory default), 3=1.5 bits, 4=2 bits</p>
-    <p><strong>36. Enable UART PI Base64 Input Report Transmit Messages</strong></p>
+    <p><strong>34. Enable UART PI Base64 Input Report Transmit Messages</strong></p>
     <p>For users of the UART port only. Send this output report to disable or 
       enable the UART PI Base64 Input Report Transmit Messages. If enabled, a 
       UART PI Base64 Input Report Transmit Message will be transmitted via the 
@@ -5130,7 +5057,7 @@
       </tr>
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
-    <p><strong>37. Transmit to UART</strong></p>
+    <p><strong>35. Transmit to UART</strong></p>
     <p>For users of the UART port only. Puts bytes on the module's UART TX for 
       transmission. The number of bytes sent at one time is limited by the output 
       report length and is 33.</p>
@@ -5209,14 +5136,15 @@
       <b>B1: </b>1st byte<br>
       <b>B2:</b> 2nd byte<br>
       <b>B3:</b> 3rd byte and so on for as many bytes as specified in <b>Count</b></p>
-    <p><strong>38. <span class="style6">Enable Echo of UART Output Report Received 
+    <p><strong>36. <span class="style6">Enable Echo of UART Output Report Received 
       Message</span></strong></p>
     <p>For users of the UART port only. Send this output report to disable or 
-      enable the Incoming UART Data - Echo of <span class="style6">UART Output Report Received Message</span> input reports generated when UART Output 
-      Report Received Messages are received via the module's UART RX. Current 
-      value can be read in the Descriptor as <b>EchoEnabled</b>. Note: regardless 
-      of this setting, when a UART Output Report Received Message is received, 
-      the corresponding output report is executed.</p>
+      enable the Incoming UART Data - Echo of <span class="style6">UART Output 
+      Report Received Message</span> input reports generated when UART Output 
+      Report Messages are received via the module's UART RX. Current value can 
+      be read in the Descriptor as <b>EchoEnabled</b>. Note: regardless of this 
+      setting, when a UART Output Report Message is received, the corresponding 
+      output report is executed.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -5262,7 +5190,7 @@
       </tr>
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
-    <p><strong>39. <span class="style6">Disable Sleep of USB</span></strong></p>
+    <p><strong>37. <span class="style6">Disable Sleep of USB</span></strong></p>
     <p>By factory default the X-keys device is designed to turn off its LEDs and 
       any GPIO pins configured as outputs when a USB suspend condition occurs. 
       To override this behavior send this report with SleepDisable=1.</p>
@@ -5311,7 +5239,7 @@
       </tr>
     </table>
     <p><b>SleepDisable: </b> 0=enabled (factory default), 1=disabled </p>
-    <p><strong>40. <span class="style6">Disable Check of USB</span></strong></p>
+    <p><strong>38. <span class="style6">Disable Check of USB</span></strong></p>
     <p>For users of UART port only operating without USB connection. X-keys devices 
       with UART capability are designed to operate without a USB connection. In 
       this configuration the USB cord is used for power only. When no USB is detected 
@@ -5362,14 +5290,431 @@
         </td>
       </tr>
     </table>
-    <p><b>USBCheckDisable: </b> 0=enabled (factory default), 1=disabled </p>
+    <p><b>USBCheckDisable: </b> 0=enabled (factory default), 1=disabled</p>
+    <p><strong>39. Set AES Key</strong></p>
+    <p>Sets the user defined Advanced Encryption Standard (AES) key. Remember 
+      these numbers as they are required to check for the key. This is intended 
+      to be done once by the developer prior to sale. See <a href="aesdongle.htm">AES 
+      Dongle Implementation</a>.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 11</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 12</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 13</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 14</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 15</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 16</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 17</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 18</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 19 to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>AES key byte 1</td>
+        <td>AES key byte 2</td>
+        <td>AES key byte 3</td>
+        <td>AES key byte 4</td>
+        <td>AES key byte 5</td>
+        <td>AES key byte 6</td>
+        <td>AES key byte 7</td>
+        <td>AES key byte 8</td>
+        <td>AES key byte 9</td>
+        <td>AES key byte 10</td>
+        <td>AES key byte 11</td>
+        <td>AES key byte 12</td>
+        <td>AES key byte 13</td>
+        <td>AES key byte 14</td>
+        <td>AES key byte 15</td>
+        <td>AES key byte 16</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">137</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K4</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K5</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K6</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K7</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K8</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K9</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K10</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K11</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K12</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K13</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K14</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K15</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>K16</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>K1, K2, ..., K16:</b> The 16 byte of user defined AES key, any number 
+      0-255, however all 0s is invalid<br>
+    </p>
+    <p><strong>40. Set AES Intialization Vector</strong></p>
+    <p>This command sets the AES initialization vector. This command is used in 
+      conjuction with Set AES Key and AES Encryption to check the AES dongle. 
+      The initialization vector must be set before each encryption and decryption 
+      as it is set to all 0s after each encryption and decryption in the X-keys. 
+      See <a href="aesdongle.htm">AES Dongle Implemenation</a> for more details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 7</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 8</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 9</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 10</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 11</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 12</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 13</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 14</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 15</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 16</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 17</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 18</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 19 to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>AES IV byte 1</td>
+        <td>AES IV byte 2</td>
+        <td>AES IV byte 3</td>
+        <td>AES IV byte 4</td>
+        <td>AES IV byte 5</td>
+        <td>AES IV byte 6</td>
+        <td>AES IV byte 7</td>
+        <td>AES IV byte 8</td>
+        <td>AES IV byte 9</td>
+        <td>AES IV byte 10</td>
+        <td>AES IV byte 11</td>
+        <td>AES IV byte 12</td>
+        <td>AES IV byte 13</td>
+        <td>AES IV byte 14</td>
+        <td>AES IV byte 15</td>
+        <td>AES IV byte 16</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">138</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV3</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV4</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV5</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV6</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV7</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV8</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV9</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV10</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV11</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV12</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV13</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV14</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV15</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>IV16</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>IV1, IV2, ..., IV16:</b> The 16 byte of user determined AES initialization 
+      vector, any number 0-255, however all 0s is invalid</p>
+    <p><strong>41. AES Encrypt</strong></p>
+    <p>This command encrypts a user defined message using AES-CBC mode and returns 
+      the results in an AES Encrypted Data input report. The AES initialization 
+      vector is cleared in the X-keys following this command. This command is 
+      used in conjuction with Set AES Key and AES Initialization Vector to check 
+      the AES dongle. See <a href="aesdongle.htm">AES Dongle Implemenation</a> 
+      for more details.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4...</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte z</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes z+1 to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Message byte 1</td>
+        <td>Message byte 2</td>
+        <td>Message byte x</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">139</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>M1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>M2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Mx</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>M1, M2, ..., Mx:</b> ASCII values for the user defined message, not 
+      to exceed 32 characters (32 bytes). For example Encrypt Me would have <b>M1</b>=110, 
+      <b>M2</b>=99, <b>M3</b>=114, <b>M4</b>=121, <b>M5</b>=112, <b>M6</b>=116, 
+      <b>M7</b>=32, <b>M8</b>=77, <b>M9</b>=101 </p>
+    <p><strong>42. AES Decrypt</strong></p>
+    <p>This command decrypts previously encrypted data using AES-CBC mode and 
+      returns the results in an AES Decrypted Data input report. The Set AES Initialization 
+      command used for encrypted data must be sent again using the same values 
+      prior to using this command to decrypt. The AES initialization vector is 
+      cleared in the X-keys following this command. This command is not used for 
+      the AES Dongle implementation, developers are to use their own AES decryption 
+      function.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4...</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte z</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes z+1 to 36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Encrypted byte 1</td>
+        <td>Encrypted byte 2</td>
+        <td>Encrypted byte x</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">140</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>E1</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>E2</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>EX</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>E1, E2, ..., Ex:</b> Encrypted data not to exceed 32 bytes </p>
     <p><b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b></p>
     <h3>X-blox UART Port Information</h3>
     <p>For users of UART port only. This X-blox module comes equipped with a UART 
       port for serial communication options. Pin assignments for the UART port 
-      are shown in Table 2. Baud rate is 115200 (actual baud rate 114286), Data 
-      bits 8, Parity non, Stop bits 1.</p>
+      are shown in Table 2. </p>
     <table width="240" border="1" cellspacing="1" cellpadding="1">
       <tr bgcolor="#CCCCCC"> 
         <th width="112" scope="col"> 
@@ -5426,9 +5771,9 @@
       <br>
       <b>1. UART Output Report Received Message</b></p>
     <p> Every output report described in the above Output Report section can be 
-      sent via the UART. UART Output Report Received Message requires a start 
-      byte of 4, encoding into Base64 of the 2 digit hexidecimal byte values required 
-      for the output report, and a stop byte of 5. This example demonstrates turning 
+      sent via the UART. UART Output Report Message requires a start byte of 4, 
+      encoding into Base64 of the 2 digit hexidecimal byte values required for 
+      the output report, and a stop byte of 5. This example demonstrates turning 
       the bank 1 RGB LED corresponding to KeyIndex 0 (first button in top left) 
       to red. Consulting the Index Based Set RGB Backlights output report from 
       above, we need to send a total of 7 bytes; <span class="style6">165, KeyIndex, 
