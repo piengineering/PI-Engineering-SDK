@@ -70,10 +70,11 @@
 #define IDC_RDKEYS                      1038
 #define IDC_WRITECOMTX2                 1038
 #define IDC_CHKREDLED                   1039
+#define IDC_UARTENABLED                 1039
 #define IDC_CHKREDLEDFL                 1040
-#define IDC_CHANGECOMRS233              1040
 #define IDC_CHANGECOMRS232              1040
 #define IDC_CHKGREENLEDFL               1041
+#define IDC_UARTDISABLED                1041
 #define IDC_CHKENABLE                   1042
 #define IDC_RDXon                       1043
 #define IDC_RDXoff                      1044
@@ -86,6 +87,7 @@
 #define IDC_DCDDSRCTC                   1051
 #define IDC_DCDDSRCTC2                  1052
 #define IDC_OPENCOMPORT                 1058
+#define IDC_LBLUARTENABLED              1059
 
 // Next default values for new objects
 // 
@@ -93,7 +95,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        102
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1059
+#define _APS_NEXT_CONTROL_VALUE         1060
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

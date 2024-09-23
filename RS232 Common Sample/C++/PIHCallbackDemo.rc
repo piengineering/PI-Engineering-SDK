@@ -50,7 +50,7 @@ END
 // Dialog
 //
 
-IDD_MAIN DIALOGEX 0, 0, 937, 424
+IDD_MAIN DIALOGEX 0, 0, 937, 470
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "C++  RS232 Common Sample"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
@@ -73,10 +73,10 @@ BEGIN
     PUSHBUTTON      "Setup Callback",IDC_CALLBACK,369,86,61,14
     LISTBOX         ID_EVENTS2,481,179,374,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Read RS232 Settings",IDC_READRS232,103,343,84,17
-    PUSHBUTTON      "Change RS232 Settings",IDC_CHANGERS232,103,364,84,17
+    PUSHBUTTON      "Change RS232 Settings",IDC_CHANGERS232,104,364,84,17
     LTEXT           "Baud Rate:",IDC_STATIC,197,347,40,9
     LTEXT           "Parity:",IDC_STATIC,320,347,40,9
-    PUSHBUTTON      "Write to X-keys TX",IDC_WRITETX,103,392,84,17
+    PUSHBUTTON      "Write to X-keys TX",IDC_WRITETX,104,436,84,17
     LTEXT           "Serial Data:",IDC_STATIC,483,169,52,10
     LTEXT           "Xkeys UART Settings:",IDC_STATIC,94,133,89,9
     PUSHBUTTON      "Echo On",IDC_ECHOON,103,170,84,17
@@ -88,7 +88,7 @@ BEGIN
     PUSHBUTTON      "Sleep Enabled",IDC_SLEEPEN,104,274,84,17
     PUSHBUTTON      "Sleep Disabled",IDC_SLEEPDIS,194,273,84,17
     LTEXT           "USB Sleep - If sleep enabled  the X-keys will turn off its LEDs and any GPIO output pins when a USB suspend condition occurs. To override this behavior set sleep disable. Read state in Descriptor.",IDC_STATIC,105,244,288,26
-    PUSHBUTTON      "Check Enabled",IDC_USBCHECKEN,103,316,84,17
+    PUSHBUTTON      "Check Enabled",IDC_USBCHECKEN,104,316,84,17
     PUSHBUTTON      "Check Disabled",IDC_USBCHECKDIS,193,316,84,17
     LTEXT           "USB Check - set check disable if using the USB connection for power only. Read state in Descriptor.",IDC_STATIC,105,297,288,16
     LTEXT           "Windows 8/8.1/10 are NOT supported in PL-2303HXA and PL-2303X EOL chip versions. Run PL2303 CheckChipVersion tool program in Windows XP/Vista/7 to check chip version. Windows Vista, XP, 2000, 98 and Windows ME driver technical support are discontinued.",IDC_STATIC,483,354,436,17
@@ -107,6 +107,10 @@ BEGIN
     PUSHBUTTON      "Clear Listbox",IDC_CLEAR2,859,206,61,14
     PUSHBUTTON      "Change settings",IDC_CHANGECOMRS232,737,133,84,17
     PUSHBUTTON      "Open COM Port",IDC_OPENCOMPORT,585,56,84,17
+    PUSHBUTTON      "UART Enabled",IDC_UARTENABLED,104,410,84,17
+    PUSHBUTTON      "UART Disabled",IDC_UARTDISABLED,193,410,84,17
+    LTEXT           "Enable or Disable UART for RS232 Communication. The UART should only be enabled if something is connected to the UART port.",IDC_STATIC,104,391,288,16
+    LTEXT           "uart",IDC_LBLUARTENABLED,282,414,63,8
 END
 
 
@@ -123,7 +127,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 930
         TOPMARGIN, 6
-        BOTTOMMARGIN, 417
+        BOTTOMMARGIN, 463
     END
 END
 #endif    // APSTUDIO_INVOKED

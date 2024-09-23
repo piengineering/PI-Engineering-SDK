@@ -130,7 +130,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	SendMessage(BaudRate_Combo, CB_ADDSTRING, 0, (LPARAM)"38400");
 	SendMessage(BaudRate_Combo, CB_ADDSTRING, 0, (LPARAM)"57600"); 
 	SendMessage(BaudRate_Combo, CB_ADDSTRING, 0, (LPARAM)"115200"); 
-	//SendMessage(BaudRate_Combo, CB_ADDSTRING, 0, (LPARAM)"230400");  
+	SendMessage(BaudRate_Combo, CB_ADDSTRING, 0, (LPARAM)"230400");  
 
 	Parity_Combo = CreateWindowEx(0, "ComboBox", NULL, WS_VISIBLE | WS_CHILD | CBS_DROPDOWNLIST, 518, 568, 100, 150, hDialog, NULL, hInstance, NULL); 
 	SendMessage(Parity_Combo, CB_ADDSTRING, 0, (LPARAM)"Even");
@@ -140,8 +140,8 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	//set default
 	SendMessage(BaudRatePort_Combo, CB_SETCURSEL, 8, 0);
 	SendMessage(ParityPort_Combo, CB_SETCURSEL, 2, 0);
-	SendMessage(BaudRate_Combo, CB_SETCURSEL, 8, 0);
-	SendMessage(Parity_Combo, CB_SETCURSEL, 2, 0);
+	//SendMessage(BaudRate_Combo, CB_SETCURSEL, 8, 0);
+	//SendMessage(Parity_Combo, CB_SETCURSEL, 2, 0);
 	
 	result = GetMessage( &msg, NULL, 0, 0 );
 	while (result != 0)    { 
@@ -570,6 +570,23 @@ int CALLBACK DialogProc(
 				else strcat_s (str,"USB check=disabled ");
 				AddEventMsg(hDialog, str);
 
+				strcpy_s (str,"");
+				if (buffer[21]&16) 
+				{
+					strcat_s (str,"UART=enabled ");
+					hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+					if (hList == NULL) return 0;
+					SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"enabled");
+				}
+				else 
+				{
+					strcat_s (str,"UART=disabled ");
+					hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+					if (hList == NULL) return 0;
+					SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"disabled");
+				}
+				AddEventMsg(hDialog, str);
+
 				_itoa_s(buffer[23],dataStr,10);
 				strcpy_s (str,"start byte opcode=");
 				strcat_s (str,dataStr);
@@ -658,11 +675,25 @@ int CALLBACK DialogProc(
 				int xkeysparityindex=buffer[4]; //parity index; 0=even, 1=odd, 2=none
 				int xkeysdatabits=buffer[5]; //5, 6, 7, 8
 				int xkeysstopbits=buffer[6]; //2=1, 3=1.5, 4=2
+				int xkeysuartenabled=buffer[7]; //0=uart off, 1=uart on
 				
 				hList = GetDlgItem(hDialog, IDC_EDIT4);
 
 				SendMessage(BaudRate_Combo, CB_SETCURSEL, buffer[3], 0);
 				SendMessage(Parity_Combo, CB_SETCURSEL, buffer[4], 0);
+
+				if (xkeysuartenabled==0)
+				{
+					hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+					if (hList == NULL) return 0;
+					SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"disabled");
+				}
+				else if (xkeysuartenabled ==1)
+				{
+					hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+					if (hList == NULL) return 0;
+					SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"enabled");
+				}
 			}
 			
 			return TRUE;
@@ -845,6 +876,54 @@ int CALLBACK DialogProc(
 			{
 				result = WriteData(hDevice, buffer);
 			}
+         
+			return TRUE;
+
+		case IDC_UARTENABLED:
+			//Sending this enables the UART port for RS232 communications. The port should not be enabled without something connected to it.
+			if (hDevice == -1) return TRUE;
+			
+			for (int i=0;i<wlen;i++)
+			{
+				buffer[i]=0;
+			}
+			buffer[0]=0;
+			buffer[1]=150; //0x96
+			buffer[2]=1;   //0=disabled (factory default), 1=enabled
+
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
+
+			hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+			if (hList == NULL) return 0;
+			SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"enabled");
+         
+			return TRUE;
+
+		case IDC_UARTDISABLED:
+			 //Sending this disables the UART port for RS232 communications. The port should be disabled if nothing is connected to the it.
+			if (hDevice == -1) return TRUE;
+			
+			for (int i=0;i<wlen;i++)
+			{
+				buffer[i]=0;
+			}
+			buffer[0]=0;
+			buffer[1]=150; //0x96
+			buffer[2]=0;   //0=disabled (factory default), 1=enabled
+
+			result=404;
+			while (result==404)
+			{
+				result = WriteData(hDevice, buffer);
+			}
+
+			hList = GetDlgItem(hDialog, IDC_LBLUARTENABLED);
+			if (hList == NULL) return 0;
+			SendMessage(hList, WM_SETTEXT, 0, (LPARAM)(LPCTSTR)"disabled");
          
 			return TRUE;
 		case IDC_CHANGECOMRS232:
