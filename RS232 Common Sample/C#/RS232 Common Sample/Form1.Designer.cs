@@ -43,8 +43,6 @@
             this.BtnDescriptor = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.ChkSuppress = new System.Windows.Forms.CheckBox();
-            this.LblButtons = new System.Windows.Forms.Label();
-            this.LblSwitchPos = new System.Windows.Forms.Label();
             this.lblUSBCheckState = new System.Windows.Forms.Label();
             this.btnUSBCheckOff = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
@@ -105,6 +103,30 @@
             this.label58 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnEnableUART = new System.Windows.Forms.Button();
+            this.btnDisableUART = new System.Windows.Forms.Button();
+            this.lblUART = new System.Windows.Forms.Label();
+            this.btnLoopBack = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.cboRGBIndex = new System.Windows.Forms.ComboBox();
+            this.txtB = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboBank = new System.Windows.Forms.ComboBox();
+            this.btnSetAllBank2 = new System.Windows.Forms.Button();
+            this.btnSetAllBank1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnSetRGB = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtG = new System.Windows.Forms.TextBox();
+            this.txtR = new System.Windows.Forms.TextBox();
+            this.chkRGBFlash = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.LblButtons = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -201,7 +223,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(7, 343);
+            this.label21.Location = new System.Drawing.Point(8, 445);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(55, 13);
@@ -210,7 +232,7 @@
             // 
             // BtnDescriptor
             // 
-            this.BtnDescriptor.Location = new System.Drawing.Point(20, 365);
+            this.BtnDescriptor.Location = new System.Drawing.Point(21, 467);
             this.BtnDescriptor.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDescriptor.Name = "BtnDescriptor";
             this.BtnDescriptor.Size = new System.Drawing.Size(92, 22);
@@ -223,7 +245,7 @@
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.HorizontalScrollbar = true;
-            this.listBox2.Location = new System.Drawing.Point(116, 365);
+            this.listBox2.Location = new System.Drawing.Point(117, 467);
             this.listBox2.Margin = new System.Windows.Forms.Padding(2);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(327, 82);
@@ -239,25 +261,6 @@
             this.ChkSuppress.Text = "Suppress Duplicate Reports";
             this.ChkSuppress.UseVisualStyleBackColor = true;
             this.ChkSuppress.CheckedChanged += new System.EventHandler(this.ChkSuppress_CheckedChanged);
-            // 
-            // LblButtons
-            // 
-            this.LblButtons.AutoSize = true;
-            this.LblButtons.Location = new System.Drawing.Point(17, 229);
-            this.LblButtons.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblButtons.Name = "LblButtons";
-            this.LblButtons.Size = new System.Drawing.Size(46, 13);
-            this.LblButtons.TabIndex = 360;
-            this.LblButtons.Text = "Buttons:";
-            // 
-            // LblSwitchPos
-            // 
-            this.LblSwitchPos.Location = new System.Drawing.Point(18, 208);
-            this.LblSwitchPos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblSwitchPos.Name = "LblSwitchPos";
-            this.LblSwitchPos.Size = new System.Drawing.Size(104, 14);
-            this.LblSwitchPos.TabIndex = 361;
-            this.LblSwitchPos.Text = "Switch Position";
             // 
             // lblUSBCheckState
             // 
@@ -291,7 +294,7 @@
             // 
             // btnUSBCheckOn
             // 
-            this.btnUSBCheckOn.Location = new System.Drawing.Point(569, 295);
+            this.btnUSBCheckOn.Location = new System.Drawing.Point(562, 295);
             this.btnUSBCheckOn.Name = "btnUSBCheckOn";
             this.btnUSBCheckOn.Size = new System.Drawing.Size(104, 23);
             this.btnUSBCheckOn.TabIndex = 579;
@@ -332,7 +335,7 @@
             // 
             // btnSleepEnabled
             // 
-            this.btnSleepEnabled.Location = new System.Drawing.Point(569, 229);
+            this.btnSleepEnabled.Location = new System.Drawing.Point(562, 229);
             this.btnSleepEnabled.Name = "btnSleepEnabled";
             this.btnSleepEnabled.Size = new System.Drawing.Size(104, 23);
             this.btnSleepEnabled.TabIndex = 575;
@@ -362,7 +365,7 @@
             // 
             // btnJsonOn
             // 
-            this.btnJsonOn.Location = new System.Drawing.Point(564, 156);
+            this.btnJsonOn.Location = new System.Drawing.Point(562, 156);
             this.btnJsonOn.Name = "btnJsonOn";
             this.btnJsonOn.Size = new System.Drawing.Size(104, 23);
             this.btnJsonOn.TabIndex = 570;
@@ -392,7 +395,7 @@
             // 
             // btnEchoOn
             // 
-            this.btnEchoOn.Location = new System.Drawing.Point(564, 82);
+            this.btnEchoOn.Location = new System.Drawing.Point(562, 82);
             this.btnEchoOn.Name = "btnEchoOn";
             this.btnEchoOn.Size = new System.Drawing.Size(104, 23);
             this.btnEchoOn.TabIndex = 566;
@@ -418,7 +421,7 @@
             // 
             // txtSendText
             // 
-            this.txtSendText.Location = new System.Drawing.Point(565, 491);
+            this.txtSendText.Location = new System.Drawing.Point(565, 572);
             this.txtSendText.Name = "txtSendText";
             this.txtSendText.Size = new System.Drawing.Size(222, 20);
             this.txtSendText.TabIndex = 609;
@@ -426,7 +429,7 @@
             // 
             // btnWriteXkeysTx
             // 
-            this.btnWriteXkeysTx.Location = new System.Drawing.Point(794, 489);
+            this.btnWriteXkeysTx.Location = new System.Drawing.Point(798, 570);
             this.btnWriteXkeysTx.Name = "btnWriteXkeysTx";
             this.btnWriteXkeysTx.Size = new System.Drawing.Size(118, 22);
             this.btnWriteXkeysTx.TabIndex = 610;
@@ -437,7 +440,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(565, 475);
+            this.label51.Location = new System.Drawing.Point(562, 556);
             this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(156, 13);
@@ -458,14 +461,14 @@
             "57600",
             "115200",
             "230400"});
-            this.cboBaudRate.Location = new System.Drawing.Point(564, 434);
+            this.cboBaudRate.Location = new System.Drawing.Point(562, 426);
             this.cboBaudRate.Name = "cboBaudRate";
             this.cboBaudRate.Size = new System.Drawing.Size(83, 21);
             this.cboBaudRate.TabIndex = 613;
             // 
             // btnRS232Settings
             // 
-            this.btnRS232Settings.Location = new System.Drawing.Point(890, 433);
+            this.btnRS232Settings.Location = new System.Drawing.Point(889, 425);
             this.btnRS232Settings.Name = "btnRS232Settings";
             this.btnRS232Settings.Size = new System.Drawing.Size(134, 22);
             this.btnRS232Settings.TabIndex = 615;
@@ -480,7 +483,7 @@
             "even",
             "odd",
             "none"});
-            this.cboParity.Location = new System.Drawing.Point(652, 434);
+            this.cboParity.Location = new System.Drawing.Point(651, 426);
             this.cboParity.Name = "cboParity";
             this.cboParity.Size = new System.Drawing.Size(74, 21);
             this.cboParity.TabIndex = 616;
@@ -493,7 +496,7 @@
             "6",
             "7",
             "8"});
-            this.cboDataBits.Location = new System.Drawing.Point(731, 434);
+            this.cboDataBits.Location = new System.Drawing.Point(730, 426);
             this.cboDataBits.Name = "cboDataBits";
             this.cboDataBits.Size = new System.Drawing.Size(74, 21);
             this.cboDataBits.TabIndex = 617;
@@ -501,7 +504,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(562, 418);
+            this.label52.Location = new System.Drawing.Point(562, 410);
             this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(58, 13);
@@ -511,7 +514,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(652, 418);
+            this.label53.Location = new System.Drawing.Point(650, 410);
             this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(33, 13);
@@ -521,7 +524,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(731, 418);
+            this.label54.Location = new System.Drawing.Point(729, 410);
             this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(50, 13);
@@ -531,7 +534,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(810, 418);
+            this.label56.Location = new System.Drawing.Point(808, 410);
             this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(49, 13);
@@ -545,14 +548,14 @@
             "1",
             "1.5",
             "2"});
-            this.cboStopBits.Location = new System.Drawing.Point(810, 434);
+            this.cboStopBits.Location = new System.Drawing.Point(809, 426);
             this.cboStopBits.Name = "cboStopBits";
             this.cboStopBits.Size = new System.Drawing.Size(74, 21);
             this.cboStopBits.TabIndex = 621;
             // 
             // btnReadRS232Settings
             // 
-            this.btnReadRS232Settings.Location = new System.Drawing.Point(564, 378);
+            this.btnReadRS232Settings.Location = new System.Drawing.Point(562, 378);
             this.btnReadRS232Settings.Margin = new System.Windows.Forms.Padding(2);
             this.btnReadRS232Settings.Name = "btnReadRS232Settings";
             this.btnReadRS232Settings.Size = new System.Drawing.Size(121, 22);
@@ -563,7 +566,7 @@
             // 
             // label59
             // 
-            this.label59.Location = new System.Drawing.Point(561, 343);
+            this.label59.Location = new System.Drawing.Point(562, 343);
             this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(432, 33);
@@ -573,7 +576,7 @@
             // 
             // BtnBLToggle
             // 
-            this.BtnBLToggle.Location = new System.Drawing.Point(20, 295);
+            this.BtnBLToggle.Location = new System.Drawing.Point(21, 397);
             this.BtnBLToggle.Margin = new System.Windows.Forms.Padding(2);
             this.BtnBLToggle.Name = "BtnBLToggle";
             this.BtnBLToggle.Size = new System.Drawing.Size(92, 22);
@@ -585,7 +588,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 269);
+            this.label4.Location = new System.Drawing.Point(11, 371);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
@@ -605,7 +608,7 @@
             // lblEncoded
             // 
             this.lblEncoded.AutoSize = true;
-            this.lblEncoded.Location = new System.Drawing.Point(1098, 416);
+            this.lblEncoded.Location = new System.Drawing.Point(1096, 416);
             this.lblEncoded.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEncoded.Name = "lblEncoded";
             this.lblEncoded.Size = new System.Drawing.Size(77, 13);
@@ -624,7 +627,7 @@
             // 
             // txtBase64Encode
             // 
-            this.txtBase64Encode.Location = new System.Drawing.Point(1101, 392);
+            this.txtBase64Encode.Location = new System.Drawing.Point(1096, 392);
             this.txtBase64Encode.Name = "txtBase64Encode";
             this.txtBase64Encode.Size = new System.Drawing.Size(222, 20);
             this.txtBase64Encode.TabIndex = 583;
@@ -633,7 +636,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1095, 214);
+            this.label25.Location = new System.Drawing.Point(1096, 214);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(108, 13);
             this.label25.TabIndex = 598;
@@ -653,7 +656,7 @@
             // 
             this.listBox5.FormattingEnabled = true;
             this.listBox5.HorizontalScrollbar = true;
-            this.listBox5.Location = new System.Drawing.Point(1098, 230);
+            this.listBox5.Location = new System.Drawing.Point(1096, 230);
             this.listBox5.Name = "listBox5";
             this.listBox5.Size = new System.Drawing.Size(349, 69);
             this.listBox5.TabIndex = 600;
@@ -661,7 +664,7 @@
             // CboPorts
             // 
             this.CboPorts.FormattingEnabled = true;
-            this.CboPorts.Location = new System.Drawing.Point(1099, 90);
+            this.CboPorts.Location = new System.Drawing.Point(1096, 90);
             this.CboPorts.Name = "CboPorts";
             this.CboPorts.Size = new System.Drawing.Size(83, 21);
             this.CboPorts.TabIndex = 601;
@@ -706,7 +709,7 @@
             // 
             // txtSendCOMUSB
             // 
-            this.txtSendCOMUSB.Location = new System.Drawing.Point(1098, 323);
+            this.txtSendCOMUSB.Location = new System.Drawing.Point(1096, 323);
             this.txtSendCOMUSB.Name = "txtSendCOMUSB";
             this.txtSendCOMUSB.Size = new System.Drawing.Size(222, 20);
             this.txtSendCOMUSB.TabIndex = 610;
@@ -726,7 +729,7 @@
             "57600",
             "115200",
             "230400"});
-            this.cboCOMBaud.Location = new System.Drawing.Point(1099, 158);
+            this.cboCOMBaud.Location = new System.Drawing.Point(1096, 158);
             this.cboCOMBaud.Name = "cboCOMBaud";
             this.cboCOMBaud.Size = new System.Drawing.Size(83, 21);
             this.cboCOMBaud.TabIndex = 612;
@@ -735,7 +738,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(1098, 123);
+            this.label57.Location = new System.Drawing.Point(1096, 123);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(230, 13);
             this.label57.TabIndex = 613;
@@ -771,7 +774,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(1100, 142);
+            this.label68.Location = new System.Drawing.Point(1096, 142);
             this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(58, 13);
@@ -833,7 +836,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(1098, 453);
+            this.label6.Location = new System.Drawing.Point(1096, 453);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(410, 223);
@@ -863,7 +866,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(1098, 307);
+            this.label45.Location = new System.Drawing.Point(1096, 307);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(395, 13);
             this.label45.TabIndex = 687;
@@ -872,12 +875,340 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(1098, 363);
+            this.label50.Location = new System.Drawing.Point(1096, 363);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(427, 13);
             this.label50.TabIndex = 688;
             this.label50.Text = "Write a message to be received by X-keys as a UART Output Report Received Message" +
                 "";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(562, 472);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(432, 28);
+            this.label3.TabIndex = 690;
+            this.label3.Text = "Enable or Disable UART for RS232 Communication. The UART should only be enabled i" +
+                "f something is connected to the UART port.";
+            // 
+            // btnEnableUART
+            // 
+            this.btnEnableUART.Location = new System.Drawing.Point(562, 504);
+            this.btnEnableUART.Name = "btnEnableUART";
+            this.btnEnableUART.Size = new System.Drawing.Size(118, 23);
+            this.btnEnableUART.TabIndex = 691;
+            this.btnEnableUART.Text = "Enable UART";
+            this.btnEnableUART.UseVisualStyleBackColor = true;
+            this.btnEnableUART.Click += new System.EventHandler(this.btnEnableUART_Click);
+            // 
+            // btnDisableUART
+            // 
+            this.btnDisableUART.Location = new System.Drawing.Point(689, 504);
+            this.btnDisableUART.Name = "btnDisableUART";
+            this.btnDisableUART.Size = new System.Drawing.Size(118, 23);
+            this.btnDisableUART.TabIndex = 692;
+            this.btnDisableUART.Text = "Disable UART";
+            this.btnDisableUART.UseVisualStyleBackColor = true;
+            this.btnDisableUART.Click += new System.EventHandler(this.btnDisableUART_Click);
+            // 
+            // lblUART
+            // 
+            this.lblUART.AutoSize = true;
+            this.lblUART.Location = new System.Drawing.Point(813, 509);
+            this.lblUART.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUART.Name = "lblUART";
+            this.lblUART.Size = new System.Drawing.Size(51, 13);
+            this.lblUART.TabIndex = 693;
+            this.lblUART.Text = "uart state";
+            // 
+            // btnLoopBack
+            // 
+            this.btnLoopBack.Location = new System.Drawing.Point(565, 630);
+            this.btnLoopBack.Name = "btnLoopBack";
+            this.btnLoopBack.Size = new System.Drawing.Size(118, 23);
+            this.btnLoopBack.TabIndex = 694;
+            this.btnLoopBack.Text = "Loop Back Test";
+            this.btnLoopBack.UseVisualStyleBackColor = true;
+            this.btnLoopBack.Click += new System.EventHandler(this.btnLoopBack_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(562, 612);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(293, 13);
+            this.label7.TabIndex = 696;
+            this.label7.Text = "X-keys loop back test. Connect the X-keys RX to X-keys TX.";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(296, 260);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(40, 13);
+            this.label48.TabIndex = 715;
+            this.label48.Text = "(0-255)";
+            // 
+            // cboRGBIndex
+            // 
+            this.cboRGBIndex.FormattingEnabled = true;
+            this.cboRGBIndex.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95"});
+            this.cboRGBIndex.Location = new System.Drawing.Point(21, 301);
+            this.cboRGBIndex.Name = "cboRGBIndex";
+            this.cboRGBIndex.Size = new System.Drawing.Size(66, 21);
+            this.cboRGBIndex.TabIndex = 714;
+            // 
+            // txtB
+            // 
+            this.txtB.Location = new System.Drawing.Point(238, 257);
+            this.txtB.Name = "txtB";
+            this.txtB.Size = new System.Drawing.Size(52, 20);
+            this.txtB.TabIndex = 713;
+            this.txtB.Text = "3";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(90, 284);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 712;
+            this.label8.Text = "Bank:";
+            // 
+            // cboBank
+            // 
+            this.cboBank.FormattingEnabled = true;
+            this.cboBank.Items.AddRange(new object[] {
+            "bank 1 (top)",
+            "bank 2 (bottom)",
+            "both"});
+            this.cboBank.Location = new System.Drawing.Point(93, 300);
+            this.cboBank.Name = "cboBank";
+            this.cboBank.Size = new System.Drawing.Size(97, 21);
+            this.cboBank.TabIndex = 711;
+            // 
+            // btnSetAllBank2
+            // 
+            this.btnSetAllBank2.Location = new System.Drawing.Point(121, 327);
+            this.btnSetAllBank2.Name = "btnSetAllBank2";
+            this.btnSetAllBank2.Size = new System.Drawing.Size(89, 23);
+            this.btnSetAllBank2.TabIndex = 710;
+            this.btnSetAllBank2.Text = "Set All Bank 2";
+            this.btnSetAllBank2.UseVisualStyleBackColor = true;
+            this.btnSetAllBank2.Click += new System.EventHandler(this.btnSetAllBank2_Click);
+            // 
+            // btnSetAllBank1
+            // 
+            this.btnSetAllBank1.Location = new System.Drawing.Point(21, 327);
+            this.btnSetAllBank1.Name = "btnSetAllBank1";
+            this.btnSetAllBank1.Size = new System.Drawing.Size(89, 23);
+            this.btnSetAllBank1.TabIndex = 709;
+            this.btnSetAllBank1.Text = "Set All Bank 1";
+            this.btnSetAllBank1.UseVisualStyleBackColor = true;
+            this.btnSetAllBank1.Click += new System.EventHandler(this.btnSetAllBank1_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 283);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 707;
+            this.label10.Text = "Button:";
+            // 
+            // btnSetRGB
+            // 
+            this.btnSetRGB.Location = new System.Drawing.Point(256, 298);
+            this.btnSetRGB.Name = "btnSetRGB";
+            this.btnSetRGB.Size = new System.Drawing.Size(89, 23);
+            this.btnSetRGB.TabIndex = 701;
+            this.btnSetRGB.Text = "Set LED(s)";
+            this.btnSetRGB.UseVisualStyleBackColor = true;
+            this.btnSetRGB.Click += new System.EventHandler(this.btnSetRGB_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(217, 260);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 13);
+            this.label12.TabIndex = 704;
+            this.label12.Text = "B";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(138, 260);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(15, 13);
+            this.label13.TabIndex = 703;
+            this.label13.Text = "G";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(59, 260);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(15, 13);
+            this.label14.TabIndex = 702;
+            this.label14.Text = "R";
+            // 
+            // txtG
+            // 
+            this.txtG.Location = new System.Drawing.Point(159, 257);
+            this.txtG.Name = "txtG";
+            this.txtG.Size = new System.Drawing.Size(52, 20);
+            this.txtG.TabIndex = 700;
+            this.txtG.Text = "3";
+            // 
+            // txtR
+            // 
+            this.txtR.Location = new System.Drawing.Point(80, 257);
+            this.txtR.Name = "txtR";
+            this.txtR.Size = new System.Drawing.Size(52, 20);
+            this.txtR.TabIndex = 699;
+            this.txtR.Text = "3";
+            // 
+            // chkRGBFlash
+            // 
+            this.chkRGBFlash.AutoSize = true;
+            this.chkRGBFlash.Location = new System.Drawing.Point(200, 301);
+            this.chkRGBFlash.Margin = new System.Windows.Forms.Padding(2);
+            this.chkRGBFlash.Name = "chkRGBFlash";
+            this.chkRGBFlash.Size = new System.Drawing.Size(51, 17);
+            this.chkRGBFlash.TabIndex = 698;
+            this.chkRGBFlash.Text = "Flash";
+            this.chkRGBFlash.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(11, 229);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(121, 13);
+            this.label15.TabIndex = 697;
+            this.label15.Text = "RGB Backlight Features";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(19, 260);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 716;
+            this.label9.Text = "Color:";
+            // 
+            // LblButtons
+            // 
+            this.LblButtons.AutoSize = true;
+            this.LblButtons.Location = new System.Drawing.Point(21, 202);
+            this.LblButtons.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblButtons.Name = "LblButtons";
+            this.LblButtons.Size = new System.Drawing.Size(46, 13);
+            this.LblButtons.TabIndex = 717;
+            this.LblButtons.Text = "Buttons:";
             // 
             // Form1
             // 
@@ -885,6 +1216,30 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1541, 734);
+            this.Controls.Add(this.LblButtons);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label48);
+            this.Controls.Add(this.cboRGBIndex);
+            this.Controls.Add(this.txtB);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cboBank);
+            this.Controls.Add(this.btnSetAllBank2);
+            this.Controls.Add(this.btnSetAllBank1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.btnSetRGB);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txtG);
+            this.Controls.Add(this.txtR);
+            this.Controls.Add(this.chkRGBFlash);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnLoopBack);
+            this.Controls.Add(this.lblUART);
+            this.Controls.Add(this.btnDisableUART);
+            this.Controls.Add(this.btnEnableUART);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label50);
             this.Controls.Add(this.label45);
             this.Controls.Add(this.label58);
@@ -944,8 +1299,6 @@
             this.Controls.Add(this.btnEchoOff);
             this.Controls.Add(this.btnEchoOn);
             this.Controls.Add(this.label36);
-            this.Controls.Add(this.LblSwitchPos);
-            this.Controls.Add(this.LblButtons);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ChkSuppress);
             this.Controls.Add(this.listBox2);
@@ -985,8 +1338,6 @@
         private System.Windows.Forms.Button BtnDescriptor;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.CheckBox ChkSuppress;
-        private System.Windows.Forms.Label LblButtons;
-        private System.Windows.Forms.Label LblSwitchPos;
         private System.Windows.Forms.Label lblUSBCheckState;
         private System.Windows.Forms.Button btnUSBCheckOff;
         private System.Windows.Forms.Label label66;
@@ -1047,6 +1398,30 @@
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnEnableUART;
+        private System.Windows.Forms.Button btnDisableUART;
+        private System.Windows.Forms.Label lblUART;
+        private System.Windows.Forms.Button btnLoopBack;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.ComboBox cboRGBIndex;
+        private System.Windows.Forms.TextBox txtB;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cboBank;
+        private System.Windows.Forms.Button btnSetAllBank2;
+        private System.Windows.Forms.Button btnSetAllBank1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnSetRGB;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtG;
+        private System.Windows.Forms.TextBox txtR;
+        private System.Windows.Forms.CheckBox chkRGBFlash;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LblButtons;
     }
 }
 

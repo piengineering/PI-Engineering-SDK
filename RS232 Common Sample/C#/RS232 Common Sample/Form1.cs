@@ -70,7 +70,7 @@ namespace PIHidDotName_Csharp_Sample
                     //buttons
                     //this routine is for separating out the individual button presses/releases from the data byte array.
                     int maxcols = 4; //number of columns, adjust if necessary
-                    int maxrows = 8; //constant, 8 bits per byte
+                    int maxrows = 6; //number or rows, adjust if neccessary
                     c = this.LblButtons;
                     string buttonsdown = "Buttons: "; //for demonstration, reset this every time a new input report received
                     this.SetText(buttonsdown);
@@ -80,7 +80,7 @@ namespace PIHidDotName_Csharp_Sample
                         for (int j = 0; j < maxrows; j++) //loop through each bit in the button byte
                         {
                             int temp1 = (int)Math.Pow(2, j); //1, 2, 4, 8, 16, 32, 64, 128
-                            int keynum = 8 * i + j; //using key numbering in sdk; column 1 = 0,1,2... column 2 = 8,9,10... column 3 = 16,17,18... column 4 = 24,25,26... etc
+                            int keynum = (maxrows) * i + j; //using key numbering in sdk; column 1 = 0,1,2... column 2 = 8,9,10... column 3 = 16,17,18... column 4 = 24,25,26... etc
                             byte temp2 = (byte)(data[i + 3] & temp1); //check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
                             byte temp3 = (byte)(lastdata[i + 3] & temp1); //check using bitwise AND the previous value of this bit
                             int state = 0; //0=was up, now up, 1=was up, now down, 2= was down, still down, 3= was down, now up
@@ -145,7 +145,7 @@ namespace PIHidDotName_Csharp_Sample
                                         //do release action
                                     }
                                     break;
-                               	    //etc.
+                               	//etc.
 
                             }
                         }
@@ -155,21 +155,7 @@ namespace PIHidDotName_Csharp_Sample
                         lastdata[i] = data[i];
                     }
                     //end buttons
-                
-                    //check the switch byte 
-                    byte val2 = (byte)(data[2] & 1);
-                    if (val2 == 0)
-                    {
-                        c = this.LblSwitchPos;
-                        this.SetText("switch up");
-                    }
-                    else
-                    {
-                        c = this.LblSwitchPos;
-                        this.SetText("switch down");
-                    }
-
-                   
+                    
                     
                     //time stamp info 4 bytes
                     long absolutetime = 16777216 * data[32] + 65536 * data[33] + 256 * data[34] + data[35];  //ms
@@ -301,6 +287,9 @@ namespace PIHidDotName_Csharp_Sample
                 cboCOMStop.SelectedIndex = 0; //default to 1
                 serialPort1.StopBits = System.IO.Ports.StopBits.One;
             }
+
+            cboRGBIndex.SelectedIndex = 0;
+            cboBank.SelectedIndex = 0;
            
         }
 
@@ -596,6 +585,18 @@ namespace PIHidDotName_Csharp_Sample
                 {
                     listBox2.Items.Add("USB check=enabled");
                     lblUSBCheckState.Text = "enabled";
+                }
+
+                if ((byte)(data[21] & 16) == 16)
+                {
+                    listBox2.Items.Add("UART=enabled");
+                    lblUART.Text = "enabled";
+                }
+                else
+                {
+                   
+                    listBox2.Items.Add("UART=disabled");
+                    lblUART.Text = "disabled";
                 }
 
                 listBox2.Items.Add("start byte opcode" + data[23].ToString());
@@ -1067,8 +1068,6 @@ namespace PIHidDotName_Csharp_Sample
             //Write RS232 settings to the device
             if (selecteddevice != -1) //do nothing if not enumerated
             {
-
-                //write Unit ID given in the TxtSetUnitID box
                 for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
                 {
                     wData[j] = 0;
@@ -1080,7 +1079,7 @@ namespace PIHidDotName_Csharp_Sample
                 wData[3] = (byte)(cboParity.SelectedIndex); //0=even, 1=odd, 2=none
                 wData[4] = (byte)(cboDataBits.SelectedIndex+5); //5, 6, 7, 8
                 wData[5] = (byte)(cboStopBits.SelectedIndex+2); //2=1, 3=1.5, 4=2
-
+               
                 int result = 404;
 
                 while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
@@ -1240,18 +1239,290 @@ namespace PIHidDotName_Csharp_Sample
                 cboParity.SelectedIndex = data[4]; //0=even, 1=odd, 2=none (factory default)
                 cboDataBits.SelectedIndex = data[5] - 5; //5, 6, 7, or 8
                 cboStopBits.SelectedIndex = data[6] - 2; //2=1 bit (factory default), 3=1.5 bits, 4=2 bits
-                string temp = "Divider=" + (data[8] * 256 + data[7]).ToString(); //clock divider (determines baud rate)
+                if (data[7] == 0) lblUART.Text = "disabled";
+                else if (data[7] == 1) lblUART.Text = "enabled";
+                string temp = "Divider=" + (data[9] * 256 + data[8]).ToString(); //clock divider (determines baud rate)
 
                 devices[selecteddevice].callNever = savecallbackstate;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnEnableUART_Click(object sender, EventArgs e)
         {
-            
+            //Sending this enables the UART port for RS232 communications. The port should not be enabled without something connected to it.
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 150; //0x96
+                wData[2] = 1; //0=disable (factory default), 1=enable
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Enable UART";
+                    lblUART.Text = "enabled";
+                }
+            }
+        }
+
+        private void btnDisableUART_Click(object sender, EventArgs e)
+        {
+            //Sending this disables the UART port for RS232 communications. The port should be disabled if nothing is connected to the it.
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 150; //0x96
+                wData[2] = 0; //0=disable (factory default), 1=enable
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Disable UART";
+                    lblUART.Text = "disabled";
+                }
+            }
+        }
+
+        private void btnLoopBack_Click(object sender, EventArgs e)
+        {
+            //Connect the X-keys TX and RX lines together to perform this test of sending a UART Output Report Message
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+                string sendthisbank1 = "pgAAEAA="; //this is  base64 encoded A6, 00, 00, 10, 00 where the output report A6, bank, r, g, b sets all bank 1 LEDs to the value of r, g, b (green)
+                string sendthisbank2 = "pgEAEAA="; //this is base64 encoded A6, 01, 00, 10, 00 where the output report A6, bank, r, g, b sets all bank 2 LEDs to the value of r, g, b (green)
+
+                //bank 1 leds to green
+                int length = sendthisbank1.Length;
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                wData[0] = 0;
+                wData[1] = 216; //0xd8 
+                wData[2] = (byte)(length + 2); //number of bytes sent to the uart including start and stop bytes
+                wData[3] = 4; //start byte for base64 output report commands
+                for (int i = 0; i < length; i++)
+                {
+                    wData[i + 4] = (byte)sendthisbank1[i];
+                }
+                wData[4 + length] = 5; //stop byte
+
+                int result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+                //bank 2 leds to green
+                length = sendthisbank2.Length;
+                wData[0] = 0;
+                wData[1] = 216; //0xd8
+                wData[2] = (byte)(length + 2); //number of bytes sent to the uart including start and stop bytes
+                wData[3] = 4; //start byte
+                for (int i = 0; i < length; i++)
+                {
+                    wData[i + 4] = (byte)sendthisbank2[i];
+                }
+                wData[4 + length] = 5; //stop byte for base64 output report commands
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - UART loop back test";
+                    lblUART.Text = "disabled";
+                }
+            }
         }
        
-        
+        private void btnSetRGB_Click(object sender, EventArgs e)
+        {
+            //Set individual led 
+            //Use the Set Flash Freq to control frequency of blink
+            //Button Index (in decimal)
+            //Columns-->
+            //  0   6   12  18  24  30  36  42  48  54  60  66  72  78  84  90
+            //  1   7   13  19  25  31  37  43  49  55  61  67  73  79  85  91
+            //  2   8   14  20  26  32  38  44  50  56  62  68  74  80  86  92
+            //  3   9   15  21  27  33  39  45  51  57  63  69  75  81  87  93
+            //  4   10  16  22  28  34  40  46  52  58  64  70  76  82  88  94
+            //  5   11  17  23  29  35  41  47  53  59  65  71  77  83  89  95
+
+            //Upper LEDs are bank 1, bankindex = 0
+            //Lower LEDs are bank 2, bankindex = 1
+
+            if (CboDevices.SelectedIndex != -1)
+            {
+                byte buttonindex = Convert.ToByte(cboRGBIndex.Text);
+                byte bankindex = (byte)cboBank.SelectedIndex;
+                int checkstate = (int)chkRGBFlash.CheckState;
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+                int result = 0;
+                if ((bankindex == 0) || (bankindex == 1))
+                {
+                    wData[1] = 165; //0xA5
+                    wData[2] = buttonindex; //0-95
+                    wData[3] = bankindex; //0=bank 1 (top), 1=bank 2 (bottom)
+                    wData[4] = Convert.ToByte(txtR.Text);
+                    wData[5] = Convert.ToByte(txtG.Text);
+                    wData[6] = Convert.ToByte(txtB.Text);
+                    wData[7] = (byte)chkRGBFlash.CheckState; //0=no flash, 1=flash
+
+                    result = 404;
+                    while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                    if (result != 0)
+                    {
+                        toolStripStatusLabel1.Text = "Write Fail: " + result;
+                    }
+                    else
+                    {
+                        toolStripStatusLabel1.Text = "Write Success - RGB Backlight";
+                    }
+                }
+                else if (bankindex == 2) //do both
+                {
+                    //bank 1
+                    wData[1] = 165; //0xA5
+                    wData[2] = buttonindex;
+                    wData[3] = 0; //0=bank 1 (top), 1=bank 2 (bottom)
+                    wData[4] = Convert.ToByte(txtR.Text);
+                    wData[5] = Convert.ToByte(txtG.Text);
+                    wData[6] = Convert.ToByte(txtB.Text);
+                    wData[7] = (byte)chkRGBFlash.CheckState; //0=no flash, 1=flash
+
+                    result = 404;
+                    while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                    if (result != 0)
+                    {
+                        toolStripStatusLabel1.Text = "Write Fail: " + result;
+                    }
+                    else
+                    {
+                        toolStripStatusLabel1.Text = "Write Success - RGB Backlight";
+
+                    }
+
+                    //bank 2
+                    wData[1] = 165; //0xA5
+                    wData[2] = buttonindex;
+                    wData[3] = 1; //0=bank 1 (top), 1=bank 2 (bottom)
+                    wData[4] = Convert.ToByte(txtR.Text);
+                    wData[5] = Convert.ToByte(txtG.Text);
+                    wData[6] = Convert.ToByte(txtB.Text);
+                    wData[7] = (byte)chkRGBFlash.CheckState; //0=no flash, 1=flash
+
+                    result = 404;
+                    while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                    if (result != 0)
+                    {
+                        toolStripStatusLabel1.Text = "Write Fail: " + result;
+                    }
+                    else
+                    {
+                        toolStripStatusLabel1.Text = "Write Success - RGB Backlight";
+                    }
+
+                }
+
+            }
+        }
+
+        private void btnSetAllBank1_Click(object sender, EventArgs e)
+        {
+            if (CboDevices.SelectedIndex != -1)
+            {
+
+                int result = 0;
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[1] = 166;//0xA6
+                wData[2] = 0; //0=Bank 1 (top LEDs), 1=Bank 2 (bottom LEDs)
+                wData[3] = Convert.ToByte(txtR.Text);
+                wData[4] = Convert.ToByte(txtG.Text);
+                wData[5] = Convert.ToByte(txtB.Text);
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set All Bank 1 RGB LED";
+
+                }
+            }
+        }
+
+        private void btnSetAllBank2_Click(object sender, EventArgs e)
+        {
+            if (CboDevices.SelectedIndex != -1)
+            {
+
+                int result = 0;
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[1] = 166; //0xA6
+                wData[2] = 1; //0=Bank 1 (top LEDs), 1=Bank 2 (bottom LEDs)
+                wData[3] = Convert.ToByte(txtR.Text);
+                wData[4] = Convert.ToByte(txtG.Text);
+                wData[5] = Convert.ToByte(txtB.Text);
+
+                result = 404;
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+
+
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Set All Bank 2 RGB LED";
+                }
+            }
+        }
+
+       
+
+       
+
 
         
 
