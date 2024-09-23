@@ -29,10 +29,6 @@ Partial Class Form1
         Me.CboDevices = New System.Windows.Forms.ComboBox()
         Me.LblStatus = New System.Windows.Forms.Label()
         Me.BtnEnumerate = New System.Windows.Forms.Button()
-        Me.LblUnitID = New System.Windows.Forms.Label()
-        Me.TxtUnitID = New System.Windows.Forms.TextBox()
-        Me.BtnWriteUnitID = New System.Windows.Forms.Button()
-        Me.label3 = New System.Windows.Forms.Label()
         Me.label2 = New System.Windows.Forms.Label()
         Me.label1 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -40,9 +36,6 @@ Partial Class Form1
         Me.listBox2 = New System.Windows.Forms.ListBox()
         Me.BtnDescriptor = New System.Windows.Forms.Button()
         Me.label21 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.ChkGreen = New System.Windows.Forms.CheckBox()
-        Me.ChkRed = New System.Windows.Forms.CheckBox()
         Me.ChkSuppress = New System.Windows.Forms.CheckBox()
         Me.LblScrLk = New System.Windows.Forms.Label()
         Me.LblCapsLk = New System.Windows.Forms.Label()
@@ -110,6 +103,29 @@ Partial Class Form1
         Me.label64 = New System.Windows.Forms.Label()
         Me.label66 = New System.Windows.Forms.Label()
         Me.label6 = New System.Windows.Forms.Label()
+        Me.lblUART = New System.Windows.Forms.Label()
+        Me.btnDisableUART = New System.Windows.Forms.Button()
+        Me.btnEnableUART = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.btnLoopBack = New System.Windows.Forms.Button()
+        Me.label9 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cboRGBIndex = New System.Windows.Forms.ComboBox()
+        Me.txtB = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.cboBank = New System.Windows.Forms.ComboBox()
+        Me.btnSetAllBank2 = New System.Windows.Forms.Button()
+        Me.btnSetAllBank1 = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.btnSetRGB = New System.Windows.Forms.Button()
+        Me.label12 = New System.Windows.Forms.Label()
+        Me.label13 = New System.Windows.Forms.Label()
+        Me.label14 = New System.Windows.Forms.Label()
+        Me.txtG = New System.Windows.Forms.TextBox()
+        Me.txtR = New System.Windows.Forms.TextBox()
+        Me.chkRGBFlash = New System.Windows.Forms.CheckBox()
+        Me.label15 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -161,44 +177,6 @@ Partial Class Form1
         Me.BtnEnumerate.Text = "Enumerate"
         Me.BtnEnumerate.UseVisualStyleBackColor = True
         '
-        'LblUnitID
-        '
-        Me.LblUnitID.Location = New System.Drawing.Point(156, 339)
-        Me.LblUnitID.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.LblUnitID.Name = "LblUnitID"
-        Me.LblUnitID.Size = New System.Drawing.Size(52, 20)
-        Me.LblUnitID.TabIndex = 26
-        Me.LblUnitID.Text = "Unit ID"
-        '
-        'TxtUnitID
-        '
-        Me.TxtUnitID.Location = New System.Drawing.Point(128, 336)
-        Me.TxtUnitID.Margin = New System.Windows.Forms.Padding(2)
-        Me.TxtUnitID.Name = "TxtUnitID"
-        Me.TxtUnitID.Size = New System.Drawing.Size(25, 20)
-        Me.TxtUnitID.TabIndex = 25
-        Me.TxtUnitID.Text = "1"
-        '
-        'BtnWriteUnitID
-        '
-        Me.BtnWriteUnitID.Location = New System.Drawing.Point(17, 334)
-        Me.BtnWriteUnitID.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtnWriteUnitID.Name = "BtnWriteUnitID"
-        Me.BtnWriteUnitID.Size = New System.Drawing.Size(104, 22)
-        Me.BtnWriteUnitID.TabIndex = 24
-        Me.BtnWriteUnitID.Text = "Write Unit ID"
-        Me.BtnWriteUnitID.UseVisualStyleBackColor = True
-        '
-        'label3
-        '
-        Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(7, 315)
-        Me.label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(68, 13)
-        Me.label3.TabIndex = 29
-        Me.label3.Text = "Write Unit ID"
-        '
         'label2
         '
         Me.label2.AutoSize = True
@@ -244,7 +222,7 @@ Partial Class Form1
         '
         Me.listBox2.FormattingEnabled = True
         Me.listBox2.HorizontalScrollbar = True
-        Me.listBox2.Location = New System.Drawing.Point(127, 508)
+        Me.listBox2.Location = New System.Drawing.Point(127, 496)
         Me.listBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.listBox2.Name = "listBox2"
         Me.listBox2.Size = New System.Drawing.Size(232, 134)
@@ -252,7 +230,7 @@ Partial Class Form1
         '
         'BtnDescriptor
         '
-        Me.BtnDescriptor.Location = New System.Drawing.Point(20, 507)
+        Me.BtnDescriptor.Location = New System.Drawing.Point(17, 495)
         Me.BtnDescriptor.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnDescriptor.Name = "BtnDescriptor"
         Me.BtnDescriptor.Size = New System.Drawing.Size(104, 22)
@@ -263,46 +241,12 @@ Partial Class Form1
         'label21
         '
         Me.label21.AutoSize = True
-        Me.label21.Location = New System.Drawing.Point(6, 484)
+        Me.label21.Location = New System.Drawing.Point(7, 472)
         Me.label21.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label21.Name = "label21"
         Me.label21.Size = New System.Drawing.Size(55, 13)
         Me.label21.TabIndex = 73
         Me.label21.Text = "Descriptor"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(7, 285)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(33, 13)
-        Me.Label13.TabIndex = 233
-        Me.Label13.Text = "LEDs"
-        '
-        'ChkGreen
-        '
-        Me.ChkGreen.AutoSize = True
-        Me.ChkGreen.Location = New System.Drawing.Point(59, 284)
-        Me.ChkGreen.Name = "ChkGreen"
-        Me.ChkGreen.Size = New System.Drawing.Size(55, 17)
-        Me.ChkGreen.TabIndex = 234
-        Me.ChkGreen.Tag = "6"
-        Me.ChkGreen.Text = "Green"
-        Me.ChkGreen.ThreeState = True
-        Me.ChkGreen.UseVisualStyleBackColor = True
-        '
-        'ChkRed
-        '
-        Me.ChkRed.AutoSize = True
-        Me.ChkRed.Location = New System.Drawing.Point(120, 284)
-        Me.ChkRed.Name = "ChkRed"
-        Me.ChkRed.Size = New System.Drawing.Size(46, 17)
-        Me.ChkRed.TabIndex = 235
-        Me.ChkRed.Tag = "7"
-        Me.ChkRed.Text = "Red"
-        Me.ChkRed.ThreeState = True
-        Me.ChkRed.UseVisualStyleBackColor = True
         '
         'ChkSuppress
         '
@@ -383,7 +327,7 @@ Partial Class Form1
         'label51
         '
         Me.label51.AutoSize = True
-        Me.label51.Location = New System.Drawing.Point(499, 462)
+        Me.label51.Location = New System.Drawing.Point(500, 559)
         Me.label51.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label51.Name = "label51"
         Me.label51.Size = New System.Drawing.Size(156, 13)
@@ -392,7 +336,7 @@ Partial Class Form1
         '
         'btnWriteXkeysTx
         '
-        Me.btnWriteXkeysTx.Location = New System.Drawing.Point(728, 484)
+        Me.btnWriteXkeysTx.Location = New System.Drawing.Point(726, 581)
         Me.btnWriteXkeysTx.Name = "btnWriteXkeysTx"
         Me.btnWriteXkeysTx.Size = New System.Drawing.Size(118, 22)
         Me.btnWriteXkeysTx.TabIndex = 643
@@ -401,7 +345,7 @@ Partial Class Form1
         '
         'txtSendText
         '
-        Me.txtSendText.Location = New System.Drawing.Point(500, 484)
+        Me.txtSendText.Location = New System.Drawing.Point(498, 581)
         Me.txtSendText.Name = "txtSendText"
         Me.txtSendText.Size = New System.Drawing.Size(222, 20)
         Me.txtSendText.TabIndex = 642
@@ -571,7 +515,7 @@ Partial Class Form1
         'label52
         '
         Me.label52.AutoSize = True
-        Me.label52.Location = New System.Drawing.Point(498, 409)
+        Me.label52.Location = New System.Drawing.Point(500, 409)
         Me.label52.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label52.Name = "label52"
         Me.label52.Size = New System.Drawing.Size(58, 13)
@@ -631,7 +575,7 @@ Partial Class Form1
         '
         'BtnBLToggle
         '
-        Me.BtnBLToggle.Location = New System.Drawing.Point(17, 415)
+        Me.BtnBLToggle.Location = New System.Drawing.Point(17, 425)
         Me.BtnBLToggle.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnBLToggle.Name = "BtnBLToggle"
         Me.BtnBLToggle.Size = New System.Drawing.Size(104, 22)
@@ -642,7 +586,7 @@ Partial Class Form1
         'label43
         '
         Me.label43.AutoSize = True
-        Me.label43.Location = New System.Drawing.Point(6, 391)
+        Me.label43.Location = New System.Drawing.Point(7, 401)
         Me.label43.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label43.Name = "label43"
         Me.label43.Size = New System.Drawing.Size(92, 13)
@@ -929,12 +873,248 @@ Partial Class Form1
         Me.label6.TabIndex = 688
         Me.label6.Text = resources.GetString("label6.Text")
         '
+        'lblUART
+        '
+        Me.lblUART.AutoSize = True
+        Me.lblUART.Location = New System.Drawing.Point(752, 511)
+        Me.lblUART.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblUART.Name = "lblUART"
+        Me.lblUART.Size = New System.Drawing.Size(51, 13)
+        Me.lblUART.TabIndex = 697
+        Me.lblUART.Text = "uart state"
+        '
+        'btnDisableUART
+        '
+        Me.btnDisableUART.Location = New System.Drawing.Point(628, 506)
+        Me.btnDisableUART.Name = "btnDisableUART"
+        Me.btnDisableUART.Size = New System.Drawing.Size(118, 23)
+        Me.btnDisableUART.TabIndex = 696
+        Me.btnDisableUART.Text = "Disable UART"
+        Me.btnDisableUART.UseVisualStyleBackColor = True
+        '
+        'btnEnableUART
+        '
+        Me.btnEnableUART.Location = New System.Drawing.Point(500, 506)
+        Me.btnEnableUART.Name = "btnEnableUART"
+        Me.btnEnableUART.Size = New System.Drawing.Size(118, 23)
+        Me.btnEnableUART.TabIndex = 695
+        Me.btnEnableUART.Text = "Enable UART"
+        Me.btnEnableUART.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.Location = New System.Drawing.Point(500, 474)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(432, 28)
+        Me.Label7.TabIndex = 694
+        Me.Label7.Text = "Enable or Disable UART for RS232 Communication. The UART should only be enabled i" & _
+            "f something is connected to the UART port."
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(500, 630)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(293, 13)
+        Me.Label8.TabIndex = 699
+        Me.Label8.Text = "X-keys loop back test. Connect the X-keys RX to X-keys TX."
+        '
+        'btnLoopBack
+        '
+        Me.btnLoopBack.Location = New System.Drawing.Point(500, 648)
+        Me.btnLoopBack.Name = "btnLoopBack"
+        Me.btnLoopBack.Size = New System.Drawing.Size(118, 23)
+        Me.btnLoopBack.TabIndex = 698
+        Me.btnLoopBack.Text = "Loop Back Test"
+        Me.btnLoopBack.UseVisualStyleBackColor = True
+        '
+        'label9
+        '
+        Me.label9.AutoSize = True
+        Me.label9.Location = New System.Drawing.Point(12, 285)
+        Me.label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label9.Name = "label9"
+        Me.label9.Size = New System.Drawing.Size(34, 13)
+        Me.label9.TabIndex = 733
+        Me.label9.Text = "Color:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(289, 285)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(40, 13)
+        Me.Label3.TabIndex = 732
+        Me.Label3.Text = "(0-255)"
+        '
+        'cboRGBIndex
+        '
+        Me.cboRGBIndex.FormattingEnabled = True
+        Me.cboRGBIndex.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95"})
+        Me.cboRGBIndex.Location = New System.Drawing.Point(17, 326)
+        Me.cboRGBIndex.Name = "cboRGBIndex"
+        Me.cboRGBIndex.Size = New System.Drawing.Size(66, 21)
+        Me.cboRGBIndex.TabIndex = 731
+        '
+        'txtB
+        '
+        Me.txtB.Location = New System.Drawing.Point(231, 282)
+        Me.txtB.Name = "txtB"
+        Me.txtB.Size = New System.Drawing.Size(52, 20)
+        Me.txtB.TabIndex = 730
+        Me.txtB.Text = "3"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(83, 309)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(35, 13)
+        Me.Label10.TabIndex = 729
+        Me.Label10.Text = "Bank:"
+        '
+        'cboBank
+        '
+        Me.cboBank.FormattingEnabled = True
+        Me.cboBank.Items.AddRange(New Object() {"bank 1 (top)", "bank 2 (bottom)", "both"})
+        Me.cboBank.Location = New System.Drawing.Point(86, 325)
+        Me.cboBank.Name = "cboBank"
+        Me.cboBank.Size = New System.Drawing.Size(97, 21)
+        Me.cboBank.TabIndex = 728
+        '
+        'btnSetAllBank2
+        '
+        Me.btnSetAllBank2.Location = New System.Drawing.Point(114, 352)
+        Me.btnSetAllBank2.Name = "btnSetAllBank2"
+        Me.btnSetAllBank2.Size = New System.Drawing.Size(89, 23)
+        Me.btnSetAllBank2.TabIndex = 727
+        Me.btnSetAllBank2.Text = "Set All Bank 2"
+        Me.btnSetAllBank2.UseVisualStyleBackColor = True
+        '
+        'btnSetAllBank1
+        '
+        Me.btnSetAllBank1.Location = New System.Drawing.Point(17, 353)
+        Me.btnSetAllBank1.Name = "btnSetAllBank1"
+        Me.btnSetAllBank1.Size = New System.Drawing.Size(89, 23)
+        Me.btnSetAllBank1.TabIndex = 726
+        Me.btnSetAllBank1.Text = "Set All Bank 1"
+        Me.btnSetAllBank1.UseVisualStyleBackColor = True
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(17, 308)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(41, 13)
+        Me.Label11.TabIndex = 725
+        Me.Label11.Text = "Button:"
+        '
+        'btnSetRGB
+        '
+        Me.btnSetRGB.Location = New System.Drawing.Point(249, 323)
+        Me.btnSetRGB.Name = "btnSetRGB"
+        Me.btnSetRGB.Size = New System.Drawing.Size(89, 23)
+        Me.btnSetRGB.TabIndex = 721
+        Me.btnSetRGB.Text = "Set LED(s)"
+        Me.btnSetRGB.UseVisualStyleBackColor = True
+        '
+        'label12
+        '
+        Me.label12.AutoSize = True
+        Me.label12.Location = New System.Drawing.Point(210, 285)
+        Me.label12.Name = "label12"
+        Me.label12.Size = New System.Drawing.Size(14, 13)
+        Me.label12.TabIndex = 724
+        Me.label12.Text = "B"
+        '
+        'label13
+        '
+        Me.label13.AutoSize = True
+        Me.label13.Location = New System.Drawing.Point(131, 285)
+        Me.label13.Name = "label13"
+        Me.label13.Size = New System.Drawing.Size(15, 13)
+        Me.label13.TabIndex = 723
+        Me.label13.Text = "G"
+        '
+        'label14
+        '
+        Me.label14.AutoSize = True
+        Me.label14.Location = New System.Drawing.Point(52, 285)
+        Me.label14.Name = "label14"
+        Me.label14.Size = New System.Drawing.Size(15, 13)
+        Me.label14.TabIndex = 722
+        Me.label14.Text = "R"
+        '
+        'txtG
+        '
+        Me.txtG.Location = New System.Drawing.Point(152, 282)
+        Me.txtG.Name = "txtG"
+        Me.txtG.Size = New System.Drawing.Size(52, 20)
+        Me.txtG.TabIndex = 720
+        Me.txtG.Text = "3"
+        '
+        'txtR
+        '
+        Me.txtR.Location = New System.Drawing.Point(73, 282)
+        Me.txtR.Name = "txtR"
+        Me.txtR.Size = New System.Drawing.Size(52, 20)
+        Me.txtR.TabIndex = 719
+        Me.txtR.Text = "3"
+        '
+        'chkRGBFlash
+        '
+        Me.chkRGBFlash.AutoSize = True
+        Me.chkRGBFlash.Location = New System.Drawing.Point(193, 326)
+        Me.chkRGBFlash.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkRGBFlash.Name = "chkRGBFlash"
+        Me.chkRGBFlash.Size = New System.Drawing.Size(51, 17)
+        Me.chkRGBFlash.TabIndex = 718
+        Me.chkRGBFlash.Text = "Flash"
+        Me.chkRGBFlash.UseVisualStyleBackColor = True
+        '
+        'label15
+        '
+        Me.label15.AutoSize = True
+        Me.label15.Location = New System.Drawing.Point(7, 254)
+        Me.label15.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label15.Name = "label15"
+        Me.label15.Size = New System.Drawing.Size(121, 13)
+        Me.label15.TabIndex = 717
+        Me.label15.Text = "RGB Backlight Features"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1535, 711)
+        Me.Controls.Add(Me.label9)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.cboRGBIndex)
+        Me.Controls.Add(Me.txtB)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.cboBank)
+        Me.Controls.Add(Me.btnSetAllBank2)
+        Me.Controls.Add(Me.btnSetAllBank1)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.btnSetRGB)
+        Me.Controls.Add(Me.label12)
+        Me.Controls.Add(Me.label13)
+        Me.Controls.Add(Me.label14)
+        Me.Controls.Add(Me.txtG)
+        Me.Controls.Add(Me.txtR)
+        Me.Controls.Add(Me.chkRGBFlash)
+        Me.Controls.Add(Me.label15)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.btnLoopBack)
+        Me.Controls.Add(Me.lblUART)
+        Me.Controls.Add(Me.btnDisableUART)
+        Me.Controls.Add(Me.btnEnableUART)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.label6)
         Me.Controls.Add(Me.label66)
         Me.Controls.Add(Me.label64)
@@ -1001,20 +1181,13 @@ Partial Class Form1
         Me.Controls.Add(Me.label43)
         Me.Controls.Add(Me.BtnBLToggle)
         Me.Controls.Add(Me.ChkSuppress)
-        Me.Controls.Add(Me.ChkRed)
-        Me.Controls.Add(Me.ChkGreen)
-        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.listBox2)
         Me.Controls.Add(Me.BtnDescriptor)
         Me.Controls.Add(Me.label21)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.label3)
         Me.Controls.Add(Me.label2)
         Me.Controls.Add(Me.label1)
-        Me.Controls.Add(Me.LblUnitID)
-        Me.Controls.Add(Me.TxtUnitID)
-        Me.Controls.Add(Me.BtnWriteUnitID)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.BtnCallback)
         Me.Controls.Add(Me.CboDevices)
@@ -1032,10 +1205,6 @@ Partial Class Form1
     Friend WithEvents CboDevices As System.Windows.Forms.ComboBox
     Friend WithEvents LblStatus As System.Windows.Forms.Label
     Friend WithEvents BtnEnumerate As System.Windows.Forms.Button
-    Friend WithEvents LblUnitID As System.Windows.Forms.Label
-    Friend WithEvents TxtUnitID As System.Windows.Forms.TextBox
-    Friend WithEvents BtnWriteUnitID As System.Windows.Forms.Button
-    Private WithEvents label3 As System.Windows.Forms.Label
     Private WithEvents label2 As System.Windows.Forms.Label
     Private WithEvents label1 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -1043,9 +1212,6 @@ Partial Class Form1
     Private WithEvents listBox2 As System.Windows.Forms.ListBox
     Private WithEvents BtnDescriptor As System.Windows.Forms.Button
     Private WithEvents label21 As System.Windows.Forms.Label
-    Private WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents ChkGreen As System.Windows.Forms.CheckBox
-    Friend WithEvents ChkRed As System.Windows.Forms.CheckBox
     Friend WithEvents ChkSuppress As System.Windows.Forms.CheckBox
     Private WithEvents LblScrLk As System.Windows.Forms.Label
     Private WithEvents LblCapsLk As System.Windows.Forms.Label
@@ -1113,5 +1279,28 @@ Partial Class Form1
     Private WithEvents label64 As System.Windows.Forms.Label
     Private WithEvents label66 As System.Windows.Forms.Label
     Public WithEvents label6 As System.Windows.Forms.Label
+    Private WithEvents lblUART As System.Windows.Forms.Label
+    Private WithEvents btnDisableUART As System.Windows.Forms.Button
+    Private WithEvents btnEnableUART As System.Windows.Forms.Button
+    Private WithEvents Label7 As System.Windows.Forms.Label
+    Private WithEvents Label8 As System.Windows.Forms.Label
+    Private WithEvents btnLoopBack As System.Windows.Forms.Button
+    Private WithEvents label9 As System.Windows.Forms.Label
+    Private WithEvents Label3 As System.Windows.Forms.Label
+    Private WithEvents cboRGBIndex As System.Windows.Forms.ComboBox
+    Private WithEvents txtB As System.Windows.Forms.TextBox
+    Private WithEvents Label10 As System.Windows.Forms.Label
+    Private WithEvents cboBank As System.Windows.Forms.ComboBox
+    Private WithEvents btnSetAllBank2 As System.Windows.Forms.Button
+    Private WithEvents btnSetAllBank1 As System.Windows.Forms.Button
+    Private WithEvents Label11 As System.Windows.Forms.Label
+    Private WithEvents btnSetRGB As System.Windows.Forms.Button
+    Private WithEvents label12 As System.Windows.Forms.Label
+    Private WithEvents label13 As System.Windows.Forms.Label
+    Private WithEvents label14 As System.Windows.Forms.Label
+    Private WithEvents txtG As System.Windows.Forms.TextBox
+    Private WithEvents txtR As System.Windows.Forms.TextBox
+    Private WithEvents chkRGBFlash As System.Windows.Forms.CheckBox
+    Private WithEvents label15 As System.Windows.Forms.Label
 
 End Class

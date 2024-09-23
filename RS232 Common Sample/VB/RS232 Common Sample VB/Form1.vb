@@ -43,9 +43,7 @@ Public Class Form1
             thisListBox = ListBox1
             SetListBox(output)
             If (data(2) < 4) Then
-                'Unit ID
-                c = LblUnitID
-                SetText(data(1).ToString)
+               
 
                 If (data(2) < 4) Then 'general incoming data 
 
@@ -526,29 +524,8 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub BtnWriteUnitID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnWriteUnitID.Click
-        'change the device's unit id
-        If selecteddevice <> -1 Then
+    Private Sub BtnWriteUnitID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 189
-            wdata(2) = TxtUnitID.Text
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - Unit ID"
-            End If
-        End If
     End Sub
 
     Private Sub CboDevices_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboDevices.SelectedIndexChanged
@@ -565,7 +542,8 @@ Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         selecteddevice = -1
-
+        cboRGBIndex.SelectedIndex = 0
+        cboBank.SelectedIndex = 0
 
         For i As Integer = 1 To 20 - 1
             If serialPort1.IsOpen = True Then serialPort1.Close()
@@ -750,17 +728,26 @@ Public Class Form1
             End If
 
             If CByte(ddata(21) And 8) = 8 Then
-                listBox2.Items.Add("usb check=disabled")
+                listBox2.Items.Add("USB check=disabled")
                 lblUSBCheckState.Text = "disabled"
             Else
-                listBox2.Items.Add("usb check=enabled")
+                listBox2.Items.Add("USB check=enabled")
                 lblUSBCheckState.Text = "enabled"
+            End If
+
+            If (CByte(ddata(21) And 16) = 16) Then
+                listBox2.Items.Add("UART=enabled")
+                lblUART.Text = "enabled"
+            Else
+                listBox2.Items.Add("UART=disabled")
+                lblUART.Text = "disabled"
             End If
 
             listBox2.Items.Add("start byte opcode" & ddata(23).ToString())
             listBox2.Items.Add("stop byte opcode=" & ddata(24).ToString())
             listBox2.Items.Add("start byte PI Base64=" & ddata(25).ToString())
             listBox2.Items.Add("stop byte PI Base64=" & ddata(26).ToString())
+            
 
             devices(selecteddevice).callNever = savecallbackstate
 
@@ -800,12 +787,7 @@ Public Class Form1
 
     End Sub
 
-   
-    
 
-   
-
-    
 
     Private Sub BtnBLToggle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBLToggle.Click
         'Sending this command toggles the backlights
@@ -827,45 +809,6 @@ Public Class Form1
                 LblStatus.Text = "Write Fail: " + result.ToString
             Else
                 LblStatus.Text = "Write Success - Toggle BL"
-            End If
-        End If
-    End Sub
-
-  
-
-  
-
-
-  
-
-
-    Private Sub ChkGreen_CheckStateChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChkGreen.CheckStateChanged, ChkRed.CheckStateChanged
-        'control leds
-        If selecteddevice <> -1 Then
-
-            Dim thisChk As CheckBox = DirectCast(sender, CheckBox)
-            Dim temp As String = thisChk.Tag.ToString()
-            Dim LED As Byte = Convert.ToByte(temp)
-            Dim state As Byte = thisChk.CheckState
-
-            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(i) = 0
-            Next
-            wdata(0) = 0
-            wdata(1) = 179
-            wdata(2) = LED '6=green, 7=red
-            wdata(3) = state '0=off, 1=on, 2=flash
-
-            Dim result As Integer
-            result = 404
-            While (result = 404)
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result.ToString
-            Else
-                LblStatus.Text = "Write Success - LEDs and Output"
             End If
         End If
     End Sub
@@ -1158,7 +1101,11 @@ Public Class Form1
             cboParity.SelectedIndex = ddata(4)
             cboDataBits.SelectedIndex = ddata(5) - 5
             cboStopBits.SelectedIndex = ddata(6) - 2
-            Dim temp As String = "Divider=" & (ddata(8) * 256 + ddata(7)).ToString()
+            If ddata(7) = 0 Then
+                lblUART.Text = "disabled"
+            ElseIf ddata(7) = 1 Then
+                lblUART.Text = "enabled"
+            End If
 
             devices(selecteddevice).callNever = savecallbackstate
 
@@ -1454,5 +1401,253 @@ Public Class Form1
     End Sub
 
    
-   
+    Private Sub btnEnableUART_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnableUART.Click
+
+        'Sending this enables the UART port for RS232 communications. The port should not be enabled without something connected to it.
+        If selecteddevice <> -1 Then
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 150 '96
+            wdata(2) = 1 '0=disable (factory default), 1=enable
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Enable UART"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnDisableUART_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisableUART.Click
+        'Sending this enables the UART port for RS232 communications. The port should not be enabled without something connected to it.
+        If selecteddevice <> -1 Then
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 150 '96
+            wdata(2) = 0 '0=disable (factory default), 1=enable
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - Disable UART"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnLoopBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLoopBack.Click
+        'Sending this enables the UART port for RS232 communications. The port should not be enabled without something connected to it.
+        If selecteddevice <> -1 Then
+
+            Dim sendthisbank1 As String = "pgAAEAA=" 'this is base64 encoded A6, 00, 00, 10, 00 where the output report A6, bank, r, g, b sets all bank 1 LEDs to the value of r, g, b (green)
+            Dim sendthisbank2 As String = "pgEAEAA=" 'this is base64 encoded A6, 01, 00, 10, 00 where the output report A6, bank, r, g, b sets all bank 2 LEDs to the value of r, g, b (green)
+
+            Dim length As Integer = sendthisbank1.Length
+
+
+
+
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            'bank 1 leds to green
+            wdata(0) = 0
+            wdata(1) = 216 'd8
+            wdata(2) = CByte(length + 2) 'number of bytes sent to the uart including start and stop bytes
+            wdata(3) = 4 'start byte for base64 output report commands
+
+            For i As Integer = 0 To length - 1
+                wdata(i + 4) = CType(AscW(sendthisbank1(i)), Byte)
+            Next
+            wdata(4 + length) = 5 'stop byte
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            'bank 2 leds to green
+            wdata(0) = 0
+            wdata(1) = 216 'd8
+            wdata(2) = CByte(length + 2) 'number of bytes sent to the uart including start and stop bytes
+            wdata(3) = 4 'start byte for base64 output report commands
+
+            For i As Integer = 0 To length - 1
+                wdata(i + 4) = CType(AscW(sendthisbank1(i)), Byte)
+            Next
+            wdata(4 + length) = 5 'stop byte
+
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - UART loop back test"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnSetRGB_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetRGB.Click
+        '   //Set individual led 
+        '   //Use the Set Flash Freq to control frequency of blink
+        '   //Button Index (in decimal)
+        '   //Columns-->
+        '   //  0   6   12  18  24  30  36  42  48  54  60  66  72  78  84  90
+        '   //  1   7   13  19  25  31  37  43  49  55  61  67  73  79  85  91
+        '   //  2   8   14  20  26  32  38  44  50  56  62  68  74  80  86  92
+        '   //  3   9   15  21  27  33  39  45  51  57  63  69  75  81  87  93
+        '   //  4   10  16  22  28  34  40  46  52  58  64  70  76  82  88  94
+        '   //  5   11  17  23  29  35  41  47  53  59  65  71  77  83  89  95
+
+        '   //Upper LEDs are bank 1, bankindex = 0
+        '   //Lower LEDs are bank 2, bankindex = 1
+        If selecteddevice <> -1 Then
+
+            Dim index As Byte = Convert.ToByte(cboRGBIndex.Text)
+            Dim bank As Byte = CByte(cboBank.SelectedIndex)
+
+            Dim result As Integer = 0
+
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+
+            If (bank = 0) OrElse (bank = 1) Then
+                wdata(1) = 165 '&HA5
+                wdata(2) = index
+                wdata(3) = bank '0=bank 1 (top), 1=bank 2 (bottom)
+                wdata(4) = Convert.ToByte(txtR.Text)
+                wdata(5) = Convert.ToByte(txtG.Text)
+                wdata(6) = Convert.ToByte(txtB.Text)
+                wdata(7) = chkRGBFlash.CheckState '0=no flash, 1=flash
+
+                result = 404
+                While (result = 404)
+                    result = devices(selecteddevice).WriteData(wdata)
+                End While
+
+                If result <> 0 Then
+                    LblStatus.Text = "Write Fail: " & result
+                Else
+                    LblStatus.Text = "Write Success - Set LED"
+                End If
+
+            ElseIf bank = 2 Then 'do both
+                'bank 1
+                wdata(1) = 165 '&HA5
+                wdata(2) = index
+                wdata(3) = 0 '0=bank 1 (top), 1=bank 2 (bottom)
+                wdata(4) = Convert.ToByte(txtR.Text)
+                wdata(5) = Convert.ToByte(txtG.Text)
+                wdata(6) = Convert.ToByte(txtB.Text)
+                wdata(7) = chkRGBFlash.CheckState '0=no flash, 1=flash
+
+                result = 404
+                While (result = 404)
+                    result = devices(selecteddevice).WriteData(wdata)
+                End While
+
+                If result <> 0 Then
+                    LblStatus.Text = "Write Fail: " & result
+                Else
+                    LblStatus.Text = "Write Success - Set LED"
+                End If
+
+                'bank 2
+                wdata(3) = 1 '0=bank 1 (top), 1=bank 2 (bottom)
+                result = 404
+                While (result = 404)
+                    result = devices(selecteddevice).WriteData(wdata)
+                End While
+
+                If result <> 0 Then
+                    LblStatus.Text = "Write Fail: " & result
+                Else
+                    LblStatus.Text = "Write Success - Set LED"
+                End If
+               
+            End If
+        End If
+
+
+
+
+    End Sub
+
+    Private Sub btnSetAllBank1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetAllBank1.Click
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+            Dim result As Integer = 0
+
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+
+            wdata(1) = 166 '&HA6
+            wdata(2) = 0 '0=bank 1 (upper LEDs), 1=bank 2 (lower LEDs)
+            wdata(3) = Convert.ToByte(txtR.Text)
+            wdata(4) = Convert.ToByte(txtG.Text)
+            wdata(5) = Convert.ToByte(txtB.Text)
+
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " & result
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnSetAllBank2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetAllBank2.Click
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+            Dim result As Integer = 0
+
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+
+            wdata(1) = 166 '&HA6
+            wdata(2) = 1 '0=bank 1 (upper LEDs), 1=bank 2 (lower LEDs)
+            wdata(3) = Convert.ToByte(txtR.Text)
+            wdata(4) = Convert.ToByte(txtG.Text)
+            wdata(5) = Convert.ToByte(txtB.Text)
+
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " & result
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+        End If
+    End Sub
 End Class
