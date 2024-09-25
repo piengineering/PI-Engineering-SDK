@@ -34,6 +34,7 @@
 #define IDC_TOPID2                      1020
 #define IDC_ConfigureGPIO               1020
 #define IDC_TIMESTAMP                   1021
+#define IDC_CHECKKEY2                   1021
 #define IDC_SaveGPIO                    1021
 #define IDC_KEYREFLECT                  1022
 #define IDC_JOYREFLECT                  1023
@@ -118,7 +119,6 @@
 #define IDC_Shuttle4                    1079
 #define IDC_Shuttle5                    1080
 #define IDC_Buttons                     1081
-#define IDC_Buttons2                    1082
 #define IDC_GPIOInput                   1082
 #define IDC_BUTTON2                     1083
 #define IDC_BUTTON3                     1084
