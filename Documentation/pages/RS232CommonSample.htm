@@ -24,13 +24,13 @@
         
     <h3>RS232 Common Sample</h3>
     <p>Several X-keys products now come with a universal asynchronous receiver/transmitter 
-      (UART) port for exchanging serial data between two devices. The X-blox series, 
-      the XBE series, and the XKE-40 RS232 all come with the UART port. Documenation 
-      for use of the port is included in the individual product's Data Reports 
-      however the demonstation of its use has been pulled from the main products' 
-      samples and instead is provided in a dedicated RS232 sample common for all 
-      devices equipped with the UART port. This samples for C#, VB, and C++ can 
-      be found in the RS232 Common Sample folder of th P.I. Engineering SDK.</p>
+      (UART) port for exchanging serial data between two devices. The XBM/XBE 
+      series, and the XKE-40 RS232 come with the UART port. Documenation for use 
+      of the port is included in the individual product's Data Reports however 
+      the demonstation of its use has been pulled from the main products' samples 
+      and instead is provided in a dedicated RS232 sample common for all devices 
+      equipped with the UART port. These samples for C#, VB, and C++ can be found 
+      in the RS232 Common Sample folder of th P.I. Engineering SDK.</p>
     <p> On the left and middle sections of the sample, communication with the 
       X-keys is via the standard USB HID protocol; enumerate the device, set for 
       callback to read incoming data, and send output report messages. Note the 
@@ -43,20 +43,23 @@
       and none (factory default). Valid data bits are 5, 6, 7, 8 (factory default). 
       Valid stop bits are 1 (factory default), 1.5, and 2. Data can be written 
       to the X-keys TX line with an output report, demonstrated in Write to X-keys 
-      TX. </p>
+      TX. The UART port must be enabled once something is connected to using the 
+      output report Enable UART. When nothing is connected to the UART port it 
+      should be disabled (factory default) using the same output report.</p>
     <p>On the right section of the sample, communication with the X-keys is through 
-      the UART. The RS232 settings of the connected serial device must match those 
-      of the X-keys device. In this example, we are connected to a Prolific Serial 
-      to USB Adapter. The X-keys recognizes 2 types of serial messages; UART Custom 
-      Received Messages and UART Output Report Received Messages. UART Custom 
-      Received Messages must have a start byte of 2 and a stop byte of 3. When 
-      this message is sent to the X-keys it will generate an Incoming UART Data 
-      - UART Custom Message input report. UART Output Report Received Messages 
-      are used to send output reports to the X-keys via the UART. Sending this 
-      message from a connected serial port requires encoding of the desired bytes 
-      into base64. The code samples include both encoding and decoding samples. 
-      The bytes of the desired output report are encoded into base64, padded with 
-      start byte of 4 and stop byte of 5, and then sent to the X-keys.</p>
+      the UART is demonstrated. The RS232 settings of the connected serial device 
+      must match those of the X-keys device. In this example, we are connected 
+      to a Prolific Serial to USB Adapter. The X-keys recognizes 2 types of serial 
+      messages; UART Custom Received Messages and UART Output Report Received 
+      Messages. UART Custom Received Messages must have a start byte of 2 and 
+      a stop byte of 3. When this message is sent to the X-keys it will generate 
+      an Incoming UART Data - UART Custom Message input report. UART Output Report 
+      Received Messages are used to send output reports to the X-keys via the 
+      UART. Sending this message from a connected serial port requires encoding 
+      of the desired bytes into base64. The code samples include both encoding 
+      and decoding samples. The bytes of the desired output report are encoded 
+      into base64, padded with start byte of 4 and stop byte of 5, and then sent 
+      to the X-keys.</p>
     <p>MacroWorks 3.1 version 1.1.2.42+ and X-keys Basic Setup version 1.0.5.1+ 
       support programming of buttons to send serial commands.</p>
     <p><img src="images/rs232sample.png" width="1543" height="766"></p>
