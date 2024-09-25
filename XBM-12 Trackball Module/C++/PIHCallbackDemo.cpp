@@ -171,7 +171,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	SendMessage(Pid_Combo, CB_ADDSTRING, 0, (LPARAM)"PID 5: Keyboard (boot), Mouse (boot), PI Consumer, Output");
 	SendMessage(Pid_Combo, CB_ADDSTRING, 0, (LPARAM)"PID 6: PI Consumer, Output");
 	SendMessage(Pid_Combo, CB_ADDSTRING, 0, (LPARAM)"PID 7: Keyboard, Joystick, Mouse, Multimedia, PI Consumer, Output");
-	SendMessage(Pid_Combo, CB_ADDSTRING, 0, (LPARAM)"PID 8: Keyboard (boot) for KVM users");
+	SendMessage(Pid_Combo, CB_ADDSTRING, 0, (LPARAM)"PID 8: Keyboard (boot), Mouse (boot) for KVM users");
 	//set default
 	SendMessage(Pid_Combo, CB_SETCURSEL, 0, 0);
 

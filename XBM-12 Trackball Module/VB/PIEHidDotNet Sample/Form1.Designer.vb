@@ -1169,7 +1169,7 @@ Partial Class Form1
         'cboPIDs
         '
         Me.cboPIDs.FormattingEnabled = True
-        Me.cboPIDs.Items.AddRange(New Object() {"PID 1: Keyboard, Multimedia, PI Consumer, Output (factory default)", "PID 2: Keyboard (boot), Multimedia, PI Consumer, Output", "PID 3: Keyboard, Joystick, PI Consumer, Output", "PID 4: Mouse, Joystick, PI Consumer, Output", "PID 5: Keyboard (boot), Mouse, PI Consumer, Output", "PID 6: PI Consumer, Output", "PID 7:  Keyboard, Joystick, Mouse, Multimedia, PI Consumer, Output", "PID 8: Keyboard (boot) for KVM users"})
+        Me.cboPIDs.Items.AddRange(New Object() {"PID 1: Keyboard, Multimedia, PI Consumer, Output (factory default)", "PID 2: Keyboard (boot), Multimedia, PI Consumer, Output", "PID 3: Keyboard, Joystick, PI Consumer, Output", "PID 4: Mouse, Joystick, PI Consumer, Output", "PID 5: Keyboard (boot), Mouse, PI Consumer, Output", "PID 6: PI Consumer, Output", "PID 7:  Keyboard, Joystick, Mouse, Multimedia, PI Consumer, Output", "PID 8: Keyboard (boot), Mouse (boot) for KVM users"})
         Me.cboPIDs.Location = New System.Drawing.Point(527, 577)
         Me.cboPIDs.Name = "cboPIDs"
         Me.cboPIDs.Size = New System.Drawing.Size(424, 21)
@@ -2355,7 +2355,7 @@ Partial Class Form1
         Me.Controls.Add(Me.BtnEnumerate)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
-        Me.Text = " VB Sample for X-blox XBM-12 Trackball Module/XBE-12 Trackball"
+        Me.Text = " VB Sample for X-keys XBM-12 Trackball Module/XBE-12 Trackball"
         Me.groupBox3.ResumeLayout(False)
         Me.groupBox3.PerformLayout()
         Me.groupBox4.ResumeLayout(False)

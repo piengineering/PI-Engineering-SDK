@@ -267,7 +267,7 @@ Public Class Form1
                 End If
             End If
 
-            
+
         End If
     End Sub
     Public Sub HandlePIEHidError(ByVal sourceDevice As PIEHid32Net.PIEDevice, ByVal perror As Integer) Implements PIEHid32Net.PIEErrorHandler.HandlePIEHidError
@@ -389,7 +389,8 @@ Public Class Form1
                         cbocount = cbocount + 1
                         cboPIDs.SelectedIndex = 7
                         DisableAllControls(devices(i).Pid)
-                        MessageBox.Show("XBA-Trackball Module in KVM mode. To exit KVM mode, press and hold button left of the trackball while plugging in to USB port.", "KVM mode", MessageBoxButtons.OK)
+                        MessageBox.Show("Device in PID #8 (KVM), no input or output reports are available. To exit KVM mode, replug device into usb port and immediately after press Scroll Lock 10-15 times.", "KVM mode", MessageBoxButtons.OK)
+                        Return
                     End If
 
                 End If
@@ -400,13 +401,15 @@ Public Class Form1
         If CboDevices.Items.Count > 0 Then
             CboDevices.SelectedIndex = 0
             selecteddevice = cbotodevice(CboDevices.SelectedIndex)
-            ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
-            ReDim lastdata(devices(selecteddevice).ReadLength - 1)
-            'fill in version, note this is NOTE the firmware version which is given in the descriptor
-            LblVersion.Text = devices(selecteddevice).Version.ToString
-            LblStatus.Text = devices(selecteddevice).ProductString + " found"
-            lblSiliconGeneratedID.Text = devices(selecteddevice).SerialNumberString
-            BtnDescriptor_Click(sender, e)
+            If (devices(selecteddevice).WriteLength > 20) Then
+                ReDim wdata(devices(selecteddevice).WriteLength - 1) 'initialize length of write buffer
+                ReDim lastdata(devices(selecteddevice).ReadLength - 1)
+                'fill in version, note this is NOTE the firmware version which is given in the descriptor
+                LblVersion.Text = devices(selecteddevice).Version.ToString
+                LblStatus.Text = devices(selecteddevice).ProductString + " found"
+                lblSiliconGeneratedID.Text = devices(selecteddevice).SerialNumberString
+                BtnDescriptor_Click(sender, e)
+            End If
             EnumerationSuccess = True
             Me.Cursor = Cursors.Default
         End If
@@ -784,7 +787,7 @@ Public Class Form1
             temp = "Polling Interval=" + (ddata(35)).ToString
             listBox2.Items.Add(temp)
             txtPollingInt.Text = ddata(35).ToString
-            
+
 
             devices(selecteddevice).callNever = savecallbackstate
         End If
@@ -1598,7 +1601,7 @@ Public Class Form1
         End If
     End Sub
 
-  
+
 
     Private Sub chkLED1_CheckStateChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkLED4.CheckStateChanged, chkLED3.CheckStateChanged, chkLED2.CheckStateChanged, chkLED1.CheckStateChanged
         If selecteddevice <> -1 Then
@@ -1851,7 +1854,7 @@ Public Class Form1
 
             wdata(1) = 163 '&HA3
             wdata(2) = 1 '0=off, 1=on
-           
+
             result = 404
             While (result = 404)
                 result = devices(selecteddevice).WriteData(wdata)
@@ -1929,7 +1932,7 @@ Public Class Form1
                 Else
                     LblStatus.Text = "Write Success - Resolution"
                 End If
-                
+
             End If
         End If
     End Sub
@@ -2249,7 +2252,7 @@ Public Class Form1
             For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(j) = 0
             Next
-           
+
             wdata(0) = 0
             wdata(1) = 220 '&HDC
             wdata(2) = CByte(ID) 'Index
