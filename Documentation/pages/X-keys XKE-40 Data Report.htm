@@ -30,8 +30,8 @@
       </div><!-- end of "banner" -->
       
   <div id="main"> <!-- InstanceBeginEditable name="MainContent" --> 
-    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XKE-40 Data Report<b> 
-      | <a href="../index.htm">Main Page</a></b></h2>
+    <h2><a name="idh_desktop" id="idh_desktop"></a>X-keys XKE-40/X-keys XKE-40 
+      RS232 Data Report<b> | <a href="../index.htm">Main Page</a></b></h2>
 <h3>General Information</h3>
     <table width="276" border="1" cellspacing="1" cellpadding="1">
       <tr class="style6"> 
@@ -1384,16 +1384,18 @@
       that requires a total of 5 input reports to capture. This message is a UART 
       PI Base64 Input Report Transmit Message obtained from the following scenario: 
       <br>
-      - Connect the UART TX of X-blox module A to the UART RX of X-blox module 
-      B<br>
-      - On module A, enabled the <span class="style6">Enable UART PI Base64 Input 
+      - Connect the UART TX of the device A to the UART RX of the device B where 
+      both A and B devices have enabled UARTs<br>
+      - Enable UART on both devices using the Enable UART output report<br>
+      - On device A, enabled the <span class="style6">Enable UART PI Base64 Input 
       Report Transmit Messages using the Enable UART PI Base64 Input Report Transmit 
       Messages output report<br>
-      - Prepare module B for reading input reports<br>
-      - Press a button on module A thus generating a General Incoming Data input 
+      - Prepare device B for reading input reports via the USB (enumerate, SetupInterface, 
+      and SetDataCallback)<br>
+      - Press a button on device A thus generating a General Incoming Data input 
       report on module A, simultaneously a UART PI Base64 Input Report Transmit 
       Messages is sent on module A's TX<br>
-      - Module B receives the message on its UART RX and generates the Incoming 
+      - Device B receives the message on its UART RX and generates the Incoming 
       UART Data - UART Custom Message input reports, 4 of them in this case</span></p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
@@ -4480,8 +4482,9 @@
       these systems the read and write lengths will be 1 byte smaller.</b></p>
     <h3>UART Port Information</h3>
     <p>For users of UART port only. The XKE-40 RS232 comes equipped with a UART 
-      port for serial communication options. Pin assignments for the UART port 
-      are shown in Table 2. </p>
+      port for serial communication options. On this device the UART is always 
+      enabled.</p>
+    <p> Pin assignments for the UART port are shown in Table 2. </p>
     <table width="240" border="1" cellspacing="1" cellpadding="1">
       <tr bgcolor="#CCCCCC"> 
         <th width="112" scope="col"> 
