@@ -1951,7 +1951,7 @@ Partial Class Form1
         Me.Controls.Add(Me.BtnEnumerate)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
-        Me.Text = " VB Sample for X-blox XBM-4 Fader Module/XBE-4 Fader"
+        Me.Text = " VB Sample for X-keys XBM-4 Fader Module/XBE-4 Fader"
         CType(Me.tbFader4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFader3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFader2, System.ComponentModel.ISupportInitialize).EndInit()
