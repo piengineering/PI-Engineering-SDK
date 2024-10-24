@@ -138,10 +138,6 @@ BEGIN
     PUSHBUTTON      "Set Intensity",IDC_BLIntensity,7,361,61,17
     LTEXT           "Do this first",IDC_STATIC,63,11,36,8
     PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,59,402,66,17
-    LTEXT           "Dongle:",IDC_STATIC,609,260,26,8
-    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,611,273,73,17
-    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,691,273,68,17
-    LTEXT           "Pass/Fail",IDC_PASSFAIL,762,276,104,11
     LISTBOX         IDC_LIST1,7,36,257,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Buttons:",IDC_Buttons,7,135,249,8
     CONTROL         "Pin 3",IDC_CHECK3,"Button",BS_AUTO3STATE | WS_TABSTOP,89,172,32,10
@@ -168,9 +164,9 @@ BEGIN
     LTEXT           "Bank",IDC_STATIC,138,252,18,8
     LTEXT           "*requires callback on",IDC_STATIC,14,440,84,9
     LTEXT           "GPIO:",IDC_GPIOInput,7,144,249,8
-    LTEXT           "GPIO Configuration:",IDC_STATIC,611,300,64,8
-    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,611,314,73,17
-    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,691,314,89,17
+    LTEXT           "GPIO Configuration:",IDC_STATIC,612,262,64,8
+    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,612,276,73,17
+    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,692,276,89,17
 END
 
 
