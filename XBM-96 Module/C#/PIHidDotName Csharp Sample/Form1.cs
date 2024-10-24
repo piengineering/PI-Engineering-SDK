@@ -3074,33 +3074,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnPower_Click(object sender, EventArgs e)
         {
-            //ADVANCED ONLY!
-            //NOTE: Is it not recommended to do this frequently as there are a finite number of writes to the EEPROM allowed
-            if (CboDevices.SelectedIndex != -1)
-            {
-
-                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
-                {
-                    wData[j] = 0;
-                }
-                //factory default 0x009000
-                wData[0] = 0;
-                wData[1] = 145;  //0x91
-                wData[2] = 0; //MSB
-                wData[3] = 144; // 0x90; //middle SB 
-                wData[4] = 0; //LSB
-                int result = 404;
-
-                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
-                if (result != 0)
-                {
-                    toolStripStatusLabel1.Text = "Write Fail: " + result;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "Write Success - Set max power";
-                }
-            }
+            
         }
 
         private void btnGetPower_Click(object sender, EventArgs e)

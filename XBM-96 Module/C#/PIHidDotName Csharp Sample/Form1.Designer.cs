@@ -162,7 +162,6 @@
             this.txtB = new System.Windows.Forms.TextBox();
             this.CboRGBIndex = new System.Windows.Forms.ComboBox();
             this.LblButtons = new System.Windows.Forms.Label();
-            this.btnPower = new System.Windows.Forms.Button();
             this.btnGetPower = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.listBox4 = new System.Windows.Forms.ListBox();
@@ -1869,17 +1868,6 @@
             this.LblButtons.TabIndex = 486;
             this.LblButtons.Text = "Buttons:";
             // 
-            // btnPower
-            // 
-            this.btnPower.Location = new System.Drawing.Point(1162, 233);
-            this.btnPower.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPower.Name = "btnPower";
-            this.btnPower.Size = new System.Drawing.Size(92, 22);
-            this.btnPower.TabIndex = 487;
-            this.btnPower.Text = "Set Max Power";
-            this.btnPower.UseVisualStyleBackColor = true;
-            this.btnPower.Click += new System.EventHandler(this.btnPower_Click);
-            // 
             // btnGetPower
             // 
             this.btnGetPower.Location = new System.Drawing.Point(1051, 233);
@@ -2406,7 +2394,6 @@
             this.Controls.Add(this.listBox4);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.btnGetPower);
-            this.Controls.Add(this.btnPower);
             this.Controls.Add(this.LblButtons);
             this.Controls.Add(this.CboRGBIndex);
             this.Controls.Add(this.txtB);
@@ -2697,7 +2684,6 @@
         private System.Windows.Forms.TextBox txtB;
         private System.Windows.Forms.ComboBox CboRGBIndex;
         private System.Windows.Forms.Label LblButtons;
-        private System.Windows.Forms.Button btnPower;
         private System.Windows.Forms.Button btnGetPower;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ListBox listBox4;
