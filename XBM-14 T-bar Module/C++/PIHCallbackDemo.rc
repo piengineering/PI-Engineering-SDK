@@ -138,10 +138,6 @@ BEGIN
     PUSHBUTTON      "Set Intensity",IDC_BLIntensity,7,364,61,17
     LTEXT           "Do this first",IDC_STATIC,63,11,36,8
     PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,59,402,66,17
-    LTEXT           "Dongle:",IDC_STATIC,609,260,26,8
-    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,611,273,73,17
-    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,691,273,68,17
-    LTEXT           "Pass/Fail",IDC_PASSFAIL,762,276,104,11
     LTEXT           "T-bar:",IDC_TBar,163,134,67,8
     LTEXT           "Calibrate T-bar, calibration is done at the factory, do this only if necessary:",IDC_STATIC,289,420,232,8
     PUSHBUTTON      "Start Cal",IDC_STARTCAL,289,436,73,17
@@ -165,17 +161,17 @@ BEGIN
     EDITTEXT        IDC_TXTBL6,117,366,40,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TXTBL7,202,403,40,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Get Backlight LED State*",IDC_GETBLSTATE,7,423,96,17
-    LTEXT           "Enable/Disable Time Stamp:",IDC_STATIC,611,225,192,9
-    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMPOFF,611,235,73,17
+    LTEXT           "Enable/Disable Time Stamp:",IDC_STATIC,613,224,192,9
+    PUSHBUTTON      "Time Stamp Off",IDC_TIMESTAMPOFF,612,235,73,17
     PUSHBUTTON      "Time Stamp On",IDC_TIMESTAMPON,691,235,68,17
     LTEXT           "*requires callback on",IDC_STATIC,19,444,67,8
     LTEXT           "Color",IDC_STATIC,7,249,17,8
     LTEXT           "Button",IDC_STATIC,75,251,22,8
     LTEXT           "Bank",IDC_STATIC,125,251,18,8
     LTEXT           "GPIO Inputs:",IDC_GPIOInput,7,143,150,16
-    LTEXT           "GPIO:",IDC_STATIC,610,298,20,8
-    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,612,311,73,17
-    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,692,311,92,17
+    LTEXT           "GPIO:",IDC_STATIC,614,262,20,8
+    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,612,274,73,17
+    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,691,274,92,17
 END
 
 
