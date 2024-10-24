@@ -186,7 +186,6 @@ Partial Class Form1
         Me.label55 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.btnGetPower = New System.Windows.Forms.Button()
-        Me.btnPower = New System.Windows.Forms.Button()
         Me.listBox4 = New System.Windows.Forms.ListBox()
         Me.lblSiliconGeneratedID = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -1805,16 +1804,6 @@ Partial Class Form1
         Me.btnGetPower.Text = "Get Power Levels"
         Me.btnGetPower.UseVisualStyleBackColor = True
         '
-        'btnPower
-        '
-        Me.btnPower.Location = New System.Drawing.Point(1156, 295)
-        Me.btnPower.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnPower.Name = "btnPower"
-        Me.btnPower.Size = New System.Drawing.Size(92, 22)
-        Me.btnPower.TabIndex = 540
-        Me.btnPower.Text = "Set Max Power"
-        Me.btnPower.UseVisualStyleBackColor = True
-        '
         'listBox4
         '
         Me.listBox4.FormattingEnabled = True
@@ -1909,7 +1898,6 @@ Partial Class Form1
         Me.Controls.Add(Me.btnSiliconGeneratedID)
         Me.Controls.Add(Me.listBox4)
         Me.Controls.Add(Me.btnGetPower)
-        Me.Controls.Add(Me.btnPower)
         Me.Controls.Add(Me.Label27)
         Me.Controls.Add(Me.btnSaveInOut)
         Me.Controls.Add(Me.btnSetInOut)
@@ -2238,7 +2226,6 @@ Partial Class Form1
     Private WithEvents label55 As System.Windows.Forms.Label
     Private WithEvents Label27 As System.Windows.Forms.Label
     Private WithEvents btnGetPower As System.Windows.Forms.Button
-    Private WithEvents btnPower As System.Windows.Forms.Button
     Private WithEvents listBox4 As System.Windows.Forms.ListBox
     Private WithEvents lblSiliconGeneratedID As System.Windows.Forms.Label
     Private WithEvents Label31 As System.Windows.Forms.Label

@@ -2411,31 +2411,8 @@ Public Class Form1
 
     End Sub
 
-    Private Sub btnPower_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPower.Click
-        'ADVANCED ONLY
-        'NOTE: Is it not recommended to do this frequently as there are a finite number of writes to the EEPROM allowed
-        If selecteddevice <> -1 Then
-            'do nothing if not enumerated
-            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
-                wdata(j) = 0
-            Next
-            'factory default 36864 (9000H)
-            wdata(0) = 0
-            wdata(1) = 145
-            wdata(2) = 0 'MSB
-            wdata(3) = 144 'middle byte
-            wdata(4) = 0 'LSB
-            Dim result As Integer = 404
+    Private Sub btnPower_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-            While result = 404
-                result = devices(selecteddevice).WriteData(wdata)
-            End While
-            If result <> 0 Then
-                LblStatus.Text = "Write Fail: " + result
-            Else
-                LblStatus.Text = "Write Success - Set max power"
-            End If
-        End If
     End Sub
 
     Private Sub btnSiliconGeneratedID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSiliconGeneratedID.Click
