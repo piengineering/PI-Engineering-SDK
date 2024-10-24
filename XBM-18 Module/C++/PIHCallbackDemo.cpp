@@ -399,12 +399,12 @@ int CALLBACK DialogProc(
 			//Use the Set Flash Freq to control frequency of blink
             //Index (in decimal)
             //Columns-->
-            //  0   6   12  18  
-            //  1   7   13  19 
-            //  2   8   14  20
-            //  3   9   15  21
-            //  4   10  16  22
-            //  5   11  17  23
+            //  0   6   12    
+            //  1   7   13   
+            //  2   8   14  
+            //  3   9   15  
+            //  4   10  16  
+            //  5   11  17  
             
             //Upper LEDs are bank 1, bankindex = 0
             //Lower LEDs are bank 2, bankindex = 1
@@ -668,22 +668,23 @@ int CALLBACK DialogProc(
             //Using the legacy backlight commands will force the upper bank of LEDs to be blue and the lower to be red
 			
 			//Use the Set Flash Freq to control frequency of blink
-            //Index Bank 1(in decimal)
-            //Columns-->
-            //  0   6   12  18  
-            //  1   7   13  19 
-            //  2   8   14  20
-            //  3   9   15  21
-            //  4   10  16  22
-            //  5   11  17  23
+            //Index (in decimal)
+			//Columns-->
+            //Bank 1 (Upper) LEDs
+            //  0   6   12    
+            //  1   7   13   
+            //  2   8   14  
+            //  3   9   15  
+            //  4   10  16  
+            //  5   11  17  
 
-           //Bank 2 (Lower) LEDs
-            //  24   30  36  42  
-            //  25   31  37  43 
-            //  26   32  38  44
-            //  27   33  39  45
-            //  28   34  40  46
-            //  29   35  41  47
+            //Bank 2 (Lower) LEDs
+            //  18   24  30    
+            //  19   25  31   
+            //  20   26  32  
+            //  21   27  33  
+            //  22   28  34  
+            //  23   29  35  
 
 			for (int i=0;i<wlen;i++)
 			{
@@ -1222,123 +1223,9 @@ int CALLBACK DialogProc(
 				result = WriteData(hDevice, buffer);
 			}
 			return TRUE;
-		case IDC_SETKEY:
-			//for users of the dongle feature only, set the dongle key here REMEMBER there 4 numbers, they are needed to check the dongle key
-			//This routine is done once per unit by the developer prior to sale.
-			if (hDevice == -1) return TRUE;
-			//Pick 4 numbers between 1 and 254.
-            K0 = 7;    //pick any number between 1 and 254, 0 and 255 not allowed
-            K1 = 58;   //pick any number between 1 and 254, 0 and 255 not allowed
-            K2 = 33;   //pick any number between 1 and 254, 0 and 255 not allowed
-            K3 = 243;  //pick any number between 1 and 254, 0 and 255 not allowed
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[0]=0;
-			buffer[1]=192; //0xc0 set dongle key command
-			buffer[2]=K0;
-			buffer[3]=K1;
-			buffer[4]=K2;
-			buffer[5]=K3;
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			return TRUE;
-		case IDC_CHECKKEY:
-			{
-			//This is done within the developer's application to check for the correct
-            //hardware.  The K0-K3 values must be the same as those entered in Set Key.
-            if (hDevice == -1) return TRUE;
-			//check hardware
+		
+		
 
-			//IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
-			DisableDataCallback(hDevice, true);
-			
-            //randomn numbers
-            int N0 = 3;   //pick any number between 1 and 254
-            int N1 = 1;   //pick any number between 1 and 254
-            int N2 = 4;   //pick any number between 1 and 254
-            int N3 = 1;   //pick any number between 1 and 254
-
-            //this is the key from set key
-            K0 = 7;
-            K1 = 58;
-            K2 = 33;
-            K3 = 243;
-			
-			//hash, will use these for comparison later
-            int R0;
-            int R1;
-            int R2;
-            int R3;
-			DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, R0, R1, R2, R3);
-
-			for (int i=0;i<wlen;i++)
-			{
-				buffer[i]=0;
-			}
-			buffer[0]=0;
-			buffer[1]=193;  //0xc1 check dongle key command
-			buffer[2]=N0;
-			buffer[3]=N1;
-			buffer[4]=N2;
-			buffer[5]=N3;
-			
-			
-			result=404;
-			while (result==404)
-			{
-				result = WriteData(hDevice, buffer);
-			}
-			//after this write the next read beginning with 3rd byte = 193 will give 4 values which are used below for comparison
-			for (int i=0;i<80;i++)
-			{buffer[i]=0;}
-			
-			int countout=0;
-			int result = BlockingReadData(hDevice, buffer, 100);
-			
-			while (result == 304 || (result == 0 && buffer[2] != 193))
-			{
-				if (result == 304)
-				{
-					// No data received after 100ms, so increment countout extra
-					countout += 99;
-				}
-				countout++;
-				if (countout > 1000) //increase this if have to check more than once
-					break;
-				result = BlockingReadData(hDevice, buffer, 100);
-			}
-
-			if (result ==0 && buffer[2]==193)
-			{
-				bool fail=false;
-				if (R0!=buffer[3]) fail=true;
-				if (R1!=buffer[4]) fail=true;
-				if (R2!=buffer[5]) fail=true;
-				if (R3!=buffer[6]) fail=true;
-				hList = GetDlgItem(hDialog, IDC_PASSFAIL);
-				if (hList == NULL) return TRUE;
-				
-				if (fail==false)
-				{
-					char msg[100]="Pass-Correct hardware found";
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-					//MessageBeep(MB_ICONHAND);
-				}
-				else
-				{
-					char msg[100]="Fail-Correct not hardware found";
-					SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
-					//MessageBeep(MB_ICONHAND);
-				}
-			}
-			}
-
-			return TRUE;
 		case IDC_ConfigureGPIO:
 		{
 			//Configure each GPIO pin as output (factory default) or input and if input, which type of input
@@ -1375,7 +1262,6 @@ int CALLBACK DialogProc(
 			}
 			return TRUE;
 		}
-
 		case IDC_SaveGPIO:
 		{
 			//Saves the GPIO configuration set using the above command to the device memory
@@ -1609,7 +1495,6 @@ void FindAndStart(HWND hDialog)
 
 		char *xstr=new char[256];
 		strcpy(xstr, (productstring+", SN="+serialnumberstring).c_str());
-
 		if ((hidusagepage == 0xC && writelen==36))    
 		{	
 			hnd = info[i].Handle; //handle required for piehid.dll calls
@@ -1620,49 +1505,49 @@ void FindAndStart(HWND hDialog)
 			}
 			else    
 			{
-				if (pid==1365)
+				if (pid==1378)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=0;
 				}
-				else if (pid==1366)
+				else if (pid==1379)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=1;
 				}
-				else if (pid==1367)
+				else if (pid==1380)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=2;
 				}
-				else if (pid==1368)
+				else if (pid==1381)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=3;
 				}
-				else if (pid==1369)
+				else if (pid==1382)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=4;
 				}
-				else if (pid==1370)
+				else if (pid==1383)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
 					cbocount++;
 					pidlist=5;
 				}
-				else if (pid==1371)
+				else if (pid==1384)
 				{
 					AddDevices(hDialog, xstr);
 					combotodevice[cbocount] = i; //this is the handle
@@ -1679,7 +1564,7 @@ void FindAndStart(HWND hDialog)
 		}
 		else
 		{
-			if (pid==1372)
+			if (pid==1385)
 			{
 				AddDevices(hDialog, xstr);
 				AddDevices(hDialog, "KVM mode, no input or output reports are available.");
@@ -1688,6 +1573,7 @@ void FindAndStart(HWND hDialog)
 				return;
 			}
 		}
+		
 	}
 
 	if (cbocount>0)
@@ -1763,7 +1649,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		hList = GetDlgItem(hDialog, IDC_KEYSTATES);
 		if (hList == NULL) return TRUE;
 	
-		if ((pData[7] & 0x01)!=0)
+		if ((pData[6] & 0x01)!=0)
 		{
 			char msg[100]="NumLck on";
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
@@ -1777,7 +1663,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		hList = GetDlgItem(hDialog, IDC_KEYSTATES2);
 		if (hList == NULL) return TRUE;
 	
-		if ((pData[7] & 0x02)!=0)
+		if ((pData[6] & 0x02)!=0)
 		{
 			char msg[100]="CapsLck on";
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
@@ -1791,7 +1677,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		hList = GetDlgItem(hDialog, IDC_KEYSTATES3);
 		if (hList == NULL) return TRUE;
 	
-		if ((pData[7] & 0x04)!=0)
+		if ((pData[6] & 0x04)!=0)
 		{
 			char msg[100]="ScrLck on";
 			SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)msg);
@@ -1806,10 +1692,9 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		char strb[80];
 		strcpy_s (strb,"Buttons: ");
 		hList = GetDlgItem(hDialog, IDC_Buttons);
-	    if (hList == NULL) return TRUE;
 		SendMessage(hList, WM_SETTEXT, 0 , (LPARAM)strb);
 
-		int maxcols=4; //number of columns of Xkeys digital button data, labeled "Keys" in P.I. Engineering SDK - General Incoming Data Input Report
+		int maxcols=3; //number of columns of Xkeys digital button data, labeled "Keys" in P.I. Engineering SDK - General Incoming Data Input Report
 		int maxrows=6; //constant, 8 bits per byte
 		for (int i=0;i<maxcols;i++) //loop for each column of button data (Max Cols)
 		{
@@ -1831,7 +1716,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 					if (hList == NULL) return TRUE;
 					_itoa_s(keynum,msgt,10);
 					strcat_s (strb,msgt);
-					strcat_s (strb,", ");
+					strcat_s (strb," ");
 					//strcat_s (str,thisbutton.c_str());
 					SendMessage(hList, WM_SETTEXT, 0 , (LPARAM)strb);
 				}
@@ -2022,67 +1907,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 							//do release action
 						}
 						break;
-					//Column 4
-					case 18: //button 18
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
-					case 19: //button 19
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
-					case 20: //button 20
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
-					case 21: //button 21
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
-					case 22: //button 22
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
-					case 23: //button 23
-						if (state == 1) //key was pressed
-						{
-							//do press actions
-						}
-						else if (state == 3) //key was released
-						{
-							//do release action
-						}
-						break;
+					
 				}
 				
 			}
@@ -2094,7 +1919,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		hList = GetDlgItem(hDialog, IDC_GPIOInput);
 		SendMessage(hList, WM_SETTEXT, 0 , (LPARAM)gpio);
 		
-		if ((pData[7] & 16)!=0)
+		if ((pData[6] & 16)!=0)
 		{
 			char msg[100]="Pin 1 on, ";
 			strcat_s(gpio, msg);
@@ -2106,7 +1931,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		}
 		SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)gpio);
 
-		if ((pData[7] & 32)!=0)
+		if ((pData[6] & 32)!=0)
 		{
 			char msg[100]="Pin 2 on, ";
 			strcat_s(gpio, msg);
@@ -2118,7 +1943,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		}
 		SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)gpio);
 
-		if ((pData[7] & 64)!=0)
+		if ((pData[6] & 64)!=0)
 		{
 			char msg[100]="Pin 3 on, ";
 			strcat_s(gpio, msg);
@@ -2130,7 +1955,7 @@ DWORD __stdcall HandleDataEvent(UCHAR *pData, DWORD deviceID, DWORD error)
 		}
 		SendMessage(hList, WM_SETTEXT,NULL , (LPARAM)gpio);
 
-		if ((pData[7] & 128)!=0)
+		if ((pData[6] & 128)!=0)
 		{
 			char msg[100]="Pin 4 on, ";
 			strcat_s(gpio, msg);

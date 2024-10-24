@@ -52,7 +52,7 @@ END
 
 IDD_MAIN DIALOGEX 0, 0, 891, 508
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "C++ Sample for XBM-24 Module/XBE-24"
+CAPTION "C++ Sample for XBM-18 Module/XBE-18"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "Enumerate",IDSTART,7,6,50,14
@@ -79,9 +79,9 @@ BEGIN
     LTEXT           "CapsLck",IDC_KEYSTATES2,256,80,50,9
     LTEXT           "ScrLck",IDC_KEYSTATES3,312,80,50,11
     LTEXT           "unit id",IDC_UNITID3,116,215,30,12
-    LTEXT           "GPIO Output Control:",IDC_STATIC,7,157,111,10
-    CONTROL         "Pin 1",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,172,32,10
-    CONTROL         "Pin 2",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,50,172,32,10
+    LTEXT           "GPIO Output Control:",IDC_STATIC,7,166,111,10
+    CONTROL         "Pin 1",IDC_CHECK1,"Button",BS_AUTO3STATE | WS_TABSTOP,7,182,32,10
+    CONTROL         "Pin 2",IDC_CHECK2,"Button",BS_AUTO3STATE | WS_TABSTOP,50,182,32,10
     PUSHBUTTON      "Custom Data",IDC_CUSTOM,691,154,73,17
     EDITTEXT        IDC_EDIT2,383,155,92,14,ES_AUTOHSCROLL
     LTEXT           "Joystick Reflector (Joystick endpoint required):",IDC_STATIC,289,175,146,9
@@ -132,20 +132,16 @@ BEGIN
     LTEXT           "Legacy Backlight (see code or help doc for index #s):",IDC_STATIC,7,331,192,9
     EDITTEXT        IDC_TXTBL,7,345,40,14,ES_AUTOHSCROLL
     CONTROL         "On/Flash/Off",IDC_CHKBLONOFF,"Button",BS_AUTO3STATE | WS_TABSTOP,51,347,58,10
-    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,342,72,10
-    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,353,72,10
+    CONTROL         "All Bank 1 On/Off",IDC_CHKBANK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,109,347,72,10
+    CONTROL         "All Bank 2 On/Off",IDC_CHKBANK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,181,347,72,10
     PUSHBUTTON      "Toggle",IDC_BLToggle,7,402,50,17
     PUSHBUTTON      "Set Intensity",IDC_BLIntensity,7,361,61,17
     LTEXT           "Do this first",IDC_STATIC,63,11,36,8
     PUSHBUTTON      "Save Backlights",IDC_SAVEBACKLIGHTS,59,402,66,17
-    LTEXT           "Dongle:",IDC_STATIC,609,260,26,8
-    PUSHBUTTON      "Set Dongle Key",IDC_SETKEY,611,273,73,17
-    PUSHBUTTON      "Check Dongle Key",IDC_CHECKKEY,691,273,68,17
-    LTEXT           "Pass/Fail",IDC_PASSFAIL,762,276,104,11
     LISTBOX         IDC_LIST1,7,36,257,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Buttons:",IDC_Buttons,7,135,249,8
-    CONTROL         "Pin 3",IDC_CHECK3,"Button",BS_AUTO3STATE | WS_TABSTOP,89,172,32,10
-    CONTROL         "Pin 4",IDC_CHECK4,"Button",BS_AUTO3STATE | WS_TABSTOP,128,172,32,10
+    LTEXT           "Buttons:",IDC_Buttons,7,135,263,8
+    CONTROL         "Pin 3",IDC_CHECK3,"Button",BS_AUTO3STATE | WS_TABSTOP,89,182,32,10
+    CONTROL         "Pin 4",IDC_CHECK4,"Button",BS_AUTO3STATE | WS_TABSTOP,128,182,32,10
     LTEXT           "RGB Backlight (see code or help doc for index #s):",IDC_STATIC,7,239,192,9
     EDITTEXT        IDC_TXTBL2,78,262,40,14,ES_AUTOHSCROLL
     CONTROL         "On/Flash/Off",IDC_CHKBLONOFF2,"Button",BS_AUTO3STATE | WS_TABSTOP,195,263,58,10
@@ -167,10 +163,10 @@ BEGIN
     LTEXT           "Button",IDC_STATIC,79,252,22,8
     LTEXT           "Bank",IDC_STATIC,138,252,18,8
     LTEXT           "*requires callback on",IDC_STATIC,14,440,84,9
-    LTEXT           "GPIO:",IDC_GPIOInput,7,144,249,8
-    LTEXT           "GPIO Configuration:",IDC_STATIC,611,300,64,8
-    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,611,314,73,17
-    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,691,314,89,17
+    LTEXT           "GPIO:",IDC_GPIOInput,7,144,263,23
+    LTEXT           "GPIO Configuration:",IDC_STATIC,612,263,64,8
+    PUSHBUTTON      "Configure GPIO",IDC_ConfigureGPIO,611,274,73,17
+    PUSHBUTTON      "Save GPIO Configuration",IDC_SaveGPIO,691,274,95,17
 END
 
 
