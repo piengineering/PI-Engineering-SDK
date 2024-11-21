@@ -544,7 +544,16 @@
           <div align="center"><span class="style3"> Byte 14</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 15-33</span></div>
+          <div align="center"><span class="style3"> Byte 15</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 16</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 17</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 18-41</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
@@ -554,14 +563,17 @@
         <td id="bt4">Mode</td>
         <td id="bt5">Key mapstart</td>
         <td>Layer2 Offset</td>
-        <td  id="bt7">Write Report Length-1</td>
-        <td>Read Report Length-1</td>
+        <td  id="bt7">Constant</td>
+        <td>Constant</td>
         <td>Max Columns</td>
         <td>Max Rows</td>
         <td>LED State</td>
         <td>Version</td>
         <td>PID Low</td>
         <td>PID Hi</td>
+        <td>Keymapstart Hi</td>
+        <td>Max Macro Address Lo</td>
+        <td>Max Macro Address Hi</td>
         <td>Reserved</td>
       </tr>
       <tr class="style6"> 
@@ -578,19 +590,19 @@
           <div align="center"><strong>Mode</strong></div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">32</div>
+          <div align="center">208</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">130</div>
+          <div align="center">255</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">35</div>
+          <div align="center">255</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">32</div>
+          <div align="center">255</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">16</div>
+          <div align="center">31</div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center">8</div>
@@ -608,16 +620,27 @@
           <div align="center"><b>PIDH</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>MMAL</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>MMAH</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
           <div align="center">value</div>
         </td>
       </tr>
     </table>
     <p><b>Mode:</b> 0 means device is in PID #1, 2 means the device is in PID 
-      #2.<br>
+      #2<br>
       <b>LEDs: </b>bit 7=1 for Green LED on, 0 for Green LED off, bit 8=1 for 
-      Red LED on, bit 8=0 for Red LED off.<br>
-      <b>PIDL:</b> The LSB of the Product Identification number or PID.<br>
-      <b>PIDH:</b> The MSB of the Product Identification number or PID.</p>
+      Red LED on, bit 8=0 for Red LED off<br>
+      <b>PIDL:</b> The LSB of the Product Identification number or PID<br>
+      <b>PIDH:</b> The MSB of the Product Identification number or PID<br>
+      <b>MMAL:</b> LSB of the maximum macro address, for internal use only<br>
+      <b>MMAH:</b> MSB of the maximum macro address, for internal use only </p>
     <p><b>3. Custom Data</b></p>
     <p>This data is returned after an output report: Generate Custom Data is sent. 
     </p>
@@ -645,10 +668,10 @@
           <div align="center"><span class="style3">Byte 7 </span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes Count+5 to 36</span></div>
+          <div align="center"><span class="style3">Bytes Count+5 to 40</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 37</span></div>
+          <div align="center"><span class="style3">Byte 41</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
@@ -724,7 +747,7 @@
           <div align="center"><span class="style3">Byte x</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes x+1 to 37</span></div>
+          <div align="center"><span class="style3">Bytes x+1 to 41</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
@@ -786,7 +809,7 @@
           <div align="center"><span class="style3">Byte x</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes x+1 to 37</span></div>
+          <div align="center"><span class="style3">Bytes x+1 to 41</span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF0" class="style6"> 
