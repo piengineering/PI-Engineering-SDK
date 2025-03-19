@@ -757,7 +757,7 @@
     <p>Endpoint: 4, Vendor Defined Usage Page.</p>
     <p>Report Length: 36 bytes.</p>
     <p><strong>1. Set LEDs</strong></p>
-    <p>One of two methods for controlling the LEDs.</p>
+    <p>One of two methods for controlling the indicator LEDs.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -797,8 +797,8 @@
     <p><b>LEDs: </b>Bits 1-6=0, bit 7=1 to turn on Green LED or 0 to turn off 
       Green LED, bit 8=1 to turn on Red LED or 0 to turn off Red LED.</p>
     <p><strong>2. Index Based Set LED (Flash)</strong></p>
-    <p>One of two methods for controlling the LEDs. If flashing of LEDs is desired 
-      this method must be used.</p>
+    <p>One of two methods for controlling the indicator LEDs. If flashing of LEDs 
+      is desired this method must be used.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -842,7 +842,7 @@
         </td>
       </tr>
     </table>
-    <p><b>LEDIndex: </b>0-15. corresponding to figure 1.<br>
+    <p><b>LEDIndex: </b>6=Green LED, 7=Red LED<br>
       <b>LEDState: </b>0 = off, 1 = on and 2 = flash. Set the frequency of the 
       flash with output report 12. Set Frequency of Flash.</p>
     <p><strong>3. Set Unit ID</strong></p>
