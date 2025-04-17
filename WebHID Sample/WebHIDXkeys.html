@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+	<html>
+   	<head>
+       <title>X-keys WebHID Example</title>
+   	</head>
+   	<body>
+	<h2>X-keys with WebHID</h2>
+
+	<p>This example works on Chrome and Edge browsers and other browsers which support WebHID.</p>
+	<p>Click Connect to X-keys Device first and select desired X-keys device from 
+  list. At this point data can be read by pressing buttons on the connected X-keys 
+  device. Click Toggle Backlights or Generate Input Report for an example of writing 
+  to the connected X-keys device.</p>
+	<p>Use F12 to open the inspector to see more information logged to the Console 
+  tab.</p>
+
+
+
+
+    
+<button id="connectButton">Connect to X-keys Device</button> <button id="sendButton">Toggle 
+Backlights </button> <button id="genDataButton">Generate Input Report</button> 
+<p id="xkName"></p>
+<p id="xkData"></p>
+
+<script>
+	const connectButton = document.getElementById('connectButton');
+	const sendButton = document.getElementById('sendButton');
+	var device;
+
+	//{vendorId: 0x05F3, usagePage: 0x0c}
+	connectButton.addEventListener('click', async () => 
+	{ 
+		try 
+		{
+			const devices = await navigator.hid.requestDevice({
+			filters: [{vendorId: 0x05F3, usagePage: 0x0c}] // Add filter for PI VID for some devices with MultiMed, it can not tell which to connect to, must do more test to see which is connected by default. 
+            });
+
+            if (devices.length > 0) 
+			{
+				console.log("Number of devices:", devices.length);
+					
+				var savedevice=-1; 
+				var savedeviceHW=-1
+				let thisname="";
+				var thispid=0;
+				var thisvendorid=0;
+
+				for (var i = 0; i<devices.length; i++)
+				{
+					if (devices[i].collections.length==1) //multimedia will have 2 collection elements
+					{
+						if (devices[i].collections[0].outputReports != null)
+						{
+							if (devices[i].collections[0].outputReports[0].items != null)
+							{
+								if (devices[i].collections[0].outputReports[0].items[0].reportCount == 35)
+								{
+									//output endpoint available
+									console.log("Write Length:", devices[i].collections[0].outputReports[0].items[0].reportCount);
+									thisname=devices[i].productName; 
+									thispid=devices[i].productId; 
+									thisvendorid=devices[i].vendorId
+									//"version" not available in WebHID
+									
+									//now check for an input report length
+									if (devices[i].collections[0].inputReports.length>0)
+									{									
+										savedevice=i;
+										var thisreadlength=0;
+										for (var j=0; j<devices[i].collections[0].inputReports[0].items.length; j++)
+										{
+											thisreadlength=thisreadlength+(devices[i].collections[0].inputReports[0].items[j].reportCount*devices[i].collections[0].inputReports[0].items[j].reportSize);
+										}
+										console.log("Read Length:", thisreadlength/8);
+									}
+									else
+									{
+										//device is in hardware mode with no input report
+										console.log("No input report, device in hardware mode"); 
+										savedeviceHW=i;
+									}
+								}
+							}
+						} //end of has an output report
+					} //end of if not multimedia		
+				} //end of for
+
+				if (savedevice!=-1) //found a valid device
+				{
+                    device=devices[savedevice]; 	
+					console.log("Connected to device:", device);
+					document.getElementById("xkName").innerHTML = "Connected to device: " + thisname + ", PID=" + thispid;
+
+					device.addEventListener('inputreport', (event) => 
+					{
+						console.log('Input report received:', event.data.buffer);
+						document.getElementById("xkData").innerHTML = "Data Received: " + ab2str(event.data.buffer);
+                    });
+
+                    // Open the device (important!)
+					if (!device.opened) 
+					{
+                    	await device.open();
+					}
+				}
+				else if (savedeviceHW!=-1) //no input reports available but can write to device
+				{
+					device=devices[savedeviceHW];
+					console.log("Connected to device:", device);
+					document.getElementById("xkName").innerHTML = "Connected to device: " + thisname + ", PID=" + thispid +" in hardware mode";
+
+					//Open the device (important!)
+					if (!device.opened) 
+					{
+   						await device.open();
+					}
+				}
+				
+				
+			} 
+			else 
+			{
+				console.log("No devices selected.");
+			}
+		} 
+		catch (error) 
+		{
+			console.error("Error:", error);
+		}
+	});
+
+	sendButton.addEventListener('click',async () => {
+         
+		//Toggle Backlight command, see help docs for complete list of commands for specific X-keys models. Array must be equal to output write size for the device, for supported X-keys this is always 35. 
+		const toggleBackLite = new Uint8Array([184,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+		writeData(toggleBackLite);
+
+	});
+
+	genDataButton.addEventListener('click',async () => {
+         
+		//Generate Data command, see help docs for complete list of commands for specific X-keys models. Array must be equal to output write size for the device, for supported X-keys this is always 35.
+		const generateData = new Uint8Array([177,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+		writeData(generateData);
+	});
+
+	//this function writes an output report
+ 	async function writeData(OpArray)
+	{
+  		if (device) 
+		{
+			console.log("Writing this data:", OpArray); // Array must be equal to output write size for the device, for supported X-keys this is always 35.
+			await device.sendReport(0x00, OpArray);
+		}
+		else
+		{
+			console.log("No connected device");
+			alert("No connected device");
+		}
+	}
+
+	function ab2str(dataBuffer) 
+	{
+		//convert to a hexadecimal string for display
+		const dataArray = Array.from(new Uint8Array(dataBuffer));
+    	const dataHexStr = dataArray.map(b => ('00' + b.toString(16)).slice(-2)).join(' ');
+		return dataHexStr;
+	}
+
+   </script>
+
+		<footer>
+		
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API" target="_blank">WebHID 
+  Documentation</a></p>
+		
+<p><a href="https://github.com/piengineering/PI-Engineering-SDK/tree/main/Documentation" target="_blank">P.I. 
+  Engineering SDK Documentation</a></p>
+<p><a href="https://xkeys.com/" target="_blank">Xkeys.com</a></p>
+		
+<p><a href="mailto:tech@xkeys.com">Tech@xkeys.com</a></p>
+		</footer>
+
+   </body>
+   </html>
