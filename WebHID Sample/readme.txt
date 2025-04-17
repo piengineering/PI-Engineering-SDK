@@ -1,1 +1,4 @@
+X-keys WebHID Sample
+This sample uses the WebHID API to connect to, read from, and write to an X-keys device. The html file contains javascript with the appropriate code. The sample is very simple but with this demonstration, all other features of X-keys devices are accessible. WebHID works only on browsers that support it which currently are Chrome and Edge. It may work on other browsers currently or in the future but Chrome and Edge are for sure supported.
 
+To use this sample, plug in an X-keys device. Open WebHIDXkeys.html in Chrome or Edge. Click on Connect to X-keys Device, this will show a form with the available devices, click on the desired device and Connect. The product name and pid are displayed. At this point the X-keys device is connected available for reading and writing. Press some buttons on the X-keys device and the data is displayed in hexadecimal. Please consult the individual X-keys input report description in the d
