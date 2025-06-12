@@ -4543,21 +4543,17 @@
     <p> Every output report described in the above Output Report section can be 
       sent via the UART. UART Output Report Received Message requires a start 
       byte of 4, encoding into Base64 of the 2 digit hexidecimal byte values required 
-      for the output report, and a stop byte of 5. This example demonstrates turning 
-      the bank 1 RGB LED corresponding to KeyIndex 0 (first button in top left) 
-      to red. Consulting the Index Based Set RGB Backlights output report from 
-      above, we need to send a total of 7 bytes; <span class="style6">165, KeyIndex, 
-      Bank, R, G, B, Flash</span>. Note for this method we ignore the first 0 
-      and the trailing 0s. Convert each byte to 2 digit hexidecimal strings and 
-      store in a string array called stringbytes:<br>
+      for the output report, and a stop byte of 5. This example demonstrates flashing 
+      the bank 1 (blue) LED corresponding to BacklightIndex 0 (first button in 
+      top left). Consulting the Index Based Set Backlights (Flash) output report 
+      from above, we need to send a total of 3 bytes; <span class="style6">181, 
+      BacklightIndex, State </span>. Note for this method we ignore the first 
+      0 and the trailing 0s. Convert each byte to 2 digit hexidecimal strings 
+      and store in a string array called stringbytes:<br>
       <br>
-      <code>stringbytes[0]=&quot;A5&quot;; //Command <br>
-      stringbytes[1]=&quot;00&quot;; //KeyIndex <br>
-      stringbytes[2]=&quot;00&quot;; //bank 1 <br>
-      stringbytes[3]=&quot;FF&quot;; //r <br>
-      stringbytes[4]=&quot;00&quot;; //g <br>
-      stringbytes[5]=&quot;00&quot;; //b <br>
-      stringbytes[6]=&quot;00&quot;; //flash</code> <br>
+      <code>stringbytes[0]=&quot;B5&quot;; //Command <br>
+      stringbytes[1]=&quot;00&quot;; //BacklightIndex <br>
+      stringbytes[6]=&quot;02&quot;; //00=off, 01=on 02=flash</code> <br>
       <br>
       Next convert stringbytes to Base64, this example uses Visual Studio C# Convert 
       call:<br>
@@ -4571,28 +4567,20 @@
       } <br>
       string bytesBase64 = Convert.ToBase64String(dataArray);</code> <br>
     </p>
-    <p>The resulting encoded string is pQAA/wAAAA==</p>
+    <p>The resulting encoded string is tQAC</p>
     <p>Once the Base64 encoded string is obtained user can send it to the module's 
       UART RX using a start byte of 4 and a stop byte of 5. The following is the 
       complete message:</p>
-    <p>Byte 1=4 start byte<br>
-      Byte 2=0x70 p<br>
+    <p>Byte 1=0x04 start byte<br>
+      Byte 2=0x74 t<br>
       Byte 3=0x51 Q<br>
       Byte 4=0x41 A<br>
-      Byte 5=0x41 A<br>
-      Byte 6=0x2F /<br>
-      Byte 7=0x77 w<br>
-      Byte 8=0x41 A<br>
-      Byte 9=0x41 A<br>
-      Byte 10=0x41 A<br>
-      Byte 11=0x41 A <br>
-      Byte 12=0x3D =<br>
-      Byte 13=0x3D =<br>
-      Byte 14=5 stop byte<br>
+      Byte 5=0x43 C<br>
+      Byte 6=0x05 stop byte<br>
       <br>
-      Sending this message will result in setting the top left bank 1 RGB LED 
-      to red and, if the UART Echo is enabled, an Incoming UART Data - UART Echo 
-      input report to be generated.</p>
+      Sending this message will result in setting the top left bank 1 (blue) LED 
+      to flash and, if the UART Echo is enabled, an Incoming UART Data - UART 
+      Echo input report to be generated.</p>
     <p><b>2. UART Custom Received Messages</b></p>
     <p>A message received on the module's RX with a start byte of 2, up to 255 
       bytes of user defined data, and a stop byte of 3. For example:<br>
