@@ -1207,16 +1207,16 @@
       (XKE-40 RS232 only)</b></p>
     <p>For users of the UART port only. If UART Echo is enabled, this report is 
       generated when a UART Output Report Received Message is received on the 
-      module's UART RX. The module recognizes a UART Output Report Received Message 
-      by the start and stop bytes of 4 and 5, respectively. The data between the 
-      start and stop bytes in the UART Output Report Received Message is decoded 
-      from Base64 for this input report. For details on how to send a UART Output 
-      Report Receive Message to the module see the X-blox UART Port Information 
-      section below. This report can be enabled or disabled using the<span class="style6"> 
-      Enable Echo of UART Output Report Received Message</span> output report. 
-      The current value can be read on the Descriptor as <b>EchoEnabled</b>. Note: 
-      regardless of this setting, when a UART Output Report Received Message is 
-      received it is executed.</p>
+      XKE-40 RS232's UART RX. The XKE-40 RS232 recognizes a UART Output Report 
+      Received Message by the start and stop bytes of 4 and 5, respectively. The 
+      data between the start and stop bytes in the UART Output Report Received 
+      Message is decoded from Base64 for this input report. For details on how 
+      to send a UART Output Report Receive Message to the XKE-40 RS232 see the X-blox 
+      UART Port Information section below. This report can be enabled or disabled 
+      using the<span class="style6"> Enable Echo of UART Output Report Received 
+      Message</span> output report. The current value can be read on the Descriptor 
+      as <b>EchoEnabled</b>. Note: regardless of this setting, when a UART Output 
+      Report Received Message is received it is executed.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1303,7 +1303,7 @@
       additionally B3=Red, B4=Green, B5=Blue, and B6= Flash and thus <b>Count</b>=7</p>
     <p><b>10. Incoming UART Data - UART Custom Message (RS232 version only)</b></p>
     <p>For users of the UART port only. This report is generated for messages 
-      received on the module's UART RX that have a start byte of 2 and a stop 
+      received on the XKE-40 RS232's UART RX that have a start byte of 2 and a stop 
       byte of 3. A single message may generate several of these reports. No decoding 
       of data is performed.</p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
@@ -1380,1139 +1380,6 @@
     <p><b>B1</b>: The first byte of the custom message<br>
       <b>B2</b>: The second byte of the custom message<br>
       <b>Bytes...</b>: And so on, terminating with a stop byte of 3</p>
-    <p>The following is an example of an Incoming UART Data - UART Custom Message 
-      that requires a total of 5 input reports to capture. This message is a UART 
-      PI Base64 Input Report Transmit Message obtained from the following scenario: 
-      <br>
-      - Connect the UART TX of the device A to the UART RX of the device B where 
-      both A and B devices have enabled UARTs<br>
-      - Enable UART on both devices using the Enable UART output report<br>
-      - On device A, enabled the <span class="style6">Enable UART PI Base64 Input 
-      Report Transmit Messages using the Enable UART PI Base64 Input Report Transmit 
-      Messages output report<br>
-      - Prepare device B for reading input reports via the USB (enumerate, SetupInterface, 
-      and SetDataCallback)<br>
-      - Press a button on device A thus generating a General Incoming Data input 
-      report on module A, simultaneously a UART PI Base64 Input Report Transmit 
-      Messages is sent on module A's TX<br>
-      - Device B receives the message on its UART RX and generates the Incoming 
-      UART Data - UART Custom Message input reports, 4 of them in this case</span></p>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 6 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 7</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 8 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 9 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 10</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 11</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 12</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 13</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 14</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 15</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 16</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 17</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 18 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 19 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 20</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 21 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 22 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 23</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 24</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 25</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 26</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 27</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 28</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 29</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 30</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 31</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 32</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 33</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 34-37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt4">Start Byte</td>
-        <td id="bt5">Byte 1 <br>
-          {</td>
-        <td>Byte 2 <br>
-          ''</td>
-        <td  id="bt7">Byte 3 <br>
-          c</td>
-        <td id="bt5">Byte 4 <br>
-          m </td>
-        <td>Byte 5<br>
-          d </td>
-        <td  id="bt7">Byte 6<br>
-          &quot; </td>
-        <td id="bt5">Byte 7<br>
-          : </td>
-        <td>Byte 8<br>
-          &quot; </td>
-        <td  id="bt7">Byte 9<br>
-          s </td>
-        <td id="bt5">Byte 10<br>
-          e </td>
-        <td>Byte 11<br>
-          n </td>
-        <td  id="bt7">Byte 12<br>
-          d </td>
-        <td  id="bt7">Byte 13<br>
-          S </td>
-        <td id="bt5">Byte 14<br>
-          p </td>
-        <td>Byte 15<br>
-          l </td>
-        <td  id="bt7">Byte 16<br>
-          a </td>
-        <td id="bt5">Byte 17<br>
-          t </td>
-        <td>Byte 18<br>
-          &quot; </td>
-        <td  id="bt7">Byte 19<br>
-          , </td>
-        <td id="bt5">Byte 20<br>
-          &quot; </td>
-        <td>Byte 21<br>
-          P </td>
-        <td  id="bt7">Byte 22<br>
-          I </td>
-        <td id="bt5">Byte 23<br>
-          D </td>
-        <td>Byte 24<br>
-          &quot; </td>
-        <td  id="bt7">Byte 25<br>
-          : </td>
-        <td  id="bt7">Byte 26<br>
-          &quot; </td>
-        <td>Byte 27<br>
-          0-9 </td>
-        <td  id="bt7">Byte 28<br>
-          0-9 </td>
-        <td id="bt5">Byte 29<br>
-          0-9 </td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">216</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">2</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">123 (0x7b)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">99 (0x63)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">109 (0x6d)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">100 (0x64)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">58 (0x3a)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">115 (0x73)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">101 (0x65)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">110 (0x6e)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">100 (0x64)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">83 (0x53)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">112 (0x70)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">108 (0x6c)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">97 (0x61)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">116 (0x74)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">44 (0x2c)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">80 (0x50)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">73 (0x49)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">68 (0x44)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">58 (0x3a)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">PID thousands</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">PID hundreds</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">PID tens</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 6</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 7 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 8 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 9</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 10</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 11</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 12</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 13</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 14</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 15</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 16</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 17 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 18 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 19</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 20 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 21</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 22</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 23</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 24</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 25</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 26</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 27</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 28</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 29</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 30</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 31</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 32</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 33</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 34-37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt5">Byte 30<br>
-          0-9 </td>
-        <td>Byte 31<br>
-          &quot; </td>
-        <td  id="bt7">Byte 32<br>
-          , </td>
-        <td id="bt5">Byte 33<br>
-          &quot; </td>
-        <td>Byte 34<br>
-          U </td>
-        <td  id="bt7">Byte 35<br>
-          I </td>
-        <td id="bt5">Byte 36<br>
-          D </td>
-        <td>Byte 37<br>
-          &quot; </td>
-        <td  id="bt7">Byte 38<br>
-          : </td>
-        <td id="bt5">Byte 39<br>
-          &quot; </td>
-        <td>Byte 40<br>
-          0-9 </td>
-        <td  id="bt7">Byte 41<br>
-          0-9 </td>
-        <td  id="bt7">Byte 42<br>
-          0-9 </td>
-        <td id="bt5">Byte 43<br>
-          &quot; </td>
-        <td>Byte 44<br>
-          , </td>
-        <td  id="bt7">Byte 45<br>
-          &quot; </td>
-        <td id="bt5">Byte 46<br>
-          S </td>
-        <td>Byte 47<br>
-          N </td>
-        <td  id="bt7">Byte 48<br>
-          &quot; </td>
-        <td id="bt5">Byte 49<br>
-          : </td>
-        <td>Byte 50<br>
-          &quot; </td>
-        <td>Byte 51</td>
-        <td>Byte 52</td>
-        <td>Byte 53</td>
-        <td>Byte 54</td>
-        <td>Byte 55</td>
-        <td>Byte 56</td>
-        <td>Byte 57</td>
-        <td>Byte 58</td>
-        <td>Byte 59</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">216</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">PID ones</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">44 (0x2c)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">85 (0x55)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">73 (0x49)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">68 (0x44)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">58 (0x3a)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">UID hundreds</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">UID tens</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">UID ones</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">44 (0x2c)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">83 (0x53)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">78 (0x4E)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">58 (0x3a)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 1</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 2</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 3</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 4</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 5</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 6</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 7</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 8</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 9</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 6</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 7 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 8 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 9</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 10</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 11</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 12</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 13</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 14</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 15</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 16</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 17 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 18 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 19</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 20 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 21</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 22</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 23</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 24</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 25</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 26</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 27</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 28</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 29</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 30</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 31</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 32</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 33</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 34-37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt5">Byte 60</td>
-        <td>Byte 61</td>
-        <td  id="bt7">Byte 62</td>
-        <td id="bt5">Byte 63<br>
-          &quot; </td>
-        <td>Byte 64<br>
-          , </td>
-        <td  id="bt7">Byte 65<br>
-          &quot; </td>
-        <td id="bt5">Byte 66<br>
-          d </td>
-        <td>Byte 67<br>
-          a </td>
-        <td  id="bt7">Byte 68<br>
-          t </td>
-        <td id="bt5">Byte 69<br>
-          a </td>
-        <td>Byte 70<br>
-          &quot; </td>
-        <td  id="bt7">Byte 71<br>
-          : </td>
-        <td  id="bt7">Byte 72<br>
-          &quot; </td>
-        <td id="bt5">Byte 73</td>
-        <td>Byte 74</td>
-        <td  id="bt7">Byte 75</td>
-        <td id="bt5">Byte 76</td>
-        <td>Byte 77</td>
-        <td  id="bt7">Byte 78</td>
-        <td id="bt5">Byte 79</td>
-        <td>Byte 80</td>
-        <td  id="bt7">Byte 81</td>
-        <td id="bt5">Byte 82</td>
-        <td>Byte 83</td>
-        <td  id="bt7">Byte 84</td>
-        <td  id="bt7">Byte 85</td>
-        <td>Byte 86</td>
-        <td  id="bt7">Byte 87</td>
-        <td id="bt5">Byte 88</td>
-        <td id="bt5">Byte 89</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">216</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 10</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 11</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 SN 12</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">44 (0x2c)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">97 (0x61)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">116 (0x74)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">97 (0x61)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">58 (0x3a)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 1</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 2</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 3</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 4</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 5</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 6</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 7</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 8</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 9</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 10</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 11</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 12</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 13</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 14</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 15</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 16</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 17</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 5 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 6</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 7 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 8 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 9</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 10</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 11</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 12</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 13</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 14</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 15</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 16</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 17 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 18 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 19</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 20 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 21</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 22</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 23</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 24</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 25</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 26</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 27</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 28</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 29</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 30</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 31</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 32</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 33</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 34-37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt5">Byte 90</td>
-        <td>Byte 91</td>
-        <td  id="bt7">Byte 92</td>
-        <td id="bt5">Byte 93</td>
-        <td>Byte 94</td>
-        <td  id="bt7">Byte 95</td>
-        <td id="bt5">Byte 96</td>
-        <td>Byte 97</td>
-        <td  id="bt7">Byte 98</td>
-        <td id="bt5">Byte 99</td>
-        <td>Byte 100</td>
-        <td  id="bt7">Byte 101</td>
-        <td  id="bt7">Byte 102</td>
-        <td id="bt5">Byte 103</td>
-        <td>Byte 104</td>
-        <td  id="bt7">Byte 105</td>
-        <td id="bt5">Byte 106</td>
-        <td>Byte 107</td>
-        <td  id="bt7">Byte 108</td>
-        <td id="bt5">Byte 109</td>
-        <td>Byte 110</td>
-        <td  id="bt7">Byte 111</td>
-        <td id="bt5">Byte 112</td>
-        <td>Byte 113</td>
-        <td  id="bt7">Byte 114</td>
-        <td  id="bt7">Byte 115</td>
-        <td>Byte 116</td>
-        <td  id="bt7">Byte 117</td>
-        <td id="bt5">Byte 118</td>
-        <td id="bt5">Byte 119</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">216</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 18</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 19</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 20</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 21</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 22</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 23</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 24</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 25</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 26</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 27</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 28</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 29</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 30</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 31</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 32</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 33</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 34</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 35</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 36</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 37</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 38</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 39</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 40</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 41</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 42</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 43</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 44</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 45</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 46</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 47</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 4 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 15</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 16</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 17 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 18-37</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF0" class="style6"> 
-        <td>Constant</td>
-        <td id="bt2">Unit ID</td>
-        <td id="bt3">Data Type</td>
-        <td id="bt5">Byte 120</td>
-        <td  id="bt7">Byte 121</td>
-        <td  id="bt7">Byte 122</td>
-        <td id="bt5">Stop Byte</td>
-        <td>Constant</td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"> 0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">&lt;data&gt;</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">216</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>Base64 48</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">34 (0x22)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">125 (0x7d)</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">3</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <p><b>Base64 SN1-12:</b> Base64 encoded bytes of the Unique ID or &quot;Serial 
-      Number&quot; <b><br>
-      Base64 1-Base64 48:</b> Base64 encoded bytes of the input report, excluding 
-      the leading 0</p>
     <p><br>
       <b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b> </p>
@@ -4196,9 +3063,9 @@
     <p>For users of the UART port only. Send this output report to disable or 
       enable the UART PI Base64 Input Report Transmit Messages. If enabled, a 
       UART PI Base64 Input Report Transmit Message will be transmitted via the 
-      module's UART TX whenever certain input reports are generated, see the X-blox 
-      UART Port Information section for additional details. Factory default is 
-      disabled. Current value can be read in the Descriptor as <b>PIEnabled</b>.</p>
+      XKE-40 RS232's UART TX whenever certain input reports are generated, see 
+      the UART Port Information section for additional details. Factory default 
+      is disabled. Current value can be read in the Descriptor as <b>PIEnabled</b>.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -4245,7 +3112,7 @@
     </table>
     <p><b>Enable: </b> 0=disabled (factory default), 1=enabled </p>
     <p><strong>29. Transmit to UART (RS232 version only)</strong></p>
-    <p>For users of the UART port only. Puts bytes on the module's UART TX for 
+    <p>For users of the UART port only. Puts bytes on the XKE-40 RS232's UART TX for 
       transmission. The number of bytes sent at one time is limited by the output 
       report length and is 33.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -4328,10 +3195,11 @@
     <p>For users of the UART port only. Send this output report to disable or 
       enable the Incoming UART Data - Echo of <span class="style6">UART Output 
       Report Received Message</span> input reports generated when UART Output 
-      Report Received Messages are received via the module's UART RX. Current 
-      value can be read in the Descriptor as <b>EchoEnabled</b>. Note: regardless 
-      of this setting, when a UART Output Report Received Message is received, 
-      the corresponding output report is executed.</p>
+      Report Received Messages are received via the XKE-40 RS232's UART RX. Also if 
+      enabled an echo of the data written to the XKE-40 RS232 is sent back to 
+      the sender. Current value can be read in the Descriptor as <b>EchoEnabled</b>. 
+      Note: regardless of this setting, when a UART Output Report Received Message 
+      is received, the corresponding output report is executed. </p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -4484,58 +3352,12 @@
     <p>For users of UART port only. The XKE-40 RS232 comes equipped with a UART 
       port for serial communication options. On this device the UART is always 
       enabled.</p>
-    <p> Pin assignments for the UART port are shown in Table 2. </p>
-    <table width="240" border="1" cellspacing="1" cellpadding="1">
-      <tr bgcolor="#CCCCCC"> 
-        <th width="112" scope="col"> 
-          <div align="center"><span class="style6">Pin</span></div>
-        </th>
-        <th width="232" scope="col"> 
-          <div align="center"><span class="style6">Description</span></div>
-        </th>
-      </tr>
-      <tr> 
-        <td width="112"> 
-          <div align="center" class="style6"> 
-            <div align="center">1</div>
-          </div>
-        </td>
-        <td width="232"><span class="style6">RX</span></td>
-      </tr>
-      <tr> 
-        <td width="112"> 
-          <div align="center" class="style6"> 
-            <div align="center">2</div>
-          </div>
-        </td>
-        <td width="232"><span class="style6">TX</span></td>
-      </tr>
-      <tr> 
-        <td width="112"> 
-          <div align="center" class="style6"> 
-            <div align="center">3</div>
-          </div>
-        </td>
-        <td width="232"><span class="style6">-</span></td>
-      </tr>
-      <tr> 
-        <td width="112"> 
-          <div align="center" class="style6"> 
-            <div align="center">4</div>
-          </div>
-        </td>
-        <td width="232"><span class="style6">-</span></td>
-      </tr>
-      <tr> 
-        <td width="112"> 
-          <div align="center"><span class="style6">5</span></div>
-        </td>
-        <td width="232"><span class="style6">Ground</span></td>
-      </tr>
-    </table>
-    <p><i>Table 2</i>: Pin assignments for the UART port</p>
+    <p> Pin assignments for the DB9 female RS232 connector are shown in Figure 
+      2. Pin 2 is TX, Pin 3 is TX, and Pin 5 is Ground.</p>
+    <p><img src="images/db9rs232.png" width="447" height="446"></p>
+    <p><i>Figure 2</i>: Pin assignments for the DB9 female RS232 connector</p>
     <p><b><font size="3">Messages Received</font></b></p>
-    <p>Two types of messages received on the module's UART RX are recognized; 
+    <p>Two types of messages received on the XKE-40 RS232's UART RX are recognized; 
       UART Output Report Received Messages to control features like the RGB LEDs, 
       set Unit ID, etc. and UART Custom Received Messages. Each is described below.<br>
       <br>
@@ -4548,7 +3370,7 @@
       top left). Consulting the Index Based Set Backlights (Flash) output report 
       from above, we need to send a total of 3 bytes; <span class="style6">181, 
       BacklightIndex, State </span>. Note for this method we ignore the first 
-      0 and the trailing 0s. Convert each byte to 2 digit hexidecimal strings 
+      0 and the trailing 0s. Convert each byte to 2 digit hexadecimal strings 
       and store in a string array called stringbytes:<br>
       <br>
       <code>stringbytes[0]=&quot;B5&quot;; //Command <br>
@@ -4568,9 +3390,9 @@
       string bytesBase64 = Convert.ToBase64String(dataArray);</code> <br>
     </p>
     <p>The resulting encoded string is tQAC</p>
-    <p>Once the Base64 encoded string is obtained user can send it to the module's 
-      UART RX using a start byte of 4 and a stop byte of 5. The following is the 
-      complete message:</p>
+    <p>Once the Base64 encoded string is obtained user can send it to the XKE-40 
+      RS232's UART RX using a start byte of 4 and a stop byte of 5. The following 
+      is the complete message:</p>
     <p>Byte 1=0x04 start byte<br>
       Byte 2=0x74 t<br>
       Byte 3=0x51 Q<br>
@@ -4580,9 +3402,10 @@
       <br>
       Sending this message will result in setting the top left bank 1 (blue) LED 
       to flash and, if the UART Echo is enabled, an Incoming UART Data - UART 
-      Echo input report to be generated.</p>
+      Echo input report to be generated as well as echoing the data back to the 
+      connected serial device which initiated it</p>
     <p><b>2. UART Custom Received Messages</b></p>
-    <p>A message received on the module's RX with a start byte of 2, up to 255 
+    <p>A message received on the XKE-40 RS232's RX with a start byte of 2, up to 255 
       bytes of user defined data, and a stop byte of 3. For example:<br>
       Byte 1=0x02 start byte<br>
       Byte 2=0x75 first byte<br>
@@ -4591,20 +3414,21 @@
       Byte 5=0x3D fourth byte<br>
       Byte 6=0x03 stop byte <br>
     </p>
-    <p>When this message is received on the module's UART RX, an Incoming UART 
+    <p>When this message is received on the XKE-40 RS232's UART RX, an Incoming UART 
       Data - UART Custom Received Message input report is generated. Messages 
       without the required start and stop bytes are ignored.<br>
     </p>
     <p><b><font size="3">Messages Transmitted</font></b></p>
-    <p>Two types of messages are transmitted from the module's UART TX; UART PI 
-      Base64 Input Report Transmit Message and UART Custom Transmit Message. </p>
+    <p>Two types of messages, besides echo, are transmitted from the XKE-40 RS232's 
+      UART TX; UART PI Base64 Input Report Transmit Message and UART Custom Transmit 
+      Message. </p>
     <p><b>UART PI Base64 Input Report Transmit Message</b></p>
     <p>These messages are only sent if UART PI Base64 Input Report Transmit Messages 
       are enabled, see Enable UART PI Base64 Input Report Transmit Messages output 
       report. If enabled whenever General Incoming Data, Descriptor Data, Custom 
       Data, Check Dongle Key, RGB Backlight Values Data, or Unique ID Data input 
       report is generated a corresponding UART PI Base64 Input Report Transmit 
-      Message will also be transmitted on the module's UART TX. The message is 
+      Message will also be transmitted on the XKE-40 RS232's UART TX. The message is 
       a total of 104 bytes consisting of a start byte of 2, header text, Product 
       ID, Unit ID, the Base64 encoded input report (excluding the leading 0), 
       and a stop byte of 3 as follows:</p>
@@ -4677,14 +3501,14 @@
       0x7d }<br>
       0x03 stop byte</p>
     <p><b>UART Custom Transmit Message</b></p>
-    <p>Sending the Transmit to UART output report will place on the module's UART 
+    <p>Sending the Transmit to UART output report will place on the XKE-40 RS232's UART 
       TX any bytes the user desires, up to 33 bytes per message</p>
     <p>&nbsp;</p>
     <p><a class="backtotop" href="#top">Back to top</a>
       </p></div><!-- end of "main" -->
       <div id="footer">
         
-    <p>&copy; Copyright 2018&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+    <p>&copy; Copyright 2025&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
       Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->
