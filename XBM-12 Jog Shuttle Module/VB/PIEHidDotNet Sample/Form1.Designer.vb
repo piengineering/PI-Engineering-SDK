@@ -114,7 +114,6 @@ Partial Class Form1
         Me.Label26 = New System.Windows.Forms.Label()
         Me.TxtIntensity1 = New System.Windows.Forms.TextBox()
         Me.TxtIntensity2 = New System.Windows.Forms.TextBox()
-        Me.LblPassFail = New System.Windows.Forms.Label()
         Me.BtnCheckDongle = New System.Windows.Forms.Button()
         Me.BtnSetDongle = New System.Windows.Forms.Button()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -196,6 +195,16 @@ Partial Class Form1
         Me.rbPress = New System.Windows.Forms.RadioButton()
         Me.txtVirtualButton = New System.Windows.Forms.TextBox()
         Me.btnVirtualButton = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.lblXkeysDecrypt = New System.Windows.Forms.Label()
+        Me.btnXkeysDecrypt = New System.Windows.Forms.Button()
+        Me.lblXkeysEncrypt = New System.Windows.Forms.Label()
+        Me.txtXkeysEncrypt = New System.Windows.Forms.TextBox()
+        Me.label62 = New System.Windows.Forms.Label()
+        Me.btnAESEncrypt = New System.Windows.Forms.Button()
+        Me.btnRawAESSetKey = New System.Windows.Forms.Button()
+        Me.lblAESPassFail = New System.Windows.Forms.Label()
         Me.groupBox3.SuspendLayout()
         Me.groupBox2.SuspendLayout()
         Me.groupBox4.SuspendLayout()
@@ -794,7 +803,7 @@ Partial Class Form1
         '
         'BtnVersion
         '
-        Me.BtnVersion.Location = New System.Drawing.Point(1010, 89)
+        Me.BtnVersion.Location = New System.Drawing.Point(1009, 89)
         Me.BtnVersion.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnVersion.Name = "BtnVersion"
         Me.BtnVersion.Size = New System.Drawing.Size(92, 22)
@@ -1089,39 +1098,30 @@ Partial Class Form1
         Me.TxtIntensity2.TabIndex = 337
         Me.TxtIntensity2.Text = "255"
         '
-        'LblPassFail
-        '
-        Me.LblPassFail.AutoSize = True
-        Me.LblPassFail.Location = New System.Drawing.Point(1260, 224)
-        Me.LblPassFail.Name = "LblPassFail"
-        Me.LblPassFail.Size = New System.Drawing.Size(51, 13)
-        Me.LblPassFail.TabIndex = 350
-        Me.LblPassFail.Text = "Pass/Fail"
-        '
         'BtnCheckDongle
         '
-        Me.BtnCheckDongle.Location = New System.Drawing.Point(1136, 219)
+        Me.BtnCheckDongle.Location = New System.Drawing.Point(1125, 453)
         Me.BtnCheckDongle.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnCheckDongle.Name = "BtnCheckDongle"
         Me.BtnCheckDongle.Size = New System.Drawing.Size(112, 22)
         Me.BtnCheckDongle.TabIndex = 349
-        Me.BtnCheckDongle.Text = "Check Dongle Key"
+        Me.BtnCheckDongle.Text = "Check AES Key"
         Me.BtnCheckDongle.UseVisualStyleBackColor = True
         '
         'BtnSetDongle
         '
-        Me.BtnSetDongle.Location = New System.Drawing.Point(1009, 219)
+        Me.BtnSetDongle.Location = New System.Drawing.Point(1009, 453)
         Me.BtnSetDongle.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnSetDongle.Name = "BtnSetDongle"
         Me.BtnSetDongle.Size = New System.Drawing.Size(112, 22)
         Me.BtnSetDongle.TabIndex = 348
-        Me.BtnSetDongle.Text = "Set Dongle Key"
+        Me.BtnSetDongle.Text = "Set AES Key"
         Me.BtnSetDongle.UseVisualStyleBackColor = True
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(999, 199)
+        Me.Label29.Location = New System.Drawing.Point(999, 433)
         Me.Label29.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(41, 13)
@@ -1621,7 +1621,7 @@ Partial Class Form1
         '
         'btnSaveInOut
         '
-        Me.btnSaveInOut.Location = New System.Drawing.Point(1146, 417)
+        Me.btnSaveInOut.Location = New System.Drawing.Point(1148, 341)
         Me.btnSaveInOut.Name = "btnSaveInOut"
         Me.btnSaveInOut.Size = New System.Drawing.Size(132, 23)
         Me.btnSaveInOut.TabIndex = 526
@@ -1630,7 +1630,7 @@ Partial Class Form1
         '
         'btnSetInOut
         '
-        Me.btnSetInOut.Location = New System.Drawing.Point(1008, 417)
+        Me.btnSetInOut.Location = New System.Drawing.Point(1009, 341)
         Me.btnSetInOut.Name = "btnSetInOut"
         Me.btnSetInOut.Size = New System.Drawing.Size(132, 23)
         Me.btnSetInOut.TabIndex = 525
@@ -1642,7 +1642,7 @@ Partial Class Form1
         Me.groupBox3.Controls.Add(Me.rb3ID)
         Me.groupBox3.Controls.Add(Me.rb3O)
         Me.groupBox3.Controls.Add(Me.rb3I)
-        Me.groupBox3.Location = New System.Drawing.Point(1202, 336)
+        Me.groupBox3.Location = New System.Drawing.Point(1204, 260)
         Me.groupBox3.Name = "groupBox3"
         Me.groupBox3.Size = New System.Drawing.Size(89, 73)
         Me.groupBox3.TabIndex = 522
@@ -1687,7 +1687,7 @@ Partial Class Form1
         Me.groupBox2.Controls.Add(Me.rb2ID)
         Me.groupBox2.Controls.Add(Me.rb2O)
         Me.groupBox2.Controls.Add(Me.rb2I)
-        Me.groupBox2.Location = New System.Drawing.Point(1105, 336)
+        Me.groupBox2.Location = New System.Drawing.Point(1107, 260)
         Me.groupBox2.Name = "groupBox2"
         Me.groupBox2.Size = New System.Drawing.Size(89, 73)
         Me.groupBox2.TabIndex = 521
@@ -1730,7 +1730,7 @@ Partial Class Form1
         'label49
         '
         Me.label49.AutoSize = True
-        Me.label49.Location = New System.Drawing.Point(998, 238)
+        Me.label49.Location = New System.Drawing.Point(999, 192)
         Me.label49.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label49.Name = "label49"
         Me.label49.Size = New System.Drawing.Size(98, 13)
@@ -1742,7 +1742,7 @@ Partial Class Form1
         Me.groupBox4.Controls.Add(Me.rb4ID)
         Me.groupBox4.Controls.Add(Me.rb4O)
         Me.groupBox4.Controls.Add(Me.rb4I)
-        Me.groupBox4.Location = New System.Drawing.Point(1299, 336)
+        Me.groupBox4.Location = New System.Drawing.Point(1301, 260)
         Me.groupBox4.Name = "groupBox4"
         Me.groupBox4.Size = New System.Drawing.Size(89, 73)
         Me.groupBox4.TabIndex = 523
@@ -1787,7 +1787,7 @@ Partial Class Form1
         Me.groupBox1.Controls.Add(Me.rb1ID)
         Me.groupBox1.Controls.Add(Me.rb1O)
         Me.groupBox1.Controls.Add(Me.rb1I)
-        Me.groupBox1.Location = New System.Drawing.Point(1008, 336)
+        Me.groupBox1.Location = New System.Drawing.Point(1010, 260)
         Me.groupBox1.Name = "groupBox1"
         Me.groupBox1.Size = New System.Drawing.Size(89, 73)
         Me.groupBox1.TabIndex = 520
@@ -1829,7 +1829,7 @@ Partial Class Form1
         '
         'label55
         '
-        Me.label55.Location = New System.Drawing.Point(1008, 285)
+        Me.label55.Location = New System.Drawing.Point(1010, 209)
         Me.label55.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label55.Name = "label55"
         Me.label55.Size = New System.Drawing.Size(377, 48)
@@ -1839,7 +1839,7 @@ Partial Class Form1
         'lblSiliconGeneratedID
         '
         Me.lblSiliconGeneratedID.AutoSize = True
-        Me.lblSiliconGeneratedID.Location = New System.Drawing.Point(1088, 475)
+        Me.lblSiliconGeneratedID.Location = New System.Drawing.Point(1090, 399)
         Me.lblSiliconGeneratedID.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSiliconGeneratedID.Name = "lblSiliconGeneratedID"
         Me.lblSiliconGeneratedID.Size = New System.Drawing.Size(99, 13)
@@ -1849,7 +1849,7 @@ Partial Class Form1
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(998, 452)
+        Me.Label27.Location = New System.Drawing.Point(999, 376)
         Me.Label27.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(128, 13)
@@ -1858,7 +1858,7 @@ Partial Class Form1
         '
         'btnSiliconGeneratedID
         '
-        Me.btnSiliconGeneratedID.Location = New System.Drawing.Point(1008, 470)
+        Me.btnSiliconGeneratedID.Location = New System.Drawing.Point(1009, 394)
         Me.btnSiliconGeneratedID.Name = "btnSiliconGeneratedID"
         Me.btnSiliconGeneratedID.Size = New System.Drawing.Size(75, 23)
         Me.btnSiliconGeneratedID.TabIndex = 529
@@ -1906,12 +1906,115 @@ Partial Class Form1
         Me.btnVirtualButton.Text = "Virtual Button"
         Me.btnVirtualButton.UseVisualStyleBackColor = True
         '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(1136, 477)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 639
+        Me.TextBox2.Visible = False
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(999, 583)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(109, 13)
+        Me.Label31.TabIndex = 638
+        Me.Label31.Text = "* requires callback on"
+        '
+        'lblXkeysDecrypt
+        '
+        Me.lblXkeysDecrypt.AutoSize = True
+        Me.lblXkeysDecrypt.Location = New System.Drawing.Point(1149, 562)
+        Me.lblXkeysDecrypt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblXkeysDecrypt.Name = "lblXkeysDecrypt"
+        Me.lblXkeysDecrypt.Size = New System.Drawing.Size(70, 13)
+        Me.lblXkeysDecrypt.TabIndex = 637
+        Me.lblXkeysDecrypt.Text = "decrypt result"
+        '
+        'btnXkeysDecrypt
+        '
+        Me.btnXkeysDecrypt.Location = New System.Drawing.Point(1009, 557)
+        Me.btnXkeysDecrypt.Name = "btnXkeysDecrypt"
+        Me.btnXkeysDecrypt.Size = New System.Drawing.Size(132, 23)
+        Me.btnXkeysDecrypt.TabIndex = 636
+        Me.btnXkeysDecrypt.Text = "AES Decrypt*"
+        Me.btnXkeysDecrypt.UseVisualStyleBackColor = True
+        '
+        'lblXkeysEncrypt
+        '
+        Me.lblXkeysEncrypt.AutoSize = True
+        Me.lblXkeysEncrypt.Location = New System.Drawing.Point(1228, 533)
+        Me.lblXkeysEncrypt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblXkeysEncrypt.Name = "lblXkeysEncrypt"
+        Me.lblXkeysEncrypt.Size = New System.Drawing.Size(70, 13)
+        Me.lblXkeysEncrypt.TabIndex = 635
+        Me.lblXkeysEncrypt.Text = "encrypt result"
+        '
+        'txtXkeysEncrypt
+        '
+        Me.txtXkeysEncrypt.Location = New System.Drawing.Point(1142, 530)
+        Me.txtXkeysEncrypt.Name = "txtXkeysEncrypt"
+        Me.txtXkeysEncrypt.Size = New System.Drawing.Size(83, 20)
+        Me.txtXkeysEncrypt.TabIndex = 634
+        Me.txtXkeysEncrypt.Text = "Encrypt Me"
+        '
+        'label62
+        '
+        Me.label62.AutoSize = True
+        Me.label62.Location = New System.Drawing.Point(999, 480)
+        Me.label62.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label62.Name = "label62"
+        Me.label62.Size = New System.Drawing.Size(109, 13)
+        Me.label62.TabIndex = 633
+        Me.label62.Text = "AES Encrypt/Decrypt"
+        '
+        'btnAESEncrypt
+        '
+        Me.btnAESEncrypt.Location = New System.Drawing.Point(1009, 528)
+        Me.btnAESEncrypt.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAESEncrypt.Name = "btnAESEncrypt"
+        Me.btnAESEncrypt.Size = New System.Drawing.Size(132, 23)
+        Me.btnAESEncrypt.TabIndex = 632
+        Me.btnAESEncrypt.Text = "AES Encrypt*"
+        Me.btnAESEncrypt.UseVisualStyleBackColor = True
+        '
+        'btnRawAESSetKey
+        '
+        Me.btnRawAESSetKey.Location = New System.Drawing.Point(1009, 500)
+        Me.btnRawAESSetKey.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRawAESSetKey.Name = "btnRawAESSetKey"
+        Me.btnRawAESSetKey.Size = New System.Drawing.Size(132, 23)
+        Me.btnRawAESSetKey.TabIndex = 631
+        Me.btnRawAESSetKey.Text = "Set AES Key"
+        Me.btnRawAESSetKey.UseVisualStyleBackColor = True
+        '
+        'lblAESPassFail
+        '
+        Me.lblAESPassFail.AutoSize = True
+        Me.lblAESPassFail.Location = New System.Drawing.Point(1242, 458)
+        Me.lblAESPassFail.Name = "lblAESPassFail"
+        Me.lblAESPassFail.Size = New System.Drawing.Size(51, 13)
+        Me.lblAESPassFail.TabIndex = 630
+        Me.lblAESPassFail.Text = "Pass/Fail"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1410, 901)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.Label31)
+        Me.Controls.Add(Me.lblXkeysDecrypt)
+        Me.Controls.Add(Me.btnXkeysDecrypt)
+        Me.Controls.Add(Me.lblXkeysEncrypt)
+        Me.Controls.Add(Me.txtXkeysEncrypt)
+        Me.Controls.Add(Me.label62)
+        Me.Controls.Add(Me.btnAESEncrypt)
+        Me.Controls.Add(Me.btnRawAESSetKey)
+        Me.Controls.Add(Me.lblAESPassFail)
         Me.Controls.Add(Me.rbRelease)
         Me.Controls.Add(Me.rbPress)
         Me.Controls.Add(Me.txtVirtualButton)
@@ -1978,7 +2081,6 @@ Partial Class Form1
         Me.Controls.Add(Me.LblNumLk)
         Me.Controls.Add(Me.label47)
         Me.Controls.Add(Me.cboPIDs)
-        Me.Controls.Add(Me.LblPassFail)
         Me.Controls.Add(Me.BtnCheckDongle)
         Me.Controls.Add(Me.BtnSetDongle)
         Me.Controls.Add(Me.Label29)
@@ -2179,7 +2281,6 @@ Partial Class Form1
     Private WithEvents Label26 As System.Windows.Forms.Label
     Private WithEvents TxtIntensity1 As System.Windows.Forms.TextBox
     Private WithEvents TxtIntensity2 As System.Windows.Forms.TextBox
-    Private WithEvents LblPassFail As System.Windows.Forms.Label
     Private WithEvents BtnCheckDongle As System.Windows.Forms.Button
     Private WithEvents BtnSetDongle As System.Windows.Forms.Button
     Private WithEvents Label29 As System.Windows.Forms.Label
@@ -2261,5 +2362,15 @@ Partial Class Form1
     Private WithEvents rbPress As System.Windows.Forms.RadioButton
     Private WithEvents txtVirtualButton As System.Windows.Forms.TextBox
     Private WithEvents btnVirtualButton As System.Windows.Forms.Button
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Private WithEvents Label31 As System.Windows.Forms.Label
+    Private WithEvents lblXkeysDecrypt As System.Windows.Forms.Label
+    Private WithEvents btnXkeysDecrypt As System.Windows.Forms.Button
+    Private WithEvents lblXkeysEncrypt As System.Windows.Forms.Label
+    Private WithEvents txtXkeysEncrypt As System.Windows.Forms.TextBox
+    Private WithEvents label62 As System.Windows.Forms.Label
+    Private WithEvents btnAESEncrypt As System.Windows.Forms.Button
+    Private WithEvents btnRawAESSetKey As System.Windows.Forms.Button
+    Private WithEvents lblAESPassFail As System.Windows.Forms.Label
 
 End Class
