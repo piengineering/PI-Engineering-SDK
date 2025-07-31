@@ -203,6 +203,7 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.btnGetTouchStop = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         CType(Me.tbFader4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFader3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFader2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1948,12 +1949,21 @@ Partial Class Form1
         Me.btnGetTouchStop.Text = "Get Touch Stop"
         Me.btnGetTouchStop.UseVisualStyleBackColor = True
         '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(1156, 755)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 629
+        Me.TextBox2.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1477, 901)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.btnGetTouchStop)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.lblXkeysDecrypt)
@@ -2331,5 +2341,6 @@ Partial Class Form1
     Private WithEvents Label13 As System.Windows.Forms.Label
     Private WithEvents Label29 As System.Windows.Forms.Label
     Private WithEvents btnGetTouchStop As System.Windows.Forms.Button
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 
 End Class

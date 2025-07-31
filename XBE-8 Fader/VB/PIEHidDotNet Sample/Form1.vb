@@ -46,8 +46,6 @@ Public Class Form1
     Dim myIV As Byte()
 
 
-
-
     Public Sub HandlePIEHidData(ByVal data() As Byte, ByVal sourceDevice As PIEHid32Net.PIEDevice, ByVal perror As Integer) Implements PIEHid32Net.PIEDataHandler.HandlePIEHidData
         'data callback
         'MsgBox("The event handler caught the event.")
@@ -2152,6 +2150,12 @@ Public Class Form1
             Dim decryptresults As String = DecryptStringFromBytes_Aes(encrypteddata, myKey, myIV, CipherMode.CBC, PaddingMode.Zeros)
             'remove padded 0s
             decryptresults = decryptresults.Replace("\0", String.Empty)
+
+            TextBox2.Visible = True
+            TextBox2.Text = decryptresults 'must do this for comparison??? otherwise it fails - compiler bug??
+            decryptresults = TextBox2.Text
+            TextBox2.Visible = False
+
             If (mymessage = decryptresults) Then
                 lblAESPassFail.Text = "Pass"
                 lblAESPassFail.BackColor = Color.Lime
