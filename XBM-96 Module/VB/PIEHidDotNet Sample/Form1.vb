@@ -1,4 +1,7 @@
 ﻿Imports System.Text
+Imports System
+Imports System.IO
+Imports System.Security.Cryptography
 Public Class Form1
 
     Implements PIEHid32Net.PIEDataHandler
@@ -22,6 +25,10 @@ Public Class Form1
 
     Dim lastdata() As Byte = New Byte() {}
 
+    Dim myAes As Aes
+    Dim myKey As Byte()
+    Dim myIV As Byte()
+
     Public Sub HandlePIEHidData(ByVal data() As Byte, ByVal sourceDevice As PIEHid32Net.PIEDevice, ByVal perror As Integer) Implements PIEHid32Net.PIEDataHandler.HandlePIEHidData
         'data callback
         'MsgBox("The event handler caught the event.")
@@ -36,668 +43,676 @@ Public Class Form1
             'Use thread-safe calls to windows forms controls
             thisListBox = ListBox1
             SetListBox(output)
-            If (data(2) < 4) Then
-                'Unit ID
-                c = LblUnitID
-                SetText(data(1).ToString)
 
-                If (data(2) < 4) Then 'general incoming data 
+            'Unit ID
+            c = LblUnitID
+            SetText(data(1).ToString)
 
-                    Dim val2 As Byte = CByte(data(2) And 1)
+            If (data(2) < 4) Then 'general incoming data 
 
-                    'Keyboard states
-                    'check the keyboard state byte 
-                    val2 = CByte(data(19) And 1)
-                    If val2 = 0 Then
-                        c = Me.LblNumLk
-                        Me.SetText("NumLock: off")
-                    Else
-                        c = Me.LblNumLk
-                        Me.SetText("NumLock: on")
-                    End If
-                    val2 = CByte(data(19) And 2)
-                    If val2 = 0 Then
-                        c = Me.LblCapsLk
-                        Me.SetText("CapsLock: off")
-                    Else
-                        c = Me.LblCapsLk
-                        Me.SetText("CapsLock: on")
-                    End If
-                    val2 = CByte(data(19) And 4)
-                    If val2 = 0 Then
-                        c = Me.LblScrLk
-                        Me.SetText("ScrLock: off")
-                    Else
-                        c = Me.LblScrLk
-                        Me.SetText("ScrLock: on")
-                    End If
+                Dim val2 As Byte = CByte(data(2) And 1)
 
-                    'GPIO inputs
-                    val2 = CByte(data(19) And 16)
-                    If val2 = 0 Then
-                        c = Me.lblPin1
-                        Me.SetText("GPIO pin 1: off")
-                    Else
-                        c = Me.lblPin1
-                        Me.SetText("GPIO pin 1: on")
-                    End If
-                    val2 = CByte(data(19) And 32)
-                    If val2 = 0 Then
-                        c = Me.lblPin2
-                        Me.SetText("GPIO pin 2: off")
-                    Else
-                        c = Me.lblPin2
-                        Me.SetText("GPIO pin 2: on")
-                    End If
-                    val2 = CByte(data(19) And 64)
-                    If val2 = 0 Then
-                        c = Me.lblPin3
-                        Me.SetText("GPIO pin 3: off")
-                    Else
-                        c = Me.lblPin3
-                        Me.SetText("GPIO pin 3: on")
-                    End If
-                    val2 = CByte(data(19) And 128)
-                    If val2 = 0 Then
-                        c = Me.lblPin4
-                        Me.SetText("GPIO pin 4: off")
-                    Else
-                        c = Me.lblPin4
-                        Me.SetText("GPIO pin 4: on")
-                    End If
-
-                    'Buttons
-                    Dim maxcols As Integer = 16 'number of columns of Xkeys digital button data
-                    Dim maxrows As Integer = 6 'number of rows of Xkeys digital button data
-                    c = Me.LblButtons
-                    Dim buttonsdown As String = "Buttons: " 'for demonstration, reset this every time a new input report received
-
-                    For i As Integer = 0 To maxcols - 1
-                        For j As Integer = 0 To maxrows - 1
-                            Dim temp1 As Integer = CInt(Math.Pow(2, j)) '1, 2, 4, 8, 16, 32, 64, 128
-                            Dim keynum As Integer = maxrows * i + j 'column 1 = 0,1,2... column 2 = 3,4,5... column 3 = 6,7,8... column 4 = 9,10,11... etc
-                            Dim temp2 As Byte = CByte((data(i + 3) And temp1)) 'check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
-                            Dim temp3 As Byte = CByte((lastdata(i + 3) And temp1)) 'check using bitwise AND the previous value of this bit
-                            Dim state As Integer = 0 '0=was up, now up, 1=was up, now down, 2= was down, still down, 3= was down, now up
-
-                            If temp2 <> 0 AndAlso temp3 = 0 Then
-                                state = 1
-                            ElseIf temp2 <> 0 AndAlso temp3 <> 0 Then
-                                state = 2
-                            ElseIf temp2 = 0 AndAlso temp3 <> 0 Then
-                                state = 3
-                            End If
-
-                            Select Case state
-                                Case 1 'key was up and now is pressed
-                                    buttonsdown = buttonsdown + keynum.ToString() + " "
-                                    c = Me.LblButtons
-                                    SetText(buttonsdown)
-                                Case 2 'key was pressed and still is pressed
-                                    buttonsdown = buttonsdown + keynum.ToString() + " "
-                                    c = Me.LblButtons
-                                    SetText(buttonsdown)
-                                Case 3 'key was pressed and now released
-                            End Select
-
-                            'Perform action based on key number, consult P.I. Engineering SDK documentation for the key numbers
-                            Select Case keynum
-                                Case 0 'button 0 (top left)
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 1 'button 1
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 2 'button 2
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 3 'button 3
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 4 'button 4
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 5 'button 5
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 6 'button 6
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 7 'button 7
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 8 'button 8
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 9 'button 9
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 10 'button 10
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 11 'button 11
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 12 'button 12
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 13 'button 13
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 14 'button 14
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 15 'button 15
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 16 'button 16
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 17 'button 17
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 18 'button 18
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 19 'button 19
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 20 'button 20
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 21 'button 21
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 22 'button 22
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 23 'button 23
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 24 'button 24
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 25 'button 25
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 26 'button 26
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 27 'button 27
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 28 'button 28
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 29 'button 29
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 30 'button 30
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 31 'button 31
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 32 'button 32
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 33 'button 33
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 34 'button 34
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 35 'button 35
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 36 'button 36
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 37 'button 37
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 38 'button 39
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 39 'button 39
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 40 'button 40
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 41 'button 41
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 42 'button 42
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 43 'button 43
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 44 'button 44
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 45 'button 45
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 46 'button 46
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 47 'button 47
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 48 'button 48
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 49 'button 49
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 50 'button 50
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 51 'button 51
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 52 'button 52
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 53 'button 53
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 54 'button 54
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 55 'button 55
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 56 'button 56
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 57 'button 57
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 58 'button 58
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 59 'button 59
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 60 'button 60
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 61 'button 61
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 62 'button 62
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 63 'button 63
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 64 'button 64
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 65 'button 65
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 66 'button 66
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 67 'button 67
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 68 'button 68
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 69 'button 69
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 70 'button 70
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 71 'button 71
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 72 'button 72
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 73 'button 73
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 74 'button 74
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 75 'button 75
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 76 'button 76
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 77 'button 77
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 78 'button 78
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 79 'button 79
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 80 'button 80
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 81 'button 81
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 82 'button 82
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 83 'button 83
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 84 'button 84
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 85 'button 85
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 86 'button 86
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 87 'button 87
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 88 'button 88
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 89 'button 89
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                    'Next column of buttons
-                                Case 90 'button 90
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 91 'button 91
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 92 'button 92
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 93 'button 93
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 94 'button 94
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                                Case 95 'button 95
-                                    If state = 1 Then 'key was pressed
-                                    ElseIf state = 3 Then 'key was released
-                                    End If
-                            End Select
-                        Next
-                    Next
-
-                    For i As Integer = 0 To sourceDevice.ReadLength - 1
-                        lastdata(i) = data(i)
-                    Next
-                    'end Buttons
-
-                    'time stamp info 4 bytes
-                    Dim absolutetime As Long = 16777216 * data(sourceDevice.ReadLength - 5) + 65536 * data(sourceDevice.ReadLength - 4) + 256 * data(sourceDevice.ReadLength - 3) + data(sourceDevice.ReadLength - 2) 'ms
-                    Dim absolutetime2 As Long = absolutetime / 1000 'in seconds
-                    c = lblabstime
-                    SetText("absolute time: " + absolutetime2.ToString + " s")
-                    Dim deltatime As Long = absolutetime - saveabsolutetime
-                    c = lbldeltatime
-                    SetText("delta time: " + deltatime.ToString + " ms")
-                    saveabsolutetime = absolutetime
-
-                ElseIf (data(2) = 167) Then 'A7H backlight LED state request
-                    thisListBox = listBox3
-                    ClearListBox()
-
-                    SetListBox("Button=" + data(3).ToString)
-                    'bank 1
-                    SetListBox("Bank 1 Red=" + data(4).ToString)
-                    SetListBox("Bank 1 Green=" + data(5).ToString)
-                    SetListBox("Bank 1 Blue=" + data(6).ToString)
-                    SetListBox("Bank 1 Dim Factor=" + data(14).ToString) '255=100%
-                    If (data(10) = 1) Then '0=no flash, 1=flashing Then
-                        SetListBox("Flash Bank 1=flashing")
-                    Else
-                        SetListBox("Flash Bank 1=not flashing")
-                    End If
-                    'bank 2
-                    SetListBox("Bank 2 Red=" + data(7).ToString)
-                    SetListBox("Bank 2 Green=" + data(8).ToString)
-                    SetListBox("Bank 2 Blue=" + data(9).ToString)
-                    SetListBox("Bank 2 Dim Factor=" + data(15).ToString) '255=100%
-                    If (data(11) = 1) Then '0=no flash, 1=flashing Then
-                        SetListBox("Flash Bank 2=flashing")
-                    Else
-                        SetListBox("Flash Bank 2=not flashing")
-                    End If
-
-                    SetListBox("Flash Frequency=" + data(13).ToString)
-
-                    'update the dim factor textboxes on the form
-                    c = txtBank1
-                    SetText(data(14).ToString)
-                    c = TxtIntensity1
-                    SetText(data(14).ToString)
-                    c = txtBank2
-                    SetText(data(15).ToString)
-                    c = TxtIntensity2
-                    SetText(data(15).ToString)
-
-                ElseIf (data(2) = 146) Then '92H Power Levels request
-                    thisListBox = listBox4
-                    ClearListBox()
-                    SetListBox("Current Power=" + ((data(3) * 65536) + (data(4) * 256) + data(5)).ToString)
-                    'note rounding effects can be significant at low RGB values
-                    SetListBox("Maximum Power=" + ((data(7) * 65536) + (data(8) * 256) + data(9)).ToString)
-                    SetListBox("Dim Factor bank 1 (255=100%)=" + data(10).ToString)
-                    SetListBox("Dim Factor bank 2 (255=100%)=" + data(11).ToString)
-                    'update the dim factor textboxes on the form
-                    c = txtBank1
-                    SetText(data(16).ToString)
-                    c = TxtIntensity1
-                    SetText(data(16).ToString)
-                    c = txtBank2
-                    SetText(data(17).ToString)
-                    c = TxtIntensity2
-                    SetText(data(17).ToString)
-                ElseIf ((data(2) = 165) Or (data(2) = 181)) Then 'A5H 0r B5H Power Overload from Individual Button RGB Backlight Change
-                    'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
-                    'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
-                    'has a power=1728. 
-                    thisListBox = listBox4
-                    ClearListBox()
-                    SetListBox("Power Overload Detected - Dim Factors have been adjusted")
-                    Dim thisbank As String
-                    thisbank = ""
-                    If (data(3) = 0) Then
-                        thisbank = "bank 1"
-                    ElseIf (data(3) = 1) Then
-                        thisbank = "bank 2"
-                    End If
-                    SetListBox("Bank=" + thisbank) 'bank user was changing when overload occurred
-                    SetListBox("Button=" + data(4).ToString) 'button user was changing when overload occurred
-                    SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
-                    SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
-                    SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
-                    'update the dim factor textboxes on the form
-                    c = txtBank1
-                    SetText(data(6).ToString)
-                    c = TxtIntensity1
-                    SetText(data(6).ToString)
-                    c = txtBank2
-                    SetText(data(7).ToString)
-                    c = TxtIntensity2
-                    SetText(data(7).ToString)
-                ElseIf ((data(2) = 166) Or (data(2) = 182)) Then 'A6H 0r B6H Power Overload from Power Overload from Bank Change
-                    'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
-                    'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
-                    'has a power=1728.
-                    thisListBox = listBox4
-                    ClearListBox()
-                    SetListBox("Power Overload Detected - Dim Factors have been adjusted")
-                    SetListBox("Bank=" + data(3).ToString) 'bank user was changing when overload occurred
-
-                    SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
-                    SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
-                    SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
-                    'update the dim factor textboxes on the form
-                    c = txtBank1
-                    SetText(data(6).ToString)
-                    c = TxtIntensity1
-                    SetText(data(6).ToString)
-                    c = txtBank2
-                    SetText(data(7).ToString)
-                    c = TxtIntensity2
-                    SetText(data(7).ToString)
-                ElseIf ((data(2) = 164) Or (data(2) = 187)) Then 'A4H 0r BBH Power Overload from Power Overload from Dim Factor Change
-                    'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
-                    'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
-                    'has a power=1728.
-                    thisListBox = listBox4
-                    ClearListBox()
-                    SetListBox("Power Overload Detected - Dim Factors have been adjusted")
-
-                    SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
-                    SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
-                    SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
-                    SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
-                    SetListBox("Desired bank 1 dim factor=" + data(10).ToString) 'user wanted this factor but it caused overload so automatically adjusted to data[6]
-                    SetListBox("Desired bank 2 dim factor=" + data(11).ToString) 'user wanted this factor but it caused overload so automatically adjusted to data[7]
-                    'update the dim factor textboxes on the form
-                    c = txtBank1
-                    SetText(data(6).ToString)
-                    c = TxtIntensity1
-                    SetText(data(6).ToString)
-                    c = txtBank2
-                    SetText(data(7).ToString)
-                    c = TxtIntensity2
-                    SetText(data(7).ToString)
+                'Keyboard states
+                'check the keyboard state byte 
+                val2 = CByte(data(19) And 1)
+                If val2 = 0 Then
+                    c = Me.LblNumLk
+                    Me.SetText("NumLock: off")
+                Else
+                    c = Me.LblNumLk
+                    Me.SetText("NumLock: on")
+                End If
+                val2 = CByte(data(19) And 2)
+                If val2 = 0 Then
+                    c = Me.LblCapsLk
+                    Me.SetText("CapsLock: off")
+                Else
+                    c = Me.LblCapsLk
+                    Me.SetText("CapsLock: on")
+                End If
+                val2 = CByte(data(19) And 4)
+                If val2 = 0 Then
+                    c = Me.LblScrLk
+                    Me.SetText("ScrLock: off")
+                Else
+                    c = Me.LblScrLk
+                    Me.SetText("ScrLock: on")
                 End If
 
+                'GPIO inputs
+                val2 = CByte(data(19) And 16)
+                If val2 = 0 Then
+                    c = Me.lblPin1
+                    Me.SetText("GPIO pin 1: off")
+                Else
+                    c = Me.lblPin1
+                    Me.SetText("GPIO pin 1: on")
+                End If
+                val2 = CByte(data(19) And 32)
+                If val2 = 0 Then
+                    c = Me.lblPin2
+                    Me.SetText("GPIO pin 2: off")
+                Else
+                    c = Me.lblPin2
+                    Me.SetText("GPIO pin 2: on")
+                End If
+                val2 = CByte(data(19) And 64)
+                If val2 = 0 Then
+                    c = Me.lblPin3
+                    Me.SetText("GPIO pin 3: off")
+                Else
+                    c = Me.lblPin3
+                    Me.SetText("GPIO pin 3: on")
+                End If
+                val2 = CByte(data(19) And 128)
+                If val2 = 0 Then
+                    c = Me.lblPin4
+                    Me.SetText("GPIO pin 4: off")
+                Else
+                    c = Me.lblPin4
+                    Me.SetText("GPIO pin 4: on")
+                End If
 
+                'Buttons
+                Dim maxcols As Integer = 16 'number of columns of Xkeys digital button data
+                Dim maxrows As Integer = 6 'number of rows of Xkeys digital button data
+                c = Me.LblButtons
+                Dim buttonsdown As String = "Buttons: " 'for demonstration, reset this every time a new input report received
+
+                For i As Integer = 0 To maxcols - 1
+                    For j As Integer = 0 To maxrows - 1
+                        Dim temp1 As Integer = CInt(Math.Pow(2, j)) '1, 2, 4, 8, 16, 32, 64, 128
+                        Dim keynum As Integer = maxrows * i + j 'column 1 = 0,1,2... column 2 = 3,4,5... column 3 = 6,7,8... column 4 = 9,10,11... etc
+                        Dim temp2 As Byte = CByte((data(i + 3) And temp1)) 'check using bitwise AND the current value of this bit. The + 3 is because the 1st button byte starts 3 bytes in at data[3]
+                        Dim temp3 As Byte = CByte((lastdata(i + 3) And temp1)) 'check using bitwise AND the previous value of this bit
+                        Dim state As Integer = 0 '0=was up, now up, 1=was up, now down, 2= was down, still down, 3= was down, now up
+
+                        If temp2 <> 0 AndAlso temp3 = 0 Then
+                            state = 1
+                        ElseIf temp2 <> 0 AndAlso temp3 <> 0 Then
+                            state = 2
+                        ElseIf temp2 = 0 AndAlso temp3 <> 0 Then
+                            state = 3
+                        End If
+
+                        Select Case state
+                            Case 1 'key was up and now is pressed
+                                buttonsdown = buttonsdown + keynum.ToString() + " "
+                                c = Me.LblButtons
+                                SetText(buttonsdown)
+                            Case 2 'key was pressed and still is pressed
+                                buttonsdown = buttonsdown + keynum.ToString() + " "
+                                c = Me.LblButtons
+                                SetText(buttonsdown)
+                            Case 3 'key was pressed and now released
+                        End Select
+
+                        'Perform action based on key number, consult P.I. Engineering SDK documentation for the key numbers
+                        Select Case keynum
+                            Case 0 'button 0 (top left)
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 1 'button 1
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 2 'button 2
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 3 'button 3
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 4 'button 4
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 5 'button 5
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 6 'button 6
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 7 'button 7
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 8 'button 8
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 9 'button 9
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 10 'button 10
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 11 'button 11
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 12 'button 12
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 13 'button 13
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 14 'button 14
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 15 'button 15
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 16 'button 16
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 17 'button 17
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 18 'button 18
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 19 'button 19
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 20 'button 20
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 21 'button 21
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 22 'button 22
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 23 'button 23
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 24 'button 24
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 25 'button 25
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 26 'button 26
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 27 'button 27
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 28 'button 28
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 29 'button 29
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 30 'button 30
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 31 'button 31
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 32 'button 32
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 33 'button 33
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 34 'button 34
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 35 'button 35
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 36 'button 36
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 37 'button 37
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 38 'button 39
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 39 'button 39
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 40 'button 40
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 41 'button 41
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 42 'button 42
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 43 'button 43
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 44 'button 44
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 45 'button 45
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 46 'button 46
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 47 'button 47
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 48 'button 48
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 49 'button 49
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 50 'button 50
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 51 'button 51
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 52 'button 52
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 53 'button 53
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 54 'button 54
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 55 'button 55
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 56 'button 56
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 57 'button 57
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 58 'button 58
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 59 'button 59
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 60 'button 60
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 61 'button 61
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 62 'button 62
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 63 'button 63
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 64 'button 64
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 65 'button 65
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 66 'button 66
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 67 'button 67
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 68 'button 68
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 69 'button 69
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 70 'button 70
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 71 'button 71
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 72 'button 72
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 73 'button 73
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 74 'button 74
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 75 'button 75
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 76 'button 76
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 77 'button 77
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 78 'button 78
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 79 'button 79
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 80 'button 80
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 81 'button 81
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 82 'button 82
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 83 'button 83
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 84 'button 84
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 85 'button 85
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 86 'button 86
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 87 'button 87
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 88 'button 88
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 89 'button 89
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                                'Next column of buttons
+                            Case 90 'button 90
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 91 'button 91
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 92 'button 92
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 93 'button 93
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 94 'button 94
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                            Case 95 'button 95
+                                If state = 1 Then 'key was pressed
+                                ElseIf state = 3 Then 'key was released
+                                End If
+                        End Select
+                    Next
+                Next
+
+                For i As Integer = 0 To sourceDevice.ReadLength - 1
+                    lastdata(i) = data(i)
+                Next
+                'end Buttons
+
+                'time stamp info 4 bytes
+                Dim absolutetime As Long = 16777216 * data(sourceDevice.ReadLength - 5) + 65536 * data(sourceDevice.ReadLength - 4) + 256 * data(sourceDevice.ReadLength - 3) + data(sourceDevice.ReadLength - 2) 'ms
+                Dim absolutetime2 As Long = absolutetime / 1000 'in seconds
+                c = lblabstime
+                SetText("absolute time: " + absolutetime2.ToString + " s")
+                Dim deltatime As Long = absolutetime - saveabsolutetime
+                c = lbldeltatime
+                SetText("delta time: " + deltatime.ToString + " ms")
+                saveabsolutetime = absolutetime
+
+            ElseIf (data(2) = 167) Then 'A7H backlight LED state request
+                thisListBox = listBox3
+                ClearListBox()
+
+                SetListBox("Button=" + data(3).ToString)
+                'bank 1
+                SetListBox("Bank 1 Red=" + data(4).ToString)
+                SetListBox("Bank 1 Green=" + data(5).ToString)
+                SetListBox("Bank 1 Blue=" + data(6).ToString)
+                SetListBox("Bank 1 Dim Factor=" + data(14).ToString) '255=100%
+                If (data(10) = 1) Then '0=no flash, 1=flashing Then
+                    SetListBox("Flash Bank 1=flashing")
+                Else
+                    SetListBox("Flash Bank 1=not flashing")
+                End If
+                'bank 2
+                SetListBox("Bank 2 Red=" + data(7).ToString)
+                SetListBox("Bank 2 Green=" + data(8).ToString)
+                SetListBox("Bank 2 Blue=" + data(9).ToString)
+                SetListBox("Bank 2 Dim Factor=" + data(15).ToString) '255=100%
+                If (data(11) = 1) Then '0=no flash, 1=flashing Then
+                    SetListBox("Flash Bank 2=flashing")
+                Else
+                    SetListBox("Flash Bank 2=not flashing")
+                End If
+
+                SetListBox("Flash Frequency=" + data(13).ToString)
+
+                'update the dim factor textboxes on the form
+                c = txtBank1
+                SetText(data(14).ToString)
+                c = TxtIntensity1
+                SetText(data(14).ToString)
+                c = txtBank2
+                SetText(data(15).ToString)
+                c = TxtIntensity2
+                SetText(data(15).ToString)
+            ElseIf (data(2) = 139) Then 'encrypt result
+                c = lblXkeysEncrypt
+                Dim encryptedbytes As String = ""
+                For i As Integer = 0 To 32 - 1
+                    encryptedbytes = encryptedbytes + BinToHex(data(3 + i)) + ", "
+                Next
+                SetText(encryptedbytes)
+            ElseIf (data(2) = 140) Then 'decrypt result
+                c = lblXkeysDecrypt
+                Dim decryptedbytes As String = ""
+                For i As Integer = 0 To 32 - 1
+                    decryptedbytes = decryptedbytes + BinToHex(data(3 + i)) + ", "
+                Next
+                SetText(decryptedbytes)
+            ElseIf (data(2) = 146) Then '92H Power Levels request
+                thisListBox = listBox4
+                ClearListBox()
+                SetListBox("Current Power=" + ((data(3) * 65536) + (data(4) * 256) + data(5)).ToString)
+                'note rounding effects can be significant at low RGB values
+                SetListBox("Maximum Power=" + ((data(7) * 65536) + (data(8) * 256) + data(9)).ToString)
+                SetListBox("Dim Factor bank 1 (255=100%)=" + data(10).ToString)
+                SetListBox("Dim Factor bank 2 (255=100%)=" + data(11).ToString)
+                'update the dim factor textboxes on the form
+                c = txtBank1
+                SetText(data(16).ToString)
+                c = TxtIntensity1
+                SetText(data(16).ToString)
+                c = txtBank2
+                SetText(data(17).ToString)
+                c = TxtIntensity2
+                SetText(data(17).ToString)
+            ElseIf ((data(2) = 165) Or (data(2) = 181)) Then 'A5H 0r B5H Power Overload from Individual Button RGB Backlight Change
+                'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
+                'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
+                'has a power=1728. 
+                thisListBox = listBox4
+                ClearListBox()
+                SetListBox("Power Overload Detected - Dim Factors have been adjusted")
+                Dim thisbank As String
+                thisbank = ""
+                If (data(3) = 0) Then
+                    thisbank = "bank 1"
+                ElseIf (data(3) = 1) Then
+                    thisbank = "bank 2"
+                End If
+                SetListBox("Bank=" + thisbank) 'bank user was changing when overload occurred
+                SetListBox("Button=" + data(4).ToString) 'button user was changing when overload occurred
+                SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
+                SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
+                SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
+                'update the dim factor textboxes on the form
+                c = txtBank1
+                SetText(data(6).ToString)
+                c = TxtIntensity1
+                SetText(data(6).ToString)
+                c = txtBank2
+                SetText(data(7).ToString)
+                c = TxtIntensity2
+                SetText(data(7).ToString)
+            ElseIf ((data(2) = 166) Or (data(2) = 182)) Then 'A6H 0r B6H Power Overload from Power Overload from Bank Change
+                'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
+                'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
+                'has a power=1728.
+                thisListBox = listBox4
+                ClearListBox()
+                SetListBox("Power Overload Detected - Dim Factors have been adjusted")
+                SetListBox("Bank=" + data(3).ToString) 'bank user was changing when overload occurred
+
+                SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
+                SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
+                SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
+                'update the dim factor textboxes on the form
+                c = txtBank1
+                SetText(data(6).ToString)
+                c = TxtIntensity1
+                SetText(data(6).ToString)
+                c = txtBank2
+                SetText(data(7).ToString)
+                c = TxtIntensity2
+                SetText(data(7).ToString)
+            ElseIf ((data(2) = 164) Or (data(2) = 187)) Then 'A4H 0r BBH Power Overload from Power Overload from Dim Factor Change
+                'Power overload, this message is sent when the total "power" of all illuminated RGB LEDs exceeds the maximum set for the unit
+                'The 'power' is simply the sum of the upper bank and lower bank RGB values for all buttons. For example, the factory default setting is all LEDs set to red=3, green=3, and blue=3
+                'has a power=1728.
+                thisListBox = listBox4
+                ClearListBox()
+                SetListBox("Power Overload Detected - Dim Factors have been adjusted")
+
+                SetListBox("% reduction of dim factors=" + (100 - data(5)).ToString)
+                SetListBox("New bank 1 dim factor=" + data(6).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("New bank 2 dim factor=" + data(7).ToString) 'the firmware automatically adjusted dim factors when power overload is detected
+                SetListBox("Previous bank 1 dim factor=" + data(8).ToString)
+                SetListBox("Previous bank 2 dim factor=" + data(9).ToString)
+                SetListBox("Desired bank 1 dim factor=" + data(10).ToString) 'user wanted this factor but it caused overload so automatically adjusted to data[6]
+                SetListBox("Desired bank 2 dim factor=" + data(11).ToString) 'user wanted this factor but it caused overload so automatically adjusted to data[7]
+                'update the dim factor textboxes on the form
+                c = txtBank1
+                SetText(data(6).ToString)
+                c = TxtIntensity1
+                SetText(data(6).ToString)
+                c = txtBank2
+                SetText(data(7).ToString)
+                c = TxtIntensity2
+                SetText(data(7).ToString)
             End If
-
-
 
         End If
     End Sub
@@ -924,6 +939,13 @@ Public Class Form1
         cboIndex.SelectedIndex = 0
         cboBank.SelectedIndex = 0
         CboBankLegacy.SelectedIndex = 0
+
+        myAes = Aes.Create()
+        myAes.Mode = CipherMode.CBC
+        myAes.Padding = PaddingMode.Zeros
+        myAes.KeySize = 128
+        myKey = New Byte(15) {}
+        myIV = New Byte(15) {}
     End Sub
 
     Private Sub BtnKBreflect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnKBreflect.Click
@@ -1789,26 +1811,37 @@ Public Class Form1
 
 
     Private Sub BtnSetDongle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSetDongle.Click
-        'Use the Dongle feature to set a 4 byte code into the device
         If selecteddevice <> -1 Then
 
-            'This routine is done once per unit by the developer prior to sale.
-            'Pick 4 numbers between 1 and 254.
-            Dim K0 As Byte = 7    'pick any number between 1 and 254, 0 and 255 not allowed
-            Dim K1 As Byte = 58   'pick any number between 1 and 254, 0 and 255 not allowed
-            Dim K2 As Byte = 33   'pick any number between 1 and 254, 0 and 255 not allowed
-            Dim K3 As Byte = 243  'pick any number between 1 and 254, 0 and 255 not allowed
-            'Save these numbers, they are needed to check the key!
+            'pick a secret 16 byte key and save this Key!!
+            myKey(0) = 7
+            myKey(1) = 58
+            myKey(2) = 33
+            myKey(3) = 243
+            myKey(4) = 7
+            myKey(5) = 58
+            myKey(6) = 33
+            myKey(7) = 243
+            myKey(8) = 7
+            myKey(9) = 58
+            myKey(10) = 33
+            myKey(11) = 243
+            myKey(12) = 7
+            myKey(13) = 58
+            myKey(14) = 33
+            myKey(15) = 243
 
+            'Write AES key to X-keys, this key is stored in eeprom
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
             Next
+
             wdata(0) = 0
-            wdata(1) = 192
-            wdata(2) = K0
-            wdata(3) = K1
-            wdata(4) = K2
-            wdata(5) = K3
+            wdata(1) = 137 '&H89 set AES key
+
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myKey(i)
+            Next
 
             Dim result As Integer
             result = 404
@@ -1819,92 +1852,180 @@ Public Class Form1
             If result <> 0 Then
                 LblStatus.Text = "Write Fail: " + result.ToString
             Else
-                LblStatus.Text = "Write Success - Set Dongle Key"
+                LblStatus.Text = "Write Success - set AES Dongle"
             End If
         End If
     End Sub
 
     Private Sub BtnCheckDongle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCheckDongle.Click
-        'This is done within the developer's application to check for the correct
-        'hardware.  The K0-K3 values must be the same as those entered in Set Key.
-        If selecteddevice <> -1 Then
-            'Check hardware
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
 
-            'IMPORTANT turn off the callback if going so data isn't grabbed there, turn it back on later (not done here)
-            devices(selecteddevice).callNever = True
-
-            'pick 4 randomn numbers between 1 and 254
-            Randomize()
-            Dim N0 As Integer = CInt(Int((254 * Rnd()) + 1)) 'random number between 1 and 254
-            Dim N1 As Integer = CInt(Int((254 * Rnd()) + 1)) 'random number between 1 and 254
-            Dim N2 As Integer = CInt(Int((254 * Rnd()) + 1)) 'random number between 1 and 254
-            Dim N3 As Integer = CInt(Int((254 * Rnd()) + 1)) 'random number between 1 and 254
-
-            'this is the key from the Set Key
-            Dim K0 As Integer = 7
-            Dim K1 As Integer = 58
-            Dim K2 As Integer = 33
-            Dim K3 As Integer = 243
-
-            'hash and save these for comparison later
-            Dim R0 As Integer
-            Dim R1 As Integer
-            Dim R2 As Integer
-            Dim R3 As Integer
-            PIEHid32Net.PIEDevice.DongleCheck2(K0, K1, K2, K3, N0, N1, N2, N3, R0, R1, R2, R3)
+            'Before each encryption, you MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.
+            Dim rnd As Random = New Random()
+            For i As Integer = 0 To 15
+                myIV(i) = CByte(rnd.Next(0, 254)) 'valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+            Next
 
             For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
                 wdata(i) = 0
             Next
-            wdata(0) = 0
-            wdata(1) = 193
-            wdata(2) = N0
-            wdata(3) = N1
-            wdata(4) = N2
-            wdata(5) = N3
 
-            Dim result As Integer
-            result = 404
-            While (result = 404)
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A set AES IV
+
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
                 result = devices(selecteddevice).WriteData(wdata)
             End While
 
+            'Encrypt
+            Dim savecallbackstate As Boolean = devices(selecteddevice).callNever
+            devices(selecteddevice).callNever = True
+
+            Dim mymessage As String = "Enter any phrase"
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 139 '&H8B Encrypt
+            For i As Integer = 0 To mymessage.Length - 1
+                wdata(2 + i) = CByte(AscW(mymessage(i)))
+            Next
+
+            result = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
             If result <> 0 Then
                 LblStatus.Text = "Write Fail: " + result.ToString
             Else
-                LblStatus.Text = "Write Success - Check Dongle Key"
+                LblStatus.Text = "Write Success - check AES Dongle"
             End If
 
-            'after this write the next read with 3rd byte=193 will give 4 values which are used below for comparison
-
-            Dim ddata(devices(selecteddevice).ReadLength) As Byte
+            'read back the encrypted data
+            Dim encrypteddata As Byte() = New Byte(31) {}
+            Dim data As Byte() = Nothing
             Dim countout As Integer = 0
-            result = devices(selecteddevice).BlockingReadData(ddata, 100)
-            While (result = 304 Or (result = 0 And ddata(2) <> 193))
-                If result = 304 Then
-                    'no new data after 100ms, so increment countout extra
-                    countout = countout + 99
+            data = New Byte(79) {}
+            Dim ret As Integer = devices(selecteddevice).BlockingReadData(data, 100)
+
+            While (ret = 0 AndAlso data(2) <> 139) OrElse ret = 304
+
+                If ret = 304 Then
+                    countout += 99
                 End If
-                countout = countout + 1
-                If (countout > 1000) Then
-                    Exit While
-                End If
-                result = devices(selecteddevice).BlockingReadData(ddata, 100)
+
+                countout += 1
+                If countout > 1000 Then Exit While
+                ret = devices(selecteddevice).BlockingReadData(data, 100)
             End While
 
-            If result = 0 And ddata(2) = 193 Then
-                Dim fail As Boolean = False
-                If R0 <> ddata(3) Then fail = True
-                If R1 <> ddata(4) Then fail = True
-                If R2 <> ddata(5) Then fail = True
-                If R3 <> ddata(6) Then fail = True
-                If fail = False Then LblPassFail.Text = "Pass-Correct Hardware Found"
-                If fail = True Then LblPassFail.Text = "Fail-Correct Hardware Not Found"
+            For i As Integer = 0 To 32 - 1
+                encrypteddata(i) = data(i + 3)
+            Next
+
+            devices(selecteddevice).callNever = savecallbackstate
+
+            'Decrypt
+            'use the same secret 16 byte key that was used in Set Dongle and the same IV as used above to encrypt
+            myKey(0) = 7
+            myKey(1) = 58
+            myKey(2) = 33
+            myKey(3) = 243
+            myKey(4) = 7
+            myKey(5) = 58
+            myKey(6) = 33
+            myKey(7) = 243
+            myKey(8) = 7
+            myKey(9) = 58
+            myKey(10) = 33
+            myKey(11) = 243
+            myKey(12) = 7
+            myKey(13) = 58
+            myKey(14) = 33
+            myKey(15) = 243
+
+            Dim decryptresults As String = DecryptStringFromBytes_Aes(encrypteddata, myKey, myIV, CipherMode.CBC, PaddingMode.Zeros)
+            'remove padded 0s
+            decryptresults = decryptresults.Replace("\0", String.Empty)
+
+            TextBox2.Visible = True
+            TextBox2.Text = decryptresults 'must do this for comparison??? otherwise it fails - compiler bug??
+            decryptresults = TextBox2.Text
+            TextBox2.Visible = False
+
+            If (mymessage = decryptresults) Then
+                lblAESPassFail.Text = "Pass"
+                lblAESPassFail.BackColor = Color.Lime
+            Else
+                lblAESPassFail.Text = "Fail"
+                lblAESPassFail.BackColor = Color.Red
             End If
+
         End If
 
     End Sub
+    Private Shared Function DecryptStringFromBytes_Aes(ByVal cipherText As Byte(), ByVal Key As Byte(), ByVal IV As Byte(), ByVal thismode As CipherMode, ByVal thispadding As PaddingMode) As String
+        If cipherText Is Nothing OrElse cipherText.Length <= 0 Then Throw New ArgumentNullException("cipherText")
+        If Key Is Nothing OrElse Key.Length <= 0 Then Throw New ArgumentNullException("Key")
+        If IV Is Nothing OrElse IV.Length <= 0 Then Throw New ArgumentNullException("IV")
+        Dim plaintext As String = Nothing
 
+        Using aesAlg As Aes = Aes.Create()
+            aesAlg.Key = Key
+            aesAlg.IV = IV
+            aesAlg.Mode = thismode
+            aesAlg.Padding = thispadding
+            Dim decryptor As ICryptoTransform = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV)
+
+            Using msDecrypt As MemoryStream = New MemoryStream(cipherText)
+
+                Using csDecrypt As CryptoStream = New CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)
+
+                    Using srDecrypt As StreamReader = New StreamReader(csDecrypt)
+                        plaintext = srDecrypt.ReadToEnd()
+                    End Using
+                End Using
+            End Using
+        End Using
+
+        Return plaintext
+    End Function
+
+    Private Shared Function EncryptStringToBytes_Aes(ByVal plainText As String, ByVal Key As Byte(), ByVal IV As Byte(), ByVal thismode As CipherMode, ByVal thispadding As PaddingMode) As Byte()
+        If plainText Is Nothing OrElse plainText.Length <= 0 Then Throw New ArgumentNullException("plainText")
+        If Key Is Nothing OrElse Key.Length <= 0 Then Throw New ArgumentNullException("Key")
+        If IV Is Nothing OrElse IV.Length <= 0 Then Throw New ArgumentNullException("IV")
+        Dim encrypted As Byte()
+
+        Using aesAlg As Aes = Aes.Create()
+            aesAlg.Key = Key
+            aesAlg.IV = IV
+            aesAlg.Mode = thismode
+            aesAlg.Padding = thispadding
+            Dim encryptor As ICryptoTransform = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV)
+
+            Using msEncrypt As MemoryStream = New MemoryStream()
+
+                Using csEncrypt As CryptoStream = New CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)
+
+                    Using swEncrypt As StreamWriter = New StreamWriter(csEncrypt)
+                        swEncrypt.Write(plainText)
+                    End Using
+
+                    encrypted = msEncrypt.ToArray()
+                End Using
+            End Using
+        End Using
+
+        Return encrypted
+    End Function
 
     Private Sub BtnNoChange_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNoChange.Click
         If selecteddevice <> -1 Then
@@ -2510,6 +2631,161 @@ Public Class Form1
             Else
                 LblStatus.Text = "Write Success - Virtual Button"
             End If
+        End If
+    End Sub
+
+    Private Sub btnRawAESSetKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRawAESSetKey.Click
+        'Sets the 16 byte AES key in the X-keys, keep track of this key, it is are required for decryption
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+
+            myAes.GenerateKey()
+            'save this key!
+            For j As Integer = 0 To 15
+                myKey(j) = myAes.Key(j)
+            Next
+            'Write Key to X-keys, this key is stored in eeprom
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 137 '&H89 Set AES Key
+            For j As Integer = 0 To 15
+                wdata(2 + j) = myKey(j)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result
+            Else
+                LblStatus.Text = "Write Success - Set AES Key"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnAESEncrypt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAESEncrypt.Click
+        'Encrypt AES
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+
+            'input data (up to 32 bytes), outputs encryption
+            'AES Key should have been previously set and recorded (if decrypting)
+
+            'Before each encryption MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.   
+            Dim rnd As Random = New Random()
+            For i As Integer = 0 To 15
+                myIV(i) = CByte(rnd.Next(0, 254)) 'valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+            Next
+
+            'set initialization vector
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A Set AES IV
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            Dim mymessage As String = txtXkeysEncrypt.Text
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 139 '&H8B Set AES Encrypt
+            For i As Integer = 0 To mymessage.Length - 1
+                wdata(2 + i) = CByte(AscW(mymessage(i)))
+            Next
+
+            result = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result
+            Else
+                LblStatus.Text = "Write Success - AES Encrypt"
+            End If
+
+            'results in callback
+
+        End If
+    End Sub
+
+    Private Sub btnXkeysDecrypt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnXkeysDecrypt.Click
+        If selecteddevice <> -1 Then
+            'input encrypted data (up to 32 bytes), outputs decryption
+            'AES Key and IV should have been previously set and recorded
+
+            'Before each decryption MUST set the initialization vector with that used for the encryption.
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A Set AES IV
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            'Decrypt
+            Dim decryptthis = lblXkeysEncrypt.Text
+            If decryptthis = "encrypt result" Then
+                MessageBox.Show("invalid encryption results, make sure callback is on before encrypting")
+                Return
+            End If
+
+
+            Dim encryptedbytes As Byte() = New Byte(31) {}
+            Dim count As Integer = 0
+            While (decryptthis.Length > 0)
+                Dim pos As Integer = decryptthis.IndexOf(",")
+                If (pos <> -1) Then
+                    encryptedbytes(count) = HexToBin(decryptthis.Substring(0, 2))
+                    decryptthis = decryptthis.Remove(0, pos + 1).Trim()
+                    count = count + 1
+                End If
+            End While
+
+            'input encrypted data (up to 32 bytes), outputs decryption
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 140 '&H8C 
+            For i As Integer = 0 To 32 - 1
+                wdata(2 + i) = encryptedbytes(i)
+            Next
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - AES Decrypt"
+            End If
+            'results in callback
         End If
     End Sub
 End Class
