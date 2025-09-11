@@ -219,10 +219,9 @@
 
     <p><b>1. General Incoming Data</b></p>
     <p>This data is returned when new data is detected such as button presses, 
-      unit id change or change of the jog or shuttle. This report can be manually 
-      stimulated by sending a Generate Data output report which is very useful 
-      for obtaining the initial state of the device immediately after enumeration. 
-    </p>
+      unit id change or change of the T-bar. This report can be manually stimulated 
+      by sending a Generate Data output report which is very useful for obtaining 
+      the initial state of the device immediately after enumeration. </p>
     <table id="IRdeskop" width="70%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -2675,15 +2674,15 @@
         <td> 
           <div align="center"><span class="style6">28</span></div>
         </td>
-        <td><span class="style6">0, 172, 1...</span></td>
-        <td><span class="style6">Start Calibration*</span></td>
+        <td><span class="style6">0, 172, 1, 0...</span></td>
+        <td><span class="style6">Start Calibration</span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">29</span></div>
         </td>
-        <td><span class="style6">0, 172, 0...</span></td>
-        <td><span class="style6">Stop Calibration<sup>e</sup>*</span></td>
+        <td><span class="style6">0, 172, 0, 0...</span></td>
+        <td><span class="style6">Stop Calibration<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
@@ -4307,7 +4306,9 @@
     </table>
     <p><strong>28. Start Calibration</strong></p>
     <p>After sending this output report move the T-bar lever up and down to its 
-      full extents and then send a Stop Calibration output report.</p>
+      full extents and then send a Stop Calibration output report. Unit is calibrated 
+      in the factory, do not use this command unless instructed to do so by tech 
+      support. </p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -4317,12 +4318,16 @@
           <div align="center"><span class="style3">Byte 2</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 3 to 36 </span></div>
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4 to 36 </span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
+        <td>Constant</td>
         <td>Constant</td>
       </tr>
       <tr class="style6"> 
@@ -4335,11 +4340,16 @@
         <td bgcolor="#CCCCCC"> 
           <div align="center">1</div>
         </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
       </tr>
     </table>
     <p><strong>29. Stop Calibration</strong></p>
     <p>After sending a Start Calibration output report and moving the T-bar back 
-      and forth send this report to stop and save the calibration.</p>
+      and forth send this report to stop and save the calibration. Unit is calibrated 
+      in the factory, do not use this command unless instructed to do so by tech 
+      support. </p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -4349,12 +4359,16 @@
           <div align="center"><span class="style3">Byte 2</span></div>
         </td>
         <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 3 to 36 </span></div>
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 4 to 36 </span></div>
         </td>
       </tr>
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
+        <td>Constant</td>
         <td>Constant</td>
       </tr>
       <tr class="style6"> 
@@ -4363,6 +4377,9 @@
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center">172</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center">0</div>
