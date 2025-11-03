@@ -971,7 +971,7 @@ Partial Class Form1
         'cboBL
         '
         Me.cboBL.FormattingEnabled = True
-        Me.cboBL.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"})
+        Me.cboBL.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5"})
         Me.cboBL.Location = New System.Drawing.Point(20, 780)
         Me.cboBL.Name = "cboBL"
         Me.cboBL.Size = New System.Drawing.Size(68, 21)
