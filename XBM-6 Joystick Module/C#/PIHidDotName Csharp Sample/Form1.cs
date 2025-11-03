@@ -2143,10 +2143,8 @@ namespace PIHidDotName_Csharp_Sample
             //Columns-->
             //  0   6   12  
             //  1   7   13  
-            //  2   8   14  
-            //  3   9   15  
-            //  4   10  16  
-            //  5   11  17  
+            //  2 (joystick button)      
+         
             //for GPIO Pin 1 ID =100, GPIO Pin 2 ID =101, GPIO Pin 3 ID=102, GPIO Pin 4 ID=103
             //for the 8 virtual buttons use ID 104-111
             //to clear ALL virtual buttons, ie all virtual buttons pressed are released, use ID=255, if using 255 then state is ignored
