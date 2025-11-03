@@ -155,11 +155,9 @@
       the unit must be in a PID with a Joystick endoint; PID #3, PID#4, or PID 
       #7.</p>
     <p>The XBM-6 Joystick Module is a standard USB HID device and is supported 
-      by P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
-      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
-      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
-      for Mac</a>, <a href="https://xkeyswebapp.xojocloud.net/">X-keys Setup webpapp</a> 
-      and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+      by P.I. Engineering's <a href="https://piengineering.com/pages/programming-x-keys">MacroWorks 
+      3.1, X-keys Basic Setup, X-keys Setup for Mac</a>, and our many <a href="https://github.com/piengineering/PI-Engineering-SDK">SDKs</a>. 
+    </p>
     <p>The XBM-6 Joystick Module has a UART port for serial communication. All features 
       are accessible through the port. Input reports can be read and output reports 
       can be written through the UART port. See the  UART Port Information 
@@ -4361,7 +4359,7 @@
           <div align="center">Command</div>
         </td>
         <td> 
-          <div align="center">Key Index or Virtual Button ID</div>
+          <div align="center">Virtual Button ID</div>
         </td>
         <td> 
           <div align="center">State</div>
@@ -4388,9 +4386,11 @@
         </td>
       </tr>
     </table>
-    <p><b>ID: </b> To control one of the physical buttons use the Key Index of 
-      the button as shown in Figure 1. To control the GPIOs (if configured as 
-      inputs) ID=100, 101, 102, 103. There 8 digital Virtual Buttons provided 
+    <p><b>ID: </b> To control one of the physical buttons use the following IDs 
+      referenceing Figure 1 for Button number; ID=0 for Button 0, ID=1 for Button 
+      1, ID=2 for Joystick Button, ID=6 for Button 2, ID=7 for Button 3, ID=12 
+      for Button 4, and ID=13 for Button 5. To control the GPIOs (if configured 
+      as inputs) ID=100, 101, 102, 103. There 8 digital Virtual Buttons provided 
       on the device. Controlling these Virtual Buttons will cause a General Incoming 
       Data input report with the Virtual Digital Inputs byte modified. ID= 104 
       to 111 correspond to the lowest to highest bit. A special ID=255 is provided 
