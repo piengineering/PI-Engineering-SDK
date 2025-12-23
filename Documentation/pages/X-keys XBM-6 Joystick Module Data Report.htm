@@ -597,9 +597,9 @@
       If 0 the joystick motion will not report game controller x, y, z and if 
       1 the joystick motion will send game controller x, y, z. Use the Enable 
       Game Controller Messages output report to change.<br>
-      <b>ZAxis:</b> 0=Z Axis (factory default), 1=Z Rotation. If set to 0 the 
-      twist of the joystick sends Z Axis, is set to 1 the twist of the joystick 
-      sends Z Rotation. Use the Set Joystick Twist Message output report to change.</p>
+      <b>ZAxis:</b> 0=Z Axis (factory default), 1=Z Rotation. If 0 the twist of 
+      the joystick sends Z Axis, if 1 the twist of the joystick sends Z Rotation. 
+      Use the Set Joystick Twist Message output report to change.</p>
     <p><b>3. Custom Data</b></p>
     <p>This data is returned after an output report: Generate Custom Data is sent. 
     </p>
@@ -2883,7 +2883,7 @@
     </table>
     <p><strong>4. Generate Data</strong></p>
     <p>After sending this output report a General Incoming Data input report will 
-      be generated with bit 2 of PS set (see General Incoming Data). This is useful 
+      be generated with bit 2 of DT set (see General Incoming Data). This is useful 
       in determining the initial state of the device before any data has changed.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
