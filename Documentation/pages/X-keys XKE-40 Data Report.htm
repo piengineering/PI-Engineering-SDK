@@ -213,10 +213,8 @@
       the right end of the device and using a paper clip or similar item depress 
       the program switch while simultaneously replugging the device.</p>
     <p>The XKE-40 and XKE-40 RS232 are standard USB HID devices and are supported 
-      by P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
-      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
-      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
-      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>. 
+      by P.I. Engineering's <a href="https://piengineering.com/pages/programming-x-keys">MacroWorks 
+      3.1, X-keys Basic Setup, X-keys Setup for Mac</a>, and our many <a href="https://github.com/piengineering/PI-Engineering-SDK">SDKs</a>. 
       XKE-40 RS232 is demonstrated in the <a href="RS232CommonSample.htm">RS232 
       Common Sample</a>.</p>
     <h3>X-keys XKE-40 Input Report</h3>
@@ -1211,7 +1209,7 @@
       Received Message by the start and stop bytes of 4 and 5, respectively. The 
       data between the start and stop bytes in the UART Output Report Received 
       Message is decoded from Base64 for this input report. For details on how 
-      to send a UART Output Report Receive Message to the XKE-40 RS232 see the X-blox 
+      to send a UART Output Report Receive Message to the XKE-40 RS232 see the 
       UART Port Information section below. This report can be enabled or disabled 
       using the<span class="style6"> Enable Echo of UART Output Report Received 
       Message</span> output report. The current value can be read on the Descriptor 
@@ -1814,7 +1812,7 @@
     </table>
     <p><strong>5. Generate Data</strong></p>
     <p>After sending this output report a General Incoming Data input report will 
-      be generated with bit 2 of PS set (see General Incoming Data). This is useful 
+      be generated with bit 2 of DT set (see General Incoming Data). This is useful 
       in determining the initial state of the device before any data has changed.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
