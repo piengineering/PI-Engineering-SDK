@@ -1099,7 +1099,7 @@ Public Class Form1
             listBox2.Items.Clear()
 
             listBox2.Items.Add("PID " + (ddata(3) + 1).ToString)
-            listBox2.Items.Add("Keymapstart=" + ddata(4).ToString)
+            listBox2.Items.Add("Keymapstart=" + (ddata(4) + ddata(14)).ToString)
             listBox2.Items.Add("Layer2offset=" + ddata(5).ToString)
             listBox2.Items.Add("OutSize=" + ddata(6).ToString)
             listBox2.Items.Add("ReportSize=" + ddata(7).ToString)
@@ -2082,12 +2082,12 @@ Public Class Form1
 
         'Index (in decimal)
         'Columns-->
-        '  0   6   12   18
-        '  1   7   13   19
-        '  2   8   14   20
-        '  3   9   15   21
-        '  4   10  16   22
-        '  5   11  17   23
+        '   //  0   6   12  18  24  30  36  42  48  54  60  66  72  78  84  90
+        '   //  1   7   13  19  25  31  37  43  49  55  61  67  73  79  85  91
+        '   //  2   8   14  20  26  32  38  44  50  56  62  68  74  80  86  92
+        '   //  3   9   15  21  27  33  39  45  51  57  63  69  75  81  87  93
+        '   //  4   10  16  22  28  34  40  46  52  58  64  70  76  82  88  94
+        '   //  5   11  17  23  29  35  41  47  53  59  65  71  77  83  89  95
         If (selecteddevice <> -1) Then
             wdata(0) = 0
             wdata(1) = 167 '&HA7
@@ -2141,12 +2141,12 @@ Public Class Form1
         'Set individual led 
         'Index (in decimal)
         'Columns-->
-        '  0   6   12   18
-        '  1   7   13   19
-        '  2   8   14   20
-        '  3   9   15   21
-        '  4   10  16   22
-        '  5   11  17   23
+        '   //  0   6   12  18  24  30  36  42  48  54  60  66  72  78  84  90
+        '   //  1   7   13  19  25  31  37  43  49  55  61  67  73  79  85  91
+        '   //  2   8   14  20  26  32  38  44  50  56  62  68  74  80  86  92
+        '   //  3   9   15  21  27  33  39  45  51  57  63  69  75  81  87  93
+        '   //  4   10  16  22  28  34  40  46  52  58  64  70  76  82  88  94
+        '   //  5   11  17  23  29  35  41  47  53  59  65  71  77  83  89  95
 
         'Upper LEDs are bank 1, bankindex = 0
         'Lower LEDs are bank 2, bankindex = 1
@@ -2348,20 +2348,20 @@ Public Class Form1
         'Use the Set Flash Freq to control frequency of blink
         'Index (in decimal)
         'Columns-->
-        'Bank 1 (Upper) LEDs
-        '  0   6   12   18
-        '  1   7   13   19
-        '  2   8   14   20
-        '  3   9   15   21
-        '  4   10  16   22
-        '  5   11  17   23
-        'Bank 2 (Lower) LEDs
-        '  24   30   36   42
-        '  25   31   37   43
-        '  26   32   38   44
-        '  27   33   39   45
-        '  28   34   40   46
-        '  29   35   41   47
+        '   //Bank 1 (Upper) LEDs
+        '   //  0   6   12  18 ... 90
+        '   //  1   7   13  19 ... 91
+        '   //  2   8   14  20 ... 92
+        '   //  3   9   15  21 ... 93
+        '   //  4   10  16  22 ... 94
+        '   //  5   11  17  23 ... 95
+        '   //Bank 2 (Lower) LEDs
+        '   //  96   102  108  114 ... 186
+        '   //  97   103  109  115 ... 187
+        '   //  98   104  110  116 ... 188
+        '   //  99   105  111  117 ... 189
+        '   //  100  106  112  118 ... 190
+        '   //  101  107  113  119 ... 191
 
         If selecteddevice <> -1 Then
             'first get selected index
@@ -2370,7 +2370,7 @@ Public Class Form1
             Dim iindex As Integer
             iindex = CboBL.SelectedIndex
             If CboBankLegacy.SelectedIndex = 1 Then
-                iindex = iindex + 12
+                iindex = iindex + 96
             End If
 
             'now get state

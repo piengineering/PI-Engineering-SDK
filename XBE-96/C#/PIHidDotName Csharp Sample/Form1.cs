@@ -3431,7 +3431,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void ComputePowerLevel()
         {
-            //Using the color1, color2 and dim factors compute the power level, this is for demonstration purposes only, the XBK-16x6 will automatically
+            //Using the color1, color2 and dim factors compute the power level, this is for demonstration purposes only, the unit will automatically
             //deal with power overloads
             int thispower = 0;
            
