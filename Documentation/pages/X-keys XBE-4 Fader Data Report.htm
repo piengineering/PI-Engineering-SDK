@@ -1378,39 +1378,32 @@
           <div align="center"><span class="style6">33</span></div>
         </td>
         <td><span class="style6">0, 218, SleepDisable, 0...</span></td>
-        <td><span class="style6">Disable Sleep of USBe</span></td>
+        <td><span class="style6">Disable Sleep of USB<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">34</span></div>
         </td>
-        <td><span class="style6">0, 143, USBCheckDisable, 0...</span></td>
-        <td><span class="style6">Disable USB Check</span></td>
+        <td><span class="style6">0, 137, K1, K2,..., K16, 0...</span></td>
+        <td><span class="style6">Set AES Key<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">35</span></div>
-        </td>
-        <td><span class="style6">0, 137, K1, K2,..., K16, 0...</span></td>
-        <td><span class="style6">Set AES Keye</span></td>
-      </tr>
-      <tr> 
-        <td> 
-          <div align="center"><span class="style6">36</span></div>
         </td>
         <td><span class="style6">0, 138, IV1, IV2, ..., IV16, 0...</span></td>
         <td><span class="style6">Set AES Initialization Vector</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">37</span></div>
+          <div align="center"><span class="style6">36</span></div>
         </td>
         <td><span class="style6">0, 139, M1, M2, ..., Mx, 0...</span></td>
         <td><span class="style6">AES Encrypt</span></td>
       </tr>
       <tr> 
         <td> 
-          <div align="center"><span class="style6">38</span></div>
+          <div align="center"><span class="style6">37</span></div>
         </td>
         <td><span class="style6">0, 140, E1, E2,...Ex, 0...</span></td>
         <td><span class="style6">AES Decrypt</span></td>
@@ -3201,59 +3194,7 @@
       </tr>
     </table>
     <p><b>SleepDisable: </b> 0=enabled (factory default), 1=disabled </p>
-    <p><strong>34. <span class="style6">Disable Check of USB</span></strong></p>
-    <p>For users of UART port only operating without USB connection. X-keys devices 
-      with UART capability are designed to operate without a USB connection. In 
-      this configuration the USB cord is used for power only. When no USB is detected 
-      and USBCheckDisable=0, the X-keys device will check for the presence of 
-      a USB connection periodically. Normally this presents no problems but to 
-      suppress this periodic check send this report with a value of 1.</p>
-    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
-      <tr class="style6"> 
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3"> Byte 1*</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 2</span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Byte 3 </span></div>
-        </td>
-        <td width="10%" bgcolor="#CCCCCC"> 
-          <div align="center"><span class="style3">Bytes 4-36</span></div>
-        </td>
-      </tr>
-      <tr bgcolor="#FFFF00" class="style6"> 
-        <td> 
-          <div align="center">Constant</div>
-        </td>
-        <td> 
-          <div align="center">Command</div>
-        </td>
-        <td> 
-          <div align="center">USB Check Disable</div>
-        </td>
-        <td> 
-          <div align="center">Constant</div>
-        </td>
-      </tr>
-      <tr class="style6"> 
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">143</div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>USBCheckDisable</b></div>
-        </td>
-        <td bgcolor="#CCCCCC"> 
-          <div align="center">0</div>
-        </td>
-      </tr>
-    </table>
-    <p><b>USBCheckDisable: </b> 0=enabled (factory default), 1=disabled </p>
-    <p><strong>35. Set AES Key</strong></p>
+    <p><strong>34. Set AES Key</strong></p>
     <p>Sets the user defined Advanced Encryption Standard (AES) key. Remember 
       these numbers as they are required to check for the key. This is intended 
       to be done once by the developer prior to sale. See <a href="aesdongle.htm">AES 
@@ -3402,7 +3343,7 @@
     <p><b>K1, K2, ..., K16:</b> The 16 byte of user defined AES key, any number 
       0-255, however all 0s is invalid.<br>
     </p>
-    <p><strong>36. Set AES Intialization Vector</strong></p>
+    <p><strong>35. Set AES Intialization Vector</strong></p>
     <p>This command sets the AES initialization vector. This command is used in 
       conjuction with Set AES Key and AES Encryption to check the AES dongle. 
       The initialization vector must be set before each encryption and decryption 
@@ -3551,7 +3492,7 @@
     </table>
     <p><b>IV1, IV2, ..., IV16:</b> The 16 byte of user determined AES initialization 
       vector, any number 0-255, however all 0s is invalid.</p>
-    <p><strong>37. AES Encrypt</strong></p>
+    <p><strong>36. AES Encrypt</strong></p>
     <p>This command encrypts a user defined message using AES-CBC mode and returns 
       the results in an AES Encrypted Data input report. The AES initialization 
       vector is cleared in the X-keys following this command. This command is 
