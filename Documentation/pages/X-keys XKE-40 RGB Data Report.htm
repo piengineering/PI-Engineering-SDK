@@ -2844,8 +2844,9 @@
             <div align="center">2</div>
           </div>
         </td>
-        <td><span class="style6">0, 179, PinIndex, State, 0...</span></td>
-        <td><span class="style6">Index Based Set GPIO Outputs</span></td>
+        <td><span class="style6">0, 179, Index, State, 0...</span></td>
+        <td><span class="style6">Index Based Set GPIO Outputs and Set Green Red 
+          Indicator LEDs</span></td>
       </tr>
       <tr> 
         <td height="24"> 
@@ -3189,7 +3190,8 @@
       bit 4=GPIO pin 4. Bit is 0 for off, 1 for on. For example a value of 5 (0101) 
       turns on GPIO pin 1 and GPIO pin 3 and turns off GPIO pin 2 and GPIO pin 
       4.</p>
-    <p><strong>2. Index Based Set GPIO Outputs</strong></p>
+    <p><strong>2. Index Based Set GPIO Outputs and Set Green or Red Indicator 
+      LEDs</strong></p>
     <p>One of two methods for controlling the GPIO outputs. If flashing of output 
       is desired this method must be used.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
@@ -3213,7 +3215,7 @@
       <tr bgcolor="#FFFF00" class="style6"> 
         <td>Constant</td>
         <td>Command</td>
-        <td>Pin Index</td>
+        <td>Pin or Indicator LED Index</td>
         <td> State</td>
         <td>Constant</td>
       </tr>
@@ -3225,19 +3227,20 @@
           <div align="center">179</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>PinIndex</b></div>
+          <div align="center"><b>Index</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center"><b>PinState</b></div>
+          <div align="center"><b>State</b></div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center">0</div>
         </td>
       </tr>
     </table>
-    <p><b>PinIndex: </b>1=GPIO pin 1, 2=GPIO pin 2, 3=GPIO pin 3, 4=GPIO pin 4<br>
-      <b>PinState: </b>0=off, 1=on and 2=flash. Set the frequency of the flash 
-      with output report Set Frequency of Flash</p>
+    <p><b>Index: </b>1=GPIO pin 1, 2=GPIO pin 2, 3=GPIO pin 3, 4=GPIO pin 4, 6=Green 
+      Indicator LED, 7=Red Indicator LED<br>
+      <b>State: </b>0=off, 1=on and 2=flash. Set the frequency of the flash with 
+      output report Set Frequency of Flash</p>
     <p><strong>3. Set Unit ID</strong></p>
     <p>Send this output report to set the Unit ID of the device. This is useful 
       if connecting more than one of the same device to the a computer.</p>
