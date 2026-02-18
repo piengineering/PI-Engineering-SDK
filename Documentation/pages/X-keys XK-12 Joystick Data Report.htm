@@ -91,18 +91,13 @@
       Usage 6) and Joystick (Hid Usage Page 1, Hid Usage 4). The use of this PID 
       is mainly for storing macros directly in the memory of the X-keys device 
       using our <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
-      3.1, </a><a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
-      Basic Setup</a>, or <a href="https://xkeys.com/software/mac.html">X-keys 
-      Setup for Mac</a>. Once the macros are stored they will work on any computer 
+      3.1, </a>X-keys Basic Setup, or X-keys Setup for Mac. Once the macros are stored they will work on any computer 
       or OS that supports HID.<br>
       PID #3 Endpoints: Consumer Usage Page Input and Output (Hid Usage Page 12, 
       Hid Usage 1), Mouse (Hid Usage Page 1, Hid Usage 2), Keyboard (Hid Usage 
       Page 1, Hid Usage 6). </p>
-    <p>X-keys XK-12 Joystick is a standard USB HID device and is supported by 
-      P.I. Engineering's <a href="https://xkeys.com/software/softwarewindows/softwaremacroworks.html">Macroworks 
-      3.1</a>, <a href="https://xkeys.com/software/softwarewindows/softwaremacroworkshw.html">X-keys 
-      Basic Setup</a>, <a href="https://xkeys.com/software/mac.html">X-keys Setup 
-      for Mac</a>, and our many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+    <p>X-keys XK-12 Joystick is a standard USB HID device and is supported by P.I. Engineering's <a href="https://piengineering.com/pages/programming-x-keys">MacroWorks 
+      3.1, X-keys Basic Setup, X-keys Setup for Mac</a>, and our many <a href="https://github.com/piengineering/PI-Engineering-SDK">SDKs</a>.</p>
     <h3>X-keys XK-12 Joystick Input Report</h3>
     <img src="images/XK-12%20Joystick.jpg" alt="X-keys Xk-12 Joystick" name="boxImage" border="0" id="boxImage" width="283" height="434" /> 
     <p><em>Figure 1</em>: X-keys XK-12 Joystick key reference.</p>
@@ -1244,7 +1239,7 @@
       backlighting. Note because there is a limited number of times the EEProm 
       can be written to, it is not a good idea to do this often.</p>
     <p><strong>14. Enable/Disable Native Joystick</strong></p>
-    <p>Send this output report to change between PIDs.</p>
+    <p>Send this output report to enable or disable the native joystick.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
         <td width="10%" bgcolor="#CCCCCC"> 
@@ -1271,7 +1266,7 @@
           <div align="center">0</div>
         </td>
         <td bgcolor="#CCCCCC"> 
-          <div align="center">204</div>
+          <div align="center">216</div>
         </td>
         <td bgcolor="#CCCCCC"> 
           <div align="center"><b>Enable</b></div>
@@ -1281,9 +1276,9 @@
         </td>
       </tr>
     </table>
-    <p><b>Enable:</b> 1 to enable the native joystick, 0 to disable the native 
-      joystick. If enabled the joystick behaves as a true game controller joystick. 
-      Open the Game Controllers panel to test.</p>
+    <p><b>Enable:</b> 1 to enable the native joystick (factory default), 0 to 
+      disable the native joystick. If enabled the joystick behaves as a true game 
+      controller joystick. Open the Game Controllers panel to test.</p>
     <p><strong>15. Change PID</strong></p>
     <p>Send this output report to change between PIDs.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
