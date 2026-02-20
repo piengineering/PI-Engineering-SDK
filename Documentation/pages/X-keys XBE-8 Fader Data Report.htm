@@ -151,7 +151,7 @@
       with KVMs. To exit KVM mode unplug the device then immediately after re-plugging 
       the device in, toggle the Scroll Lock key on the keyboard 10-15 times.</p>
     <p>The XBE-8 Fader is a standard USB HID device and is supported by P.I. Engineering's 
-      many <a href="https://xkeys.com/software/developer.html">SDKs</a>.</p>
+      many SDKs.</p>
     <h3>XBE-8 Fader Input Report</h3>
     <img src="images/XBE-8%20Fader.png" alt="XBE-8 Fader " name="boxImage" border="0" id="boxImage" /> 
     <p><em>Figure 1</em>: XBE-8 Fader button, LED, and fader reference.</p>
@@ -1462,21 +1462,21 @@
           <div align="center"><span class="style6">33</span></div>
         </td>
         <td><span class="style6">0, 218, SleepDisable, 0...</span></td>
-        <td><span class="style6">Disable Sleep of USBe</span></td>
+        <td><span class="style6">Disable Sleep of USB<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">34</span></div>
         </td>
         <td><span class="style6">0, 143, USBCheckDisable, 0...</span></td>
-        <td><span class="style6">Disable USB Check</span></td>
+        <td><span class="style6">Disable USB Check<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
           <div align="center"><span class="style6">35</span></div>
         </td>
         <td><span class="style6">0, 137, K1, K2,..., K16, 0...</span></td>
-        <td><span class="style6">Set AES Keye</span></td>
+        <td><span class="style6">Set AES Key<sup>e</sup></span></td>
       </tr>
       <tr> 
         <td> 
@@ -1625,7 +1625,7 @@
     </table>
     <p><strong>4. Generate Data</strong></p>
     <p>After sending this output report a General Incoming Data input report will 
-      be generated with bit 2 of PS set (see General Incoming Data). This is useful 
+      be generated with bit 2 of DT set (see General Incoming Data). This is useful 
       in determining the initial state of the device before any data has changed.</p>
     <table  width="60%" border="4" cellspacing="2" cellpadding="2">
       <tr class="style6"> 
