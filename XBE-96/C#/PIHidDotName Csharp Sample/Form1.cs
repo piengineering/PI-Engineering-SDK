@@ -2704,8 +2704,7 @@ namespace PIHidDotName_Csharp_Sample
 
         private void btnGetBLState_Click(object sender, EventArgs e)
         {
-            //This command is a legacy command meant to mimick the Set Intensity command on non-RGB LED X-keys devices.
-            //Same as "Dim Factor" 
+            // Request current state of LED and dim factors
             if (selecteddevice != -1) //do nothing if not enumerated
             {
 
@@ -2797,7 +2796,7 @@ namespace PIHidDotName_Csharp_Sample
                     wData[j] = 0;
                 }
                 wData[1] = 181; //0xB5
-                wData[2] = (byte)(iindex); //Index
+                wData[2] = (byte)(legacyindex); //Index
                 wData[3] = (byte)state; //0=off, 1=on, 2=flash
 
                 int result = 404;
