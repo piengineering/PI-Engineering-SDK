@@ -1658,8 +1658,8 @@
             // 
             this.cboBank.FormattingEnabled = true;
             this.cboBank.Items.AddRange(new object[] {
-            "upper",
-            "lower",
+            "bank 1",
+            "bank 2",
             "both"});
             this.cboBank.Location = new System.Drawing.Point(93, 440);
             this.cboBank.Name = "cboBank";
@@ -1737,8 +1737,8 @@
             // 
             this.cboBankLegacy.FormattingEnabled = true;
             this.cboBankLegacy.Items.AddRange(new object[] {
-            "Bank 1",
-            "Bank 2"});
+            "bank 1",
+            "bank 2"});
             this.cboBankLegacy.Location = new System.Drawing.Point(98, 745);
             this.cboBankLegacy.Name = "cboBankLegacy";
             this.cboBankLegacy.Size = new System.Drawing.Size(57, 21);
