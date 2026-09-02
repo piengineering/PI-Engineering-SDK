@@ -1,4 +1,7 @@
 ﻿Imports System.Text
+Imports System
+Imports System.IO
+Imports System.Security.Cryptography
 
 
 Public Class Form1
@@ -18,6 +21,10 @@ Public Class Form1
     Dim lastval3 As Byte 'previous value of the first button
     Dim EnumerationSuccess As Boolean
     Dim sctokey As Integer() = New Integer(255) {} 'map byte/bit "scan code" to key number listed in SDK documentation
+
+    Dim myAes As Aes
+    Dim myKey As Byte()
+    Dim myIV As Byte()
    
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         selecteddevice = -1
@@ -283,6 +290,20 @@ Public Class Form1
                 c = lbldeltatime
                 SetText("delta time: " + deltatime.ToString + " ms")
                 saveabsolutetime = absolutetime
+            ElseIf (data(2) = 139) Then 'encrypt result
+                c = lblXkeysEncrypt
+                Dim encryptedbytes As String = ""
+                For i As Integer = 0 To 32 - 1
+                    encryptedbytes = encryptedbytes + BinToHex(data(3 + i)) + ", "
+                Next
+                SetText(encryptedbytes)
+            ElseIf (data(2) = 140) Then 'decrypt result
+                c = lblXkeysDecrypt
+                Dim decryptedbytes As String = ""
+                For i As Integer = 0 To 32 - 1
+                    decryptedbytes = decryptedbytes + BinToHex(data(3 + i)) + ", "
+                Next
+                SetText(decryptedbytes)
             End If
         End If
 
@@ -1061,4 +1082,466 @@ Public Class Form1
     End Sub
 
 
+    Private Sub BtnSetDongle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSetDongle.Click
+        If selecteddevice <> -1 Then
+
+            'pick a secret 16 byte key and save this Key!!
+            myKey(0) = 7
+            myKey(1) = 58
+            myKey(2) = 33
+            myKey(3) = 243
+            myKey(4) = 7
+            myKey(5) = 58
+            myKey(6) = 33
+            myKey(7) = 243
+            myKey(8) = 7
+            myKey(9) = 58
+            myKey(10) = 33
+            myKey(11) = 243
+            myKey(12) = 7
+            myKey(13) = 58
+            myKey(14) = 33
+            myKey(15) = 243
+
+            'Write AES key to X-keys, this key is stored in eeprom
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 137 '&H89 set AES key
+
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myKey(i)
+            Next
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - set AES Dongle"
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnCheckDongle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCheckDongle.Click
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+
+            'Before each encryption, you MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.
+            Dim rnd As Random = New Random()
+            For i As Integer = 0 To 15
+                myIV(i) = CByte(rnd.Next(0, 254)) 'valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+            Next
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A set AES IV
+
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            'Encrypt
+            Dim savecallbackstate As Boolean = devices(selecteddevice).callNever
+            devices(selecteddevice).callNever = True
+
+            Dim mymessage As String = "Enter any phrase"
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 139 '&H8B Encrypt
+            For i As Integer = 0 To mymessage.Length - 1
+                wdata(2 + i) = CByte(AscW(mymessage(i)))
+            Next
+
+            result = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - check AES Dongle"
+            End If
+
+            'read back the encrypted data
+            Dim encrypteddata As Byte() = New Byte(31) {}
+            Dim data As Byte() = Nothing
+            Dim countout As Integer = 0
+            data = New Byte(79) {}
+            Dim ret As Integer = devices(selecteddevice).BlockingReadData(data, 100)
+
+            While (ret = 0 AndAlso data(2) <> 139) OrElse ret = 304
+
+                If ret = 304 Then
+                    countout += 99
+                End If
+
+                countout += 1
+                If countout > 1000 Then Exit While
+                ret = devices(selecteddevice).BlockingReadData(data, 100)
+            End While
+
+            For i As Integer = 0 To 32 - 1
+                encrypteddata(i) = data(i + 3)
+            Next
+
+            devices(selecteddevice).callNever = savecallbackstate
+
+            'Decrypt
+            'use the same secret 16 byte key that was used in Set Dongle and the same IV as used above to encrypt
+            myKey(0) = 7
+            myKey(1) = 58
+            myKey(2) = 33
+            myKey(3) = 243
+            myKey(4) = 7
+            myKey(5) = 58
+            myKey(6) = 33
+            myKey(7) = 243
+            myKey(8) = 7
+            myKey(9) = 58
+            myKey(10) = 33
+            myKey(11) = 243
+            myKey(12) = 7
+            myKey(13) = 58
+            myKey(14) = 33
+            myKey(15) = 243
+
+            Dim decryptresults As String = DecryptStringFromBytes_Aes(encrypteddata, myKey, myIV, CipherMode.CBC, PaddingMode.Zeros)
+            'remove padded 0s
+            decryptresults = decryptresults.Replace("\0", String.Empty)
+
+            TextBox2.Visible = True
+            TextBox2.Text = decryptresults 'must do this for comparison??? otherwise it fails - compiler bug??
+            decryptresults = TextBox2.Text
+            TextBox2.Visible = False
+
+            If (mymessage = decryptresults) Then
+                lblAESPassFail.Text = "Pass"
+                lblAESPassFail.BackColor = Color.Lime
+            Else
+                lblAESPassFail.Text = "Fail"
+                lblAESPassFail.BackColor = Color.Red
+            End If
+
+        End If
+    End Sub
+
+    Private Shared Function DecryptStringFromBytes_Aes(ByVal cipherText As Byte(), ByVal Key As Byte(), ByVal IV As Byte(), ByVal thismode As CipherMode, ByVal thispadding As PaddingMode) As String
+        If cipherText Is Nothing OrElse cipherText.Length <= 0 Then Throw New ArgumentNullException("cipherText")
+        If Key Is Nothing OrElse Key.Length <= 0 Then Throw New ArgumentNullException("Key")
+        If IV Is Nothing OrElse IV.Length <= 0 Then Throw New ArgumentNullException("IV")
+        Dim plaintext As String = Nothing
+
+        Using aesAlg As Aes = Aes.Create()
+            aesAlg.Key = Key
+            aesAlg.IV = IV
+            aesAlg.Mode = thismode
+            aesAlg.Padding = thispadding
+            Dim decryptor As ICryptoTransform = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV)
+
+            Using msDecrypt As MemoryStream = New MemoryStream(cipherText)
+
+                Using csDecrypt As CryptoStream = New CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)
+
+                    Using srDecrypt As StreamReader = New StreamReader(csDecrypt)
+                        plaintext = srDecrypt.ReadToEnd()
+                    End Using
+                End Using
+            End Using
+        End Using
+
+        Return plaintext
+    End Function
+
+    Private Shared Function EncryptStringToBytes_Aes(ByVal plainText As String, ByVal Key As Byte(), ByVal IV As Byte(), ByVal thismode As CipherMode, ByVal thispadding As PaddingMode) As Byte()
+        If plainText Is Nothing OrElse plainText.Length <= 0 Then Throw New ArgumentNullException("plainText")
+        If Key Is Nothing OrElse Key.Length <= 0 Then Throw New ArgumentNullException("Key")
+        If IV Is Nothing OrElse IV.Length <= 0 Then Throw New ArgumentNullException("IV")
+        Dim encrypted As Byte()
+
+        Using aesAlg As Aes = Aes.Create()
+            aesAlg.Key = Key
+            aesAlg.IV = IV
+            aesAlg.Mode = thismode
+            aesAlg.Padding = thispadding
+            Dim encryptor As ICryptoTransform = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV)
+
+            Using msEncrypt As MemoryStream = New MemoryStream()
+
+                Using csEncrypt As CryptoStream = New CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)
+
+                    Using swEncrypt As StreamWriter = New StreamWriter(csEncrypt)
+                        swEncrypt.Write(plainText)
+                    End Using
+
+                    encrypted = msEncrypt.ToArray()
+                End Using
+            End Using
+        End Using
+
+        Return encrypted
+    End Function
+
+
+
+    Private Sub btnRawAESSetKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRawAESSetKey.Click
+        'Sets the 16 byte AES key in the X-keys, keep track of this key, it is are required for decryption
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+
+            myAes.GenerateKey()
+            'save this key!
+            For j As Integer = 0 To 15
+                myKey(j) = myAes.Key(j)
+            Next
+            'Write Key to X-keys, this key is stored in eeprom
+            For j As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(j) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 137 '&H89 Set AES Key
+            For j As Integer = 0 To 15
+                wdata(2 + j) = myKey(j)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result
+            Else
+                LblStatus.Text = "Write Success - Set AES Key"
+            End If
+        End If
+    End Sub
+
+    Private Sub btnAESEncrypt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAESEncrypt.Click
+        'Encrypt AES
+        If selecteddevice <> -1 Then 'do nothing if not enumerated
+
+            'input data (up to 32 bytes), outputs encryption
+            'AES Key should have been previously set and recorded (if decrypting)
+
+            'Before each encryption MUST set the initialization vector. The initialzation vector is set to all 0s after each encryption and decryption in the X-keys.   
+            Dim rnd As Random = New Random()
+            For i As Integer = 0 To 15
+                myIV(i) = CByte(rnd.Next(0, 254)) 'valid values are 0-255 HOWEVER all 0s is not allowed because that is interpreted as an non-initialized IV
+            Next
+
+            'set initialization vector
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A Set AES IV
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            Dim mymessage As String = txtXkeysEncrypt.Text
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 139 '&H8B Set AES Encrypt
+            For i As Integer = 0 To mymessage.Length - 1
+                wdata(2 + i) = CByte(AscW(mymessage(i)))
+            Next
+
+            result = 404
+            While result = 404
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result
+            Else
+                LblStatus.Text = "Write Success - AES Encrypt"
+            End If
+
+            'results in callback
+
+        End If
+    End Sub
+
+    Private Sub btnXkeysDecrypt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnXkeysDecrypt.Click
+        If selecteddevice <> -1 Then
+            'input encrypted data (up to 32 bytes), outputs decryption
+            'AES Key and IV should have been previously set and recorded
+
+            'Before each decryption MUST set the initialization vector with that used for the encryption.
+
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 138 '&H8A Set AES IV
+            For i As Integer = 0 To 15
+                wdata(2 + i) = myIV(i)
+            Next
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            'Decrypt
+            Dim decryptthis = lblXkeysEncrypt.Text
+            If decryptthis = "encrypt result" Then
+                MessageBox.Show("invalid encryption results, make sure callback is on before encrypting")
+                Return
+            End If
+
+
+            Dim encryptedbytes As Byte() = New Byte(31) {}
+            Dim count As Integer = 0
+            While (decryptthis.Length > 0)
+                Dim pos As Integer = decryptthis.IndexOf(",")
+                If (pos <> -1) Then
+                    encryptedbytes(count) = HexToBin(decryptthis.Substring(0, 2))
+                    decryptthis = decryptthis.Remove(0, pos + 1).Trim()
+                    count = count + 1
+                End If
+            End While
+
+            'input encrypted data (up to 32 bytes), outputs decryption
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+            wdata(0) = 0
+            wdata(1) = 140 '&H8C 
+            For i As Integer = 0 To 32 - 1
+                wdata(2 + i) = encryptedbytes(i)
+            Next
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success - AES Decrypt"
+            End If
+            'results in callback
+        End If
+    End Sub
+
+    Private Sub btnBeep_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBeep.Click
+        '//For units with optional annunciator feature, sounds a beep for the desired volume, desired frequency, and desired duration.
+        '//The desired frequency of the beep sound is determined by entering a 2 byte divider value, the higher this value, the lower the frequency of the sound.
+        If selecteddevice <> -1 Then
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 200 'c8h
+            wdata(2) = txtVol.Text
+            Dim newdivider As Integer = txtDivider.Text
+            wdata(3) = CByte((newdivider And &HFF))
+            wdata(4) = CByte(newdivider >> 8)
+            wdata(5) = txtBeepDuration.Text '0 means never turn off beep, user must manually turn it off with a volume=0 command. 1-255 is ms duration /10 so actual durations are 10ms-2550ms
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+
+        End If
+    End Sub
+
+    Private Sub btnBeepOff_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBeepOff.Click
+        '//For units with optional annunciator feature, sounds a beep for the desired volume, desired frequency, and desired duration.
+        '//The desired frequency of the beep sound is determined by entering a 2 byte divider value, the higher this value, the lower the frequency of the sound.
+        If selecteddevice <> -1 Then
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 200 'c8h
+            wdata(2) = 0
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+
+        End If
+    End Sub
+
+    Private Sub btnBeepContinuous_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBeepContinuous.Click
+        '//For units with optional annunciator feature, sounds a beep for the desired volume, desired frequency, and desired duration.
+        '//The desired frequency of the beep sound is determined by entering a 2 byte divider value, the higher this value, the lower the frequency of the sound.
+        If selecteddevice <> -1 Then
+            For i As Integer = 0 To devices(selecteddevice).WriteLength - 1
+                wdata(i) = 0
+            Next
+
+            wdata(0) = 0
+            wdata(1) = 200 'c8h
+            wdata(2) = txtVol.Text
+            Dim newdivider As Integer = txtDivider.Text
+            wdata(3) = CByte((newdivider And &HFF))
+            wdata(4) = CByte(newdivider >> 8)
+            wdata(5) = 0 '0 means never turn off beep, user must manually turn it off with a volume=0 command. 1-255 is ms duration /10 so actual durations are 10ms-2550ms
+
+            Dim result As Integer
+            result = 404
+            While (result = 404)
+                result = devices(selecteddevice).WriteData(wdata)
+            End While
+
+            If result <> 0 Then
+                LblStatus.Text = "Write Fail: " + result.ToString
+            Else
+                LblStatus.Text = "Write Success"
+            End If
+
+        End If
+    End Sub
 End Class

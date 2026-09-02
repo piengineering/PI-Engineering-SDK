@@ -76,6 +76,28 @@ Partial Class Form1
         Me.lblSiliconGeneratedID = New System.Windows.Forms.Label()
         Me.label57 = New System.Windows.Forms.Label()
         Me.btnSiliconGeneratedID = New System.Windows.Forms.Button()
+        Me.lblXkeysDecrypt = New System.Windows.Forms.Label()
+        Me.btnXkeysDecrypt = New System.Windows.Forms.Button()
+        Me.lblXkeysEncrypt = New System.Windows.Forms.Label()
+        Me.txtXkeysEncrypt = New System.Windows.Forms.TextBox()
+        Me.label62 = New System.Windows.Forms.Label()
+        Me.btnAESEncrypt = New System.Windows.Forms.Button()
+        Me.btnRawAESSetKey = New System.Windows.Forms.Button()
+        Me.lblAESPassFail = New System.Windows.Forms.Label()
+        Me.BtnCheckDongle = New System.Windows.Forms.Button()
+        Me.BtnSetDongle = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.btnBeepOff = New System.Windows.Forms.Button()
+        Me.btnBeep = New System.Windows.Forms.Button()
+        Me.label9 = New System.Windows.Forms.Label()
+        Me.txtDivider = New System.Windows.Forms.TextBox()
+        Me.label8 = New System.Windows.Forms.Label()
+        Me.txtVol = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtBeepDuration = New System.Windows.Forms.TextBox()
+        Me.btnBeepContinuous = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -604,12 +626,237 @@ Partial Class Form1
         Me.btnSiliconGeneratedID.Text = "Read ID"
         Me.btnSiliconGeneratedID.UseVisualStyleBackColor = True
         '
+        'lblXkeysDecrypt
+        '
+        Me.lblXkeysDecrypt.AutoSize = True
+        Me.lblXkeysDecrypt.Location = New System.Drawing.Point(662, 517)
+        Me.lblXkeysDecrypt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblXkeysDecrypt.Name = "lblXkeysDecrypt"
+        Me.lblXkeysDecrypt.Size = New System.Drawing.Size(70, 13)
+        Me.lblXkeysDecrypt.TabIndex = 650
+        Me.lblXkeysDecrypt.Text = "decrypt result"
+        '
+        'btnXkeysDecrypt
+        '
+        Me.btnXkeysDecrypt.Location = New System.Drawing.Point(522, 512)
+        Me.btnXkeysDecrypt.Name = "btnXkeysDecrypt"
+        Me.btnXkeysDecrypt.Size = New System.Drawing.Size(132, 23)
+        Me.btnXkeysDecrypt.TabIndex = 649
+        Me.btnXkeysDecrypt.Text = "AES Decrypt*"
+        Me.btnXkeysDecrypt.UseVisualStyleBackColor = True
+        '
+        'lblXkeysEncrypt
+        '
+        Me.lblXkeysEncrypt.AutoSize = True
+        Me.lblXkeysEncrypt.Location = New System.Drawing.Point(751, 488)
+        Me.lblXkeysEncrypt.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblXkeysEncrypt.Name = "lblXkeysEncrypt"
+        Me.lblXkeysEncrypt.Size = New System.Drawing.Size(70, 13)
+        Me.lblXkeysEncrypt.TabIndex = 648
+        Me.lblXkeysEncrypt.Text = "encrypt result"
+        '
+        'txtXkeysEncrypt
+        '
+        Me.txtXkeysEncrypt.Location = New System.Drawing.Point(660, 485)
+        Me.txtXkeysEncrypt.Name = "txtXkeysEncrypt"
+        Me.txtXkeysEncrypt.Size = New System.Drawing.Size(83, 20)
+        Me.txtXkeysEncrypt.TabIndex = 647
+        Me.txtXkeysEncrypt.Text = "Encrypt Me"
+        '
+        'label62
+        '
+        Me.label62.AutoSize = True
+        Me.label62.Location = New System.Drawing.Point(519, 440)
+        Me.label62.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label62.Name = "label62"
+        Me.label62.Size = New System.Drawing.Size(109, 13)
+        Me.label62.TabIndex = 646
+        Me.label62.Text = "AES Encrypt/Decrypt"
+        '
+        'btnAESEncrypt
+        '
+        Me.btnAESEncrypt.Location = New System.Drawing.Point(522, 483)
+        Me.btnAESEncrypt.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAESEncrypt.Name = "btnAESEncrypt"
+        Me.btnAESEncrypt.Size = New System.Drawing.Size(132, 23)
+        Me.btnAESEncrypt.TabIndex = 645
+        Me.btnAESEncrypt.Text = "AES Encrypt*"
+        Me.btnAESEncrypt.UseVisualStyleBackColor = True
+        '
+        'btnRawAESSetKey
+        '
+        Me.btnRawAESSetKey.Location = New System.Drawing.Point(522, 455)
+        Me.btnRawAESSetKey.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRawAESSetKey.Name = "btnRawAESSetKey"
+        Me.btnRawAESSetKey.Size = New System.Drawing.Size(132, 23)
+        Me.btnRawAESSetKey.TabIndex = 644
+        Me.btnRawAESSetKey.Text = "Set AES Key"
+        Me.btnRawAESSetKey.UseVisualStyleBackColor = True
+        '
+        'lblAESPassFail
+        '
+        Me.lblAESPassFail.AutoSize = True
+        Me.lblAESPassFail.Location = New System.Drawing.Point(757, 411)
+        Me.lblAESPassFail.Name = "lblAESPassFail"
+        Me.lblAESPassFail.Size = New System.Drawing.Size(51, 13)
+        Me.lblAESPassFail.TabIndex = 643
+        Me.lblAESPassFail.Text = "Pass/Fail"
+        '
+        'BtnCheckDongle
+        '
+        Me.BtnCheckDongle.Location = New System.Drawing.Point(639, 406)
+        Me.BtnCheckDongle.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnCheckDongle.Name = "BtnCheckDongle"
+        Me.BtnCheckDongle.Size = New System.Drawing.Size(112, 22)
+        Me.BtnCheckDongle.TabIndex = 642
+        Me.BtnCheckDongle.Text = "Check AES Key"
+        Me.BtnCheckDongle.UseVisualStyleBackColor = True
+        '
+        'BtnSetDongle
+        '
+        Me.BtnSetDongle.Location = New System.Drawing.Point(522, 406)
+        Me.BtnSetDongle.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtnSetDongle.Name = "BtnSetDongle"
+        Me.BtnSetDongle.Size = New System.Drawing.Size(112, 22)
+        Me.BtnSetDongle.TabIndex = 641
+        Me.BtnSetDongle.Text = "Set AES Key"
+        Me.BtnSetDongle.UseVisualStyleBackColor = True
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(519, 386)
+        Me.Label29.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(41, 13)
+        Me.Label29.TabIndex = 640
+        Me.Label29.Text = "Dongle"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(639, 430)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 651
+        Me.TextBox2.Visible = False
+        '
+        'btnBeepOff
+        '
+        Me.btnBeepOff.Location = New System.Drawing.Point(798, 626)
+        Me.btnBeepOff.Name = "btnBeepOff"
+        Me.btnBeepOff.Size = New System.Drawing.Size(124, 23)
+        Me.btnBeepOff.TabIndex = 658
+        Me.btnBeepOff.Text = "Beep Off"
+        Me.btnBeepOff.UseVisualStyleBackColor = True
+        '
+        'btnBeep
+        '
+        Me.btnBeep.Location = New System.Drawing.Point(522, 626)
+        Me.btnBeep.Name = "btnBeep"
+        Me.btnBeep.Size = New System.Drawing.Size(124, 23)
+        Me.btnBeep.TabIndex = 657
+        Me.btnBeep.Text = "Beep On for Duration"
+        Me.btnBeep.UseVisualStyleBackColor = True
+        '
+        'label9
+        '
+        Me.label9.Location = New System.Drawing.Point(686, 582)
+        Me.label9.Name = "label9"
+        Me.label9.Size = New System.Drawing.Size(88, 48)
+        Me.label9.TabIndex = 656
+        Me.label9.Text = "freq divider (higher value = lower frequency)"
+        '
+        'txtDivider
+        '
+        Me.txtDivider.Location = New System.Drawing.Point(778, 579)
+        Me.txtDivider.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtDivider.Name = "txtDivider"
+        Me.txtDivider.Size = New System.Drawing.Size(74, 20)
+        Me.txtDivider.TabIndex = 655
+        Me.txtDivider.Text = "800"
+        '
+        'label8
+        '
+        Me.label8.AutoSize = True
+        Me.label8.Location = New System.Drawing.Point(529, 582)
+        Me.label8.Name = "label8"
+        Me.label8.Size = New System.Drawing.Size(106, 13)
+        Me.label8.TabIndex = 654
+        Me.label8.Text = "vol  (0=off, max=245)"
+        '
+        'txtVol
+        '
+        Me.txtVol.Location = New System.Drawing.Point(640, 579)
+        Me.txtVol.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtVol.Name = "txtVol"
+        Me.txtVol.Size = New System.Drawing.Size(30, 20)
+        Me.txtVol.TabIndex = 653
+        Me.txtVol.Text = "127"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(521, 560)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(224, 13)
+        Me.Label10.TabIndex = 652
+        Me.Label10.Text = "Beep Setting for Optional Annunciator Add-On"
+        '
+        'Label11
+        '
+        Me.Label11.Location = New System.Drawing.Point(863, 579)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(121, 48)
+        Me.Label11.TabIndex = 660
+        Me.Label11.Text = "duration  (0=always on, max=255=2.55sec)"
+        '
+        'txtBeepDuration
+        '
+        Me.txtBeepDuration.Location = New System.Drawing.Point(989, 576)
+        Me.txtBeepDuration.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtBeepDuration.Name = "txtBeepDuration"
+        Me.txtBeepDuration.Size = New System.Drawing.Size(30, 20)
+        Me.txtBeepDuration.TabIndex = 659
+        Me.txtBeepDuration.Text = "1"
+        '
+        'btnBeepContinuous
+        '
+        Me.btnBeepContinuous.Location = New System.Drawing.Point(660, 626)
+        Me.btnBeepContinuous.Name = "btnBeepContinuous"
+        Me.btnBeepContinuous.Size = New System.Drawing.Size(124, 23)
+        Me.btnBeepContinuous.TabIndex = 661
+        Me.btnBeepContinuous.Text = "Beep On Continuous"
+        Me.btnBeepContinuous.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(996, 708)
+        Me.ClientSize = New System.Drawing.Size(1046, 708)
+        Me.Controls.Add(Me.btnBeepContinuous)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.txtBeepDuration)
+        Me.Controls.Add(Me.btnBeepOff)
+        Me.Controls.Add(Me.btnBeep)
+        Me.Controls.Add(Me.label9)
+        Me.Controls.Add(Me.txtDivider)
+        Me.Controls.Add(Me.label8)
+        Me.Controls.Add(Me.txtVol)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.lblXkeysDecrypt)
+        Me.Controls.Add(Me.btnXkeysDecrypt)
+        Me.Controls.Add(Me.lblXkeysEncrypt)
+        Me.Controls.Add(Me.txtXkeysEncrypt)
+        Me.Controls.Add(Me.label62)
+        Me.Controls.Add(Me.btnAESEncrypt)
+        Me.Controls.Add(Me.btnRawAESSetKey)
+        Me.Controls.Add(Me.lblAESPassFail)
+        Me.Controls.Add(Me.BtnCheckDongle)
+        Me.Controls.Add(Me.BtnSetDongle)
+        Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.lblSiliconGeneratedID)
         Me.Controls.Add(Me.label57)
         Me.Controls.Add(Me.btnSiliconGeneratedID)
@@ -725,5 +972,27 @@ Partial Class Form1
     Private WithEvents lblSiliconGeneratedID As System.Windows.Forms.Label
     Private WithEvents label57 As System.Windows.Forms.Label
     Private WithEvents btnSiliconGeneratedID As System.Windows.Forms.Button
+    Private WithEvents lblXkeysDecrypt As System.Windows.Forms.Label
+    Private WithEvents btnXkeysDecrypt As System.Windows.Forms.Button
+    Private WithEvents lblXkeysEncrypt As System.Windows.Forms.Label
+    Private WithEvents txtXkeysEncrypt As System.Windows.Forms.TextBox
+    Private WithEvents label62 As System.Windows.Forms.Label
+    Private WithEvents btnAESEncrypt As System.Windows.Forms.Button
+    Private WithEvents btnRawAESSetKey As System.Windows.Forms.Button
+    Private WithEvents lblAESPassFail As System.Windows.Forms.Label
+    Private WithEvents BtnCheckDongle As System.Windows.Forms.Button
+    Private WithEvents BtnSetDongle As System.Windows.Forms.Button
+    Private WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Private WithEvents btnBeepOff As System.Windows.Forms.Button
+    Private WithEvents btnBeep As System.Windows.Forms.Button
+    Private WithEvents label9 As System.Windows.Forms.Label
+    Private WithEvents txtDivider As System.Windows.Forms.TextBox
+    Private WithEvents label8 As System.Windows.Forms.Label
+    Private WithEvents txtVol As System.Windows.Forms.TextBox
+    Private WithEvents Label10 As System.Windows.Forms.Label
+    Private WithEvents Label11 As System.Windows.Forms.Label
+    Private WithEvents txtBeepDuration As System.Windows.Forms.TextBox
+    Private WithEvents btnBeepContinuous As System.Windows.Forms.Button
 
 End Class
