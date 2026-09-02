@@ -1004,11 +1004,19 @@
         <td><span class="style6">0, 140, E1, E2,...Ex, 0...</span></td>
         <td><span class="style6">AES Decrypt</span></td>
       </tr>
+      <tr> 
+        <td> 
+          <div align="center"><span class="style6">19</span></div>
+        </td>
+        <td><span class="style6">0, 200, Vol, FreqDivLSB, FreqDivMSM, Duration, 
+          0...</span></td>
+        <td><span class="style6">Beeper Control+</span></td>
+      </tr>
     </table>
     <p><span class="style6"><sup>e</sup></span>Command writes to EEPROM, do not 
       perform this command excessively, do not exceed 50,000 writes to EEPROM. 
       <br>
-      <br>
+      +For the optional Annunciator add-on<br>
     </p>
 
     <p>Endpoint: 4, Vendor Defined Usage Page.</p>
@@ -2097,6 +2105,77 @@
       </tr>
     </table>
     <p><b>E1, E2, ..., Ex:</b> Encrypted data not to exceed 32 bytes.</p>
+    <p><strong>19. Beeper Control</strong></p>
+    <p>Send this output report to turn on or off the beeper and set its volume 
+      and frequency. This command is only valid on units with the optional Annunciator 
+      feature. The optional Annunciator feature has a passive piezo buzzer installed.</p>
+    <table  width="60%" border="4" cellspacing="2" cellpadding="2">
+      <tr class="style6"> 
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3"> Byte 1*</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 2</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 3 </span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 4</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 5</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Byte 6</span></div>
+        </td>
+        <td width="10%" bgcolor="#CCCCCC"> 
+          <div align="center"><span class="style3">Bytes 7-36</span></div>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFF00" class="style6"> 
+        <td>Constant</td>
+        <td>Command</td>
+        <td>Volume(0-245)</td>
+        <td>Freuqeny Divider LSB (0-255)</td>
+        <td>Frequency Divider MSB (0-255)</td>
+        <td>Duration (0-255)</td>
+        <td>Constant</td>
+      </tr>
+      <tr class="style6"> 
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">200</div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Vol</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>FreqDivLSB</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>FreqDivMSB</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center"><b>Duration</b></div>
+        </td>
+        <td bgcolor="#CCCCCC"> 
+          <div align="center">0</div>
+        </td>
+      </tr>
+    </table>
+    <p><b>Vol: </b>Volume of beep, 0-245.<br>
+      <b>FreqDivLSB:</b> The frequency divider least significant byte (LSB) . 
+      The frequency divider sets the pitch of the beep where higher values of 
+      frequency divider result in lower pitched beeps.<br>
+      <b>FreqDivMSB:</b> The frequency divider most significant byte (MSB). The 
+      frequency divider sets the pitch of the beep where higher values of frequency 
+      divider result in lower pitched beeps.<br>
+      <b>Duration:</b> 0=always on, user must manually turn beep off with another 
+      output report, 1-255 are duration /10ms so 1=10ms duration, 2=20ms duration, 
+      etc, max duration is 2550ms.</p>
     <p><b>*This first byte may be omitted on some non-PC operating systems. On 
       these systems the read and write lengths will be 1 byte smaller.</b></p>
     <!-- InstanceEndEditable -->
@@ -2104,7 +2183,7 @@
       </div><!-- end of "main" -->
       <div id="footer">
         
-    <p>&copy; Copyright 2024&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
+    <p>&copy; Copyright 2026&emsp;|&emsp;<a href="http://www.piengineering.com" rel="external" target="_blank">P.I. 
       Engineering, Inc.</a>&emsp;|&emsp;Select Rights Reserved</p>
       </div>
       <!-- end of "footer" -->
