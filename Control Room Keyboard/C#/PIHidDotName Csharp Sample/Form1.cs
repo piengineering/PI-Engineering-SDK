@@ -912,17 +912,8 @@ namespace PIHidDotName_Csharp_Sample
                 //if (data[3] == 0) listBox2.Items.Add("PID #2");
                 //else if (data[3] == 2) listBox2.Items.Add("PID #1"); //0=PID #2, 1=HW Mode PID, 2=PID #1
                 listBox2.Items.Add("device(memory)=" + data[3].ToString());
-
-                if (data[11] > 99)
-                {
-                    listBox2.Items.Add("Keymapstart=" + ((data[14] * 256) + data[4]).ToString());
-                    listBox2.Items.Add("Layer2offset=" + ((data[17] * 256) + data[5]).ToString()); //not in use anymore, back to 255
-                }
-                else
-                {
-                    listBox2.Items.Add("Keymapstart=" + ((0 * 256) + data[4]).ToString());
-                    listBox2.Items.Add("Layer2offset=" + ((0 * 256) + data[5]).ToString());
-                }
+                listBox2.Items.Add("Keymapstart=" + ((data[14] * 256) + data[4]).ToString());
+                listBox2.Items.Add("Layer2offset=" +  data[5]).ToString(); //not in use anymore, back to 255
                 listBox2.Items.Add("SizeOfEEProm=" + (data[7] * 256 + data[6]).ToString());
                 listBox2.Items.Add("MaxCol=" + data[8].ToString());
                 listBox2.Items.Add("MaxRow=" + data[9].ToString());
@@ -1863,6 +1854,105 @@ namespace PIHidDotName_Csharp_Sample
         private void rbTraditional_CheckedChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnBeep_Click(object sender, EventArgs e)
+        {
+            //For units with optional annunciator feature, sounds a beep for the desired volume, desired frequency, and desired duration.
+            //The desired frequency of the beep sound is determined by entering a 2 byte divider value, the higher this value, the lower the frequency of the sound.
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 200; // 0xc8;
+                wData[2] = (byte)(Convert.ToInt16(txtVol.Text)); //0 will turn off beep, max volume=245
+                int newdivider = (Convert.ToInt16(txtDivider.Text)); //frequency of sound where higher values=lower pitches
+
+                wData[3] = (byte)(newdivider & 0xff); //lsb
+                wData[4] = (byte)((newdivider >> 8) & 0xff); //msb
+                wData[5] = (byte)(Convert.ToInt16(txtBeepDuration.Text)); //0 means never turn off beep, user must manually turn it off with a volume=0 command. 1-255 is ms duration /10 so actual durations are 10ms-2550ms
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Beep on";
+                }
+            }
+        }
+
+        private void btnBeepOff_Click(object sender, EventArgs e)
+        {
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 200; // 0xc8;
+                wData[2] = (byte)0;
+
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Beep off";
+                }
+            }
+        
+        }
+
+        private void btnBeepContinuous_Click(object sender, EventArgs e)
+        {
+            //For units with optional annunciator feature, sounds a beep for the desired volume, desired frequency, and desired duration.
+            //The desired frequency of the beep sound is determined by entering a 2 byte divider value, the higher this value, the lower the frequency of the sound.
+            if (selecteddevice != -1) //do nothing if not enumerated
+            {
+
+
+                for (int j = 0; j < devices[selecteddevice].WriteLength; j++)
+                {
+                    wData[j] = 0;
+                }
+
+                wData[0] = 0;
+                wData[1] = 200; // 0xc8;
+                wData[2] = (byte)(Convert.ToInt16(txtVol.Text)); //0 will turn off beep, max volume=245
+                int newdivider = (Convert.ToInt16(txtDivider.Text)); //frequency of sound where higher values=lower pitches
+
+                wData[3] = (byte)(newdivider & 0xff); //lsb
+                wData[4] = (byte)((newdivider >> 8) & 0xff); //msb
+                wData[5] = 0; //0 means never turn off beep, user must manually turn it off with a volume=0 command. 1-255 is ms duration /10 so actual durations are 10ms-2550ms
+                int result = 404;
+
+                while (result == 404) { result = devices[selecteddevice].WriteData(wData); }
+                if (result != 0)
+                {
+                    toolStripStatusLabel1.Text = "Write Fail: " + result;
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "Write Success - Beep on continuous";
+                }
+            }
         }
 
        

@@ -97,6 +97,16 @@
             this.btnAESEncrypt = new System.Windows.Forms.Button();
             this.btnRawAESSetKey = new System.Windows.Forms.Button();
             this.lblButtons = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtVol = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDivider = new System.Windows.Forms.TextBox();
+            this.btnBeep = new System.Windows.Forms.Button();
+            this.btnBeepOff = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtBeepDuration = new System.Windows.Forms.TextBox();
+            this.btnBeepContinuous = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,10 +165,10 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 901);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 906);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1000, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1123, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -489,7 +499,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(529, 638);
+            this.label44.Location = new System.Drawing.Point(535, 638);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(65, 13);
@@ -520,7 +530,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(529, 563);
+            this.label4.Location = new System.Drawing.Point(535, 563);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(243, 13);
@@ -703,7 +713,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(537, 363);
+            this.label42.Location = new System.Drawing.Point(535, 363);
             this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(201, 13);
@@ -750,7 +760,7 @@
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(533, 697);
+            this.label62.Location = new System.Drawing.Point(535, 697);
             this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(109, 13);
@@ -788,12 +798,114 @@
             this.lblButtons.TabIndex = 579;
             this.lblButtons.Text = "Buttons: ";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(535, 814);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(224, 13);
+            this.label6.TabIndex = 580;
+            this.label6.Text = "Beep Setting for Optional Annunciator Add-On";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(543, 836);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 13);
+            this.label8.TabIndex = 586;
+            this.label8.Text = "vol  (0=off, max=245)";
+            // 
+            // txtVol
+            // 
+            this.txtVol.Location = new System.Drawing.Point(654, 833);
+            this.txtVol.Margin = new System.Windows.Forms.Padding(2);
+            this.txtVol.Name = "txtVol";
+            this.txtVol.Size = new System.Drawing.Size(30, 20);
+            this.txtVol.TabIndex = 585;
+            this.txtVol.Text = "127";
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(700, 836);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 48);
+            this.label9.TabIndex = 588;
+            this.label9.Text = "freq divider (higher value = lower frequency)";
+            // 
+            // txtDivider
+            // 
+            this.txtDivider.Location = new System.Drawing.Point(792, 833);
+            this.txtDivider.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDivider.Name = "txtDivider";
+            this.txtDivider.Size = new System.Drawing.Size(74, 20);
+            this.txtDivider.TabIndex = 587;
+            this.txtDivider.Text = "800";
+            // 
+            // btnBeep
+            // 
+            this.btnBeep.Location = new System.Drawing.Point(546, 880);
+            this.btnBeep.Name = "btnBeep";
+            this.btnBeep.Size = new System.Drawing.Size(124, 23);
+            this.btnBeep.TabIndex = 589;
+            this.btnBeep.Text = "Beep On for Duration";
+            this.btnBeep.UseVisualStyleBackColor = true;
+            this.btnBeep.Click += new System.EventHandler(this.btnBeep_Click);
+            // 
+            // btnBeepOff
+            // 
+            this.btnBeepOff.Location = new System.Drawing.Point(813, 880);
+            this.btnBeepOff.Name = "btnBeepOff";
+            this.btnBeepOff.Size = new System.Drawing.Size(124, 23);
+            this.btnBeepOff.TabIndex = 590;
+            this.btnBeepOff.Text = "Beep Off";
+            this.btnBeepOff.UseVisualStyleBackColor = true;
+            this.btnBeepOff.Click += new System.EventHandler(this.btnBeepOff_Click);
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(880, 836);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(121, 48);
+            this.label10.TabIndex = 592;
+            this.label10.Text = "duration  (0=always on, max=255=2.55sec)";
+            // 
+            // txtBeepDuration
+            // 
+            this.txtBeepDuration.Location = new System.Drawing.Point(1006, 833);
+            this.txtBeepDuration.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBeepDuration.Name = "txtBeepDuration";
+            this.txtBeepDuration.Size = new System.Drawing.Size(30, 20);
+            this.txtBeepDuration.TabIndex = 591;
+            this.txtBeepDuration.Text = "1";
+            // 
+            // btnBeepContinuous
+            // 
+            this.btnBeepContinuous.Location = new System.Drawing.Point(679, 880);
+            this.btnBeepContinuous.Name = "btnBeepContinuous";
+            this.btnBeepContinuous.Size = new System.Drawing.Size(124, 23);
+            this.btnBeepContinuous.TabIndex = 593;
+            this.btnBeepContinuous.Text = "Beep On Continuous";
+            this.btnBeepContinuous.UseVisualStyleBackColor = true;
+            this.btnBeepContinuous.Click += new System.EventHandler(this.btnBeepContinuous_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1000, 923);
+            this.ClientSize = new System.Drawing.Size(1123, 928);
+            this.Controls.Add(this.btnBeepOff);
+            this.Controls.Add(this.btnBeepContinuous);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtBeepDuration);
+            this.Controls.Add(this.btnBeep);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtDivider);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtVol);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblButtons);
             this.Controls.Add(this.lblXkeysDecrypt);
             this.Controls.Add(this.btnXkeysDecrypt);
@@ -944,6 +1056,16 @@
         private System.Windows.Forms.Button btnAESEncrypt;
         private System.Windows.Forms.Button btnRawAESSetKey;
         private System.Windows.Forms.Label lblButtons;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtVol;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDivider;
+        private System.Windows.Forms.Button btnBeep;
+        private System.Windows.Forms.Button btnBeepOff;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtBeepDuration;
+        private System.Windows.Forms.Button btnBeepContinuous;
     }
 }
 
