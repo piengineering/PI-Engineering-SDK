@@ -12,7 +12,7 @@ PIEHid64.dll	- v2.0.0.1 -	8-Dec-23 -	unmanaged	- ..\PI Engineering SDK\XK-24\C++
 
 PIEHidNetCore.dll -	v1.0.0.2	- 25-Sep-23	- .NET Standard 2.0	- ..\PI Engineering SDK\XK-24\C# .NET Standard 2.0, ..\PI Engineering SDK\XBE-24\C# .NET Standard 2.0, ..\PI Engineering SDK\XK-24\C# .NET 7.0, ..\PI Engineering SDK\XBE-24\C# .NET 7.0, ..\PI Engineering SDK\PIEHidNetCore Console
 
-HidSharp.dll	- -		various	..\PI Engineering SDK\HidSharp, ..\PI Engineering SDK\XK-24\C# HidSharp .NET4.8
+[HidSharp.dll](https://github.com/IntergatedCircuits/HidSharp)	- -		various	..\PI Engineering SDK\HidSharp, ..\PI Engineering SDK\XK-24\C# HidSharp .NET4.8
 
 PIEHidDotNet.dll	- v1.0.0.4	- 11-Jan-10 -	.NET Framework 2.0	- Legacy only, contact tech support tech@piengineering.com
 
